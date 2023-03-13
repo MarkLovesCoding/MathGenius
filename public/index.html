@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Website</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="js/index.js"></script>
+</head>
+
+<body>
+
+    <container class="spacer"></container>
+    <div id="burger-container" class="burger-container box-container">
+  
+      <div class="burger open" id="burger">
+       <span></span>
+       <span></span>
+       <span></span>
+        
+  
+      </div>
+    </div>
+  
+    <div id="quiz-modal" class="message-modal">
+      <div class="message-intro">You got <span id="amountCorrect" class="amountCorrect"></span> /10 Correct! </br> That's <span id="amountCorrectPercentage" class="amountCorrect"> </span>
+      </div>
+    </div>
+  <!--   <form id="user-submit" class="login-container">
+  
+      <input type="text" autocomplete="off" placeholder="username" name="login" class="login-input">
+      <button type="submit" for="name" class="login-button">Log-In</button>
+    </form> -->
+    <container class="main-container" id="main-container">
+  
+  
+      
+      <div class="menu-container box-container" id="menu-container">
+        <!--       <h3 class="subject-header">Operators</h3> -->
+              <div class="difficulty-container">
+          <div class="menu-title"> Difficulty</div>
+          <div class="difficulty-buttons menu-box">
+            <button id="dif-1 " class="diff-button active-difficulty">1</button>
+            <button id="dif-2" class="diff-button">2</button>
+            <button id="dif-3" class="diff-button">3</button>
+            <button id="dif-4" class="diff-button">4</button>
+            <button id="dif-5" class="diff-button">5</button>
+          </div>
+        </div>
+        
+        <div class="subjects-bar">
+          <div class="menu-title">Operator</div>
+        <div class=" menu-box">
+          <div class="addition"><button class="subject active-subject" data-sub="add" id="add">+</button> </div>
+          <div class="subtraction"> <button class="subject" data-sub="sub" id="sub">-</button> </div>
+          <div class="multiplication"><button class="subject" data-sub="mul" id="mul">x</button> </div>
+          <div class="division"><button class="subject" data-sub="div" id="div">÷</button></div>
+        </div>
+  </div>
+        <div class="choose-container">
+          <div class="menu-title"> Activity</div>
+        <div class="menu-box" id="choose-container">
+           
+          <button class="new-game choose-option" id="new-game" >
+            Game
+         
+          </button>
+          <button class="new-quiz choose-option" id="new-quiz" >Quiz</button>
+          <button class="new-mc choose-option" id="new-mc" >Practice</button>
+          <button class="new-flash choose-option" id="new-flash" >Flash</button>
+          
+        </div>
+          </div>
+        <!--       <div class="start-container">
+          <button class="startbtn" id="startbtn" onclick="startGame()">START</button>
+        </div> -->
+      </div>
+  
+  
+      <container class="mc-container sub-container" id="mc-container">
+      
+        
+        
+        <div class="mc-box">
+          <h1 class="title">Multiple Choice Practice</h1>
+          <h3 class="title-description">Choose the correct answer!</h3>
+  
+  
+          <form id="mc-answer-form" class="question-box">
+            <div id="mc-question-box" class="question">
+              <div id="mc-first-number" class="question-number question-text"></div>
+              <div id="mc-first-operator" class="operator question-text"></div>
+              <div id="mc-second-number" class="question-number question-text"></div>
+  <!--             <div id="mc-second-operator" class="operator question-text">=</div>
+  
+              <input type="number" min="0" id="mc-answer-input" class="input" placeholder="?" autocomplete="off"></input> -->
+            </div>
+  <!--           <button type="submit" id="mc-answer-submit-btn" class="answer-submit">ENTER</button> -->
+          </form>
+          <div id="mc-options-container" class="options-container">
+            <div id="mc-options" class="options"></div>
+          </div>
+  
+  <!--         <div class="mc-scores-container">
+            <div class="mc-curr-score-container">
+              Curr Score:<p id="mc-curr-score"></p>
+              <p>/</p>
+              <p id="mc-curr-question"></p>
+  
+            </div>
+            <div class="mc-last-score-container">
+              Last Score:<p id="mc-last-score"></p>
+  
+              <p>/</p>
+              <p>10</p>
+  
+            </div>
+          </div> -->
+  
+        </div>
+  
+      </container>
+      <container class="flash-container sub-container" id="flash-container">
+        
+            <div id="flash-question-box" class="flash-box flash-question-box">
+              <div id="flash-first-number" class="question-number flash-text"></div>
+              <div id="flash-first-operator" class="operator flash-text"></div>
+              <div id="flash-second-number" class="question-number flash-text"></div>
+  
+  
+  
+            </div>
+  
+          <div class=" flash-box flash-answer-box" id="flash-answer-box">
+            <div class="flash-answer flash-text" id='flash-answer'></div>
+          </div>
+        
+      </container>
+      <container class="quiz-container sub-container" id="quiz-container">
+        <div class="quiz-box">
+          <h1 class="title">Quiz Time</h1>
+          <h3 class="title-description">10 Questions!</h3>
+  
+          <!--           <p id="quiz-num-questions">10</p> Questions -->
+  
+          <form id="quiz-answer-form" class="question-box">
+            <div id="question-box" class="question">
+              <div id="quiz-first-number" class="question-number question-text"></div>
+              <div id="quiz-first-operator" class="operator question-text"></div>
+              <div id="quiz-second-number" class="question-number question-text"></div>
+              <div id="quiz-second-operator" class="operator question-text">=</div>
+  
+              <input type="number" min="0" id="quiz-answer-input" class="input" placeholder="?" autocomplete="off"></input>
+            </div>
+            <button type="submit" id="quiz-answer-submit-btn" class="answer-submit">ENTER</button>
+          </form>
+  
+              <div class="correctness-container ">
+          <div id="quiz-correctness" class="correctness"></div>
+  <!--         <div class="actual-container hidden" id="quiz-actual-container"> -->
+  <!--           <div class="actual-text">The correct answer is:</div>
+            <div class="actual" id="quiz-actual"></div>
+          </div> -->
+        </div>
+        
+          <div class="quiz-scores-container">
+            <div class="quiz-curr-score-container">
+              Curr Score:<p id="quiz-curr-score"></p>
+              <p>/</p>
+              <p id="quiz-curr-question"></p>
+  
+            </div>
+            <div class="quiz-last-score-container">
+              Last Score:<p id="quiz-last-score"></p>
+  
+              <p>/</p>
+              <p>10</p>
+  
+            </div>
+          </div>
+  
+        </div>
+  
+      </container>
+  
+      <container class="game-container sub-container" id="game-container">
+  
+  <!--       <h1 class="title">Game</h1> -->
+        <h3 class="title-description">How many in a row can you answer correctly?</h3>
+  
+        <div class="game-box">
+  
+          <form id="answer-form" class="question-box">
+            <div class="question">
+              <div id="first-number" class="question-number question-text"></div>
+              <div id="first-operator" class="operator question-text"></div>
+              <div id="second-number" class="question-number question-text"></div>
+              <div id="second-operator" class="operator question-text">=</div>
+  
+              <input type="number" min="0" id="answer-input" class="input" placeholder="?" autocomplete="off"></input>
+            </div>
+            <button type="submit" id="answer-submit-btn" class="answer-submit">ENTER</button>
+          </form>
+  
+        </div>
+  
+        <!--     <div class="temp" id="temp"></div> -->
+        <div class="correctness-container ">
+          <div id="correctness" class="correctness"></div>
+          <div class="actual-container hidden" id="actual-container">
+            <div class="actual-text">The correct answer was:</div>
+            <div class="actual" id="actual"></div>
+          </div>
+        </div>
+  
+        <div class="score-container">
+          <div class="curr-score-container">
+            <div class="score-title">Current Score:</div>
+            <div id="current-score" class="score-text"> 0</div>
+          </div>
+          <div class="high-score-container">
+            <div class="high-title">High Score:</div>
+            <div id="current-high" class="score-text">0</div>
+          </div>
+        </div>
+        <div class="progress-container">
+          <div class="level-container">
+            <div class="level-text">Level</div>
+            <div class="level-number" id="level-number">0</div>
+          </div>
+          <div class="tracker-container" id="tracker-container">
+  
+            <div class="tracker" id="tracker"></div>
+          </div>
+          
+            <div class="tracker-container" id="tracker-container-2">
+  
+            <div class="tracker" id="tracker-2"></div>
+          </div>
+        </div>
+      </container>
+  
+    </container>
+  
+  </body>
+</html>
