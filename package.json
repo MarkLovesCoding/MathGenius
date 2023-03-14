@@ -7,8 +7,6 @@
     "start": "npm run build && npm run serve",
     "build": "sass --watch public/css/styles.scss public/css/styles.css",
     "serve": "concurrently \"node server.js\" \"sass --watch public/scss/styles.scss:public/css/styles.css\" \"browser-sync start --port 4000 --proxy \"http://localhost:4000\" --files \"public/**/*.html\" \"public/**/*.css\" \"public/**/*.js\"\""
-
-
   },
   "keywords": [],
   "author": "",
@@ -17,12 +15,12 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "morgan": "^1.10.0",
     "node-sass-middleware": "^1.0.1"
   },
   "devDependencies": {
     "browser-sync": "^2.28.3",
     "concurrently": "^7.6.0",
+    "morgan": "^1.10.0",
     "sass": "^1.37.0"
   }
 }
