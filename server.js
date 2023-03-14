@@ -2,6 +2,8 @@ const express = require('express');
 const sassMiddleware = require('node-sass-middleware');
 const morgan = require('morgan');
 const path = require('path');
+const cors = require('cors');
+const bodyParser = require('body-parser')
 
 const app = express();
 
@@ -17,6 +19,10 @@ app.use(sassMiddleware({
 
 // set up the logger middleware
 app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cors())
 
 // serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,7 +33,7 @@ app.get('/', (req, res) => {
 });
 
 // start the server
-const port = process.env.PORT || 4000;
+const port =  4000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
