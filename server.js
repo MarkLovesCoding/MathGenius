@@ -8,13 +8,13 @@ const bodyParser = require('body-parser')
 const app = express();
 
 // set up the Sass middleware
-app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax:false,
-  debug: true,
-  outputStyle: 'expanded'
-}));
+// app.use(sassMiddleware({
+//   src: path.join(__dirname, 'public'),
+//   dest: path.join(__dirname, 'public'),
+//   indentedSyntax:false,
+//   debug: true,
+//   outputStyle: 'expanded'
+// }));
 
 
 // set up the logger middleware
