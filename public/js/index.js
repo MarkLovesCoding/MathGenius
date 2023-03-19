@@ -14,14 +14,20 @@
 //add badges for each level, for each difficulty that quiz was passed.
 //save to profile. create profile.
 // input
+
+
+import * as utilMethods from './ulils.js';
+
+
+
 window.onload = function() {
+
+
 var state = {
     activeOperators: ["+"],
     activeHighVal:10,
     activeDifficulty:1,
     activeMultiplyHighVal:4,
-   
-    
   };
   
   // VARIABLES
@@ -64,14 +70,11 @@ var state = {
   const gameNumOne = document.getElementById("first-number");
   const gameNumTwo = document.getElementById("second-number");
   const gameOpOne = document.getElementById("first-operator");
-  // const submitButton = document.getElementById("answer-submit-btn");
+
   const answerInput = document.getElementById("answer-input");
   const answerSubmit = document.getElementById("answer-form");
   
   const gameCorrectness = document.getElementById("correctness");
-  // const gameCorrectnessContainer = document.getElementById(
-  //   "correctness-container"
-  // );
   
   const actual = document.getElementById("actual");
   const actualContainer = document.getElementById("actual-container");
@@ -91,36 +94,20 @@ var state = {
   const quizNumOne = document.getElementById("quiz-first-number");
   const quizNumTwo = document.getElementById("quiz-second-number");
   const quizOpOne = document.getElementById("quiz-first-operator");
-  // const quizSubmitButton = document.getElementById("quiz-answer-submit-btn");
   const quizAnswerInput = document.getElementById("quiz-answer-input");
-  
   const quizCorrectness = document.getElementById("quiz-correctness");
-  // const quizCorrectnessContainer = document.getElementById(
-  //   "quiz-correctness-container"
-  // );
-  
   const quizAmountCorrect = document.getElementById("amountCorrect");
   const quizAmountCorrectPercentage = document.getElementById("amountCorrectPercentage");
-  
-  // const quizActual = document.getElementById("quiz-actual");
-  // const quizActualContainer = document.getElementById("quiz-actual-container");
   const quizCurrScore = document.getElementById("quiz-curr-score");
   const quizCurrQuestion = document.getElementById("quiz-curr-question");
-  const quizCurrScoreContainer = document.querySelector(
-    ".quiz-curr-score-container"
-  );
-  const quizLastScoreContainer = document.querySelector(
-    ".quiz-last-score-container"
-  );
+  const quizCurrScoreContainer = document.querySelector(".quiz-curr-score-container");
+  const quizLastScoreContainer = document.querySelector(".quiz-last-score-container");
   const quizLastScore = document.getElementById("quiz-last-score");
-  // const quizQuestionBox = document.getElementById("question-box");
   const quizModal = document.getElementById("quiz-modal");
   
   const newMC = document.getElementById("new-mc");
   const mcContainer = document.getElementById("mc-container");
-  // const mcOptionsContainer = document.getElementById("mc-options-container");
   const mcOptions = document.getElementById("mc-options");
-  // const mcQuestionBox = document.getElementById("mc-question-box");
   const mcNumOne = document.getElementById("mc-first-number");
   const mcNumTwo = document.getElementById("mc-second-number");
   const mcOpOne = document.getElementById("mc-first-operator");
@@ -149,8 +136,6 @@ var state = {
   function newGeneralQuestion(opEl,n1El,n2El, func){
     const subjects = updateSubjects();
     let o1 = randOp(subjects);
-    let o2 = "=";
-    let ans = "?";
   
      let n1 = randomNumber(0,  state.activeHighVal);
       let n2 = randomNumber(0,  state.activeHighVal);
@@ -390,6 +375,8 @@ var state = {
     });
   }
   
+
+  ////--------------
   function animateCorrect(element) {
     element.style.background = "green";
     element.style.borderColor = "white";
@@ -421,7 +408,7 @@ var state = {
     return parseInt(num1) / parseInt(num2);
   }
   
-  // RANDOM NUMBER / OPERATOR FUNCTIONS
+  // RANDOM NUMBER / OPERATOR FUNCTIONS-----------
   function randomNumber(min, max) {
     let span = max - min;
     let rand = Math.floor(Math.random() * span) + min;
@@ -490,6 +477,7 @@ var state = {
   }
   
   // GLOBAL UTILITIES
+  //-------
   function calculation(n1, n2, o1) {
     let ans;
     switch (o1) {
@@ -511,6 +499,8 @@ var state = {
     return ans;
   }
   
+
+  ////////------------
   function disableInput(element) {
     element.setAttribute("disabled", "true");
   }
@@ -518,6 +508,9 @@ var state = {
     element.removeAttribute("disabled");
     element.focus();
   }
+////-------------
+
+
   
   function resetScore() {
     currScore.innerHTML = 0;
@@ -569,6 +562,7 @@ var state = {
     quizAnswerInput.value = "";
   }
   
+  ////-------------
   function toggleActivate(e) {
     e.target.classList.toggle("active-subject");
   }
@@ -657,6 +651,8 @@ var state = {
     }
   }
   
+
+  /////////----------------
   function showHide(elementsShow = [], elementsHide = []) {
     if (elementsShow.length > 0) {
       elementsShow.forEach((el) => {
@@ -670,15 +666,15 @@ var state = {
     }
   }
   
-  function quizRevealCurrScore() {
-    showHide([quizCurrScoreContainer], []);
-  }
-  function quizHideCurrScore() {
-    showHide([], [quizCurrScoreContainer]);
-  }
-  function quizRevealLastScore() {
-    showHide([quizLastScoreContainer], []);
-  }
+  // function quizRevealCurrScore() {
+  //   showHide([quizCurrScoreContainer], []);
+  // }
+  // function quizHideCurrScore() {
+  //   showHide([], [quizCurrScoreContainer]);
+  // }
+  // function quizRevealLastScore() {
+  //   showHide([quizLastScoreContainer], []);
+  // }
   function revealMenu(){
     menuContainer.style.display="grid";
   }
@@ -760,6 +756,8 @@ var state = {
       element.classList.remove("incorrect");
     }, 500);
   }
+
+
   function quizModalReveal() {
     quizModal.style.visibility = "visible";
     quizModal.style.zIndex = "10";
