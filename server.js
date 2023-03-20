@@ -3,7 +3,9 @@ const sassMiddleware = require('node-sass-middleware');
 const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const csp = require('helmet-csp');
 
 const app = express();
 
@@ -16,15 +18,22 @@ const app = express();
 //   outputStyle: 'expanded'
 // }));
 
+if (process.env.NODE_ENV === 'development') {
+  require('./dev.js');
+}
 
 // set up the logger middleware
 app.use(morgan('dev'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-app.use(cors())
+// Set up Content Security Policy middleware
+
 
 // serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set up the home route
@@ -33,7 +42,7 @@ app.get('/', (req, res) => {
 });
 
 // start the server
-const port =  4000;
+const port = 4000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
