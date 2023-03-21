@@ -21,6 +21,16 @@ $cardShadow:3px 4px 5px -1px rgba(0,0,0,0.5);
   color: black;
   // color:rgba(255,220,220,1);
 }
+/* Game Container Styles */
+.main-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 100%;
+  max-width: 95vw;
+  position: relative;
+  // padding: 2em 2em;
+}
 
 .flash-box {
   cursor: pointer;
@@ -96,9 +106,7 @@ max-width: 300px;
   -webkit-transform-style: preserve-3d;
   -ms-transition: 0.3s;
   -moz-transition: 0.3s;
-  -moz-transform: perspective(1000px);
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
+
   transition: 0.3s;
   transform-style: preserve-3d;
 }
@@ -314,7 +322,7 @@ background: linear-gradient(225deg, hsla(306, 38%, 73%, 1) 29%, hsla(204, 49%, 7
 background: -moz-linear-gradient(225deg, hsla(306, 38%, 73%, 1) 29%, hsla(204, 49%, 70%, 1) 63%, hsla(202, 56%, 74%, 1) 81%, hsla(176, 58%, 72%, 1) 100%);
 
 background: -webkit-linear-gradient(225deg, hsla(306, 38%, 73%, 1) 29%, hsla(204, 49%, 70%, 1) 63%, hsla(202, 56%, 74%, 1) 81%, hsla(176, 58%, 72%, 1) 100%);
-max-height:700px;
+max-height:95vh;
 }
 .menu-box{
   display: flex;
@@ -393,16 +401,6 @@ max-height:700px;
   background-color: darkblue;
   border: 2px solid lightblue;
   color: orange;
-}
-/* Game Container Styles */
-.main-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  min-width: 70%;
-  max-width: 31em;
-  position: relative;
-  // padding: 2em 2em;
 }
 
 /* Start, New Game, and Answer Submit Button Styles */

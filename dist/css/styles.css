@@ -8,6 +8,16 @@
   color: black;
 }
 
+/* Game Container Styles */
+.main-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 100%;
+  max-width: 95vw;
+  position: relative;
+}
+
 .flash-box {
   cursor: pointer;
   -webkit-touch-callout: none;
@@ -80,9 +90,6 @@
   -webkit-transform-style: preserve-3d;
   -ms-transition: 0.3s;
   -moz-transition: 0.3s;
-  -moz-transform: perspective(1000px);
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
   transition: 0.3s;
   transform-style: preserve-3d;
 }
@@ -268,7 +275,7 @@ body:after {
   background: linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
   background: -moz-linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
   background: -webkit-linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
-  max-height: 700px;
+  max-height: 95vh;
 }
 
 .menu-box {
@@ -344,16 +351,6 @@ body:after {
   background-color: darkblue;
   border: 2px solid lightblue;
   color: orange;
-}
-
-/* Game Container Styles */
-.main-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  min-width: 70%;
-  max-width: 31em;
-  position: relative;
 }
 
 /* Start, New Game, and Answer Submit Button Styles */
