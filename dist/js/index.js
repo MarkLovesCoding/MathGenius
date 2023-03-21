@@ -14,9 +14,7 @@
 //add badges for each level, for each difficulty that quiz was passed.
 //save to profile. create profile.
 // input
-
-// import * as utilMethods from './ulils.js';
-
+import * as utilMethods from './ulils.js';
 window.onload = function () {
   var state = {
     activeOperators: ["+"],
