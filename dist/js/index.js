@@ -115,18 +115,18 @@ window.onload = function () {
   }
   function newGeneralQuestion(opEl, n1El, n2El, func) {
     const subjects = updateSubjects();
-    let o1 = randOp(subjects);
-    let n1 = randomNumber(0, state.activeHighVal);
-    let n2 = randomNumber(0, state.activeHighVal);
+    let o1 = utilMethods.randOp(subjects);
+    let n1 = utilMethods.randomNumber(0, state.activeHighVal);
+    let n2 = utilMethods.randomNumber(0, state.activeHighVal);
     console.log(n1, n2, o1);
     if (o1 === "x") {
-      n1 = randomNumber(0, state.activeMultiplyHighVal);
-      n2 = randomNumber(0, state.activeMultiplyHighVal);
+      n1 = utilMethods.randomNumber(0, state.activeMultiplyHighVal);
+      n2 = utilMethods.randomNumber(0, state.activeMultiplyHighVal);
     }
     if (o1 === "÷") {
       while (n1 % n2 != 0) {
-        n1 = randomNumber(0, state.activeHighVal);
-        n2 = randomNumber(1, state.activeHighVal);
+        n1 = utilMethods.randomNumber(0, state.activeHighVal);
+        n2 = utilMethods.randomNumber(1, state.activeHighVal);
       }
     }
     if (o1 === "-") {
@@ -139,35 +139,35 @@ window.onload = function () {
     n1El.textContent = n1;
     n2El.textContent = n2;
     opEl.textContent = o1;
-    console.log(calculation(n1, n2, o1));
+    console.log(utilMethods.calculation(n1, n2, o1));
     if (func) func(n1, n2, o1);
   }
   function gameNewQuestion() {
     burgerOn();
-    showHide([gameContainer, burgerContainer, actualContainer, gameCorrectness], [quizContainer, flashContainer]);
+    utilMethods.showHide([gameContainer, burgerContainer, actualContainer, gameCorrectness], [quizContainer, flashContainer]);
     hideMenu();
     newGeneralQuestion(gameOpOne, gameNumOne, gameNumTwo);
   }
   function quizNewQuestion() {
     burgerOn();
-    showHide([quizContainer, burgerContainer], [gameContainer]);
+    utilMethods.showHide([quizContainer, burgerContainer], [gameContainer]);
     hideMenu();
     newGeneralQuestion(quizOpOne, quizNumOne, quizNumTwo);
   }
   function mcNewQuestion() {
     burgerOn();
-    showHide([mcContainer, burgerContainer], [gameContainer, quizContainer, flashContainer]);
+    utilMethods.showHide([mcContainer, burgerContainer], [gameContainer, quizContainer, flashContainer]);
     hideMenu();
     newGeneralQuestion(mcOpOne, mcNumOne, mcNumTwo, mcCreateOptions);
   }
   function flashNewQuestion() {
     burgerOn();
-    showHide([flashContainer, flashQuestionBox, flashAnswerBox, burgerContainer], [mcContainer, gameContainer, quizContainer]);
+    utilMethods.showHide([flashContainer, flashQuestionBox, flashAnswerBox, burgerContainer], [mcContainer, gameContainer, quizContainer]);
     hideMenu();
     newGeneralQuestion(flashOpOne, flashNumOne, flashNumTwo);
   }
   function flashHandler(e) {
-    const ans = calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML);
+    const ans = utilMethods.calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML);
     flashAnswer.textContent = ans;
     if (this.classList.contains("flip")) {
       flashNewQuestion();
@@ -179,116 +179,102 @@ window.onload = function () {
   async function gameAnswerCheck(bool) {
     if (bool) {
       correctnessView(true, gameCorrectness);
-      emphasize(gameCorrectness);
-      visibilityTimedToggle(false, actualContainer);
+      utilMethods.emphasize(gameCorrectness);
+      utilMethods.visibilityTimedToggle(false, actualContainer);
       updateScore();
       await updateLevel();
-      disableInput(answerInput);
-      await delay(700);
-      enableInput(answerInput);
+      utilMethods.disableInput(answerInput);
+      await utilMethods.delay(700);
+      utilMethods.enableInput(answerInput);
       resetAnswerInput();
       gameNewQuestion();
     } else {
-      showHide([], [burgerContainer]);
+      utilMethods.showHide([], [burgerContainer]);
       correctnessView(false, gameCorrectness);
-      incorrectMotion(gameCorrectness);
-      disableInput(answerInput);
-      visibilityTimedToggle(true, actualContainer);
-      await delay(700);
+      utilMethods.incorrectMotion(gameCorrectness);
+      utilMethods.disableInput(answerInput);
+      utilMethods.visibilityTimedToggle(true, actualContainer);
+      await utilMethods.delay(700);
       resetAnswerInput();
       resetScore();
       resetProgress();
       gameNewQuestion();
-      await delay(1500);
-      enableInput(answerInput);
+      await utilMethods.delay(1500);
+      utilMethods.enableInput(answerInput);
     }
   }
   async function quizAnswerCheck(bool) {
     if (bool) {
-      emphasize(quizAnswerForm, 50, 1.1, 150);
+      utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
       correctnessView(true, quizCorrectness);
-      disableInput(quizAnswerInput);
+      utilMethods.disableInput(quizAnswerInput);
       addToQuizProperty(bool);
       checkQuizStatus();
-      await delay(700);
-      enableInput(quizAnswerInput);
+      await utilMethods.delay(700);
+      utilMethods.enableInput(quizAnswerInput);
       resetAnswerInput();
       quizNewQuestion();
     } else {
-      incorrectMotion(quizAnswerForm);
+      utilMethods.incorrectMotion(quizAnswerForm);
       correctnessView(false, quizCorrectness);
-      disableInput(quizAnswerInput);
+      utilMethods.disableInput(quizAnswerInput);
       addToQuizProperty(bool);
       checkQuizStatus();
-      await delay(700);
-      enableInput(quizAnswerInput);
+      await utilMethods.delay(700);
+      utilMethods.enableInput(quizAnswerInput);
       resetAnswerInput();
       quizNewQuestion();
     }
   }
   async function mcAnswerCheck(bool, correctEl, falseEl = null) {
     if (bool) {
-      animateCorrect(correctEl);
-      await delay(700);
+      utilMethods.animateCorrect(correctEl);
+      await utilMethods.delay(700);
       mcNewQuestion();
     } else {
-      animateIncorrect(falseEl);
-      animateCorrect(correctEl);
-      await delay(700);
+      utilMethods.animateIncorrect(falseEl);
+      utilMethods.animateCorrect(correctEl);
+      await utilMethods.delay(700);
       mcNewQuestion();
     }
   }
-  function visibilityTimedToggle(bool, element) {
-    if (bool) {
-      element.style.visibility = "visible";
-      setTimeout(() => {
-        element.style.visibility = "hidden";
-      }, 2000);
-    }
-    if (!bool) {
-      element.style.visibility = "hidden";
-    }
-  }
-  function visibilityToggle(bool, element) {
-    if (bool) {
-      element.style.visibility = "visible";
-    }
-    if (!bool) {
-      element.style.visibility = "hidden";
-    }
-  }
-  function shuffle(array) {
-    let currentIndex = array.length,
-      randomIndex;
 
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-    return array;
-  }
+  // function shuffle(array) {
+  //   let currentIndex = array.length,
+  //     randomIndex;
+
+  //   // While there remain elements to shuffle.
+  //   while (currentIndex != 0) {
+  //     // Pick a remaining element.
+  //     randomIndex = Math.floor(Math.random() * currentIndex);
+  //     currentIndex--;
+  //     // And swap it with the current element.
+  //     [array[currentIndex], array[randomIndex]] = [
+  //       array[randomIndex],
+  //       array[currentIndex]
+  //     ];
+  //   }
+  //   return array;
+  // }
+
   function mcCreateOptions(n1, n2, o1) {
     var options = [];
     let r1, r2, r3;
-    const ans = calculation(n1, n2, o1);
+    const ans = utilMethods.calculation(n1, n2, o1);
     options.push(ans);
     do {
-      r1 = randomNumber(0, ans + 5);
+      r1 = utilMethods.randomNumber(0, ans + 5);
     } while (options.includes(r1));
     options.push(r1);
     do {
-      r2 = randomNumber(0, ans + 5);
+      r2 = utilMethods.randomNumber(0, ans + 5);
     } while (options.includes(r2));
     options.push(r2);
     do {
-      r3 = randomNumber(0, ans + 5);
+      r3 = utilMethods.randomNumber(0, ans + 5);
     } while (options.includes(r3));
     options.push(r3);
-    options = shuffle(options);
+    options = utilMethods.shuffle(options);
     mcOptions.innerHTML = "";
     options.forEach((option, index) => {
       const optionEl = document.createElement("button");
@@ -312,53 +298,7 @@ window.onload = function () {
   }
 
   ////--------------
-  function animateCorrect(element) {
-    element.style.background = "green";
-    element.style.borderColor = "white";
-    setTimeout(() => {
-      element.style.background = "rgb(200 200 200 / 95%)";
-      element.style.borderColor = "rgba(100,100,100,1)";
-    }, 700);
-  }
-  function animateIncorrect(element) {
-    element.style.background = "darkred";
-    element.style.borderColor = "white";
-    setTimeout(() => {
-      element.style.background = "rgb(200 200 200 / 95%)";
-      element.style.borderColor = "rgba(100,100,100,1)";
-    }, 700);
-  }
 
-  //  UTILITY FUNCTIONS
-  function add(num1, num2) {
-    return parseInt(num1) + parseInt(num2);
-  }
-  function subtract(num1, num2) {
-    return parseInt(num1) - parseInt(num2);
-  }
-  function multiply(num1, num2) {
-    return parseInt(num1) * parseInt(num2);
-  }
-  function divide(num1, num2) {
-    return parseInt(num1) / parseInt(num2);
-  }
-
-  // RANDOM NUMBER / OPERATOR FUNCTIONS-----------
-  function randomNumber(min, max) {
-    let span = max - min;
-    let rand = Math.floor(Math.random() * span) + min;
-    return rand;
-  }
-  function randOp(arr = operators) {
-    let l = arr.length;
-    let r = Math.floor(Math.random() * l);
-    return arr[r];
-  }
-  function delay(time) {
-    return new Promise(res => {
-      setTimeout(res, time);
-    });
-  }
   function updateDifficulty() {
     let difficulty;
     for (let i = 0; i <= 4; i++) {
@@ -405,40 +345,6 @@ window.onload = function () {
 
     return ops;
   }
-
-  // GLOBAL UTILITIES
-  //-------
-  function calculation(n1, n2, o1) {
-    let ans;
-    switch (o1) {
-      case "+":
-        ans = add(n1, n2);
-        break;
-      case "-":
-        ans = subtract(n1, n2);
-        break;
-      case "x":
-        ans = multiply(n1, n2);
-        break;
-      case "÷":
-        ans = divide(n1, n2);
-        break;
-      default:
-        break;
-    }
-    return ans;
-  }
-
-  ////////------------
-  function disableInput(element) {
-    element.setAttribute("disabled", "true");
-  }
-  function enableInput(element) {
-    element.removeAttribute("disabled");
-    element.focus();
-  }
-  ////-------------
-
   function resetScore() {
     currScore.innerHTML = 0;
   }
@@ -456,13 +362,13 @@ window.onload = function () {
     userValue = userAnswer;
   }
   function gameCheckAnswerHandler(e) {
-    let realAns = calculation(gameNumOne.innerHTML, gameNumTwo.innerHTML, gameOpOne.innerHTML);
+    let realAns = utilMethods.calculation(gameNumOne.innerHTML, gameNumTwo.innerHTML, gameOpOne.innerHTML);
     actual.innerHTML = realAns;
     gameAnswerCheck(realAns == userValue);
     e.preventDefault();
   }
   function correctnessView(bool, element) {
-    showHide([element], []);
+    utilMethods.showHide([element], []);
     if (bool) {
       element.classList.add("correct-answer");
       element.classList.remove("incorrect-answer");
@@ -479,9 +385,7 @@ window.onload = function () {
   }
 
   ////-------------
-  function toggleActivate(e) {
-    e.target.classList.toggle("active-subject");
-  }
+
   function updateScore() {
     let currScoreInner = parseInt(currScore.innerHTML);
     currScoreInner += 1;
@@ -495,10 +399,10 @@ window.onload = function () {
     quizAmountCorrect.textContent = quizStats.numCorrect;
     quizAmountCorrectPercentage.textContent = percentage(quizStats.numCorrect, quizStats.numAnswered).toString() + "%";
     quizModalReveal();
-    emphasize(quizModal);
-    await delay(2400);
+    utilMethods.emphasize(quizModal);
+    await utilMethods.delay(2400);
     quizModalHide();
-    enableInput(quizAnswerInput);
+    utilMethods.enableInput(quizAnswerInput);
   }
   function levelUp(level) {
     let newColor = `hsl( ${level * 30}, 100%, 50%)`;
@@ -523,13 +427,13 @@ window.onload = function () {
     }
     if (parseInt(currScore.textContent) % 10 == 0) {
       console.log("reset");
-      disableInput(answerInput);
+      utilMethods.disableInput(answerInput);
       resetProgress();
       addlevel();
       level += 1;
       levelUp(level);
-      await delay(1000);
-      enableInput(answerInput);
+      await utilMethods.delay(1000);
+      utilMethods.enableInput(answerInput);
     }
     levelNumber.textContent = level;
   }
@@ -553,34 +457,10 @@ window.onload = function () {
     progressWidth += fullWidth / 10;
     tracker.style.width = progressWidth + "px";
     if (progressWidth == fullWidth) {
-      await delay(1000);
+      await utilMethods.delay(1000);
       resetProgress();
     }
   }
-
-  /////////----------------
-  function showHide(elementsShow = [], elementsHide = []) {
-    if (elementsShow.length > 0) {
-      elementsShow.forEach(el => {
-        el.style.display = "flex";
-      });
-    }
-    if (elementsHide.length > 0) {
-      elementsHide.forEach(el => {
-        el.style.display = "none";
-      });
-    }
-  }
-
-  // function quizRevealCurrScore() {
-  //   showHide([quizCurrScoreContainer], []);
-  // }
-  // function quizHideCurrScore() {
-  //   showHide([], [quizCurrScoreContainer]);
-  // }
-  // function quizRevealLastScore() {
-  //   showHide([quizLastScoreContainer], []);
-  // }
   function revealMenu() {
     menuContainer.style.display = "grid";
   }
@@ -589,64 +469,21 @@ window.onload = function () {
   }
   function showMainMenu() {
     revealMenu();
-    showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, correctness, actualContainer, mcContainer]);
+    utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, correctness, actualContainer, mcContainer]);
     resetQuizProperty();
     resetLevel();
     resetProgress();
     resetLevelProgress();
   }
-  // Helper
-  function getStyle(el, styleProp) {
-    var value,
-      defaultView = (el.ownerDocument || document).defaultView;
-    if (defaultView && defaultView.getComputedStyle) {
-      styleProp = styleProp.replace(/([A-Z])/g, "-$1").toLowerCase();
-      return defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
-    } else if (el.currentStyle) {
-      styleProp = styleProp.replace(/\-(\w)/g, function (str, letter) {
-        return letter.toUpperCase();
-      });
-      value = el.currentStyle[styleProp];
-      if (/^\d+(em|pt|%|ex)?$/i.test(value)) {
-        return function (value) {
-          var oldLeft = el.style.left,
-            oldRsLeft = el.runtimeStyle.left;
-          el.runtimeStyle.left = el.currentStyle.left;
-          el.style.left = value || 0;
-          value = el.style.pixelLeft + "px";
-          el.style.left = oldLeft;
-          el.runtimeStyle.left = oldRsLeft;
-          return value;
-        }(value);
-      }
-      return value;
-    }
-  }
-  function emphasize(element, transitionTime = 100, scale = 1.3, scaleTime = 250) {
-    scaleTime = parseInt(scaleTime);
-    scale = parseFloat(scale);
-    transitionTime = parseInt(transitionTime);
-    let existingTransform = getStyle(element, "transform") || "";
-    element.style.transition = `transform ${transitionTime}ms ease-in`;
-    element.style.transform = existingTransform + " scale(1.1)";
-    setTimeout(() => element.style.transform = existingTransform + ` scale(${scale})`, 50);
-    setTimeout(() => element.style.transform = existingTransform + " scale(1)", scaleTime);
-  }
-  function incorrectMotion(element) {
-    element.classList.add("incorrect");
-    setTimeout(() => {
-      element.classList.remove("incorrect");
-    }, 500);
-  }
   function quizModalReveal() {
     quizModal.style.visibility = "visible";
     quizModal.style.zIndex = "10";
-    showHide([], [mainContainer]);
+    utilMethods.showHide([], [mainContainer]);
   }
   function quizModalHide() {
     quizModal.style.visibility = "hidden";
     quizModal.style.zIndex = "0";
-    showHide([mainContainer]);
+    utilMethods.showHide([mainContainer]);
   }
   function resetQuizProperty() {
     quizStats.numAnswered = 0;
@@ -666,14 +503,14 @@ window.onload = function () {
   }
   async function checkQuizStatus() {
     if (quizStats.numAnswered == 1) {
-      visibilityToggle(true, quizCurrScoreContainer);
+      utilMethods.visibilityToggle(true, quizCurrScoreContainer);
     }
     if (quizStats.numAnswered >= quizStats.numQuestions) {
       console.log("show Modal");
       quizShowScore();
-      await delay(1200);
-      visibilityToggle(false, quizCurrScoreContainer);
-      visibilityToggle(true, quizLastScoreContainer);
+      await utilMethods.delay(1200);
+      utilMethods.visibilityToggle(false, quizCurrScoreContainer);
+      utilMethods.visibilityToggle(true, quizLastScoreContainer);
       finishQuiz();
     }
   }
@@ -688,7 +525,7 @@ window.onload = function () {
     userValue = userAnswer;
   }
   function quizAnswerHandler(e) {
-    let realAns = calculation(quizNumOne.innerHTML, quizNumTwo.innerHTML, quizOpOne.innerHTML);
+    let realAns = utilMethods.calculation(quizNumOne.innerHTML, quizNumTwo.innerHTML, quizOpOne.innerHTML);
     console.log("realAns: ", realAns);
     quizAnswerCheck(realAns == userValue);
     e.preventDefault();
@@ -699,7 +536,7 @@ window.onload = function () {
   quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler);
   quizAnswerForm.addEventListener("submit", quizAnswerHandler);
   for (let subject of subjects) {
-    subject.addEventListener("click", toggleActivate);
+    subject.addEventListener("click", utilMethods.toggleActivate);
   }
   for (let diffButton of diffButtons) {
     diffButton.addEventListener("click", () => {

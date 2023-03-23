@@ -2,6 +2,22 @@
 //// UTIL Methods
 
 // MATH Methods
+export function add(num1, num2) {
+    return parseInt(num1) + parseInt(num2);
+  }
+export function subtract(num1, num2) {
+return parseInt(num1) - parseInt(num2);
+}
+export function multiply(num1, num2) {
+return parseInt(num1) * parseInt(num2);
+}
+export function divide(num1, num2) {
+return parseInt(num1) / parseInt(num2);
+}
+
+
+
+
 
 export function calculation(n1, n2, o1) {
     let ans;
