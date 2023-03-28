@@ -67,20 +67,20 @@ window.onload = function () {
   // const gameNumTwo = document.getElementById("second-number");
   // const gameOpOne = document.getElementById("first-operator");
 
-  const answerInput = document.getElementById("answer-input");
-  const answerSubmit = document.getElementById("answer-form");
+  const gameAnswerInput = document.getElementById("answer-input");
+  const gameAnswerSubmit = document.getElementById("answer-form");
 
   // const gameCorrectness = document.getElementById("correctness");
 
-  const actual = document.getElementById("actual");
-  const actualContainer = document.getElementById("actual-container");
-  const currScore = document.getElementById("current-score");
-  const highScore = document.getElementById("current-high");
-  const levelNumber = document.getElementById("level-number");
-  const tracker = document.getElementById("tracker");
-  const tracker2 = document.getElementById("tracker-2");
-  const trackerContainer = document.getElementById("tracker-container");
-  const trackerContainer2 = document.getElementById("tracker-container-2");
+  const gameActual = document.getElementById("actual");
+  const gameActualContainer = document.getElementById("actual-container");
+  const gameCurrScore = document.getElementById("current-score");
+  const gameHighScore = document.getElementById("current-high");
+  const gameLevelNumber = document.getElementById("level-number");
+  const gameTracker = document.getElementById("tracker");
+  const gameTracker2 = document.getElementById("tracker-2");
+  const gameTrackerContainer = document.getElementById("tracker-container");
+  const gameTrackerContainer2 = document.getElementById("tracker-container-2");
 
   // // quiz
   // const quizContainer = document.getElementById("quiz-container");
@@ -158,7 +158,7 @@ window.onload = function () {
   }
   function gameNewQuestion() {
     burgerOn();
-    utilMethods.showHide([gameContainer, burgerContainer, actualContainer, gameCorrectness], [quizContainer, flashContainer]);
+    utilMethods.showHide([gameContainer, burgerContainer, gameActualContainer, gameCorrectness], [quizContainer, flashContainer]);
     hideMenu();
     newGeneralQuestion(gameOpOne, gameNumOne, gameNumTwo);
   }
@@ -194,7 +194,7 @@ window.onload = function () {
     if (bool) {
       correctnessView(true, gameCorrectness);
       utilMethods.emphasize(gameCorrectness);
-      utilMethods.visibilityTimedToggle(false, actualContainer);
+      utilMethods.visibilityTimedToggle(false, gameActualContainer);
       updateScore();
       await updateLevel();
       utilMethods.disableInput(answerInput);
@@ -207,7 +207,7 @@ window.onload = function () {
       correctnessView(false, gameCorrectness);
       utilMethods.incorrectMotion(gameCorrectness);
       utilMethods.disableInput(answerInput);
-      utilMethods.visibilityTimedToggle(true, actualContainer);
+      utilMethods.visibilityTimedToggle(true, gameActualContainer);
       await utilMethods.delay(700);
       resetAnswerInput();
       resetScore();
@@ -360,15 +360,15 @@ window.onload = function () {
     return ops;
   }
   function resetScore() {
-    currScore.innerHTML = 0;
+    gameCurrScore.innerHTML = 0;
   }
   function checkHighScore() {
-    let curr = currScore.innerHTML;
+    let curr = gameCurrScore.innerHTML;
     if (curr > parseInt(high_score)) {
       high_score = curr;
-      highScore.innerHTML = curr;
+      gameHighScore.innerHTML = curr;
     } else {
-      highScore.innerHTML = high_score;
+      gameHighScore.innerHTML = high_score;
     }
   }
   function gameUpdateAnswerHandler(e) {
@@ -377,7 +377,7 @@ window.onload = function () {
   }
   function gameCheckAnswerHandler(e) {
     let realAns = utilMethods.calculation(gameNumOne.innerHTML, gameNumTwo.innerHTML, gameOpOne.innerHTML);
-    actual.innerHTML = realAns;
+    gameActual.innerHTML = realAns;
     gameAnswerCheck(realAns == userValue);
     e.preventDefault();
   }
@@ -394,7 +394,7 @@ window.onload = function () {
     }
   }
   function resetAnswerInput() {
-    answerInput.value = "";
+    gameAnswerInput.value = "";
     quizAnswerInput.value = "";
   }
 
@@ -403,7 +403,7 @@ window.onload = function () {
   function updateScore() {
     let currScoreInner = parseInt(currScore.innerHTML);
     currScoreInner += 1;
-    currScore.innerHTML = currScoreInner;
+    gameCurrScore.innerHTML = currScoreInner;
     checkHighScore();
   }
   function percentage(n1, n2) {
@@ -420,22 +420,22 @@ window.onload = function () {
   }
   function levelUp(level) {
     let newColor = `hsl( ${level * 30}, 100%, 50%)`;
-    tracker.style.backgroundColor = newColor;
-    tracker2.style.backgroundColor = newColor;
+    gameTracker.style.backgroundColor = newColor;
+    gameTracker2.style.backgroundColor = newColor;
   }
   function addlevel() {
-    let fullWidth = window.getComputedStyle(trackerContainer2).width;
-    let borderWidth = window.getComputedStyle(trackerContainer2).getPropertyValue("border-width");
+    let fullWidth = window.getComputedStyle(gameTrackerContainer2).width;
+    let borderWidth = window.getComputedStyle(gameTrackerContainer2).getPropertyValue("border-width");
     fullWidth = parseFloat(fullWidth.slice(0, -2));
     borderWidth = parseFloat(borderWidth.slice(0, -2));
     fullWidth = fullWidth - borderWidth * 2;
-    let progressWidth = window.getComputedStyle(tracker2).width;
+    let progressWidth = window.getComputedStyle(gameTracker2).width;
     progressWidth = parseFloat(progressWidth.slice(0, -2));
     progressWidth += fullWidth / 10;
-    tracker2.style.width = progressWidth + "px";
+    gameTracker2.style.width = progressWidth + "px";
   }
   async function updateLevel() {
-    let level = parseInt(levelNumber.textContent);
+    let level = parseInt(gameLevelNumber.textContent);
     if (parseInt(currScore.textContent) % 1 == 0) {
       updateProgress();
     }
@@ -449,27 +449,27 @@ window.onload = function () {
       await utilMethods.delay(1000);
       utilMethods.enableInput(answerInput);
     }
-    levelNumber.textContent = level;
+    gameLevelNumber.textContent = level;
   }
   function resetLevel() {
-    levelNumber.textContent = 0;
+    gameLevelNumber.textContent = 0;
   }
   function resetProgress() {
-    tracker.style.width = "0px";
+    gameTracker.style.width = "0px";
   }
   function resetLevelProgress() {
-    tracker2.style.width = "0px";
+    gameTracker2.style.width = "0px";
   }
   async function updateProgress() {
-    let fullWidth = window.getComputedStyle(trackerContainer).width;
-    let borderWidth = window.getComputedStyle(trackerContainer).getPropertyValue("border-width");
+    let fullWidth = window.getComputedStyle(gameTrackerContainer).width;
+    let borderWidth = window.getComputedStyle(gameTrackerContainer).getPropertyValue("border-width");
     fullWidth = parseFloat(fullWidth.slice(0, -2));
     borderWidth = parseFloat(borderWidth.slice(0, -2));
     fullWidth = fullWidth - borderWidth * 2;
     let progressWidth = window.getComputedStyle(tracker).width;
     progressWidth = parseFloat(progressWidth.slice(0, -2));
     progressWidth += fullWidth / 10;
-    tracker.style.width = progressWidth + "px";
+    gameTracker.style.width = progressWidth + "px";
     if (progressWidth == fullWidth) {
       await utilMethods.delay(1000);
       resetProgress();
@@ -483,7 +483,7 @@ window.onload = function () {
   }
   function showMainMenu() {
     revealMenu();
-    utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, correctness, actualContainer, mcContainer]);
+    utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, correctness, gameActualContainer, mcContainer]);
     resetQuizProperty();
     resetLevel();
     resetProgress();
@@ -545,8 +545,8 @@ window.onload = function () {
     e.preventDefault();
   }
   flashContainer.addEventListener("mousedown", flashHandler, false);
-  answerInput.addEventListener("input", gameUpdateAnswerHandler);
-  answerSubmit.addEventListener("submit", gameCheckAnswerHandler);
+  gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler);
+  gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler);
   quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler);
   quizAnswerForm.addEventListener("submit", quizAnswerHandler);
   for (let subject of subjects) {

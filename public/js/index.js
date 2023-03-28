@@ -15,7 +15,12 @@
 //save to profile. create profile.
 // input
 import * as utilMethods from './ulils.js';
+import {burger, burgerContainer, mainContainer, menuContainer, subjects,diffButtons} from './domElements.js'
 
+import { flashAnswer, flashContainer, flashNumOne, flashNumTwo, flashOpOne, flashQuestionBox, flashAnswerBox, newFlash } from './domElements.js';
+import { mcContainer, mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './domElements.js';
+import { quizContainer, quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz} from './domElements.js';
+import { gameContainer, gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame } from './domElements.js';
 
 window.onload = function() {
 
@@ -50,28 +55,27 @@ var state = {
   
   // const burger = document.querySelector('.new-game-container')
   
-  const burger = document.getElementById("burger");
+  // const burger = document.getElementById("burger");
   // const chooseContainer = document.getElementById("choose-container");
   
-  const mainContainer = document.getElementById("main-container");
+  // const mainContainer = document.getElementById("main-container");
   
-  const diffButtons = document.querySelectorAll(".diff-button");
   
-  const subjects = document.querySelectorAll(".subject");
-  const menuContainer = document.getElementById("menu-container");
+  // const subjects = document.querySelectorAll(".subject");
+  // const menuContainer = document.getElementById("menu-container");
   
-  const burgerContainer = document.getElementById("burger-container");
-  const newGame = document.getElementById("new-game");
-  const gameContainer = document.getElementById("game-container");
+  // const burgerContainer = document.getElementById("burger-container");
+  // const newGame = document.getElementById("new-game");
+  // const gameContainer = document.getElementById("game-container");
   
-  const gameNumOne = document.getElementById("first-number");
-  const gameNumTwo = document.getElementById("second-number");
-  const gameOpOne = document.getElementById("first-operator");
+  // const gameNumOne = document.getElementById("first-number");
+  // const gameNumTwo = document.getElementById("second-number");
+  // const gameOpOne = document.getElementById("first-operator");
 
   const answerInput = document.getElementById("answer-input");
   const answerSubmit = document.getElementById("answer-form");
   
-  const gameCorrectness = document.getElementById("correctness");
+  // const gameCorrectness = document.getElementById("correctness");
   
   const actual = document.getElementById("actual");
   const actualContainer = document.getElementById("actual-container");
@@ -84,40 +88,40 @@ var state = {
   const trackerContainer = document.getElementById("tracker-container");
   const trackerContainer2 = document.getElementById("tracker-container-2");
   
-  // quiz
-  const quizContainer = document.getElementById("quiz-container");
-  const quizAnswerForm = document.getElementById("quiz-answer-form");
-  const newQuiz = document.getElementById("new-quiz");
-  const quizNumOne = document.getElementById("quiz-first-number");
-  const quizNumTwo = document.getElementById("quiz-second-number");
-  const quizOpOne = document.getElementById("quiz-first-operator");
-  const quizAnswerInput = document.getElementById("quiz-answer-input");
-  const quizCorrectness = document.getElementById("quiz-correctness");
-  const quizAmountCorrect = document.getElementById("amountCorrect");
-  const quizAmountCorrectPercentage = document.getElementById("amountCorrectPercentage");
-  const quizCurrScore = document.getElementById("quiz-curr-score");
-  const quizCurrQuestion = document.getElementById("quiz-curr-question");
-  const quizCurrScoreContainer = document.querySelector(".quiz-curr-score-container");
-  const quizLastScoreContainer = document.querySelector(".quiz-last-score-container");
-  const quizLastScore = document.getElementById("quiz-last-score");
-  const quizModal = document.getElementById("quiz-modal");
+  // // quiz
+  // const quizContainer = document.getElementById("quiz-container");
+  // const quizAnswerForm = document.getElementById("quiz-answer-form");
+  // const newQuiz = document.getElementById("new-quiz");
+  // const quizNumOne = document.getElementById("quiz-first-number");
+  // const quizNumTwo = document.getElementById("quiz-second-number");
+  // const quizOpOne = document.getElementById("quiz-first-operator");
+  // const quizAnswerInput = document.getElementById("quiz-answer-input");
+  // const quizCorrectness = document.getElementById("quiz-correctness");
+  // const quizAmountCorrect = document.getElementById("amountCorrect");
+  // const quizAmountCorrectPercentage = document.getElementById("amountCorrectPercentage");
+  // const quizCurrScore = document.getElementById("quiz-curr-score");
+  // const quizCurrQuestion = document.getElementById("quiz-curr-question");
+  // const quizCurrScoreContainer = document.querySelector(".quiz-curr-score-container");
+  // const quizLastScoreContainer = document.querySelector(".quiz-last-score-container");
+  // const quizLastScore = document.getElementById("quiz-last-score");
+  // const quizModal = document.getElementById("quiz-modal");
   
-  const newMC = document.getElementById("new-mc");
-  const mcContainer = document.getElementById("mc-container");
-  const mcOptions = document.getElementById("mc-options");
-  const mcNumOne = document.getElementById("mc-first-number");
-  const mcNumTwo = document.getElementById("mc-second-number");
-  const mcOpOne = document.getElementById("mc-first-operator");
+  // const newMC = document.getElementById("new-mc");
+  // const mcContainer = document.getElementById("mc-container");
+  // const mcOptions = document.getElementById("mc-options");
+  // const mcNumOne = document.getElementById("mc-first-number");
+  // const mcNumTwo = document.getElementById("mc-second-number");
+  // const mcOpOne = document.getElementById("mc-first-operator");
   
-  const flashContainer = document.getElementById("flash-container");
-  const newFlash = document.getElementById("new-flash");
+  // const flashContainer = document.getElementById("flash-container");
+  // const newFlash = document.getElementById("new-flash");
   
-  const flashAnswer = document.getElementById("flash-answer");
-  const flashAnswerBox = document.getElementById("flash-answer-box");
-  const flashQuestionBox = document.getElementById("flash-question-box");
-  const flashNumOne = document.getElementById("flash-first-number");
-  const flashNumTwo = document.getElementById("flash-second-number");
-  const flashOpOne = document.getElementById("flash-first-operator");
+  // const flashAnswer = document.getElementById("flash-answer");
+  // const flashAnswerBox = document.getElementById("flash-answer-box");
+  // const flashQuestionBox = document.getElementById("flash-question-box");
+  // const flashNumOne = document.getElementById("flash-first-number");
+  // const flashNumTwo = document.getElementById("flash-second-number");
+  // const flashOpOne = document.getElementById("flash-first-operator");
   
   function burgerOn() {
     if (burger.classList.contains("open")) {
