@@ -53,7 +53,7 @@ var state = {
 
 
 
-  
+
   
   function burgerOn() {
     if (burger.classList.contains("open")) {
@@ -195,7 +195,7 @@ var state = {
       correctnessView(true, quizCorrectness);
       utilMethods.disableInput(quizAnswerInput);
       addToQuizProperty(bool);
-      checkQuizStatus();
+      checkQuizStatus(quizStats,quizCurrScoreContainer,quizLastScoreContainer,quizLastScore);
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
       resetAnswerInput();
@@ -205,7 +205,7 @@ var state = {
       correctnessView(false, quizCorrectness);
       utilMethods.disableInput(quizAnswerInput);
       addToQuizProperty(bool);
-      checkQuizStatus();
+      checkQuizStatus(quizStats,quizCurrScoreContainer,quizLastScoreContainer,quizLastScore);
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
       resetAnswerInput();
@@ -228,25 +228,6 @@ var state = {
   
 
   
-
-  
-  // function shuffle(array) {
-  //   let currentIndex = array.length,
-  //     randomIndex;
-  
-  //   // While there remain elements to shuffle.
-  //   while (currentIndex != 0) {
-  //     // Pick a remaining element.
-  //     randomIndex = Math.floor(Math.random() * currentIndex);
-  //     currentIndex--;
-  //     // And swap it with the current element.
-  //     [array[currentIndex], array[randomIndex]] = [
-  //       array[randomIndex],
-  //       array[currentIndex]
-  //     ];
-  //   }
-  //   return array;
-  // }
   
   function mcCreateOptions(n1, n2, o1) {
     var options = [];
@@ -509,8 +490,6 @@ var state = {
     resetProgress();
     resetLevelProgress();
   }
-  
-
 
   function quizModalReveal() {
     quizModal.style.visibility = "visible";
@@ -540,21 +519,21 @@ var state = {
     }
     updateQuizScores();
   }
-  async function checkQuizStatus() {
+  async function checkQuizStatus(quizStats,currScoreContainerEl,lastScoreContainerEl,lastScoreEl) {
     if (quizStats.numAnswered == 1) {
-      utilMethods.visibilityToggle(true, quizCurrScoreContainer);
+      utilMethods.visibilityToggle(true, currScoreContainerEl);
     }
     if (quizStats.numAnswered >= quizStats.numQuestions) {
       console.log("show Modal")
       quizShowScore();
       await utilMethods.delay(1200);
-      utilMethods.visibilityToggle(false, quizCurrScoreContainer);
-      utilMethods.visibilityToggle(true, quizLastScoreContainer);
-      finishQuiz();
+      utilMethods.visibilityToggle(false, currScoreContainerEl);
+      utilMethods.visibilityToggle(true, lastScoreContainerEl);
+      finishQuiz(lastScoreEl,quizStats);
     }
   }
-  function finishQuiz() {
-    quizLastScore.innerHTML = quizStats.numCorrect;
+  function finishQuiz(lastScoreEl,quizStats) {
+    lastScoreEl.innerHTML = quizStats.numCorrect;
     resetQuizProperty();
     quizNewQuestion();
   }
@@ -576,6 +555,13 @@ var state = {
     e.preventDefault();
   }
   
+
+
+
+
+
+
+
   flashContainer.addEventListener("mousedown", flashHandler, false);
   gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler);
   gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler);
