@@ -151,7 +151,7 @@ window.onload = function () {
       utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
       correctnessView(true, quizCorrectness);
       utilMethods.disableInput(quizAnswerInput);
-      addToQuizProperty(bool);
+      addToQuizProperty(bool, quizStats);
       checkQuizStatus(quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
@@ -161,7 +161,7 @@ window.onload = function () {
       utilMethods.incorrectMotion(quizAnswerForm);
       correctnessView(false, quizCorrectness);
       utilMethods.disableInput(quizAnswerInput);
-      addToQuizProperty(bool);
+      addToQuizProperty(bool, quizStats);
       checkQuizStatus(quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
@@ -417,11 +417,10 @@ window.onload = function () {
     quizCurrScore.innerHTML = quizStats.numCorrect;
     quizCurrQuestion.innerHTML = quizStats.numAnswered;
   }
-  function addToQuizProperty(bool) {
+  function addToQuizProperty(bool, quizStats) {
     quizStats.numAnswered += 1;
     if (bool) {
       quizStats.numCorrect += 1;
-      console.log(quizStats);
     }
     updateQuizScores();
   }
