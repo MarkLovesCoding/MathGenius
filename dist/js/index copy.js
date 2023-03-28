@@ -197,16 +197,16 @@ window.onload = function () {
       utilMethods.visibilityTimedToggle(false, gameActualContainer);
       updateScore();
       await updateLevel();
-      utilMethods.disableInput(answerInput);
+      utilMethods.disableInput(gameAnswerInput);
       await utilMethods.delay(700);
-      utilMethods.enableInput(answerInput);
+      utilMethods.enableInput(gameAnswerInput);
       resetAnswerInput();
       gameNewQuestion();
     } else {
       utilMethods.showHide([], [burgerContainer]);
       correctnessView(false, gameCorrectness);
       utilMethods.incorrectMotion(gameCorrectness);
-      utilMethods.disableInput(answerInput);
+      utilMethods.disableInput(gameAnswerInput);
       utilMethods.visibilityTimedToggle(true, gameActualContainer);
       await utilMethods.delay(700);
       resetAnswerInput();
@@ -214,7 +214,7 @@ window.onload = function () {
       resetProgress();
       gameNewQuestion();
       await utilMethods.delay(1500);
-      utilMethods.enableInput(answerInput);
+      utilMethods.enableInput(gameAnswerInput);
     }
   }
   async function quizAnswerCheck(bool) {

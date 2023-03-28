@@ -13,25 +13,27 @@ export const burgerContainer = document.getElementById("burger-container");
 export const newGame = document.getElementById("new-game");
 export const gameContainer = document.getElementById("game-container");
 
-export const gameNumOne = document.getElementById("first-number");
-export const gameNumTwo = document.getElementById("second-number");
-export const gameOpOne = document.getElementById("first-operator");
+export const gameNumOne = document.getElementById("game-first-number");
+export const gameNumTwo = document.getElementById("game-second-number");
+export const gameOpOne = document.getElementById("game-first-operator");
 
-export const answerInput = document.getElementById("answer-input");
-export const answerSubmit = document.getElementById("answer-form");
 
-export const gameCorrectness = document.getElementById("correctness");
-
-export const actual = document.getElementById("actual");
-export const actualContainer = document.getElementById("actual-container");
-
-export const currScore = document.getElementById("current-score");
-export const highScore = document.getElementById("current-high");
-export const levelNumber = document.getElementById("level-number");
-export const tracker = document.getElementById("tracker");
-export const tracker2 = document.getElementById("tracker-2");
-export const trackerContainer = document.getElementById("tracker-container");
-export const trackerContainer2 = document.getElementById("tracker-container-2");
+  export const gameAnswerInput = document.getElementById("game-answer-input");
+  export const gameAnswerSubmit = document.getElementById("game-answer-form");
+  
+  export const gameCorrectness = document.getElementById("game-correctness");
+  
+  export const gameActual = document.getElementById("game-actual");
+  export const gameActualContainer = document.getElementById("game-actual-container");
+  
+  export const gameCurrScore = document.getElementById("game-current-score");
+  export const gameHighScore = document.getElementById("game-current-high");
+  export const gameLevelNumber = document.getElementById("game-level-number");
+  export const gameTracker = document.getElementById("game-tracker");
+  export const gameTracker2 = document.getElementById("game-tracker-2");
+  export const gameTrackerContainer = document.getElementById("game-tracker-container");
+  export const gameTrackerContainer2 = document.getElementById("game-tracker-container-2");
+  
 
 // quiz
 export const quizContainer = document.getElementById("quiz-container");
