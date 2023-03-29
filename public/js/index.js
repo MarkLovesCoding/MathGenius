@@ -141,51 +141,11 @@ function newQuestion(type, options){
 
   burgerOn();
   utilMethods.showHide(elementsToShow,elementsToHide);
-  hideMenu();
+  displayNone(menuContainer);
   newGeneralQuestion(op1,num1,num2,options)
 }
 
-  // function gameNewQuestion() {
-  //   burgerOn();
-  //   utilMethods.showHide(
-  //     [gameContainer, burgerContainer, gameActualContainer, gameCorrectness],
-  //     [ quizContainer, flashContainer]
-  //   );
-  //   hideMenu()
-  //   newGeneralQuestion(gameOpOne,gameNumOne,gameNumTwo)
-  // }
-  
-  // function quizNewQuestion() {
-  //   burgerOn();
-  
-  //   utilMethods.showHide(
-  //     [quizContainer, burgerContainer],
-  //     [ gameContainer]
-  //   );
-  //   hideMenu();
-  //   newGeneralQuestion(quizOpOne,quizNumOne,quizNumTwo)
-  // }
-  
-  // function mcNewQuestion() {
-  //   burgerOn();
-  //   utilMethods.showHide(
-  //     [mcContainer, burgerContainer],
-  //     [ gameContainer, quizContainer, flashContainer]
-  //   );
-  //   hideMenu()
-  //    newGeneralQuestion(mcOpOne,mcNumOne,mcNumTwo,mcCreateOptions)
-  // }
-  
-  // function flashNewQuestion() {
-  //   burgerOn();
-  //   utilMethods.showHide(
-  //     [flashContainer, flashQuestionBox, flashAnswerBox, burgerContainer],
-  //     [mcContainer, gameContainer, quizContainer]
-  //   );
-  //   hideMenu()
-  
-  //   newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo);
-  // }
+
   
   function flashHandler(e) {
     const ans = utilMethods.calculation(
@@ -224,7 +184,7 @@ function newQuestion(type, options){
       await utilMethods.delay(700);
       resetAnswerInput();
       resetScore();
-      resetProgress();
+      resetWidth(gameTracker);
       // gameNewQuestion();
       newQuestion("game");
       await utilMethods.delay(1500);
@@ -442,10 +402,10 @@ function newQuestion(type, options){
     quizAmountCorrect.textContent = quizStats.numCorrect;
     quizAmountCorrectPercentage.textContent = percentage(quizStats.numCorrect,quizStats.numAnswered).toString() + "%";
     
-    quizModalReveal();
+    soloReveal(quizModal,mainContainer);
     utilMethods.emphasize(quizModal);
     await utilMethods.delay(2200);
-    quizModalHide();
+    soloHide(quizModal, mainContainer);
     utilMethods.enableInput(quizAnswerInput);
   }
   
@@ -475,7 +435,7 @@ function newQuestion(type, options){
     if (parseInt(gameCurrScore.textContent) % 10 == 0) {
       console.log("reset");
       utilMethods.disableInput(gameAnswerInput);
-      resetProgress();
+      resetWidth(gameTracker);
       addlevel();
       level += 1;
       levelUp(level);
@@ -485,16 +445,12 @@ function newQuestion(type, options){
     gameLevelNumber.textContent = level;
   }
   
-  function resetLevel() {
-    gameLevelNumber.textContent = 0;
+  function resetNumberToZero(element) {
+    element.textContent = 0;
   }
-  function resetProgress() {
-    gameTracker.style.width = "0px";
+  function resetWidth(element){
+    element.style.width = "0px";
   }
-  function resetLevelProgress() {
-    gameTracker2.style.width = "0px";
-  }
-  
   async function updateProgress() {
     let fullWidth = window.getComputedStyle(gameTrackerContainer).width;
     let borderWidth = window
@@ -509,19 +465,19 @@ function newQuestion(type, options){
     gameTracker.style.width = progressWidth + "px";
     if (progressWidth == fullWidth) {
       await utilMethods.delay(1000);
-      resetProgress();
+      resetWidth(gameTracker);
     }
   }
-  
-  function revealMenu(){
-    menuContainer.style.display="grid";
+  function displayGrid(element){
+    element.style.display = "grid";
   }
-  function hideMenu(){
-    menuContainer.style.display="none";
+  function displayNone(element){
+    element.style.display = "none";
   }
+
+
   function showMainMenu() {
-    revealMenu();
-    console.log("step 1")
+    displayGrid(menuContainer);
     utilMethods.showHide(
       [],
       [
@@ -534,43 +490,37 @@ function newQuestion(type, options){
         mcContainer
       ]
     );
-    console.log("step 2")
-
     resetQuizProperty();
-    console.log("step 3")
-    resetLevel();
-    console.log("step 4")
-    resetProgress();
-    console.log("step 5")
-    resetLevelProgress();
+    resetNumberToZero(gameLevelNumber);
+    resetWidth(gameTracker);
+    resetWidth(gameTracker2);
   }
-
-  function quizModalReveal() {
-    quizModal.style.visibility = "visible";
-    quizModal.style.zIndex = "10";
+  function soloReveal(element,mainContainer) {
+    element.style.visibility = "visible";
+    element.style.zIndex = "10";
     utilMethods.showHide([], [mainContainer]);
   }
-  
-  function quizModalHide() {
-    quizModal.style.visibility = "hidden";
-    quizModal.style.zIndex = "0";
-    utilMethods.showHide([mainContainer]);
+  function soloHide(element,mainContainer) {
+    element.style.visibility = "hidden";
+    element.style.zIndex = "10";
+    utilMethods.showHide([mainContainer], []);
   }
+
   
-  function resetQuizProperty() {
+  function resetQuizProperty(quizStats) {
     quizStats.numAnswered = 0;
     quizStats.numCorrect = 0;
   }
-  function updateQuizScores() {
-    quizCurrScore.innerHTML = quizStats.numCorrect;
-    quizCurrQuestion.innerHTML = quizStats.numAnswered;
+  function updateQuizScores( score,question,quizStats) {
+    score.innerHTML = quizStats.numCorrect;
+    question.innerHTML = quizStats.numAnswered;
   }
   function addToQuizProperty(bool,quizStats) {
     quizStats.numAnswered += 1;
     if (bool) {
       quizStats.numCorrect += 1;
     }
-    updateQuizScores();
+    updateQuizScores(quizCurrScore,quizCurrQuestion,quizStats);
   }
   async function checkQuizStatus(quizStats,currScoreContainerEl,lastScoreContainerEl,lastScoreEl) {
     if (quizStats.numAnswered == 1) {
@@ -587,8 +537,8 @@ function newQuestion(type, options){
   }
   function finishQuiz(lastScoreEl,quizStats) {
     lastScoreEl.innerHTML = quizStats.numCorrect;
-    resetQuizProperty();
-    quizNewQuestion();
+    resetQuizProperty(quizStats);
+    newQuestion("quiz");
   }
   
   function quizUpdateAnswerHandler(e) {
@@ -603,7 +553,7 @@ function newQuestion(type, options){
       quizNumTwo.innerHTML,
       quizOpOne.innerHTML
     );
-    console.log("realAns: ", realAns);
+   
     quizAnswerCheck(realAns == userValue);
     e.preventDefault();
   }
