@@ -51,11 +51,12 @@ window.onload = function () {
       burger.classList.remove("open");
     }
   }
-  function burgerOff() {
-    if (!burger.classList.contains("open")) {
-      burger.classList.add("open");
-    }
-  }
+  // function burgerOff() {
+  //   if (!burger.classList.contains("open")) {
+  //     burger.classList.add("open");
+  //   }
+  // }
+
   function newGeneralQuestion(opEl, n1El, n2El, func) {
     const subjects = updateSubjects();
     let o1 = utilMethods.randOp(subjects);
@@ -85,35 +86,93 @@ window.onload = function () {
     console.log(utilMethods.calculation(n1, n2, o1));
     if (func) func(n1, n2, o1);
   }
-  function gameNewQuestion() {
+  function newQuestion(type, options) {
+    let elementsToHide, elementsToShow, num1, num2, op1;
+    switch (type) {
+      case "flash":
+        elementsToHide = [mcContainer, gameContainer, quizContainer];
+        elementsToShow = [flashContainer, flashQuestionBox, flashAnswerBox, burgerContainer];
+        num1 = flashNumOne;
+        num2 = flashNumTwo;
+        op1 = flashOpOne;
+        break;
+      case "multiple-choice":
+        elementsToHide = [gameContainer, quizContainer, flashContainer];
+        elementsToShow = [mcContainer, burgerContainer];
+        num1 = mcNumOne;
+        num2 = mcNumTwo;
+        op1 = mcOpOne;
+        break;
+      case "quiz":
+        elementsToHide = [gameContainer];
+        elementsToShow = [quizContainer, burgerContainer];
+        num1 = quizNumOne;
+        num2 = quizNumTwo;
+        op1 = quizOpOne;
+        break;
+      case "game":
+        elementsToHide = [quizContainer, flashContainer];
+        elementsToShow = [gameContainer, burgerContainer, gameActualContainer, gameCorrectness];
+        num1 = gameNumOne;
+        num2 = gameNumTwo;
+        op1 = gameOpOne;
+        break;
+      default:
+        break;
+    }
     burgerOn();
-    utilMethods.showHide([gameContainer, burgerContainer, gameActualContainer, gameCorrectness], [quizContainer, flashContainer]);
+    utilMethods.showHide(elementsToShow, elementsToHide);
     hideMenu();
-    newGeneralQuestion(gameOpOne, gameNumOne, gameNumTwo);
+    newGeneralQuestion(op1, num1, num2, options);
   }
-  function quizNewQuestion() {
-    burgerOn();
-    utilMethods.showHide([quizContainer, burgerContainer], [gameContainer]);
-    hideMenu();
-    newGeneralQuestion(quizOpOne, quizNumOne, quizNumTwo);
-  }
-  function mcNewQuestion() {
-    burgerOn();
-    utilMethods.showHide([mcContainer, burgerContainer], [gameContainer, quizContainer, flashContainer]);
-    hideMenu();
-    newGeneralQuestion(mcOpOne, mcNumOne, mcNumTwo, mcCreateOptions);
-  }
-  function flashNewQuestion() {
-    burgerOn();
-    utilMethods.showHide([flashContainer, flashQuestionBox, flashAnswerBox, burgerContainer], [mcContainer, gameContainer, quizContainer]);
-    hideMenu();
-    newGeneralQuestion(flashOpOne, flashNumOne, flashNumTwo);
-  }
+
+  // function gameNewQuestion() {
+  //   burgerOn();
+  //   utilMethods.showHide(
+  //     [gameContainer, burgerContainer, gameActualContainer, gameCorrectness],
+  //     [ quizContainer, flashContainer]
+  //   );
+  //   hideMenu()
+  //   newGeneralQuestion(gameOpOne,gameNumOne,gameNumTwo)
+  // }
+
+  // function quizNewQuestion() {
+  //   burgerOn();
+
+  //   utilMethods.showHide(
+  //     [quizContainer, burgerContainer],
+  //     [ gameContainer]
+  //   );
+  //   hideMenu();
+  //   newGeneralQuestion(quizOpOne,quizNumOne,quizNumTwo)
+  // }
+
+  // function mcNewQuestion() {
+  //   burgerOn();
+  //   utilMethods.showHide(
+  //     [mcContainer, burgerContainer],
+  //     [ gameContainer, quizContainer, flashContainer]
+  //   );
+  //   hideMenu()
+  //    newGeneralQuestion(mcOpOne,mcNumOne,mcNumTwo,mcCreateOptions)
+  // }
+
+  // function flashNewQuestion() {
+  //   burgerOn();
+  //   utilMethods.showHide(
+  //     [flashContainer, flashQuestionBox, flashAnswerBox, burgerContainer],
+  //     [mcContainer, gameContainer, quizContainer]
+  //   );
+  //   hideMenu()
+
+  //   newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo);
+  // }
+
   function flashHandler(e) {
     const ans = utilMethods.calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML);
     flashAnswer.textContent = ans;
     if (this.classList.contains("flip")) {
-      flashNewQuestion();
+      newQuestion("flash");
     }
     this.classList.toggle("flip");
     console.log(this);
@@ -130,7 +189,8 @@ window.onload = function () {
       await utilMethods.delay(700);
       utilMethods.enableInput(gameAnswerInput);
       resetAnswerInput();
-      gameNewQuestion();
+      // gameNewQuestion();
+      newQuestion("game");
     } else {
       utilMethods.showHide([], [burgerContainer]);
       correctnessView(false, gameCorrectness);
@@ -141,7 +201,8 @@ window.onload = function () {
       resetAnswerInput();
       resetScore();
       resetProgress();
-      gameNewQuestion();
+      // gameNewQuestion();
+      newQuestion("game");
       await utilMethods.delay(1500);
       utilMethods.enableInput(gameAnswerInput);
     }
@@ -156,7 +217,8 @@ window.onload = function () {
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
       resetAnswerInput();
-      quizNewQuestion();
+      // quizNewQuestion();
+      newQuestion("quiz");
     } else {
       utilMethods.incorrectMotion(quizAnswerForm);
       correctnessView(false, quizCorrectness);
@@ -166,19 +228,22 @@ window.onload = function () {
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
       resetAnswerInput();
-      quizNewQuestion();
+      // quizNewQuestion();
+      newQuestion("quiz");
     }
   }
   async function mcAnswerCheck(bool, correctEl, falseEl = null) {
     if (bool) {
       utilMethods.animateCorrect(correctEl);
       await utilMethods.delay(700);
-      mcNewQuestion();
+      // mcNewQuestion();
+      newQuestion("multiple-choice", mcCreateOptions);
     } else {
       utilMethods.animateIncorrect(falseEl);
       utilMethods.animateCorrect(correctEl);
       await utilMethods.delay(700);
-      mcNewQuestion();
+      // mcNewQuestion();
+      newQuestion("multiple-choice", mcCreateOptions);
     }
   }
   function mcCreateOptions(n1, n2, o1) {
@@ -324,7 +389,7 @@ window.onload = function () {
     quizAmountCorrectPercentage.textContent = percentage(quizStats.numCorrect, quizStats.numAnswered).toString() + "%";
     quizModalReveal();
     utilMethods.emphasize(quizModal);
-    await utilMethods.delay(2400);
+    await utilMethods.delay(2200);
     quizModalHide();
     utilMethods.enableInput(quizAnswerInput);
   }
@@ -393,10 +458,15 @@ window.onload = function () {
   }
   function showMainMenu() {
     revealMenu();
-    utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, correctness, gameActualContainer, mcContainer]);
+    console.log("step 1");
+    utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, gameCorrectness, gameActualContainer, mcContainer]);
+    console.log("step 2");
     resetQuizProperty();
+    console.log("step 3");
     resetLevel();
+    console.log("step 4");
     resetProgress();
+    console.log("step 5");
     resetLevelProgress();
   }
   function quizModalReveal() {
@@ -474,8 +544,20 @@ window.onload = function () {
   burgerContainer.addEventListener("click", event => {
     burger.classList.toggle("open");
   });
-  newGame.addEventListener("click", gameNewQuestion);
-  newQuiz.addEventListener("click", quizNewQuestion);
-  newMC.addEventListener("click", mcNewQuestion);
-  newFlash.addEventListener("click", flashNewQuestion);
+  newFlash.addEventListener("click", e => {
+    // console.log(e.target.getAttribute('data-type'))
+    newQuestion(e.target.getAttribute("data-type"));
+  });
+  newGame.addEventListener("click", e => {
+    // console.log(e.target.getAttribute('data-type'))
+    newQuestion(e.target.getAttribute("data-type"));
+  });
+  newQuiz.addEventListener("click", e => {
+    // console.log(e.target.getAttribute('data-type'))
+    newQuestion(e.target.getAttribute("data-type"));
+  });
+  newMC.addEventListener("click", e => {
+    // console.log(e.target.getAttribute('data-type'))
+    newQuestion(e.target.getAttribute("data-type"), mcCreateOptions);
+  });
 };
