@@ -413,7 +413,7 @@ window.onload = function () {
   function showMainMenu() {
     displayGrid(menuContainer);
     utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, gameCorrectness, gameActualContainer, mcContainer]);
-    resetQuizProperty();
+    resetQuizProperty(quizStats);
     resetNumberToZero(gameLevelNumber);
     resetWidth(gameTracker);
     resetWidth(gameTracker2);

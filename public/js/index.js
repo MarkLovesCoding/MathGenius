@@ -490,7 +490,7 @@ function newQuestion(type, options){
         mcContainer
       ]
     );
-    resetQuizProperty();
+    resetQuizProperty(quizStats);
     resetNumberToZero(gameLevelNumber);
     resetWidth(gameTracker);
     resetWidth(gameTracker2);
