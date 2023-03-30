@@ -1,14 +1,11 @@
 //TO DO
 
 //BUGS to fix before refactor:
-// color doesn't change back to defauly on game when leave.
-// bar will eventually extend past width.
 
 //burger shouldn't show up at first, or shoul dbe math symbls.
 //figure out why animations won't work when the quiz animation works 10/10. possibly convcert to animation fram and toggle classnames
 
 //features
-//fun--make burger turn into the different operators
 //rename games and provide icons on buttons?
 
 //add badges for each level, for each difficulty that quiz was passed.
@@ -21,13 +18,12 @@ import { mcContainer, mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './do
 import { quizContainer, quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz } from './domElements.js';
 import { gameContainer, gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
 import { state } from './state.js'
-
+// import { flashHandler } from './flash.js';
 
 window.onload = function () {  //Ensure DOM is loaded before functions
 
-
   //Add event listeners for operator and difficulty buttons
-
+function addEventsToOperatorsAndDifficultyButtons(){
   for (let subject of subjects) {
     subject.addEventListener("click", utilMethods.toggleActivate);
   }
@@ -40,7 +36,8 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       updateDifficulty();
     });
   }
-
+}
+addEventsToOperatorsAndDifficultyButtons()
   ////////////////////////////////////////////////////////////
   //SHARED
   //
@@ -260,7 +257,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //
   //END FLASH
   ////////////////////////////////////////////////////////////
-
+// addEvents()
 
 
 
@@ -434,13 +431,11 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     if (bool) {
       utilMethods.animateCorrect(correctEl);
       await utilMethods.delay(700);
-      // mcNewQuestion();
       newQuestion("multiple-choice", mcCreateOptions);
     } else {
       utilMethods.animateIncorrect(falseEl);
       utilMethods.animateCorrect(correctEl);
       await utilMethods.delay(700);
-      // mcNewQuestion();
       newQuestion("multiple-choice", mcCreateOptions);
 
     }
@@ -619,5 +614,31 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //
   //END QUIZ
   ////////////////////////////////////////////////////////////
+
+
+  //CHATGPT loader idea
+  function loadSection(sectionName) {
+    // Hide all sections
+    var sections = document.querySelectorAll('#content > div');
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].style.display = 'none';
+    }
+    // Show the selected section
+    var section = document.getElementById(sectionName + '-section');
+    section.style.display = 'block';
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
 } //close window.onload function

@@ -1,19 +1,16 @@
 //TO DO
 
 //BUGS to fix before refactor:
-// color doesn't change back to defauly on game when leave.
-// bar will eventually extend past width.
 
 //burger shouldn't show up at first, or shoul dbe math symbls.
 //figure out why animations won't work when the quiz animation works 10/10. possibly convcert to animation fram and toggle classnames
 
 //features
-//fun--make burger turn into the different operators
 //rename games and provide icons on buttons?
 
 //add badges for each level, for each difficulty that quiz was passed.
 //save to profile. create profile.
-// input
+
 import * as utilMethods from './ulils.js';
 import { burger, burgerContainer, mainContainer, menuContainer, subjects, diffButtons } from './domElements.js';
 import { flashAnswer, flashContainer, flashNumOne, flashNumTwo, flashOpOne, flashQuestionBox, flashAnswerBox, newFlash } from './domElements.js';
@@ -21,20 +18,28 @@ import { mcContainer, mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './do
 import { quizContainer, quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz } from './domElements.js';
 import { gameContainer, gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
 import { state } from './state.js';
-window.onload = function () {
-  for (let subject of subjects) {
-    subject.addEventListener("click", utilMethods.toggleActivate);
-  }
-  for (let diffButton of diffButtons) {
-    diffButton.addEventListener("click", () => {
-      for (let otherButton of diffButtons) {
-        otherButton.classList.remove("active-difficulty");
-      }
-      diffButton.classList.add("active-difficulty");
-      updateDifficulty();
-    });
-  }
+// import { flashHandler } from './flash.js';
 
+window.onload = function () {
+  //Ensure DOM is loaded before functions
+
+  //Add event listeners for operator and difficulty buttons
+  function addEventsToOperatorsAndDifficultyButtons() {
+    for (let subject of subjects) {
+      subject.addEventListener("click", utilMethods.toggleActivate);
+    }
+    for (let diffButton of diffButtons) {
+      diffButton.addEventListener("click", () => {
+        for (let otherButton of diffButtons) {
+          otherButton.classList.remove("active-difficulty");
+        }
+        diffButton.classList.add("active-difficulty");
+        updateDifficulty();
+      });
+    }
+  }
+  addEventsToOperatorsAndDifficultyButtons();
+  ////////////////////////////////////////////////////////////
   //SHARED
   //
 
@@ -188,9 +193,9 @@ window.onload = function () {
   //
   //
   //END SHARED
-  //
+  ////////////////////////////////////////////////////////////
 
-  //
+  ////////////////////////////////////////////////////////////
   //FLASH
   //
 
@@ -211,9 +216,10 @@ window.onload = function () {
 
   //
   //END FLASH
-  //
+  ////////////////////////////////////////////////////////////
+  // addEvents()
 
-  //
+  ////////////////////////////////////////////////////////////
   //GAME
   //
   async function gameAnswerCheck(bool) {
@@ -227,7 +233,6 @@ window.onload = function () {
       await utilMethods.delay(700);
       utilMethods.enableInput(gameAnswerInput);
       resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-      // gameNewQuestion();
       newQuestion("game");
     } else {
       utilMethods.showHide([], [burgerContainer]);
@@ -239,7 +244,6 @@ window.onload = function () {
       resetAnswerInput([gameAnswerInput, quizAnswerInput]);
       resetScore();
       resetWidth(gameTracker);
-      // gameNewQuestion();
       newQuestion("game");
       await utilMethods.delay(1500);
       utilMethods.enableInput(gameAnswerInput);
@@ -344,9 +348,9 @@ window.onload = function () {
 
   //
   //END GAME
-  //
+  ////////////////////////////////////////////////////////////
 
-  //
+  ////////////////////////////////////////////////////////////
   //MC
   //
 
@@ -354,13 +358,11 @@ window.onload = function () {
     if (bool) {
       utilMethods.animateCorrect(correctEl);
       await utilMethods.delay(700);
-      // mcNewQuestion();
       newQuestion("multiple-choice", mcCreateOptions);
     } else {
       utilMethods.animateIncorrect(falseEl);
       utilMethods.animateCorrect(correctEl);
       await utilMethods.delay(700);
-      // mcNewQuestion();
       newQuestion("multiple-choice", mcCreateOptions);
     }
   }
@@ -409,9 +411,9 @@ window.onload = function () {
 
   //
   //END MC
-  //
+  ////////////////////////////////////////////////////////////
 
-  //
+  ////////////////////////////////////////////////////////////
   //QUIZ
   //
 
@@ -511,5 +513,17 @@ window.onload = function () {
   });
   //
   //END QUIZ
-  //
-};
+  ////////////////////////////////////////////////////////////
+
+  //CHATGPT loader idea
+  function loadSection(sectionName) {
+    // Hide all sections
+    var sections = document.querySelectorAll('#content > div');
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].style.display = 'none';
+    }
+    // Show the selected section
+    var section = document.getElementById(sectionName + '-section');
+    section.style.display = 'block';
+  }
+}; //close window.onload function
