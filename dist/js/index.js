@@ -20,26 +20,15 @@ import { flashAnswer, flashContainer, flashNumOne, flashNumTwo, flashOpOne, flas
 import { mcContainer, mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './domElements.js';
 import { quizContainer, quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz } from './domElements.js';
 import { gameContainer, gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
+import { state } from './state.js';
 window.onload = function () {
-  var state = {
-    activeOperators: ["+"],
-    activeHighVal: 10,
-    activeDifficulty: 1,
-    activeMultiplyHighVal: 4
-  };
-
   // VARIABLES
   const operators = ["+", "-", "x", "÷"];
 
   // var HIGH_VAL = 10; // Highest Number used
 
-  var userValue;
   var high_score = 0; // Default highscore
-  var quizStats = {
-    numQuestions: 10,
-    numAnswered: 0,
-    numCorrect: 0
-  };
+
   var mcQuizStats = {
     numQuestions: 10,
     numAnswered: 0,
@@ -125,16 +114,6 @@ window.onload = function () {
     displayNone(menuContainer);
     newGeneralQuestion(op1, num1, num2, options);
   }
-  function flashHandler(e) {
-    const ans = utilMethods.calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML);
-    flashAnswer.textContent = ans;
-    if (this.classList.contains("flip")) {
-      newQuestion("flash");
-    }
-    this.classList.toggle("flip");
-    console.log(this);
-    e.preventDefault();
-  }
   async function gameAnswerCheck(bool) {
     if (bool) {
       correctnessView(true, gameCorrectness);
@@ -145,7 +124,7 @@ window.onload = function () {
       utilMethods.disableInput(gameAnswerInput);
       await utilMethods.delay(700);
       utilMethods.enableInput(gameAnswerInput);
-      resetAnswerInput();
+      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
       // gameNewQuestion();
       newQuestion("game");
     } else {
@@ -155,7 +134,7 @@ window.onload = function () {
       utilMethods.disableInput(gameAnswerInput);
       utilMethods.visibilityTimedToggle(true, gameActualContainer);
       await utilMethods.delay(700);
-      resetAnswerInput();
+      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
       resetScore();
       resetWidth(gameTracker);
       // gameNewQuestion();
@@ -169,22 +148,24 @@ window.onload = function () {
       utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
       correctnessView(true, quizCorrectness);
       utilMethods.disableInput(quizAnswerInput);
-      addToQuizProperty(bool, quizStats);
-      checkQuizStatus(quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
+      addToQuizProperty(bool, state.quizStats);
+      checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
-      resetAnswerInput();
+      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+
       // quizNewQuestion();
       newQuestion("quiz");
     } else {
       utilMethods.incorrectMotion(quizAnswerForm);
       correctnessView(false, quizCorrectness);
       utilMethods.disableInput(quizAnswerInput);
-      addToQuizProperty(bool, quizStats);
-      checkQuizStatus(quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
+      addToQuizProperty(bool, state.quizStats);
+      checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
-      resetAnswerInput();
+      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+
       // quizNewQuestion();
       newQuestion("quiz");
     }
@@ -246,7 +227,7 @@ window.onload = function () {
   ////--------------
 
   function updateDifficulty() {
-    let difficulty;
+    let difficulty, highVal;
     for (let i = 0; i <= 4; i++) {
       if (diffButtons[i].classList.contains("active-difficulty")) {
         difficulty = diffButtons[i].textContent;
@@ -303,16 +284,6 @@ window.onload = function () {
       gameHighScore.innerHTML = high_score;
     }
   }
-  function gameUpdateAnswerHandler(e) {
-    let userAnswer = e.target.value;
-    userValue = userAnswer;
-  }
-  function gameCheckAnswerHandler(e) {
-    let realAns = utilMethods.calculation(gameNumOne.innerHTML, gameNumTwo.innerHTML, gameOpOne.innerHTML);
-    gameActual.innerHTML = realAns;
-    gameAnswerCheck(realAns == userValue);
-    e.preventDefault();
-  }
   function correctnessView(bool, element) {
     utilMethods.showHide([element], []);
     if (bool) {
@@ -325,9 +296,10 @@ window.onload = function () {
       element.textContent = "INCORRECT";
     }
   }
-  function resetAnswerInput() {
-    gameAnswerInput.value = "";
-    quizAnswerInput.value = "";
+  function resetAnswerInput(elementsArray) {
+    for (let el of elementsArray) {
+      el.value = "";
+    }
   }
 
   ////-------------
@@ -342,8 +314,8 @@ window.onload = function () {
     return Math.round(n1 / n2 * 100);
   }
   async function quizShowScore() {
-    quizAmountCorrect.textContent = quizStats.numCorrect;
-    quizAmountCorrectPercentage.textContent = percentage(quizStats.numCorrect, quizStats.numAnswered).toString() + "%";
+    quizAmountCorrect.textContent = state.quizStats.numCorrect;
+    quizAmountCorrectPercentage.textContent = percentage(state.quizStats.numCorrect, state.quizStats.numAnswered).toString() + "%";
     soloReveal(quizModal, mainContainer);
     utilMethods.emphasize(quizModal);
     await utilMethods.delay(2200);
@@ -413,7 +385,7 @@ window.onload = function () {
   function showMainMenu() {
     displayGrid(menuContainer);
     utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, gameCorrectness, gameActualContainer, mcContainer]);
-    resetQuizProperty(quizStats);
+    resetQuizProperty(state.quizStats);
     resetNumberToZero(gameLevelNumber);
     resetWidth(gameTracker);
     resetWidth(gameTracker2);
@@ -461,14 +433,34 @@ window.onload = function () {
     resetQuizProperty(quizStats);
     newQuestion("quiz");
   }
+  function flashHandler(e) {
+    const ans = utilMethods.calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML);
+    flashAnswer.textContent = ans;
+    if (this.classList.contains("flip")) {
+      newQuestion("flash");
+    }
+    this.classList.toggle("flip");
+    console.log(this);
+    e.preventDefault();
+  }
   function quizUpdateAnswerHandler(e) {
     let userAnswer = e.target.value;
     console.log("userAnswer:", userAnswer);
-    userValue = userAnswer;
+    state.userValue = userAnswer;
   }
   function quizAnswerHandler(e) {
     let realAns = utilMethods.calculation(quizNumOne.innerHTML, quizNumTwo.innerHTML, quizOpOne.innerHTML);
-    quizAnswerCheck(realAns == userValue);
+    quizAnswerCheck(realAns == state.userValue);
+    e.preventDefault();
+  }
+  function gameUpdateAnswerHandler(e) {
+    let userAnswer = e.target.value;
+    state.userValue = userAnswer;
+  }
+  function gameCheckAnswerHandler(e) {
+    let realAns = utilMethods.calculation(gameNumOne.innerHTML, gameNumTwo.innerHTML, gameOpOne.innerHTML);
+    gameActual.innerHTML = realAns;
+    gameAnswerCheck(realAns == state.userValue);
     e.preventDefault();
   }
   flashContainer.addEventListener("mousedown", flashHandler, false);
@@ -489,7 +481,7 @@ window.onload = function () {
     });
   }
   burgerContainer.addEventListener("click", showMainMenu);
-  burgerContainer.addEventListener("click", event => {
+  burgerContainer.addEventListener("click", e => {
     burger.classList.toggle("open");
   });
   newFlash.addEventListener("click", e => {
