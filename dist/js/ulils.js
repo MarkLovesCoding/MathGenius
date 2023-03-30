@@ -1,6 +1,6 @@
-//// UTIL Methods
-
-// MATH Methods
+//////////////////////////// MATH Methods
+//
+//
 export function add(num1, num2) {
   return parseInt(num1) + parseInt(num2);
 }
@@ -12,6 +12,9 @@ export function multiply(num1, num2) {
 }
 export function divide(num1, num2) {
   return parseInt(num1) / parseInt(num2);
+}
+export function percentage(n1, n2) {
+  return Math.round(n1 / n2 * 100);
 }
 export function calculation(n1, n2, o1) {
   let ans;
@@ -58,7 +61,9 @@ export function shuffle(array) {
   return array;
 }
 
-//ASYNC Utility
+////////////////////////////ASYNC Utility
+//
+//
 
 export function delay(time) {
   return new Promise(res => {
@@ -66,14 +71,42 @@ export function delay(time) {
   });
 }
 
-//DOM Manipulation Methods
+////////////////////////////DOM Manipulation Methods
+//
+//
 
+export function loadSection(sectionName) {
+  // Hide all sections
+  var sections = document.querySelectorAll('#main-container > div');
+  for (var i = 0; i < sections.length; i++) {
+    sections[i].style.display = 'none';
+  }
+  // Show the selected section
+  var section = document.getElementById(sectionName + '-container');
+  section.style.display = 'flex';
+  if (sectionName == "menu") {
+    section.style.display = 'grid';
+  }
+}
 export function disableInput(element) {
   element.setAttribute("disabled", "true");
 }
 export function enableInput(element) {
   element.removeAttribute("disabled");
   element.focus();
+}
+export function resetNumberToZero(element) {
+  element.textContent = 0;
+}
+export function resetWidth(elementsArr) {
+  for (let el of elementsArr) {
+    el.style.width = "0px";
+  }
+}
+export function resetAnswerInput(elementsArray) {
+  for (let el of elementsArray) {
+    el.value = "";
+  }
 }
 export function visibilityTimedToggle(bool, element) {
   if (bool) {
@@ -110,7 +143,9 @@ export function toggleActivate(e) {
   e.target.classList.toggle("active-subject");
 }
 
-//ANIMATION/STYLING Methods
+////////////////////////////ANIMATION/STYLING Methods
+//
+//
 
 export function emphasize(element, transitionTime = 100, scale = 1.3, scaleTime = 250) {
   scaleTime = parseInt(scaleTime);

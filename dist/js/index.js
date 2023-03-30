@@ -43,16 +43,6 @@ window.onload = function () {
     }
   }
   addEventsToOperatorsAndDifficultyButtons();
-  function loadSection(sectionName) {
-    // Hide all sections
-    var sections = document.querySelectorAll('.main-content > div');
-    for (var i = 0; i < sections.length; i++) {
-      sections[i].style.display = 'none';
-    }
-    // Show the selected section
-    var section = document.getElementById(sectionName + '-container');
-    section.style.display = 'flex';
-  }
   function burgerOn() {
     if (burger.classList.contains("open")) {
       burger.classList.remove("open");
@@ -91,25 +81,25 @@ window.onload = function () {
     let num1, num2, op1;
     switch (type) {
       case "flash":
-        loadSection("flash");
+        utilMethods.loadSection("flash");
         num1 = flashNumOne;
         num2 = flashNumTwo;
         op1 = flashOpOne;
         break;
       case "multiple-choice":
-        loadSection("mc");
+        utilMethods.loadSection("mc");
         num1 = mcNumOne;
         num2 = mcNumTwo;
         op1 = mcOpOne;
         break;
       case "quiz":
-        loadSection("quiz");
+        utilMethods.loadSection("quiz");
         num1 = quizNumOne;
         num2 = quizNumTwo;
         op1 = quizOpOne;
         break;
       case "game":
-        loadSection("game");
+        utilMethods.loadSection("game");
         num1 = gameNumOne;
         num2 = gameNumTwo;
         op1 = gameOpOne;
@@ -118,7 +108,6 @@ window.onload = function () {
         break;
     }
     burgerOn();
-    displayNone(menuContainer);
     newGeneralQuestion(op1, num1, num2, options);
   }
   function updateDifficulty() {
@@ -165,30 +154,11 @@ window.onload = function () {
 
     return ops;
   }
-  function resetAnswerInput(elementsArray) {
-    for (let el of elementsArray) {
-      el.value = "";
-    }
-  }
-  function resetNumberToZero(element) {
-    element.textContent = 0;
-  }
-  function resetWidth(element) {
-    element.style.width = "0px";
-  }
-  function displayGrid(element) {
-    element.style.display = "grid";
-  }
-  function displayNone(element) {
-    element.style.display = "none";
-  }
   function showMainMenu() {
-    displayGrid(menuContainer);
-    utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, gameCorrectness, gameActualContainer, mcContainer]);
+    utilMethods.loadSection("menu");
     resetQuizProperty(state.quizStats);
-    resetNumberToZero(gameLevelNumber);
-    resetWidth(gameTracker);
-    resetWidth(gameTracker2);
+    utilMethods.resetNumberToZero(gameLevelNumber);
+    utilMethods.resetWidth([gameTracker, gameTracker2]);
   }
   burgerContainer.addEventListener("click", showMainMenu);
   burgerContainer.addEventListener("click", e => {
@@ -222,7 +192,6 @@ window.onload = function () {
   //
   //END FLASH
   ////////////////////////////////////////////////////////////
-  // addEvents()
 
   ////////////////////////////////////////////////////////////
   //GAME
@@ -237,7 +206,7 @@ window.onload = function () {
       utilMethods.disableInput(gameAnswerInput);
       await utilMethods.delay(700);
       utilMethods.enableInput(gameAnswerInput);
-      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
       newQuestion("game");
     } else {
       utilMethods.showHide([], [burgerContainer]);
@@ -246,9 +215,9 @@ window.onload = function () {
       utilMethods.disableInput(gameAnswerInput);
       utilMethods.visibilityTimedToggle(true, gameActualContainer);
       await utilMethods.delay(700);
-      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-      resetScore();
-      resetWidth(gameTracker);
+      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+      utilMethods.resetNumberToZero(gameCurrScore);
+      utilMethods.resetWidth([gameTracker]);
       newQuestion("game");
       await utilMethods.delay(1500);
       utilMethods.enableInput(gameAnswerInput);
@@ -259,12 +228,6 @@ window.onload = function () {
     currScoreInner += 1;
     gameCurrScore.innerHTML = currScoreInner;
     checkHighScore();
-  }
-  function percentage(n1, n2) {
-    return Math.round(n1 / n2 * 100);
-  }
-  function resetScore() {
-    gameCurrScore.innerHTML = 0;
   }
   function checkHighScore() {
     let curr = gameCurrScore.innerHTML;
@@ -311,7 +274,7 @@ window.onload = function () {
     if (parseInt(gameCurrScore.textContent) % 10 == 0) {
       console.log("reset");
       utilMethods.disableInput(gameAnswerInput);
-      resetWidth(gameTracker);
+      utilMethods.resetWidth([gameTracker]);
       addlevel();
       level += 1;
       levelUp(level);
@@ -332,7 +295,7 @@ window.onload = function () {
     gameTracker.style.width = progressWidth + "px";
     if (progressWidth == fullWidth) {
       await utilMethods.delay(1000);
-      resetWidth(gameTracker);
+      utilMethods.resetWidth([gameTracker]);
     }
   }
   function gameUpdateAnswerHandler(e) {
@@ -431,9 +394,7 @@ window.onload = function () {
       checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
-      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-
-      // quizNewQuestion();
+      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
       newQuestion("quiz");
     } else {
       utilMethods.incorrectMotion(quizAnswerForm);
@@ -443,15 +404,13 @@ window.onload = function () {
       checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
-      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-
-      // quizNewQuestion();
+      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
       newQuestion("quiz");
     }
   }
   async function quizShowScore() {
     quizAmountCorrect.textContent = state.quizStats.numCorrect;
-    quizAmountCorrectPercentage.textContent = percentage(state.quizStats.numCorrect, state.quizStats.numAnswered).toString() + "%";
+    quizAmountCorrectPercentage.textContent = utilMethods.percentage(state.quizStats.numCorrect, state.quizStats.numAnswered).toString() + "%";
     soloReveal(quizModal, mainContainer);
     utilMethods.emphasize(quizModal);
     await utilMethods.delay(2200);
