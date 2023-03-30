@@ -23,29 +23,12 @@ import { gameContainer, gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newG
 import { state } from './state.js';
 window.onload = function () {
   // VARIABLES
-  const operators = ["+", "-", "x", "÷"];
 
-  // var HIGH_VAL = 10; // Highest Number used
-
-  var high_score = 0; // Default highscore
-
-  var mcQuizStats = {
-    numQuestions: 10,
-    numAnswered: 0,
-    numCorrect: 0
-  };
-  var OPERATORSSELECTED = [];
   function burgerOn() {
     if (burger.classList.contains("open")) {
       burger.classList.remove("open");
     }
   }
-  // function burgerOff() {
-  //   if (!burger.classList.contains("open")) {
-  //     burger.classList.add("open");
-  //   }
-  // }
-
   function newGeneralQuestion(opEl, n1El, n2El, func) {
     const subjects = updateSubjects();
     let o1 = utilMethods.randOp(subjects);
@@ -223,9 +206,6 @@ window.onload = function () {
       mcOptions.appendChild(optionEl);
     });
   }
-
-  ////--------------
-
   function updateDifficulty() {
     let difficulty, highVal;
     for (let i = 0; i <= 4; i++) {
@@ -277,11 +257,11 @@ window.onload = function () {
   }
   function checkHighScore() {
     let curr = gameCurrScore.innerHTML;
-    if (curr > parseInt(high_score)) {
-      high_score = curr;
+    if (curr > parseInt(state.high_score)) {
+      state.high_score = curr;
       gameHighScore.innerHTML = curr;
     } else {
-      gameHighScore.innerHTML = high_score;
+      gameHighScore.innerHTML = state.high_score;
     }
   }
   function correctnessView(bool, element) {

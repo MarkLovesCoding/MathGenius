@@ -8,5 +8,6 @@ export const state = {
     numQuestions: 10,
     numAnswered: 0,
     numCorrect: 0
-  }
+  },
+  high_score: 0
 };

@@ -25,34 +25,14 @@ import {state} from './state.js'
 window.onload = function() {
 
   // VARIABLES
-  const operators = ["+", "-", "x", "÷"];
-  
-  // var HIGH_VAL = 10; // Highest Number used
-  
-
-  var high_score = 0; // Default highscore
-
-  var mcQuizStats = {
-    numQuestions: 10,
-    numAnswered: 0,
-    numCorrect: 0
-  }
-  var OPERATORSSELECTED = [];
 
 
 
-
-  
   function burgerOn() {
     if (burger.classList.contains("open")) {
       burger.classList.remove("open");
     }
   }
-  // function burgerOff() {
-  //   if (!burger.classList.contains("open")) {
-  //     burger.classList.add("open");
-  //   }
-  // }
   
   function newGeneralQuestion(opEl,n1El,n2El, func){
     const subjects = updateSubjects();
@@ -62,15 +42,10 @@ window.onload = function() {
       let n2 = utilMethods.randomNumber(0,  state.activeHighVal);
     console.log(n1,n2, o1)
     if(o1 === "x"){
-   
-  
-      
       n1 = utilMethods.randomNumber(0,  state.activeMultiplyHighVal);
       n2 = utilMethods.randomNumber(0,  state.activeMultiplyHighVal);
     }
-  
     if (o1 === "÷") {
-  
       while (n1 % n2 != 0) {
         n1 = utilMethods.randomNumber(0,  state.activeHighVal);
         n2 = utilMethods.randomNumber(1,  state.activeHighVal);
@@ -132,9 +107,6 @@ function newQuestion(type, options){
   displayNone(menuContainer);
   newGeneralQuestion(op1,num1,num2,options)
 }
-
-
-
   
   async function gameAnswerCheck(bool) {
     if (bool) {
@@ -211,9 +183,6 @@ function newQuestion(type, options){
     }
   }
   
-
-  
-  
   function mcCreateOptions(n1, n2, o1) {
     var options = [];
     let r1, r2, r3;
@@ -258,13 +227,8 @@ function newQuestion(type, options){
   }
   
 
-  ////--------------
-
-  
-
   
   function updateDifficulty() {
-    
     let difficulty, highVal;
     for (let i = 0; i <= 4; i++) {
       if (diffButtons[i].classList.contains("active-difficulty")) {
@@ -312,22 +276,19 @@ function newQuestion(type, options){
     return ops;
   }
   
-  
   function resetScore() {
     gameCurrScore.innerHTML = 0;
   }
   
   function checkHighScore() {
     let curr = gameCurrScore.innerHTML;
-    if (curr > parseInt(high_score)) {
-      high_score = curr;
+    if (curr > parseInt(state.high_score)) {
+      state.high_score = curr;
       gameHighScore.innerHTML = curr;
     } else {
-      gameHighScore.innerHTML = high_score;
+      gameHighScore.innerHTML = state.high_score;
     }
   }
-  
-
   
   function correctnessView(bool, element) {
     utilMethods.showHide([element], []);
