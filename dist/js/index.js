@@ -23,6 +23,10 @@ import { state } from './state.js';
 window.onload = function () {
   //Ensure DOM is loaded before functions
 
+  ////////////////////////////////////////////////////////////
+  //SHARED
+  //
+
   //Add event listeners for operator and difficulty buttons
   function addEventsToOperatorsAndDifficultyButtons() {
     for (let subject of subjects) {
@@ -39,10 +43,16 @@ window.onload = function () {
     }
   }
   addEventsToOperatorsAndDifficultyButtons();
-  ////////////////////////////////////////////////////////////
-  //SHARED
-  //
-
+  function loadSection(sectionName) {
+    // Hide all sections
+    var sections = document.querySelectorAll('.main-content > div');
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].style.display = 'none';
+    }
+    // Show the selected section
+    var section = document.getElementById(sectionName + '-container');
+    section.style.display = 'flex';
+  }
   function burgerOn() {
     if (burger.classList.contains("open")) {
       burger.classList.remove("open");
@@ -78,32 +88,28 @@ window.onload = function () {
     if (func) func(n1, n2, o1);
   }
   function newQuestion(type, options) {
-    let elementsToHide, elementsToShow, num1, num2, op1;
+    let num1, num2, op1;
     switch (type) {
       case "flash":
-        elementsToHide = [mcContainer, gameContainer, quizContainer];
-        elementsToShow = [flashContainer, flashQuestionBox, flashAnswerBox, burgerContainer];
+        loadSection("flash");
         num1 = flashNumOne;
         num2 = flashNumTwo;
         op1 = flashOpOne;
         break;
       case "multiple-choice":
-        elementsToHide = [gameContainer, quizContainer, flashContainer];
-        elementsToShow = [mcContainer, burgerContainer];
+        loadSection("mc");
         num1 = mcNumOne;
         num2 = mcNumTwo;
         op1 = mcOpOne;
         break;
       case "quiz":
-        elementsToHide = [gameContainer];
-        elementsToShow = [quizContainer, burgerContainer];
+        loadSection("quiz");
         num1 = quizNumOne;
         num2 = quizNumTwo;
         op1 = quizOpOne;
         break;
       case "game":
-        elementsToHide = [quizContainer, flashContainer];
-        elementsToShow = [gameContainer, burgerContainer, gameActualContainer, gameCorrectness];
+        loadSection("game");
         num1 = gameNumOne;
         num2 = gameNumTwo;
         op1 = gameOpOne;
@@ -112,7 +118,6 @@ window.onload = function () {
         break;
     }
     burgerOn();
-    utilMethods.showHide(elementsToShow, elementsToHide);
     displayNone(menuContainer);
     newGeneralQuestion(op1, num1, num2, options);
   }
@@ -514,16 +519,4 @@ window.onload = function () {
   //
   //END QUIZ
   ////////////////////////////////////////////////////////////
-
-  //CHATGPT loader idea
-  function loadSection(sectionName) {
-    // Hide all sections
-    var sections = document.querySelectorAll('#content > div');
-    for (var i = 0; i < sections.length; i++) {
-      sections[i].style.display = 'none';
-    }
-    // Show the selected section
-    var section = document.getElementById(sectionName + '-section');
-    section.style.display = 'block';
-  }
 }; //close window.onload function
