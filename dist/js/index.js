@@ -22,7 +22,21 @@ import { quizContainer, quizAmountCorrect, quizAmountCorrectPercentage, quizAnsw
 import { gameContainer, gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
 import { state } from './state.js';
 window.onload = function () {
-  // VARIABLES
+  for (let subject of subjects) {
+    subject.addEventListener("click", utilMethods.toggleActivate);
+  }
+  for (let diffButton of diffButtons) {
+    diffButton.addEventListener("click", () => {
+      for (let otherButton of diffButtons) {
+        otherButton.classList.remove("active-difficulty");
+      }
+      diffButton.classList.add("active-difficulty");
+      updateDifficulty();
+    });
+  }
+
+  //SHARED
+  //
 
   function burgerOn() {
     if (burger.classList.contains("open")) {
@@ -97,6 +111,111 @@ window.onload = function () {
     displayNone(menuContainer);
     newGeneralQuestion(op1, num1, num2, options);
   }
+  function updateDifficulty() {
+    let difficulty, highVal;
+    for (let i = 0; i <= 4; i++) {
+      if (diffButtons[i].classList.contains("active-difficulty")) {
+        difficulty = diffButtons[i].textContent;
+        switch (i) {
+          case 0:
+            highVal = 3;
+            break;
+          case 1:
+            highVal = 5;
+            break;
+          case 2:
+            highVal = 7;
+            break;
+          case 3:
+            highVal = 9;
+            break;
+          case 4:
+            highVal = 12;
+            break;
+        }
+        state.activeMultiplyHighVal = highVal;
+        state.activeHighVal = (i + 1) * 10;
+        state.activeDifficulty = i;
+      }
+    }
+  }
+  function updateSubjects() {
+    let ops = [];
+    let amount = 0;
+    for (let i = 0; i < 4; i++) {
+      if (subjects[i].classList.contains("active-subject")) {
+        state.activeOperators.push(subjects[i].textContent);
+        ops.push(subjects[i].textContent);
+        amount++;
+      }
+    }
+    if (amount == 0) {
+      ops[0] = "+"; //Default to addition if none selected
+    }
+
+    return ops;
+  }
+  function resetAnswerInput(elementsArray) {
+    for (let el of elementsArray) {
+      el.value = "";
+    }
+  }
+  function resetNumberToZero(element) {
+    element.textContent = 0;
+  }
+  function resetWidth(element) {
+    element.style.width = "0px";
+  }
+  function displayGrid(element) {
+    element.style.display = "grid";
+  }
+  function displayNone(element) {
+    element.style.display = "none";
+  }
+  function showMainMenu() {
+    displayGrid(menuContainer);
+    utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, gameCorrectness, gameActualContainer, mcContainer]);
+    resetQuizProperty(state.quizStats);
+    resetNumberToZero(gameLevelNumber);
+    resetWidth(gameTracker);
+    resetWidth(gameTracker2);
+  }
+  burgerContainer.addEventListener("click", showMainMenu);
+  burgerContainer.addEventListener("click", e => {
+    burger.classList.toggle("open");
+  });
+
+  //
+  //
+  //END SHARED
+  //
+
+  //
+  //FLASH
+  //
+
+  function flashHandler(e) {
+    const ans = utilMethods.calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML);
+    flashAnswer.textContent = ans;
+    if (this.classList.contains("flip")) {
+      newQuestion("flash");
+    }
+    this.classList.toggle("flip");
+    console.log(this);
+    e.preventDefault();
+  }
+  flashContainer.addEventListener("mousedown", flashHandler, false);
+  newFlash.addEventListener("click", e => {
+    newQuestion(e.target.getAttribute("data-type"));
+  });
+
+  //
+  //END FLASH
+  //
+
+  //
+  //GAME
+  //
   async function gameAnswerCheck(bool) {
     if (bool) {
       correctnessView(true, gameCorrectness);
@@ -126,33 +245,111 @@ window.onload = function () {
       utilMethods.enableInput(gameAnswerInput);
     }
   }
-  async function quizAnswerCheck(bool) {
-    if (bool) {
-      utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
-      correctnessView(true, quizCorrectness);
-      utilMethods.disableInput(quizAnswerInput);
-      addToQuizProperty(bool, state.quizStats);
-      checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
-      await utilMethods.delay(700);
-      utilMethods.enableInput(quizAnswerInput);
-      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-
-      // quizNewQuestion();
-      newQuestion("quiz");
+  function updateScore() {
+    let currScoreInner = parseInt(gameCurrScore.innerHTML);
+    currScoreInner += 1;
+    gameCurrScore.innerHTML = currScoreInner;
+    checkHighScore();
+  }
+  function percentage(n1, n2) {
+    return Math.round(n1 / n2 * 100);
+  }
+  function resetScore() {
+    gameCurrScore.innerHTML = 0;
+  }
+  function checkHighScore() {
+    let curr = gameCurrScore.innerHTML;
+    if (curr > parseInt(state.high_score)) {
+      state.high_score = curr;
+      gameHighScore.innerHTML = curr;
     } else {
-      utilMethods.incorrectMotion(quizAnswerForm);
-      correctnessView(false, quizCorrectness);
-      utilMethods.disableInput(quizAnswerInput);
-      addToQuizProperty(bool, state.quizStats);
-      checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
-      await utilMethods.delay(700);
-      utilMethods.enableInput(quizAnswerInput);
-      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-
-      // quizNewQuestion();
-      newQuestion("quiz");
+      gameHighScore.innerHTML = state.high_score;
     }
   }
+  function correctnessView(bool, element) {
+    utilMethods.showHide([element], []);
+    if (bool) {
+      element.classList.add("correct-answer");
+      element.classList.remove("incorrect-answer");
+      element.textContent = "CORRECT";
+    } else {
+      element.classList.remove("correct-answer");
+      element.classList.add("incorrect-answer");
+      element.textContent = "INCORRECT";
+    }
+  }
+  function levelUp(level) {
+    let newColor = `hsl( ${level * 30}, 100%, 50%)`;
+    gameTracker.style.backgroundColor = newColor;
+    gameTracker2.style.backgroundColor = newColor;
+  }
+  function addlevel() {
+    let fullWidth = window.getComputedStyle(gameTrackerContainer2).width;
+    let borderWidth = window.getComputedStyle(gameTrackerContainer2).getPropertyValue("border-width");
+    fullWidth = parseFloat(fullWidth.slice(0, -2));
+    borderWidth = parseFloat(borderWidth.slice(0, -2));
+    fullWidth = fullWidth - borderWidth * 2;
+    let progressWidth = window.getComputedStyle(gameTracker2).width;
+    progressWidth = parseFloat(progressWidth.slice(0, -2));
+    progressWidth += fullWidth / 10;
+    gameTracker2.style.width = progressWidth + "px";
+  }
+  async function updateLevel() {
+    let level = parseInt(gameLevelNumber.textContent);
+    if (parseInt(gameCurrScore.textContent) % 1 == 0) {
+      updateProgress();
+    }
+    if (parseInt(gameCurrScore.textContent) % 10 == 0) {
+      console.log("reset");
+      utilMethods.disableInput(gameAnswerInput);
+      resetWidth(gameTracker);
+      addlevel();
+      level += 1;
+      levelUp(level);
+      await utilMethods.delay(1000);
+      utilMethods.enableInput(gameAnswerInput);
+    }
+    gameLevelNumber.textContent = level;
+  }
+  async function updateProgress() {
+    let fullWidth = window.getComputedStyle(gameTrackerContainer).width;
+    let borderWidth = window.getComputedStyle(gameTrackerContainer).getPropertyValue("border-width");
+    fullWidth = parseFloat(fullWidth.slice(0, -2));
+    borderWidth = parseFloat(borderWidth.slice(0, -2));
+    fullWidth = fullWidth - borderWidth * 2;
+    let progressWidth = window.getComputedStyle(gameTracker).width;
+    progressWidth = parseFloat(progressWidth.slice(0, -2));
+    progressWidth += fullWidth / 10;
+    gameTracker.style.width = progressWidth + "px";
+    if (progressWidth == fullWidth) {
+      await utilMethods.delay(1000);
+      resetWidth(gameTracker);
+    }
+  }
+  function gameUpdateAnswerHandler(e) {
+    let userAnswer = e.target.value;
+    state.userValue = userAnswer;
+  }
+  function gameCheckAnswerHandler(e) {
+    let realAns = utilMethods.calculation(gameNumOne.innerHTML, gameNumTwo.innerHTML, gameOpOne.innerHTML);
+    gameActual.innerHTML = realAns;
+    gameAnswerCheck(realAns == state.userValue);
+    e.preventDefault();
+  }
+  gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler);
+  gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler);
+  newGame.addEventListener("click", e => {
+    newQuestion(e.target.getAttribute("data-type"));
+  });
+
+  //
+  //END GAME
+  //
+
+  //
+  //MC
+  //
+
   async function mcAnswerCheck(bool, correctEl, falseEl = null) {
     if (bool) {
       utilMethods.animateCorrect(correctEl);
@@ -206,92 +403,44 @@ window.onload = function () {
       mcOptions.appendChild(optionEl);
     });
   }
-  function updateDifficulty() {
-    let difficulty, highVal;
-    for (let i = 0; i <= 4; i++) {
-      if (diffButtons[i].classList.contains("active-difficulty")) {
-        difficulty = diffButtons[i].textContent;
-        switch (i) {
-          case 0:
-            highVal = 3;
-            break;
-          case 1:
-            highVal = 5;
-            break;
-          case 2:
-            highVal = 7;
-            break;
-          case 3:
-            highVal = 9;
-            break;
-          case 4:
-            highVal = 12;
-            break;
-        }
-        state.activeMultiplyHighVal = highVal;
-        state.activeHighVal = (i + 1) * 10;
-        state.activeDifficulty = i;
-      }
-    }
-  }
+  newMC.addEventListener("click", e => {
+    newQuestion(e.target.getAttribute("data-type"), mcCreateOptions);
+  });
 
-  // UPDATES OPERATORS BASED ON SELECTIONS
-  function updateSubjects() {
-    let ops = [];
-    let amount = 0;
-    for (let i = 0; i < 4; i++) {
-      if (subjects[i].classList.contains("active-subject")) {
-        state.activeOperators.push(subjects[i].textContent);
-        ops.push(subjects[i].textContent);
-        amount++;
-      }
-    }
-    if (amount == 0) {
-      ops[0] = "+"; //Default to addition if none selected
-    }
+  //
+  //END MC
+  //
 
-    return ops;
-  }
-  function resetScore() {
-    gameCurrScore.innerHTML = 0;
-  }
-  function checkHighScore() {
-    let curr = gameCurrScore.innerHTML;
-    if (curr > parseInt(state.high_score)) {
-      state.high_score = curr;
-      gameHighScore.innerHTML = curr;
-    } else {
-      gameHighScore.innerHTML = state.high_score;
-    }
-  }
-  function correctnessView(bool, element) {
-    utilMethods.showHide([element], []);
+  //
+  //QUIZ
+  //
+
+  async function quizAnswerCheck(bool) {
     if (bool) {
-      element.classList.add("correct-answer");
-      element.classList.remove("incorrect-answer");
-      element.textContent = "CORRECT";
+      utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
+      correctnessView(true, quizCorrectness);
+      utilMethods.disableInput(quizAnswerInput);
+      addToQuizProperty(bool, state.quizStats);
+      checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
+      await utilMethods.delay(700);
+      utilMethods.enableInput(quizAnswerInput);
+      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+
+      // quizNewQuestion();
+      newQuestion("quiz");
     } else {
-      element.classList.remove("correct-answer");
-      element.classList.add("incorrect-answer");
-      element.textContent = "INCORRECT";
-    }
-  }
-  function resetAnswerInput(elementsArray) {
-    for (let el of elementsArray) {
-      el.value = "";
-    }
-  }
+      utilMethods.incorrectMotion(quizAnswerForm);
+      correctnessView(false, quizCorrectness);
+      utilMethods.disableInput(quizAnswerInput);
+      addToQuizProperty(bool, state.quizStats);
+      checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
+      await utilMethods.delay(700);
+      utilMethods.enableInput(quizAnswerInput);
+      resetAnswerInput([gameAnswerInput, quizAnswerInput]);
 
-  ////-------------
-
-  function updateScore() {
-    let currScoreInner = parseInt(gameCurrScore.innerHTML);
-    currScoreInner += 1;
-    gameCurrScore.innerHTML = currScoreInner;
-    checkHighScore();
-  }
-  function percentage(n1, n2) {
-    return Math.round(n1 / n2 * 100);
+      // quizNewQuestion();
+      newQuestion("quiz");
+    }
   }
   async function quizShowScore() {
     quizAmountCorrect.textContent = state.quizStats.numCorrect;
@@ -301,74 +450,6 @@ window.onload = function () {
     await utilMethods.delay(2200);
     soloHide(quizModal, mainContainer);
     utilMethods.enableInput(quizAnswerInput);
-  }
-  function levelUp(level) {
-    let newColor = `hsl( ${level * 30}, 100%, 50%)`;
-    gameTracker.style.backgroundColor = newColor;
-    gameTracker2.style.backgroundColor = newColor;
-  }
-  function addlevel() {
-    let fullWidth = window.getComputedStyle(gameTrackerContainer2).width;
-    let borderWidth = window.getComputedStyle(gameTrackerContainer2).getPropertyValue("border-width");
-    fullWidth = parseFloat(fullWidth.slice(0, -2));
-    borderWidth = parseFloat(borderWidth.slice(0, -2));
-    fullWidth = fullWidth - borderWidth * 2;
-    let progressWidth = window.getComputedStyle(gameTracker2).width;
-    progressWidth = parseFloat(progressWidth.slice(0, -2));
-    progressWidth += fullWidth / 10;
-    gameTracker2.style.width = progressWidth + "px";
-  }
-  async function updateLevel() {
-    let level = parseInt(gameLevelNumber.textContent);
-    if (parseInt(gameCurrScore.textContent) % 1 == 0) {
-      updateProgress();
-    }
-    if (parseInt(gameCurrScore.textContent) % 10 == 0) {
-      console.log("reset");
-      utilMethods.disableInput(gameAnswerInput);
-      resetWidth(gameTracker);
-      addlevel();
-      level += 1;
-      levelUp(level);
-      await utilMethods.delay(1000);
-      utilMethods.enableInput(gameAnswerInput);
-    }
-    gameLevelNumber.textContent = level;
-  }
-  function resetNumberToZero(element) {
-    element.textContent = 0;
-  }
-  function resetWidth(element) {
-    element.style.width = "0px";
-  }
-  async function updateProgress() {
-    let fullWidth = window.getComputedStyle(gameTrackerContainer).width;
-    let borderWidth = window.getComputedStyle(gameTrackerContainer).getPropertyValue("border-width");
-    fullWidth = parseFloat(fullWidth.slice(0, -2));
-    borderWidth = parseFloat(borderWidth.slice(0, -2));
-    fullWidth = fullWidth - borderWidth * 2;
-    let progressWidth = window.getComputedStyle(gameTracker).width;
-    progressWidth = parseFloat(progressWidth.slice(0, -2));
-    progressWidth += fullWidth / 10;
-    gameTracker.style.width = progressWidth + "px";
-    if (progressWidth == fullWidth) {
-      await utilMethods.delay(1000);
-      resetWidth(gameTracker);
-    }
-  }
-  function displayGrid(element) {
-    element.style.display = "grid";
-  }
-  function displayNone(element) {
-    element.style.display = "none";
-  }
-  function showMainMenu() {
-    displayGrid(menuContainer);
-    utilMethods.showHide([], [flashContainer, flashAnswerBox, gameContainer, quizContainer, gameCorrectness, gameActualContainer, mcContainer]);
-    resetQuizProperty(state.quizStats);
-    resetNumberToZero(gameLevelNumber);
-    resetWidth(gameTracker);
-    resetWidth(gameTracker2);
   }
   function soloReveal(element, mainContainer) {
     element.style.visibility = "visible";
@@ -413,16 +494,6 @@ window.onload = function () {
     resetQuizProperty(quizStats);
     newQuestion("quiz");
   }
-  function flashHandler(e) {
-    const ans = utilMethods.calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML);
-    flashAnswer.textContent = ans;
-    if (this.classList.contains("flip")) {
-      newQuestion("flash");
-    }
-    this.classList.toggle("flip");
-    console.log(this);
-    e.preventDefault();
-  }
   function quizUpdateAnswerHandler(e) {
     let userAnswer = e.target.value;
     console.log("userAnswer:", userAnswer);
@@ -433,51 +504,12 @@ window.onload = function () {
     quizAnswerCheck(realAns == state.userValue);
     e.preventDefault();
   }
-  function gameUpdateAnswerHandler(e) {
-    let userAnswer = e.target.value;
-    state.userValue = userAnswer;
-  }
-  function gameCheckAnswerHandler(e) {
-    let realAns = utilMethods.calculation(gameNumOne.innerHTML, gameNumTwo.innerHTML, gameOpOne.innerHTML);
-    gameActual.innerHTML = realAns;
-    gameAnswerCheck(realAns == state.userValue);
-    e.preventDefault();
-  }
-  flashContainer.addEventListener("mousedown", flashHandler, false);
-  gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler);
-  gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler);
   quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler);
   quizAnswerForm.addEventListener("submit", quizAnswerHandler);
-  for (let subject of subjects) {
-    subject.addEventListener("click", utilMethods.toggleActivate);
-  }
-  for (let diffButton of diffButtons) {
-    diffButton.addEventListener("click", () => {
-      for (let otherButton of diffButtons) {
-        otherButton.classList.remove("active-difficulty");
-      }
-      diffButton.classList.add("active-difficulty");
-      updateDifficulty();
-    });
-  }
-  burgerContainer.addEventListener("click", showMainMenu);
-  burgerContainer.addEventListener("click", e => {
-    burger.classList.toggle("open");
-  });
-  newFlash.addEventListener("click", e => {
-    // console.log(e.target.getAttribute('data-type'))
-    newQuestion(e.target.getAttribute("data-type"));
-  });
-  newGame.addEventListener("click", e => {
-    // console.log(e.target.getAttribute('data-type'))
-    newQuestion(e.target.getAttribute("data-type"));
-  });
   newQuiz.addEventListener("click", e => {
-    // console.log(e.target.getAttribute('data-type'))
     newQuestion(e.target.getAttribute("data-type"));
   });
-  newMC.addEventListener("click", e => {
-    // console.log(e.target.getAttribute('data-type'))
-    newQuestion(e.target.getAttribute("data-type"), mcCreateOptions);
-  });
+  //
+  //END QUIZ
+  //
 };
