@@ -178,22 +178,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //FLASH
   //
 
-  function flashHandler(e) {
-    const ans = utilMethods.calculation(
-      flashNumOne.innerHTML,
-      flashNumTwo.innerHTML,
-      flashOpOne.innerHTML
-    );
-    flashAnswer.textContent = ans;
-    if (this.classList.contains("flip")) {
-      newQuestion("flash");
-    }
-    this.classList.toggle("flip");
-    console.log(this);
-    e.preventDefault();
-  }
-
-
 
   //
   //END FLASH
@@ -320,22 +304,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     }
   }
 
-  function gameUpdateAnswerHandler(e) {
-    let userAnswer = e.target.value;
-    state.userValue = userAnswer;
-  }
-
-  function gameCheckAnswerHandler(e) {
-    let realAns = utilMethods.calculation(
-      gameNumOne.innerHTML,
-      gameNumTwo.innerHTML,
-      gameOpOne.innerHTML
-    );
-    gameActual.innerHTML = realAns;
-    gameAnswerCheck(realAns == state.userValue);
-    e.preventDefault();
-  }
-
 
   //
   //END GAME
@@ -362,25 +330,11 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     }
   }
 
+  
   function mcCreateOptions(n1, n2, o1) {
-    var options = [];
-    let r1, r2, r3;
-    const ans = utilMethods.calculation(n1, n2, o1);
-    options.push(ans);
-    do {
-      r1 = utilMethods.randomNumber(0, ans + 5);
-    } while (options.includes(r1));
-    options.push(r1);
-    do {
-      r2 = utilMethods.randomNumber(0, ans + 5);
-    } while (options.includes(r2));
-    options.push(r2);
-    do {
-      r3 = utilMethods.randomNumber(0, ans + 5);
-    } while (options.includes(r3));
-    options.push(r3);
-    options = utilMethods.shuffle(options);
+    let options = utilMethods.createOptions(n1,n2,o1)
     mcOptions.innerHTML = "";
+
     options.forEach((option, index) => {
       const optionEl = document.createElement("button");
       optionEl.classList.add("option");
@@ -401,6 +355,8 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       });
       mcOptions.appendChild(optionEl);
     });
+
+    
   }
 
 
@@ -500,6 +456,42 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     newQuestion("quiz");
   }
 
+
+
+  //
+  //END QUIZ
+  ////////////////////////////////////////////////////////////
+
+
+
+
+
+
+  ////////////////////////////////////////////////////////////
+  //EVENT HANDLERS
+  //
+
+  
+  function gameUpdateAnswerHandler(e) {
+    let userAnswer = e.target.value;
+    state.userValue = userAnswer;
+  }
+
+  function gameCheckAnswerHandler(e) {
+    let realAns = utilMethods.calculation(
+      gameNumOne.innerHTML,
+      gameNumTwo.innerHTML,
+      gameOpOne.innerHTML
+    );
+    gameActual.innerHTML = realAns;
+    gameAnswerCheck(realAns == state.userValue);
+    e.preventDefault();
+  }
+
+  gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler);
+  gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler);
+
+
   function quizUpdateAnswerHandler(e) {
     let userAnswer = e.target.value;
     console.log("userAnswer:", userAnswer);
@@ -517,59 +509,48 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     e.preventDefault();
   }
 
-
-  //
-  //END QUIZ
-  ////////////////////////////////////////////////////////////
-
-
-
-
-
-
-  ////////////////////////////////////////////////////////////
-  //EVENT HANDLERS
-  //
-
-
-
-
-  flashContainer.addEventListener("mousedown", flashHandler, false);
-
-  newFlash.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"))
-  })
-
-
-
-  gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler);
-  gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler);
-
-  newGame.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"))
-  })
-
-
-
-  newMC.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"), mcCreateOptions)
-  })
-
-
   quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler);
   quizAnswerForm.addEventListener("submit", quizAnswerHandler);
 
-  newQuiz.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"))
-  })
+  function flashHandler(e) {
+    const ans = utilMethods.calculation(
+      flashNumOne.innerHTML,
+      flashNumTwo.innerHTML,
+      flashOpOne.innerHTML
+    );
+    flashAnswer.textContent = ans;
+    if (this.classList.contains("flip")) {
+      newQuestion("flash");
+    }
+    this.classList.toggle("flip");
+    console.log(this);
+    e.preventDefault();
+  }
 
+
+  flashContainer.addEventListener("mousedown", flashHandler, false);
 
   burgerContainer.addEventListener("click", showMainMenu);
   burgerContainer.addEventListener("click", (e) => {
     burger.classList.toggle("open");
   });
 
+  newFlash.addEventListener("click", (e) => {
+    newQuestion(e.target.getAttribute("data-type"))
+  })
 
+ newGame.addEventListener("click", (e) => {
+    newQuestion(e.target.getAttribute("data-type"))
+  })
+
+
+  newMC.addEventListener("click", (e) => {
+    newQuestion(e.target.getAttribute("data-type"), mcCreateOptions)
+  })
+
+  newQuiz.addEventListener("click", (e) => {
+    newQuestion(e.target.getAttribute("data-type"))
+  })
 
   //Add event listeners for operator and difficulty buttons
   function addEventsToOperatorsAndDifficultyButtons() {

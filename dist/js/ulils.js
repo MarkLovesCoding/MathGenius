@@ -60,6 +60,26 @@ export function shuffle(array) {
   }
   return array;
 }
+export function createOptions(n1, n2, o1) {
+  var options = [];
+  let r1, r2, r3;
+  const ans = utilMethods.calculation(n1, n2, o1);
+  options.push(ans);
+  do {
+    r1 = utilMethods.randomNumber(0, ans + 5);
+  } while (options.includes(r1));
+  options.push(r1);
+  do {
+    r2 = utilMethods.randomNumber(0, ans + 5);
+  } while (options.includes(r2));
+  options.push(r2);
+  do {
+    r3 = utilMethods.randomNumber(0, ans + 5);
+  } while (options.includes(r3));
+  options.push(r3);
+  options = utilMethods.shuffle(options);
+  return options;
+}
 
 ////////////////////////////ASYNC Utility
 //
