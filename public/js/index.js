@@ -282,7 +282,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       await utilMethods.delay(700);
       utilMethods.enableInput(gameAnswerInput);
       resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-      // gameNewQuestion();
       newQuestion("game");
     } else {
       utilMethods.showHide([], [burgerContainer]);
@@ -295,7 +294,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
       resetScore();
       resetWidth(gameTracker);
-      // gameNewQuestion();
       newQuestion("game");
       await utilMethods.delay(1500);
       utilMethods.enableInput(gameAnswerInput);
@@ -408,9 +406,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       gameOpOne.innerHTML
     );
     gameActual.innerHTML = realAns;
-
     gameAnswerCheck(realAns == state.userValue);
-
     e.preventDefault();
   }
 
@@ -613,7 +609,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     quizAnswerCheck(realAns == state.userValue);
     e.preventDefault();
   }
- 
 
   quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler);
   quizAnswerForm.addEventListener("submit", quizAnswerHandler);
