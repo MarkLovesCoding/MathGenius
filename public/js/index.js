@@ -13,17 +13,20 @@
 
 //add badges for each level, for each difficulty that quiz was passed.
 //save to profile. create profile.
-// input
+
 import * as utilMethods from './ulils.js';
 import { burger, burgerContainer, mainContainer, menuContainer, subjects, diffButtons } from './domElements.js'
-
 import { flashAnswer, flashContainer, flashNumOne, flashNumTwo, flashOpOne, flashQuestionBox, flashAnswerBox, newFlash } from './domElements.js';
 import { mcContainer, mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './domElements.js';
 import { quizContainer, quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz } from './domElements.js';
 import { gameContainer, gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
 import { state } from './state.js'
-window.onload = function () {
 
+
+window.onload = function () {  //Ensure DOM is loaded before functions
+
+
+  //Add event listeners for operator and difficulty buttons
 
   for (let subject of subjects) {
     subject.addEventListener("click", utilMethods.toggleActivate);
@@ -38,10 +41,9 @@ window.onload = function () {
     });
   }
 
-
+  ////////////////////////////////////////////////////////////
   //SHARED
   //
-
 
   function burgerOn() {
     if (burger.classList.contains("open")) {
@@ -74,7 +76,6 @@ window.onload = function () {
         n1 = n2;
         n2 = t;
       }
-
     }
 
     n1El.textContent = n1;
@@ -83,9 +84,6 @@ window.onload = function () {
     console.log(utilMethods.calculation(n1, n2, o1));
     if (func) func(n1, n2, o1);
   }
-  
-
-
 
   function newQuestion(type, options) {
     let elementsToHide, elementsToShow, num1, num2, op1;
@@ -127,10 +125,6 @@ window.onload = function () {
     displayNone(menuContainer);
     newGeneralQuestion(op1, num1, num2, options)
   }
-
-
-
-
 
   function updateDifficulty() {
     let difficulty, highVal;
@@ -200,8 +194,6 @@ window.onload = function () {
     element.style.display = "none";
   }
 
-
-
   function showMainMenu() {
     displayGrid(menuContainer);
     utilMethods.showHide(
@@ -222,9 +214,6 @@ window.onload = function () {
     resetWidth(gameTracker2);
   }
 
-
-
-
   burgerContainer.addEventListener("click", showMainMenu);
   burgerContainer.addEventListener("click", (e) => {
     burger.classList.toggle("open");
@@ -233,10 +222,16 @@ window.onload = function () {
   //
   //
   //END SHARED
-  //
+  ////////////////////////////////////////////////////////////
 
 
-  //
+
+
+
+
+
+
+   ////////////////////////////////////////////////////////////
   //FLASH
   //
 
@@ -255,8 +250,6 @@ window.onload = function () {
     e.preventDefault();
   }
 
-
-
   flashContainer.addEventListener("mousedown", flashHandler, false);
 
   newFlash.addEventListener("click", (e) => {
@@ -266,14 +259,16 @@ window.onload = function () {
 
   //
   //END FLASH
-  //
+  ////////////////////////////////////////////////////////////
 
 
 
 
 
 
-  //
+
+
+  ////////////////////////////////////////////////////////////
   //GAME
   //
   async function gameAnswerCheck(bool) {
@@ -306,17 +301,17 @@ window.onload = function () {
       utilMethods.enableInput(gameAnswerInput);
     }
   }
+
   function updateScore() {
     let currScoreInner = parseInt(gameCurrScore.innerHTML);
     currScoreInner += 1;
     gameCurrScore.innerHTML = currScoreInner;
     checkHighScore();
   }
+
   function percentage(n1, n2) {
     return Math.round(n1 / n2 * 100)
   }
-
-
 
   function resetScore() {
     gameCurrScore.innerHTML = 0;
@@ -345,12 +340,12 @@ window.onload = function () {
     }
   }
 
-
   function levelUp(level) {
     let newColor = `hsl( ${level * 30}, 100%, 50%)`;
     gameTracker.style.backgroundColor = newColor;
     gameTracker2.style.backgroundColor = newColor;
   }
+
   function addlevel() {
     let fullWidth = window.getComputedStyle(gameTrackerContainer2).width;
     let borderWidth = window
@@ -364,6 +359,7 @@ window.onload = function () {
     progressWidth += fullWidth / 10;
     gameTracker2.style.width = progressWidth + "px";
   }
+
   async function updateLevel() {
     let level = parseInt(gameLevelNumber.textContent);
     if (parseInt(gameCurrScore.textContent) % 1 == 0) {
@@ -381,7 +377,6 @@ window.onload = function () {
     }
     gameLevelNumber.textContent = level;
   }
-
 
   async function updateProgress() {
     let fullWidth = window.getComputedStyle(gameTrackerContainer).width;
@@ -401,8 +396,6 @@ window.onload = function () {
     }
   }
 
-
-
   function gameUpdateAnswerHandler(e) {
     let userAnswer = e.target.value;
     state.userValue = userAnswer;
@@ -421,7 +414,6 @@ window.onload = function () {
     e.preventDefault();
   }
 
-
   gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler);
   gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler);
 
@@ -431,15 +423,14 @@ window.onload = function () {
 
   //
   //END GAME
-  //
+  ////////////////////////////////////////////////////////////
 
 
 
 
 
 
-
-  //
+  ////////////////////////////////////////////////////////////
   //MC
   //
 
@@ -459,8 +450,6 @@ window.onload = function () {
     }
   }
 
-
-
   function mcCreateOptions(n1, n2, o1) {
     var options = [];
     let r1, r2, r3;
@@ -478,10 +467,8 @@ window.onload = function () {
       r3 = utilMethods.randomNumber(0, ans + 5);
     } while (options.includes(r3));
     options.push(r3);
-
     options = utilMethods.shuffle(options);
     mcOptions.innerHTML = "";
-
     options.forEach((option, index) => {
       const optionEl = document.createElement("button");
       optionEl.classList.add("option");
@@ -504,22 +491,20 @@ window.onload = function () {
     });
   }
 
-
   newMC.addEventListener("click", (e) => {
     newQuestion(e.target.getAttribute("data-type"), mcCreateOptions)
   })
 
   //
   //END MC
-  //
+  ////////////////////////////////////////////////////////////
 
 
 
 
 
 
-
-  //
+  ////////////////////////////////////////////////////////////
   //QUIZ
   //
 
@@ -551,8 +536,6 @@ window.onload = function () {
     }
   }
 
-
-
   async function quizShowScore() {
     quizAmountCorrect.textContent = state.quizStats.numCorrect;
     quizAmountCorrectPercentage.textContent = percentage(state.quizStats.numCorrect, state.quizStats.numAnswered).toString() + "%";
@@ -564,30 +547,28 @@ window.onload = function () {
     utilMethods.enableInput(quizAnswerInput);
   }
 
-
-
   function soloReveal(element, mainContainer) {
     element.style.visibility = "visible";
     element.style.zIndex = "10";
     utilMethods.showHide([], [mainContainer]);
   }
+
   function soloHide(element, mainContainer) {
     element.style.visibility = "hidden";
     element.style.zIndex = "10";
     utilMethods.showHide([mainContainer], []);
   }
 
-
- 
-
   function resetQuizProperty(quizStats) {
     quizStats.numAnswered = 0;
     quizStats.numCorrect = 0;
   }
+
   function updateQuizScores(score, question, quizStats) {
     score.innerHTML = quizStats.numCorrect;
     question.innerHTML = quizStats.numAnswered;
   }
+
   function addToQuizProperty(bool, quizStats) {
     quizStats.numAnswered += 1;
     if (bool) {
@@ -595,6 +576,7 @@ window.onload = function () {
     }
     updateQuizScores(quizCurrScore, quizCurrQuestion, quizStats);
   }
+
   async function checkQuizStatus(quizStats, currScoreContainerEl, lastScoreContainerEl, lastScoreEl) {
     if (quizStats.numAnswered == 1) {
       utilMethods.visibilityToggle(true, currScoreContainerEl);
@@ -608,14 +590,12 @@ window.onload = function () {
       finishQuiz(lastScoreEl, quizStats);
     }
   }
+
   function finishQuiz(lastScoreEl, quizStats) {
     lastScoreEl.innerHTML = quizStats.numCorrect;
     resetQuizProperty(quizStats);
     newQuestion("quiz");
   }
-
-
-
 
   function quizUpdateAnswerHandler(e) {
     let userAnswer = e.target.value;
@@ -643,15 +623,6 @@ window.onload = function () {
   })
   //
   //END QUIZ
-  //
+  ////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-}
+} //close window.onload function
