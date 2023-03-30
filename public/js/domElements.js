@@ -7,11 +7,11 @@ export const mainContainer = document.getElementById("main-container");
 export const diffButtons = document.querySelectorAll(".diff-button");
 
 export const subjects = document.querySelectorAll(".subject");
-export const menuContainer = document.getElementById("menu-container");
+
 
 export const burgerContainer = document.getElementById("burger-container");
 export const newGame = document.getElementById("new-game");
-export const gameContainer = document.getElementById("game-container");
+
 
 export const gameNumOne = document.getElementById("game-first-number");
 export const gameNumTwo = document.getElementById("game-second-number");
@@ -36,7 +36,7 @@ export const gameOpOne = document.getElementById("game-first-operator");
   
 
 // quiz
-export const quizContainer = document.getElementById("quiz-container");
+
 export const quizAnswerForm = document.getElementById("quiz-answer-form");
 export const newQuiz = document.getElementById("new-quiz");
 export const quizNumOne = document.getElementById("quiz-first-number");
@@ -54,7 +54,7 @@ export const quizLastScore = document.getElementById("quiz-last-score");
 export const quizModal = document.getElementById("quiz-modal");
 
 export const newMC = document.getElementById("new-mc");
-export const mcContainer = document.getElementById("mc-container");
+
 export const mcOptions = document.getElementById("mc-options");
 export const mcNumOne = document.getElementById("mc-first-number");
 export const mcNumTwo = document.getElementById("mc-second-number");
@@ -64,8 +64,6 @@ export const flashContainer = document.getElementById("flash-container");
 export const newFlash = document.getElementById("new-flash");
 
 export const flashAnswer = document.getElementById("flash-answer");
-export const flashAnswerBox = document.getElementById("flash-answer-box");
-export const flashQuestionBox = document.getElementById("flash-question-box");
 export const flashNumOne = document.getElementById("flash-first-number");
 export const flashNumTwo = document.getElementById("flash-second-number");
 export const flashOpOne = document.getElementById("flash-first-operator");

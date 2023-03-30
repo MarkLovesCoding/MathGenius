@@ -12,46 +12,32 @@
 //save to profile. create profile.
 
 import * as utilMethods from './ulils.js';
-import { burger, burgerContainer, mainContainer, menuContainer, subjects, diffButtons } from './domElements.js'
-import { flashAnswer, flashContainer, flashNumOne, flashNumTwo, flashOpOne, flashQuestionBox, flashAnswerBox, newFlash } from './domElements.js';
-import { mcContainer, mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './domElements.js';
-import { quizContainer, quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz } from './domElements.js';
-import { gameContainer, gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
+import { burger, burgerContainer, mainContainer,  subjects, diffButtons } from './domElements.js'
+import { flashAnswer, flashContainer, flashNumOne, flashNumTwo, flashOpOne, newFlash } from './domElements.js';
+import {  mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './domElements.js';
+import {  quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz } from './domElements.js';
+import {  gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
 import { state } from './state.js'
 // import { flashHandler } from './flash.js';
 
 window.onload = function () {  //Ensure DOM is loaded before functions
 
 
- ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
   //SHARED
   //
 
-  
-  //Add event listeners for operator and difficulty buttons
-function addEventsToOperatorsAndDifficultyButtons(){
-  for (let subject of subjects) {
-    subject.addEventListener("click", utilMethods.toggleActivate);
-  }
-  for (let diffButton of diffButtons) {
-    diffButton.addEventListener("click", () => {
-      for (let otherButton of diffButtons) {
-        otherButton.classList.remove("active-difficulty");
-      }
-      diffButton.classList.add("active-difficulty");
-      updateDifficulty();
-    });
-  }
-}
-  addEventsToOperatorsAndDifficultyButtons()
 
- 
-  function burgerOn() {
+  function burgerUpdate() {
     if (burger.classList.contains("open")) {
       burger.classList.remove("open");
     }
+    burgerContainer.style.display = "flex";
   }
-
+  async function hideBurger(){
+    await utilMethods.delay(400)
+    burgerContainer.style.display = "none";
+  }
 
   function newGeneralQuestion(opEl, n1El, n2El, func) {
     const subjects = updateSubjects();
@@ -71,7 +57,6 @@ function addEventsToOperatorsAndDifficultyButtons(){
       }
     }
     if (o1 === "-") {
-
       if (n2 > n1) {
         let t = n1;
         n1 = n2;
@@ -87,7 +72,7 @@ function addEventsToOperatorsAndDifficultyButtons(){
   }
 
   function newQuestion(type, options) {
-    let  num1, num2, op1;
+    let num1, num2, op1;
     switch (type) {
       case "flash":
         utilMethods.loadSection("flash")
@@ -120,15 +105,15 @@ function addEventsToOperatorsAndDifficultyButtons(){
         break;
     }
 
-    burgerOn();
+    burgerUpdate();
     newGeneralQuestion(op1, num1, num2, options)
   }
 
   function updateDifficulty() {
-    let difficulty, highVal;
+    let  highVal;
     for (let i = 0; i <= 4; i++) {
       if (diffButtons[i].classList.contains("active-difficulty")) {
-        difficulty = diffButtons[i].textContent;
+       
 
         switch (i) {
           case 0:
@@ -173,16 +158,13 @@ function addEventsToOperatorsAndDifficultyButtons(){
 
   function showMainMenu() {
     utilMethods.loadSection("menu")
+    hideBurger()
     resetQuizProperty(state.quizStats);
     utilMethods.resetNumberToZero(gameLevelNumber);
     utilMethods.resetWidth([gameTracker, gameTracker2]);
   }
 
-  burgerContainer.addEventListener("click", showMainMenu);
-  burgerContainer.addEventListener("click", (e) => {
-    burger.classList.toggle("open");
-  });
-
+  
   //
   //
   //END SHARED
@@ -192,7 +174,7 @@ function addEventsToOperatorsAndDifficultyButtons(){
 
 
 
-   ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
   //FLASH
   //
 
@@ -211,11 +193,7 @@ function addEventsToOperatorsAndDifficultyButtons(){
     e.preventDefault();
   }
 
-  flashContainer.addEventListener("mousedown", flashHandler, false);
 
-  newFlash.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"))
-  })
 
   //
   //END FLASH
@@ -358,12 +336,6 @@ function addEventsToOperatorsAndDifficultyButtons(){
     e.preventDefault();
   }
 
-  gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler);
-  gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler);
-
-  newGame.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"))
-  })
 
   //
   //END GAME
@@ -431,9 +403,6 @@ function addEventsToOperatorsAndDifficultyButtons(){
     });
   }
 
-  newMC.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"), mcCreateOptions)
-  })
 
   //
   //END MC
@@ -548,15 +517,82 @@ function addEventsToOperatorsAndDifficultyButtons(){
     e.preventDefault();
   }
 
+
+  //
+  //END QUIZ
+  ////////////////////////////////////////////////////////////
+
+
+
+
+
+
+  ////////////////////////////////////////////////////////////
+  //EVENT HANDLERS
+  //
+
+
+
+
+  flashContainer.addEventListener("mousedown", flashHandler, false);
+
+  newFlash.addEventListener("click", (e) => {
+    newQuestion(e.target.getAttribute("data-type"))
+  })
+
+
+
+  gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler);
+  gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler);
+
+  newGame.addEventListener("click", (e) => {
+    newQuestion(e.target.getAttribute("data-type"))
+  })
+
+
+
+  newMC.addEventListener("click", (e) => {
+    newQuestion(e.target.getAttribute("data-type"), mcCreateOptions)
+  })
+
+
   quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler);
   quizAnswerForm.addEventListener("submit", quizAnswerHandler);
 
   newQuiz.addEventListener("click", (e) => {
     newQuestion(e.target.getAttribute("data-type"))
   })
+
+
+  burgerContainer.addEventListener("click", showMainMenu);
+  burgerContainer.addEventListener("click", (e) => {
+    burger.classList.toggle("open");
+  });
+
+
+
+  //Add event listeners for operator and difficulty buttons
+  function addEventsToOperatorsAndDifficultyButtons() {
+    for (let subject of subjects) {
+      subject.addEventListener("click", utilMethods.toggleActivate);
+    }
+    for (let diffButton of diffButtons) {
+      diffButton.addEventListener("click", () => {
+        for (let otherButton of diffButtons) {
+          otherButton.classList.remove("active-difficulty");
+        }
+        diffButton.classList.add("active-difficulty");
+        updateDifficulty();
+      });
+    }
+  }
+  addEventsToOperatorsAndDifficultyButtons()
+
   //
-  //END QUIZ
+  //END EVENT HANDLERS
   ////////////////////////////////////////////////////////////
+
+
 
 
 } //close window.onload function
