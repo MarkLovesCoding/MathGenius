@@ -1,9 +1,7 @@
-export const burger = document.getElementById("burger");
-// export const chooseContainer = document.getElementById("choose-container");
-
 export const mainContainer = document.getElementById("main-container");
 export const diffButtons = document.querySelectorAll(".diff-button");
 export const subjects = document.querySelectorAll(".subject");
+export const burger = document.getElementById("burger");
 export const burgerContainer = document.getElementById("burger-container");
 export const newGame = document.getElementById("new-game");
 export const gameNumOne = document.getElementById("game-first-number");
@@ -21,9 +19,6 @@ export const gameTracker = document.getElementById("game-tracker");
 export const gameTracker2 = document.getElementById("game-tracker-2");
 export const gameTrackerContainer = document.getElementById("game-tracker-container");
 export const gameTrackerContainer2 = document.getElementById("game-tracker-container-2");
-
-// quiz
-
 export const quizAnswerForm = document.getElementById("quiz-answer-form");
 export const newQuiz = document.getElementById("new-quiz");
 export const quizNumOne = document.getElementById("quiz-first-number");
