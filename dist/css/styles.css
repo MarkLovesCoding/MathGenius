@@ -1,4 +1,8 @@
 /* Variable Declarations */
+:root {
+  --thumb-width: 20px;
+}
+
 /* Global Styles */
 * {
   padding: 0;
@@ -265,7 +269,7 @@ body:after {
 }
 
 .menu-container {
-  display: grid;
+  display: none;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1.5fr;
   gap: 18px 0px;
@@ -822,4 +826,365 @@ body:after {
   .spacer {
     width: 0;
   }
+}
+.operator-menu-container, .difficulty-menu-container {
+  display: none;
+}
+
+.activity-menu-container, .middle, .top, .bottom {
+  display: flex;
+}
+
+.activity-menu-container, .operator-menu-container, .difficulty-menu-container {
+  background: #f0f0f0;
+  max-width: 323px;
+  width: 400px;
+  height: 720px;
+  max-height: 90vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 25px;
+  /*   box-shadow: 0px 5px 28px -5px rgba(0,0,0,0.25),0px 2px 9px 1px rgba(0,0,0,0.25); */
+  box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.top, .middle, .bottom {
+  max-width: 100%;
+  width: 100%;
+}
+
+.top {
+  height: 25%;
+  width: 80%;
+}
+
+.middle {
+  /*   flex-wrap:wrap; */
+  position: relative;
+  /*   flex-direction:row; */
+  height: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner {
+  margin: 10px;
+  width: calc(50% - 50px);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #f0f0f0;
+}
+
+.icon-container {
+  /*    box-shadow: 0px 2px 10px -8px rgba(0,0,0,0.25),0px 1px 5px 1px rgba(0,0,0,0.3); */
+  background-color: #f0f0f0;
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 2px solid rgba(100, 100, 100, 0);
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+.icon-container:hover {
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: scale(1);
+}
+
+.quiz:hover {
+  background-color: green;
+}
+.quiz:hover > * {
+  color: #f0f0f0;
+}
+.quiz.activity-selected {
+  background-color: green;
+  border-radius: 5px;
+}
+.quiz.activity-selected > * {
+  color: #f0f0f0;
+}
+
+.mc:hover {
+  background-color: blue;
+}
+.mc:hover > * {
+  color: #f0f0f0;
+}
+.mc.activity-selected {
+  background-color: blue;
+  border-radius: 5px;
+}
+.mc.activity-selected > * {
+  color: #f0f0f0;
+}
+
+.flash:hover {
+  background-color: orange;
+}
+.flash:hover > * {
+  color: #f0f0f0;
+}
+.flash.activity-selected {
+  background-color: orange;
+  border-radius: 5px;
+}
+.flash.activity-selected > * {
+  color: #f0f0f0;
+}
+
+.game:hover {
+  background-color: purple;
+}
+.game:hover > * {
+  color: #f0f0f0;
+}
+.game.activity-selected {
+  background-color: purple;
+  border-radius: 5px;
+}
+.game.activity-selected > * {
+  color: #f0f0f0;
+}
+
+.middle-inner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 75%;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom {
+  display: flex;
+  align-items: top;
+  justify-content: space-evenly;
+  height: 20%;
+  width: 80%;
+}
+
+.nav-button {
+  background-color: #f0f0f0;
+  width: 100px;
+  height: 50px;
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 25px;
+  font-family: "Patua One";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.25em;
+}
+.nav-button:hover {
+  transform: scale(1);
+  background-color: #f5f519;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.top {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.header {
+  font-family: "Patua One";
+  font-size: 2em;
+  text-align: center;
+}
+
+.icon {
+  font-size: 3em;
+}
+
+.pen-icon {
+  color: green;
+}
+
+.flash-icon {
+  color: orange;
+}
+
+.mc-icon {
+  color: blue;
+}
+
+.game-icon {
+  color: purple;
+}
+
+.add:hover {
+  background-color: green;
+}
+.add:hover > * {
+  color: #f0f0f0;
+}
+.add.active-operator {
+  background-color: green;
+  border-radius: 5px;
+}
+.add.active-operator > * {
+  color: #f0f0f0;
+}
+
+.minus:hover {
+  background-color: blue;
+}
+.minus:hover > * {
+  color: #f0f0f0;
+}
+.minus.active-operator {
+  background-color: blue;
+  border-radius: 5px;
+}
+.minus.active-operator > * {
+  color: #f0f0f0;
+}
+
+.mult:hover {
+  background-color: orange;
+}
+.mult:hover > * {
+  color: #f0f0f0;
+}
+.mult.active-operator {
+  background-color: orange;
+  border-radius: 5px;
+}
+.mult.active-operator > * {
+  color: #f0f0f0;
+}
+
+.div:hover {
+  background-color: purple;
+}
+.div:hover > * {
+  color: #f0f0f0;
+}
+.div.active-operator {
+  background-color: purple;
+  border-radius: 5px;
+}
+.div.active-operator > * {
+  color: #f0f0f0;
+}
+
+.plus-icon {
+  color: green;
+}
+
+.minus-icon {
+  color: blue;
+}
+
+.times-icon {
+  color: Orange;
+}
+
+.divide-icon {
+  color: purple;
+}
+
+.operator-choice > * {
+  pointer-events: none;
+}
+
+.activities-choice > * {
+  pointer-events: none;
+}
+
+.difficulty {
+  flex-direction: column;
+}
+
+#range-input {
+  --thumb-color:green;
+  -webkit-appearance: none;
+  width: 120px;
+  height: 5px;
+  margin: 20px;
+  padding: 0;
+  background-color: lightgray;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+}
+
+#range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: var(--thumb-color);
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+#range-input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+#range-input::-moz-range-track {
+  background-color: lightgray;
+  height: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+#range-input::-ms-track {
+  background-color: transparent;
+  border-color: transparent;
+  color: transparent;
+  height: 5px;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
+  border: none;
+}
+
+#range-input::-ms-fill-lower {
+  background-color: lightgray;
+  border-radius: 5px;
+}
+
+#range-input::-ms-fill-upper {
+  background-color: lightgray;
+  border-radius: 5px;
+}
+
+#range-input:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 5px rgba(63, 81, 181, 0.2);
+}
+
+#range-input:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 5px rgba(63, 81, 181, 0.2);
+}
+
+#range-input:focus::-ms-thumb {
+  box-shadow: 0 0 0 5px rgba(63, 81, 181, 0.2);
 }

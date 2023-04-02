@@ -39,9 +39,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     burgerContainer.style.display = "none";
   }
 
-  function newGeneralQuestion(opEl, n1El, n2El, func) {
-    const subjects = updateSubjects();
-    let o1 = utilMethods.randOp(subjects);
+  function newGeneralQuestion(opEl, n1El, n2El, operators, func) {
+
+    let o1 = utilMethods.randOp(operators);
 
     let n1 = utilMethods.randomNumber(0, state.activeHighVal);
     let n2 = utilMethods.randomNumber(0, state.activeHighVal);
@@ -71,7 +71,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     if (func) func(n1, n2, o1);
   }
 
-  function newQuestion(type, options) {
+  function newQuestion(type, operators, options) {
     let num1, num2, op1;
     switch (type) {
       case "flash":
@@ -106,7 +106,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     }
 
     burgerUpdate();
-    newGeneralQuestion(op1, num1, num2, options)
+    newGeneralQuestion(op1, num1, num2, operators, options)
   }
 
   function updateDifficulty() {
@@ -157,7 +157,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
 
   function showMainMenu() {
-    utilMethods.loadSection("menu")
+    utilMethods.loadSection("activity-menu")
     hideBurger()
     resetQuizProperty(state.quizStats);
     utilMethods.resetNumberToZero(gameLevelNumber);
@@ -200,7 +200,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       await utilMethods.delay(700);
       utilMethods.enableInput(gameAnswerInput);
       utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-      newQuestion("game");
+      newQuestion("game",state.activeOperators);
     } else {
       utilMethods.showHide([], [burgerContainer]);
       correctnessView(false, gameCorrectness);
@@ -212,7 +212,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
       utilMethods.resetNumberToZero(gameCurrScore);
       utilMethods.resetWidth([gameTracker]);
-      newQuestion("game");
+      newQuestion("game", state.activeOperators);
       await utilMethods.delay(1500);
       utilMethods.enableInput(gameAnswerInput);
     }
@@ -320,12 +320,12 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     if (bool) {
       utilMethods.animateCorrect(correctEl);
       await utilMethods.delay(700);
-      newQuestion("multiple-choice", mcCreateOptions);
+      newQuestion("multiple-choice",state.activeOperators,  mcCreateOptions);
     } else {
       utilMethods.animateIncorrect(falseEl);
       utilMethods.animateCorrect(correctEl);
       await utilMethods.delay(700);
-      newQuestion("multiple-choice", mcCreateOptions);
+      newQuestion("multiple-choice",state.activeOperators, mcCreateOptions);
 
     }
   }
@@ -334,7 +334,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   function mcCreateOptions(n1, n2, o1) {
     let options = utilMethods.createOptions(n1,n2,o1)
     mcOptions.innerHTML = "";
-
+    // let ans = calculation(n1,n2,o1)
     options.forEach((option, index) => {
       const optionEl = document.createElement("button");
       optionEl.classList.add("option");
@@ -381,7 +381,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
       utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-      newQuestion("quiz");
+      newQuestion("quiz", state.activeOperators);
     } else {
       utilMethods.incorrectMotion(quizAnswerForm);
       correctnessView(false, quizCorrectness);
@@ -391,7 +391,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       await utilMethods.delay(700);
       utilMethods.enableInput(quizAnswerInput);
       utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-      newQuestion("quiz");
+      newQuestion("quiz", state.activeOperators);
     }
   }
 
@@ -453,7 +453,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   function finishQuiz(lastScoreEl, quizStats) {
     lastScoreEl.innerHTML = quizStats.numCorrect;
     resetQuizProperty(quizStats);
-    newQuestion("quiz");
+    newQuestion("quiz", state.activeOperators);
   }
 
 
@@ -520,7 +520,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     );
     flashAnswer.textContent = ans;
     if (this.classList.contains("flip")) {
-      newQuestion("flash");
+      newQuestion("flash", state.activeOperators);
     }
     this.classList.toggle("flip");
     console.log(this);
@@ -535,22 +535,140 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     burger.classList.toggle("open");
   });
 
-  newFlash.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"))
+//   newFlash.addEventListener("click", (e) => {
+//     newQuestion(e.target.getAttribute("data-type"))
+//   })
+
+//  newGame.addEventListener("click", (e) => {
+//     newQuestion(e.target.getAttribute("data-type"))
+//   })
+
+
+//   newMC.addEventListener("click", (e) => {
+//     newQuestion(e.target.getAttribute("data-type"), mcCreateOptions)
+//   })
+
+//   newQuiz.addEventListener("click", (e) => {
+//     newQuestion(e.target.getAttribute("data-type"))
+//   })
+
+
+  const activityMenuForward = document.getElementById("activity-menu-forward")
+  const operatorMenuForward = document.getElementById("operator-menu-forward")
+  const operatorMenuBackward = document.getElementById("operator-menu-backward")
+  const difficultyMenuForward = document.getElementById("difficulty-menu-forward")
+  const difficultyMenuBackward = document.getElementById("difficulty-menu-backward")
+
+  activityMenuForward.addEventListener("click",(e)=>{
+    console.log("go forward");
+    state.activity = updateActivity(activitiesChoices)
+    utilMethods.loadSection('operator-menu')
   })
 
- newGame.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"))
+  operatorMenuBackward.addEventListener("click",(e)=>{
+    utilMethods.loadSection("activity-menu")
+  })  
+  
+  operatorMenuForward.addEventListener("click",(e)=>{
+
+    //UPDATE OPERATORS
+    state.activeOperators = updateOperators(operatorChoices)
+    console.log(state)
+    //LOAD DIFFICULTY PAGE
+    utilMethods.loadSection("difficulty-menu")
   })
 
-
-  newMC.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"), mcCreateOptions)
+  difficultyMenuBackward.addEventListener("click",(e)=>{
+    utilMethods.loadSection("operator-menu") 
   })
 
-  newQuiz.addEventListener("click", (e) => {
-    newQuestion(e.target.getAttribute("data-type"))
-  })
+  difficultyMenuForward.addEventListener("click",(e)=>{
+    console.log("PLAY")
+    if (state.activity === "multiple-choice"){
+      newQuestion(state.activity,state.activeOperators,mcCreateOptions)
+    }
+    else{
+    newQuestion(state.activity,state.activeOperators)
+    }
+})
+const activitiesChoices = document.querySelectorAll(".activity-choice")
+function addEventsForActivities(activitiesChoices,state){
+  for (let activity of activitiesChoices){
+    activity.addEventListener("click",(e)=>{
+      activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"))
+      let type;
+      if (e.target.getAttribute("data-type")){
+        type = e.target.getAttribute("data-type")
+      }
+      else{
+        type = e.target.parentNode.getAttribute("data-type")
+      }
+      activity.classList.add("activity-selected")
+      console.log("type: ",type)
+      state.activity = type
+      console.log("state - type: ",state.activity)
+
+      
+    })
+  }
+}
+
+
+function toggleOperators(e){
+  
+  e.target.classList.toggle("active-operator");
+
+}
+const operatorChoices = document.querySelectorAll(".operator-choice")
+function addEventsForOperators(operatorsChoices){
+  for (let operator of operatorsChoices){
+    operator.addEventListener("click",toggleOperators)}
+}
+addEventsForActivities(activitiesChoices,state)
+addEventsForOperators(operatorChoices,state)
+function updateActivity(activitiesChoices){
+}
+function updateOperators(operatorChoices) {
+  let ops = [];
+  let amount = 0;
+  for (let i = 0; i < 4; i++) {
+    if (operatorChoices[i].classList.contains("active-operator")) {
+      let operatorText;
+      switch(operatorChoices[i].getAttribute("data-sub")){
+        case "add":
+          operatorText = "+";
+          break;
+        case "sub":
+          operatorText = "-";
+          break;
+        case "mul":
+          operatorText = "x";
+          break;
+        case "div":
+          operatorText = "÷";
+          break;
+        default:
+          operatorText = "+";
+          break;
+      }
+
+
+      state.activeOperators.push(operatorText);
+      ops.push(subjects[i].textContent);
+      amount++;
+    }
+  }
+
+  if (amount == 0) {
+    ops[0] = "+"; //Default to addition if none selected
+  }
+  return ops;
+}
+function  play(activity,operators,difficulty){
+
+}
+
+
 
   //Add event listeners for operator and difficulty buttons
   function addEventsToOperatorsAndDifficultyButtons() {
@@ -572,6 +690,39 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //
   //END EVENT HANDLERS
   ////////////////////////////////////////////////////////////
+
+
+
+  var rangeInput = document.getElementById("range-input");
+  var rangeValue = document.getElementById("range-value");
+  var levelText = document.getElementById("level-text");
+
+
+
+  rangeInput.addEventListener("input", () =>{
+   
+    let selectedDifficulty = parseInt(rangeInput.value);
+    state.activeDifficulty = selectedDifficulty
+    rangeValue.textContent = selectedDifficulty;
+    // var rangeWidth = parseInt(window.getComputedStyle(rangeInput).width);
+
+  var sliderColor =  state.difficultyLevels[selectedDifficulty].color;
+
+ rangeInput.style.setProperty('--thumb-color', sliderColor)
+  
+ 
+       levelText.textContent = state.difficultyLevels[selectedDifficulty].name;
+
+  });
+
+
+
+
+
+
+
+
+
 
 
 

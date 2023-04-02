@@ -9,5 +9,28 @@ export const state = {
     numAnswered: 0,
     numCorrect: 0
   },
-  high_score: 0
+  high_score: 0,
+  difficultyLevels: {
+    1: {
+      name: "Easy",
+      color: "green"
+    },
+    2: {
+      name: "Novice",
+      color: "yellow"
+    },
+    3: {
+      name: "Intermediate",
+      color: "orange"
+    },
+    4: {
+      name: "Advanced",
+      color: "red"
+    },
+    5: {
+      name: "Genius!",
+      color: "purple"
+    }
+  },
+  activity: null
 };
