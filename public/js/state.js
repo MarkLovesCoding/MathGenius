@@ -16,5 +16,5 @@ export const state = {
         4: { name: "Advanced", color: "red" },
         5: { name: "Genius!", color: "purple" }
       },
-    activity:null
+    activity:"game"
 }

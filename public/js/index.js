@@ -46,6 +46,10 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     let n1 = utilMethods.randomNumber(0, state.activeHighVal);
     let n2 = utilMethods.randomNumber(0, state.activeHighVal);
     console.log(n1, n2, o1)
+    console.log(opEl)
+    console.log(n1El);
+    console.log(n2El);
+    console.log(operators);
     if (o1 === "x") {
       n1 = utilMethods.randomNumber(0, state.activeMultiplyHighVal);
       n2 = utilMethods.randomNumber(0, state.activeMultiplyHighVal);
@@ -562,6 +566,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   activityMenuForward.addEventListener("click",(e)=>{
     console.log("go forward");
     state.activity = updateActivity(activitiesChoices)
+    console.log("state-activity: ",state.activity)
     utilMethods.loadSection('operator-menu')
   })
 
@@ -573,7 +578,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
     //UPDATE OPERATORS
     state.activeOperators = updateOperators(operatorChoices)
-    console.log(state)
+    console.log("active-ops1",state.activeOperators)
     //LOAD DIFFICULTY PAGE
     utilMethods.loadSection("difficulty-menu")
   })
@@ -583,7 +588,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   })
 
   difficultyMenuForward.addEventListener("click",(e)=>{
-    console.log("PLAY")
     if (state.activity === "multiple-choice"){
       newQuestion(state.activity,state.activeOperators,mcCreateOptions)
     }
@@ -627,6 +631,14 @@ function addEventsForOperators(operatorsChoices){
 addEventsForActivities(activitiesChoices,state)
 addEventsForOperators(operatorChoices,state)
 function updateActivity(activitiesChoices){
+  let userSelection;
+  for (let i = 0; i < 4; i++) {
+    if (activitiesChoices[i].classList.contains("activity-selected")){
+      userSelection = activitiesChoices[i].getAttribute("data-type")
+
+    }
+  }
+  return userSelection;
 }
 function updateOperators(operatorChoices) {
   let ops = [];
@@ -714,7 +726,6 @@ function  play(activity,operators,difficulty){
        levelText.textContent = state.difficultyLevels[selectedDifficulty].name;
 
   });
-
 
 
 

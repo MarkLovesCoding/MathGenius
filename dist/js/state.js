@@ -32,5 +32,5 @@ export const state = {
       color: "purple"
     }
   },
-  activity: null
+  activity: "game"
 };
