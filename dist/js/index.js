@@ -295,7 +295,7 @@ window.onload = function () {
   function mcCreateOptions(n1, n2, o1) {
     let options = utilMethods.createOptions(n1, n2, o1);
     mcOptions.innerHTML = "";
-    // let ans = calculation(n1,n2,o1)
+    let ans = utilMethods.calculation(n1, n2, o1);
     options.forEach((option, index) => {
       const optionEl = document.createElement("button");
       optionEl.classList.add("option");
