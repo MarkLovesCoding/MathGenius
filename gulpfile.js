@@ -32,6 +32,13 @@ function copyHtml() {
 
 gulp.task('copy-html', copyHtml);
 
+function copyAssets() {
+  return gulp.src('public/assets/**/*')
+    .pipe(gulp.dest('dist/assets'));
+}
+
+gulp.task('copy-assets', copyAssets);
+
 // Start browser-sync server
 function startServer() {
   browserSync.init({
@@ -46,20 +53,17 @@ function startServer() {
   gulp.watch('public/**/*.html').on('change', gulp.series('copy-html', browserSync.reload));
 }
 
-// gulp.task('dev', gulp.series('sass', 'babel', 'copy-html', startServer));
-
 // Build project
 function buildProject() {
   return gulp.src(['public/**/*', '!public/scss', '!public/scss/**/*', '!public/js', '!public/js/**/*'])
     .pipe(gulp.dest('dist'));
 }
 
-// gulp.task('build', gulp.series('sass', 'babel', 'copy-html', buildProject));
 
-function copyAssets() {
-    return gulp.src(['public/**/*', '!public/scss', '!public/scss/**/*', '!public/js', '!public/js/**/*'])
-      .pipe(gulp.dest('dist'));
-  }
+// function copyAssets() {
+//     return gulp.src(['public/**/*', '!public/scss', '!public/scss/**/*', '!public/js', '!public/js/**/*'])
+//       .pipe(gulp.dest('dist'));
+//   }
 // Development tasks
 let isDev = process.env.NODE_ENV.trim() == 'development';
 // isDev = true;
@@ -69,13 +73,9 @@ console.log(process.env.NODE_ENV);
     gulp.task('dev', gulp.series('sass', 'babel', 'copy-html', startServer));
 
     
- gulp.task('copy-assets',copyAssets);
+ gulp.task('build-project',buildProject);
 
-    gulp.task('build', gulp.series('sass', 'babel', 'copy-html', 'copy-assets'));
-
-
-
-    
+    gulp.task('build', gulp.series('sass', 'babel', 'copy-html', 'copy-assets', 'build-project'));
 
 gulp.task('default', gulpif(isDev, gulp.task('dev'), gulp.task('build')));
 
