@@ -1,5 +1,5 @@
 export const state = {
-  activeOperators: ["+"],
+  activeOperators: [],
   activeHighVal: 10,
   activeDifficulty: 1,
   activeMultiplyHighVal: 4,
@@ -32,5 +32,5 @@ export const state = {
       color: "purple"
     }
   },
-  activity: "game"
+  activity: null
 };

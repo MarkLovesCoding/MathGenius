@@ -128,12 +128,12 @@ export function resetAnswerInput(elementsArray) {
     el.value = "";
   }
 }
-export function visibilityTimedToggle(bool, element) {
+export function visibilityTimedToggle(bool, element, time) {
   if (bool) {
     element.style.visibility = "visible";
     setTimeout(() => {
       element.style.visibility = "hidden";
-    }, 2000);
+    }, time);
   }
   if (!bool) {
     element.style.visibility = "hidden";

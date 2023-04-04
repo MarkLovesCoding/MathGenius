@@ -40,6 +40,7 @@ export const mcNumOne = document.getElementById("mc-first-number");
 export const mcNumTwo = document.getElementById("mc-second-number");
 export const mcOpOne = document.getElementById("mc-first-operator");
 export const flashContainer = document.getElementById("flash-container");
+export const flashCard = document.getElementById("flash-card");
 export const newFlash = document.getElementById("new-flash");
 export const flashAnswer = document.getElementById("flash-answer");
 export const flashNumOne = document.getElementById("flash-first-number");

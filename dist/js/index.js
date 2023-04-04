@@ -13,7 +13,7 @@
 
 import * as utilMethods from './ulils.js';
 import { burger, burgerContainer, mainContainer, subjects, diffButtons } from './domElements.js';
-import { flashAnswer, flashContainer, flashNumOne, flashNumTwo, flashOpOne, newFlash } from './domElements.js';
+import { flashAnswer, flashCard, flashNumOne, flashNumTwo, flashOpOne, newFlash, flashContainer } from './domElements.js';
 import { mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './domElements.js';
 import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz } from './domElements.js';
 import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
@@ -47,8 +47,12 @@ window.onload = function () {
     console.log(n2El);
     console.log(operators);
     if (o1 === "x") {
+      console.log("activeMH:", state.activeMultiplyHighVal);
       n1 = utilMethods.randomNumber(0, state.activeMultiplyHighVal);
+      console.log(n1);
       n2 = utilMethods.randomNumber(0, state.activeMultiplyHighVal);
+      console.log(n2);
+      console.log("CHECK");
     }
     if (o1 === "÷") {
       while (n1 % n2 != 0) {
@@ -102,49 +106,77 @@ window.onload = function () {
     burgerUpdate();
     newGeneralQuestion(op1, num1, num2, operators, options);
   }
-  function updateDifficulty() {
-    let highVal;
-    for (let i = 0; i <= 4; i++) {
-      if (diffButtons[i].classList.contains("active-difficulty")) {
-        switch (i) {
-          case 0:
-            highVal = 3;
-            break;
-          case 1:
-            highVal = 5;
-            break;
-          case 2:
-            highVal = 7;
-            break;
-          case 3:
-            highVal = 9;
-            break;
-          case 4:
-            highVal = 12;
-            break;
-        }
-        state.activeMultiplyHighVal = highVal;
-        state.activeHighVal = (i + 1) * 10;
-        state.activeDifficulty = i;
-      }
-    }
-  }
-  function updateSubjects() {
-    let ops = [];
-    let amount = 0;
-    for (let i = 0; i < 4; i++) {
-      if (subjects[i].classList.contains("active-subject")) {
-        state.activeOperators.push(subjects[i].textContent);
-        ops.push(subjects[i].textContent);
-        amount++;
-      }
-    }
-    if (amount == 0) {
-      ops[0] = "+"; //Default to addition if none selected
-    }
 
-    return ops;
+  // function updateDifficulty() {
+  //   let  highVal;
+  //   for (let i = 0; i <= 4; i++) {
+  //     if (diffButtons[i].classList.contains("active-difficulty")) {
+
+  //       switch (i) {
+  //         case 0:
+  //           highVal = 3;
+  //           break;
+  //         case 1:
+  //           highVal = 5;
+  //           break;
+  //         case 2:
+  //           highVal = 7;
+  //           break;
+  //         case 3:
+  //           highVal = 9;
+  //           break;
+  //         case 4:
+  //           highVal = 12;
+  //           break;
+  //       }
+  //       state.activeMultiplyHighVal = highVal
+  //       state.activeHighVal = (i + 1) * 10;
+  //       state.activeDifficulty = i
+  //     }
+  //   }
+  // }
+  function updateDifficultyRange() {
+    console.log(state.activeDifficulty);
+    let i = state.activeDifficulty,
+      highVal;
+    switch (i) {
+      case 1:
+        highVal = 3;
+        break;
+      case 2:
+        highVal = 5;
+        break;
+      case 3:
+        highVal = 7;
+        break;
+      case 4:
+        highVal = 9;
+        break;
+      case 5:
+        highVal = 12;
+        break;
+    }
+    state.activeMultiplyHighVal = highVal;
+    state.activeHighVal = i * 10;
   }
+
+  // function updateSubjects() {
+  //   let ops = [];
+  //   let amount = 0;
+  //   for (let i = 0; i < 4; i++) {
+  //     if (subjects[i].classList.contains("active-subject")) {
+  //       state.activeOperators.push(subjects[i].textContent);
+  //       ops.push(subjects[i].textContent);
+  //       amount++;
+  //     }
+  //   }
+
+  //   if (amount == 0) {
+  //     ops[0] = "+"; //Default to addition if none selected
+  //   }
+  //   return ops;
+  // }
+
   function showMainMenu() {
     utilMethods.loadSection("activity-menu");
     hideBurger();
@@ -173,7 +205,7 @@ window.onload = function () {
     if (bool) {
       correctnessView(true, gameCorrectness);
       utilMethods.emphasize(gameCorrectness);
-      utilMethods.visibilityTimedToggle(false, gameActualContainer);
+      utilMethods.visibilityTimedToggle(false, gameActualContainer, 1000);
       updateScore();
       await updateLevel();
       utilMethods.disableInput(gameAnswerInput);
@@ -186,7 +218,7 @@ window.onload = function () {
       correctnessView(false, gameCorrectness);
       utilMethods.incorrectMotion(gameCorrectness);
       utilMethods.disableInput(gameAnswerInput);
-      utilMethods.visibilityTimedToggle(true, gameActualContainer);
+      utilMethods.visibilityTimedToggle(true, gameActualContainer, 1000);
       await utilMethods.delay(700);
       utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
       utilMethods.resetNumberToZero(gameCurrScore);
@@ -443,7 +475,7 @@ window.onload = function () {
     console.log(this);
     e.preventDefault();
   }
-  flashContainer.addEventListener("mousedown", flashHandler, false);
+  flashCard.addEventListener("mousedown", flashHandler, false);
   burgerContainer.addEventListener("click", showMainMenu);
   burgerContainer.addEventListener("click", e => {
     burger.classList.toggle("open");
@@ -470,8 +502,18 @@ window.onload = function () {
   const operatorMenuBackward = document.getElementById("operator-menu-backward");
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward");
   const difficultyMenuBackward = document.getElementById("difficulty-menu-backward");
-  activityMenuForward.addEventListener("click", e => {
+  function alertChooseActivity() {
+    const newModal = document.createElement("div");
+    newModal.innerHTML = "Please Select An Activity";
+  }
+  const activityAlert = document.getElementById("activity-alert-modal");
+  const operatorAlert = document.getElementById("operator-alert-modal");
+  activityMenuForward.addEventListener("click", async e => {
     console.log("go forward");
+    if (updateActivity(activitiesChoices) == null || undefined) {
+      utilMethods.visibilityTimedToggle(true, activityAlert, 1000);
+      return;
+    }
     state.activity = updateActivity(activitiesChoices);
     console.log("state-activity: ", state.activity);
     utilMethods.loadSection('operator-menu');
@@ -480,8 +522,14 @@ window.onload = function () {
     utilMethods.loadSection("activity-menu");
   });
   operatorMenuForward.addEventListener("click", e => {
+    console.log(operatorChoices);
+
     //UPDATE OPERATORS
     state.activeOperators = updateOperators(operatorChoices);
+    if (state.activeOperators.length == 0) {
+      utilMethods.visibilityTimedToggle(true, operatorAlert, 1100);
+      return;
+    }
     console.log("active-ops1", state.activeOperators);
     //LOAD DIFFICULTY PAGE
     utilMethods.loadSection("difficulty-menu");
@@ -490,6 +538,7 @@ window.onload = function () {
     utilMethods.loadSection("operator-menu");
   });
   difficultyMenuForward.addEventListener("click", e => {
+    updateDifficultyRange();
     if (state.activity === "multiple-choice") {
       newQuestion(state.activity, state.activeOperators, mcCreateOptions);
     } else {
@@ -539,8 +588,9 @@ window.onload = function () {
     let amount = 0;
     for (let i = 0; i < 4; i++) {
       if (operatorChoices[i].classList.contains("active-operator")) {
+        console.log("this one: ", i);
         let operatorText;
-        switch (operatorChoices[i].getAttribute("data-sub")) {
+        switch (operatorChoices[i].getAttribute("id")) {
           case "add":
             operatorText = "+";
             break;
@@ -558,34 +608,36 @@ window.onload = function () {
             break;
         }
         state.activeOperators.push(operatorText);
-        ops.push(subjects[i].textContent);
+        console.log();
+        ops.push(operatorText);
         amount++;
       }
     }
-    if (amount == 0) {
-      ops[0] = "+"; //Default to addition if none selected
-    }
-
     return ops;
   }
+  // const difficultyRange = document.getElementById("range-input")
+  // function updateDifficulty(difficultyRange) {
+  //   state.activeDifficulty = difficultyRange.getAttribute("value")
+  // }
+
   function play(activity, operators, difficulty) {}
 
   //Add event listeners for operator and difficulty buttons
-  function addEventsToOperatorsAndDifficultyButtons() {
-    for (let subject of subjects) {
-      subject.addEventListener("click", utilMethods.toggleActivate);
-    }
-    for (let diffButton of diffButtons) {
-      diffButton.addEventListener("click", () => {
-        for (let otherButton of diffButtons) {
-          otherButton.classList.remove("active-difficulty");
-        }
-        diffButton.classList.add("active-difficulty");
-        updateDifficulty();
-      });
-    }
-  }
-  addEventsToOperatorsAndDifficultyButtons();
+  // function addEventsToOperatorsAndDifficultyButtons() {
+  //   for (let subject of subjects) {
+  //     subject.addEventListener("click", utilMethods.toggleActivate);
+  //   }
+  //   for (let diffButton of diffButtons) {
+  //     diffButton.addEventListener("click", () => {
+  //       for (let otherButton of diffButtons) {
+  //         otherButton.classList.remove("active-difficulty");
+  //       }
+  //       diffButton.classList.add("active-difficulty");
+  //       updateDifficulty();
+  //     });
+  //   }
+  // }
+  // addEventsToOperatorsAndDifficultyButtons()
 
   //
   //END EVENT HANDLERS
@@ -596,7 +648,9 @@ window.onload = function () {
   var levelText = document.getElementById("level-text");
   rangeInput.addEventListener("input", () => {
     let selectedDifficulty = parseInt(rangeInput.value);
+    console.log(selectedDifficulty);
     state.activeDifficulty = selectedDifficulty;
+    console.log(state.activeDifficulty);
     rangeValue.textContent = selectedDifficulty;
     // var rangeWidth = parseInt(window.getComputedStyle(rangeInput).width);
 
