@@ -333,6 +333,7 @@ body {
   background-position: center;
   // background-size: cover;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
 background: -webkit-linear-gradient(225deg, hsla(306, 38%, 73%, 1) 29%, hsla(204, 49%, 70%, 1) 63%, hsla(202, 56%, 74%, 1) 81%, hsla(176, 58%, 72%, 1) 100%);
   
   // &:after {
