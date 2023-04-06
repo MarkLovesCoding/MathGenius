@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
   <title>Math Genius</title>
   <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
   <link rel="stylesheet" href="/css/styles.css">
@@ -68,7 +69,7 @@
       <div class="activity-menu-container display-container" id="activity-menu-container">
         <div class="top">
           <div class="header">What would you like to play?</div>
-    
+          
         </div>
         <div class="middle">
           <div class="middle-inner">
@@ -79,18 +80,19 @@
               <div  class=" icon-container game activity-choice" id="new-game" data-type="game">
                 <p></p>
                 <i class=" game-icon icon fas fa-crown fa-large"></i>
-                <p class="icon-text">Challenge</p>
+             
     
               </div>
-    
+              <p class="icon-text">Challenge</p>
             </div>
             <div class="inner">
               <div class=" icon-container quiz activity-choice" id="new-quiz" data-type="quiz">
                 <p></p>
                 <i class="pen-icon icon fas fa-pen fa-large"></i>
-                <p class="icon-text">Quiz</p>
+             
     
               </div>
+              <p class="icon-text">Quiz</p>
             </div>
 
 
@@ -99,9 +101,9 @@
               <div class=" icon-container flash activity-choice" id="new-flash" data-type="flash">
                 <p></p>
                 <i class=" flash-icon icon fas fa-bolt fa-large"></i>
-                <p class="icon-text">Practice</p>
-    
+
               </div>
+              <p class="icon-text">Flash Cards</p>
     
             </div>
             
@@ -110,8 +112,8 @@
               <div class=" icon-container mc activity-choice" id="new-mc" data-type="multiple-choice">
                 <p></p>
                 <i class=" mc-icon icon fas fa-list-ol fa-large"></i>
-                <p class="icon-text">Practice</p>
               </div>
+              <p class="icon-text">Practice</p>
             </div>
 
     
@@ -120,8 +122,10 @@
     
         <div class="bottom">
           <!-- <button class="nav-button"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button> -->
+          <button class="nav-button hide-from-view " id="activity-menu-backward"><i class="forward-arrow fas fa-arrow-left fa-lg"></i></button>
     
           <button class="nav-button"  id="activity-menu-forward" >
+            
             <i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button>
         </div>
       </div>
@@ -129,7 +133,7 @@
       <div class="operator-menu-container display-container" id="operator-menu-container">
         <div class="top">
           <div class="header">What would you like to learn about?</div>
-       
+  
          
         </div>
         <div class="middle">
@@ -137,22 +141,29 @@
           <div class="inner">
             <div class=" icon-container add operator-choice" data-sub="+" id="add">
               <i class="plus-icon icon fas fa-plus fa-large"></i>
+              
             </div>
+            <div class="operator-text addition">Addition</div>
           </div>
           <div class="inner">
             <div class=" icon-container minus operator-choice" data-sub="-" id="sub">
             <i class=" minus-icon icon fas fa-minus fa-large"></i>
             </div>
+            <div class="operator-text subtraction">Subtraction</div>
     
           </div>
           <div class="inner">
             <div class=" icon-container mult operator-choice" data-sub="x" id="mul"> 
               <i class=" times-icon icon fas fa-times fa-large"></i></div>
+            <div class="operator-text multiplication">Multiplication</div>
+
           </div>
           <div class="inner">
             <div class=" icon-container div operator-choice" data-sub="/" id="div">
              <i class=" divide-icon icon fas fa-divide fa-large" ></i>
             </div>
+            <div class="operator-text division">Division</div>
+
           </div>
           </div>
         </div>
@@ -337,7 +348,7 @@
   
               <input type="number" min="0" id="quiz-answer-input" class="input" placeholder="?" autocomplete="off"></input>
             </div>
-            <button type="submit" id="quiz-answer-submit-btn" class="answer-submit">ENTER</button>
+            <button type="submit" id="quiz-answer-submit-btn" class="answer-submit">Check</button>
           </form>
 
         <div class="correctness-container ">
@@ -370,15 +381,17 @@
   
       <div class="game-container sub-container display-container" id="game-container">
   
-  <!--       <h1 class="title">Game</h1> --><h3 class="title-description">How many in a row can you answer correctly?</h3>
+        <!-- <h1 class="title">Game</h1><h3 class="title-description">How many in a row can you answer correctly?</h3> -->
+        <div class="top">
         <div class="titles-group">
           <div class="titles-left">
             <h2 class="activity-title">High Score</h2>  <h2 class="activity-type"> Challenge</h2> </div>
             <div class="title-icon"><i class=" quiz-icon icon fas fa-crown fa-large"></i>
     </div>
-
+  </div>
 
     </div>    
+    <div class="middle-inner">
         <div class="game-box">
   
           <form id="game-answer-form" class="question-box">
@@ -390,11 +403,11 @@
   
               <input type="number" min="0" id="game-answer-input" class="input" placeholder="?" autocomplete="off"></input>
             </div>
-            <button type="submit" id="answer-submit-btn" class="answer-submit">ENTER</button>
+            <button type="submit" id="answer-submit-btn" class="answer-submit">Check</button>
           </form>
   
         </div>
-  
+     
         <!--     <div class="temp" id="temp"></div> -->
         <div class="correctness-container ">
           <div id="game-correctness" class="correctness"></div>
@@ -403,7 +416,7 @@
             <div class="actual" id="game-actual"></div>
           </div>
         </div>
-  
+      </div>
         <div class="score-container">
           <div class="curr-score-container">
             <div class="score-title">Current Score:</div>

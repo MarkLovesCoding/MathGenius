@@ -4,6 +4,7 @@ export const state = {
     activeHighVal:10,
     activeDifficulty:1,
     activeMultiplyHighVal:4,
+    activeMultiplyLowVal:0,
     userValue:null,
     quizStats: {  numQuestions: 10,
     numAnswered: 0,

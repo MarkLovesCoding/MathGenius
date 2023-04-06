@@ -11,18 +11,23 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
-  color: black;
+  user-select: none;
+}
+
+html {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
 }
 
 .brand-title {
   display: flex;
   font-family: Bungee Shade;
-  font-size: 36px;
+  font-size: 22px;
   width: 330px;
   text-align: center;
   position: absolute;
-  top: 4vw;
-  left: 7vw;
+  top: 0vw;
+  left: 5vw;
   z-index: 20;
   color: black;
 }
@@ -45,7 +50,6 @@
 }
 
 .top {
-  height: 25%;
   width: 90%;
 }
 
@@ -53,13 +57,13 @@
   /*   flex-wrap:wrap; */
   position: relative;
   /*   flex-direction:row; */
-  height: 50%;
   align-items: center;
   justify-content: center;
 }
 
 .flash-box {
   cursor: pointer;
+  font-family: "Roboto";
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -75,7 +79,7 @@
   background: white;
   padding: 1em;
   margin: 1em;
-  border: 2px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.25);
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -84,7 +88,7 @@
   width: 100%;
   height: 100%;
   border-radius: 20px;
-  box-shadow: 3px 3px 5px -1px rgba(0, 0, 0, 0.6);
+  box-shadow: 3px 3px 2px -1px rgba(0, 0, 0, 0.6);
   left: 0;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
@@ -142,12 +146,12 @@
 .flash-text {
   font-size: 40px;
   font-weight: 600;
-  font-family: sans-serif;
+  font-family: "Roboto";
 }
 
 .flash-question-box {
   position: relative;
-  background-color: lightblue;
+  background: -webkit-linear-gradient(225deg, #d4a0cf 19%, #8dbad8 53%, #98c7e2 81%, #8ee1db 100%);
   z-index: 2;
   /* for firefox 31 */
   -webkit-transform: rotateY(0deg);
@@ -155,16 +159,18 @@
 }
 .flash-question-box::after {
   position: absolute;
+  font-family: "Patua One";
   content: "Question";
   top: 20px;
   left: 20px;
   font-style: italic;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.7);
   z-index: 10;
+  font-size: 20px;
 }
 
 .flash-answer-box {
-  background-color: pink;
+  background: -webkit-linear-gradient(45deg, #d4a0cf 39%, #8dbad8 73%, #98c7e2 91%, #8ee1db 100%);
   -webkit-transform: rotateY(-180deg);
   -moz-transform: rotateY(-180deg);
   -o-transform: rotateY(-180deg);
@@ -173,12 +179,14 @@
 }
 .flash-answer-box::after {
   position: absolute;
+  font-family: "Patua One";
   content: "Answer";
   top: 20px;
   left: 20px;
   font-style: italic;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.7);
   z-index: 10;
+  font-size: 20px;
 }
 
 .flip {
@@ -189,6 +197,7 @@
 }
 
 body {
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -268,13 +277,13 @@ body {
 }
 
 .answer-submit {
-  margin-left: 20px;
+  margin: 20px;
   cursor: pointer;
   display: block;
   padding: 1em;
   border-radius: 10px;
   text-rendering: optimizeLegibility;
-  font-family: "roboto", sans-serif;
+  font-family: "Patua One", sans-serif;
   font-weight: 400;
   font-size: 18px;
   background: -webkit-linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
@@ -353,38 +362,37 @@ body {
   background: linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
   background: -moz-linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
   background: -webkit-linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
-  border-radius: 20px;
+  border-radius: 15px;
   max-width: 100%;
-  padding: 1em;
-  border: 1px solid gray;
+  padding: 2em;
   text-align: center;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  box-shadow: 3px 3px 5px -2px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 4px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .question-text {
-  font-size: 1.25em;
+  font-size: 1.8em;
 }
 
 .question-number {
-  font-size: 2.5em;
-  padding: 0.8rem;
+  font-size: 2.8em;
+  padding: 1rem;
 }
 
 .operator {
   transform: translate(0px, 0px);
-  padding: 10px;
+  font-size: 2.8em;
+  padding: 5px;
 }
 
 .input {
-  cursor: target;
   margin-left: 10px;
   width: 20px;
-  height: 2.5ch;
-  font-size: 2.5rem;
+  height: 2.9ch;
+  font-size: 2.8rem;
   text-align: center;
   padding: 0;
   min-width: 4.5ch;
@@ -434,7 +442,7 @@ body {
 
 .curr-score-container,
 .high-score-container {
-  width: 30%;
+  width: 160px;
   min-width: 150px;
   flex-direction: row;
   display: flex;
@@ -533,7 +541,7 @@ body {
   display: none;
   background: -webkit-linear-gradient(175deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
   position: absolute;
-  top: 5vh;
+  top: 8vh;
   right: 5vw;
   transition: all 200ms ease;
 }
@@ -673,7 +681,7 @@ body {
 }
 
 .option {
-  background-color: #eef2f3;
+  background-color: #ffffff;
   padding: 20px 40px;
   margin: 20px;
   cursor: pointer;
@@ -729,14 +737,13 @@ body {
 
 .display-container {
   background: #f0f0f0;
-  max-width: 95vw;
+  max-width: 96vw;
   width: 100vw;
   height: 100vh;
-  max-height: 95vh;
+  max-height: 98vh;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  border-radius: 20px;
+  justify-content: center;
   /*   box-shadow: 0px 5px 28px -5px rgba(0,0,0,0.25),0px 2px 9px 1px rgba(0,0,0,0.25); */
   box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -749,6 +756,7 @@ body {
   align-items: center;
   justify-content: space-around;
   background-color: #f0f0f0;
+  flex-direction: column;
 }
 
 .icon-container {
@@ -757,8 +765,8 @@ body {
   transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
   border: 2px solid rgba(100, 100, 100, 0);
   border-radius: 100%;
-  width: 125px;
-  height: 125px;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -772,6 +780,12 @@ body {
   transform: scale(1);
 }
 
+.operator-text {
+  font-family: "Patua One";
+  font-size: 18px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
 .quiz:hover {
   background-color: blue;
 }
@@ -832,51 +846,49 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 75%;
   align-items: center;
   justify-content: center;
 }
 
 .bottom {
   display: flex;
-  align-items: top;
-  justify-content: space-evenly;
-  height: 20%;
-  width: 80%;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 40px;
 }
 
 .nav-button {
+  outline: none;
+  border: 0px solid rgba(157, 157, 157, 0);
   background-color: #f0f0f0;
   width: 100px;
   height: 50px;
   transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-radius: 25px;
+  border-radius: 30px;
   font-family: "Patua One";
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 5px;
-  font-size: 1.25em;
+  font-size: 2.5em;
+  color: #97b7d7;
 }
 .nav-button:hover {
   transform: scale(1);
-  background-color: #f5f519;
+  background: -webkit-linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
   cursor: pointer;
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 0px solid #9d9d9d;
+  border-radius: 20px;
+}
+.nav-button:hover > * {
+  color: #fafaf2;
 }
 
 .top {
   display: flex;
   align-items: end;
   justify-content: center;
-}
-
-.header {
-  font-family: "Patua One";
-  font-size: 2em;
-  text-align: center;
 }
 
 .icon {
@@ -987,9 +999,9 @@ body {
   --thumb-color:green;
   -webkit-appearance: none;
   width: 30vw;
-  min-width: 200px;
-  height: 10px;
-  margin: 20px;
+  min-width: 280px;
+  height: 18px;
+  margin: 30px;
   padding: 0;
   background-color: lightgray;
   outline: none;
@@ -1001,8 +1013,8 @@ body {
 #range-input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background-color: var(--thumb-color);
   border: 1px solid black;
   border-radius: 50%;
@@ -1099,12 +1111,157 @@ body {
 
 .icon-text {
   font-family: "Patua One";
-  font-size: 1.2em;
+  font-size: 18px;
   padding-top: 10px;
+  margin-bottom: 10px;
 }
 
 .difficulty-text {
   font-family: "Patua One";
-  font-size: 1.4em;
+  font-size: 26px;
   padding: 5px;
+}
+
+.header, .activity-title, .activity-type {
+  font-family: "Patua One";
+  font-size: 26px;
+  text-align: center;
+  height: 80px;
+  width: 240px;
+}
+
+.hide-from-view {
+  visibility: hidden;
+}
+
+@media only screen and (max-width: 1000px) and (orientation: landscape) {
+  .header {
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding-right: 25px;
+  }
+
+  .display-container {
+    flex-direction: row;
+  }
+
+  .bottom {
+    position: absolute;
+    width: 94vw;
+    justify-content: space-between;
+  }
+
+  .nav-button {
+    width: 75px;
+  }
+
+  .middle {
+    justify-content: flex-start;
+    flex-basis: 326px;
+  }
+
+  .middle-inner {
+    justify-content: flex-start;
+    width: 326px;
+  }
+
+  .top {
+    justify-content: flex-end;
+    padding-left: 10px;
+    flex-basis: 200px;
+  }
+}
+@media only screen and (min-width: 720px) and (max-aspect-ratio: 2) and (orientation: landscape) {
+  .display-container {
+    max-width: 92vw;
+    max-height: 92vh;
+    flex-direction: row;
+  }
+
+  .header {
+    font-size: 32px;
+  }
+
+  .icon-container {
+    width: 130px;
+    height: 130px;
+  }
+
+  .icon-text {
+    font-size: 30px;
+  }
+
+  .bottom {
+    position: absolute;
+    justify-content: space-evenly;
+    width: 90vw;
+  }
+
+  .nav-button {
+    font-size: 2.75px;
+    width: 125px;
+    height: 75px;
+  }
+
+  .icon {
+    font-size: 3.75em;
+  }
+
+  .middle {
+    justify-content: flex-start;
+    flex-basis: 400px;
+  }
+
+  .middle-inner {
+    justify-content: flex-start;
+    width: 500px;
+  }
+
+  .top {
+    justify-content: flex-end;
+    padding-right: 30px;
+    flex-basis: 300px;
+  }
+}
+@media only screen and (min-width: 720px) and (max-aspect-ratio: 2) {
+  /* CSS code for tablet devices */
+  .display-container {
+    max-width: 92vw;
+    max-height: 92vh;
+  }
+
+  .header {
+    font-size: 32px;
+    margin-bottom: 50px;
+  }
+
+  .icon-container {
+    width: 130px;
+    height: 130px;
+  }
+
+  .icon-text {
+    font-size: 24px;
+  }
+
+  .bottom {
+    justify-content: space-between;
+    width: 90vw;
+  }
+
+  .nav-button {
+    font-size: 2.75em;
+    width: 125px;
+    height: 75px;
+  }
+
+  .icon {
+    font-size: 3.75em;
+  }
+
+  .inner {
+    width: calc(50% - 100px);
+  }
 }

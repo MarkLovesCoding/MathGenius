@@ -178,7 +178,7 @@ export function emphasize(element, transitionTime = 100, scale = 1.3, scaleTime 
   setTimeout(() => element.style.transform = existingTransform + " scale(1)", scaleTime);
 }
 export function animateCorrect(element) {
-  element.style.background = "green";
+  element.style.background = "#4caf50";
   element.style.borderColor = "white";
   setTimeout(() => {
     element.style.background = "rgb(200 200 200 / 95%)";
@@ -186,7 +186,7 @@ export function animateCorrect(element) {
   }, 700);
 }
 export function animateIncorrect(element) {
-  element.style.background = "darkred";
+  element.style.background = "#f44336";
   element.style.borderColor = "white";
   setTimeout(() => {
     element.style.background = "rgb(200 200 200 / 95%)";

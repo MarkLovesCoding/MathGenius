@@ -48,9 +48,9 @@ window.onload = function () {
     console.log(operators);
     if (o1 === "x") {
       console.log("activeMH:", state.activeMultiplyHighVal);
-      n1 = utilMethods.randomNumber(0, state.activeMultiplyHighVal);
+      n1 = utilMethods.randomNumber(state.activeMultiplyLowVal, state.activeMultiplyHighVal);
       console.log(n1);
-      n2 = utilMethods.randomNumber(0, state.activeMultiplyHighVal);
+      n2 = utilMethods.randomNumber(state.activeMultiplyLowVal, state.activeMultiplyHighVal);
       console.log(n2);
       console.log("CHECK");
     }
@@ -138,45 +138,34 @@ window.onload = function () {
   function updateDifficultyRange() {
     console.log(state.activeDifficulty);
     let i = state.activeDifficulty,
-      highVal;
+      highVal,
+      lowVal;
     switch (i) {
       case 1:
-        highVal = 3;
+        highVal = 5;
+        lowVal = 0;
         break;
       case 2:
-        highVal = 5;
+        highVal = 6;
+        lowVal = 1;
         break;
       case 3:
-        highVal = 7;
+        highVal = 8;
+        lowVal = 2;
         break;
       case 4:
-        highVal = 9;
+        highVal = 10;
+        lowVal = 3;
         break;
       case 5:
         highVal = 12;
+        lowVal = 3;
         break;
     }
+    state.activeMultiplyLowVal = lowVal;
     state.activeMultiplyHighVal = highVal;
     state.activeHighVal = i * 10;
   }
-
-  // function updateSubjects() {
-  //   let ops = [];
-  //   let amount = 0;
-  //   for (let i = 0; i < 4; i++) {
-  //     if (subjects[i].classList.contains("active-subject")) {
-  //       state.activeOperators.push(subjects[i].textContent);
-  //       ops.push(subjects[i].textContent);
-  //       amount++;
-  //     }
-  //   }
-
-  //   if (amount == 0) {
-  //     ops[0] = "+"; //Default to addition if none selected
-  //   }
-  //   return ops;
-  // }
-
   function showMainMenu() {
     utilMethods.loadSection("activity-menu");
     hideBurger();
