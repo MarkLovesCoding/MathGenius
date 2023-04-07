@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <meta name="viewport" content="width=device-width, user-scalable=no , initial-scale=1.0">
   <title>Math Genius</title>
   <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
   <link rel="stylesheet" href="/css/styles.css">
@@ -336,14 +336,14 @@
       
       <div class="quiz-container sub-container display-container" id="quiz-container">
         <!-- <div class="quiz-box"> -->
-          <div class="titles-group">
+          <div class="titles-group ">
             <div class="titles-left">
-              <h2 class="activity-title">Ten Questions</h2>  <h2 class="activity-type"> Quiz</h2> </div>
+              <h2 class="activity-title quiz-activity-title">Ten Questions</h2>  <h2 class="activity-type"> Quiz</h2> </div>
               <div class="title-icon"><i class=" quiz-icon icon fas fa-pen fa-large"></i>
       </div>
       </div>
           <!--           <p id="quiz-num-questions">10</p> Questions -->
-
+          <div class="quiz-middle-lower">
           <form id="quiz-answer-form" class="question-box quiz-question-box">
             <div id="question-box" class="question quiz-question">
               <div id="quiz-first-number" class="question-number question-text"></div>
@@ -351,11 +351,11 @@
               <div id="quiz-second-number" class="question-number question-text"></div>
               <div id="quiz-second-operator" class="operator question-text">=</div>
   
-              <input type="number" min="0" id="quiz-answer-input" class="input" placeholder="?" autocomplete="off"></input>
+              <input type="number" min="0" id="quiz-answer-input" class="input quiz-input" placeholder="?" autocomplete="off"></input>
             </div>
             <button type="submit" id="quiz-answer-submit-btn" class="answer-submit">Check</button>
           </form>
-
+          <div class="quiz-correctness-scores">
         <div class="correctness-container ">
           <div id="quiz-correctness" class="correctness"></div>
   <!--         <div class="actual-container hidden" id="quiz-actual-container"> -->
@@ -379,7 +379,8 @@
   
             </div>
           </div>
-       
+        </div>
+        </div>
         <!-- </div> -->
   
       </div>
@@ -387,8 +388,8 @@
       <div class="game-container sub-container display-container" id="game-container">
   
         <!-- <h1 class="title">Game</h1><h3 class="title-description">How many in a row can you answer correctly?</h3> -->
-        <div class="top">
-        <div class="titles-group">
+        <div class="top game-top">
+        <div class="titles-group game-titles-group">
           <div class="titles-left">
             <h2 class="activity-title">High Score</h2>  <h2 class="activity-type"> Challenge</h2> </div>
             <div class="title-icon"><i class=" quiz-icon icon fas fa-crown fa-large"></i>
@@ -396,23 +397,24 @@
   </div>
 
     </div>    
-    <div class="middle-inner">
+    <div class="game-middle-inner">
+      <div class="game-middle-lower">
         <div class="game-box">
   
-          <form id="game-answer-form" class="question-box">
-            <div class="question">
+          <form id="game-answer-form" class="question-box game-questiion-box">
+            <div class="question game-question">
               <div id="game-first-number" class="question-number question-text"></div>
               <div id="game-first-operator" class="operator question-text"></div>
               <div id="game-second-number" class="question-number question-text"></div>
               <div id="game-second-operator" class="operator question-text">=</div>
   
-              <input type="number" min="0" id="game-answer-input" class="input" placeholder="?" autocomplete="off"></input>
+              <input type="number" min="0" id="game-answer-input" class="input game-input" placeholder="?" autocomplete="off"></input>
             </div>
             <button type="submit" id="answer-submit-btn" class="answer-submit">Check</button>
           </form>
   
         </div>
-     
+        <div class="game-lower">
         <!--     <div class="temp" id="temp"></div> -->
         <div class="correctness-container ">
           <div id="game-correctness" class="correctness"></div>
@@ -421,7 +423,7 @@
             <div class="actual" id="game-actual"></div>
           </div>
         </div>
-      </div>
+     
         <div class="score-container">
           <div class="curr-score-container">
             <div class="score-title">Current Score:</div>
@@ -432,6 +434,7 @@
             <div id="game-current-high" class="score-text">0</div>
           </div>
         </div>
+      </div>
         <div class="progress-container">
           <div class="level-container">
             <div class="level-text">Level</div>
@@ -447,6 +450,9 @@
             <div class="tracker" id="game-tracker-2"></div>
           </div>
         </div>
+      
+      </div>
+      </div>
       </div>
   
     </div>

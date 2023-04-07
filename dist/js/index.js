@@ -237,11 +237,11 @@ window.onload = function () {
     if (bool) {
       element.classList.add("correct-answer");
       element.classList.remove("incorrect-answer");
-      element.textContent = "CORRECT";
+      element.textContent = "Correct";
     } else {
       element.classList.remove("correct-answer");
       element.classList.add("incorrect-answer");
-      element.textContent = "INCORRECT";
+      element.textContent = "Incorrect";
     }
   }
   function levelUp(level) {
@@ -381,13 +381,15 @@ window.onload = function () {
   function soloReveal(element, mainContainer) {
     element.style.visibility = "visible";
     element.style.zIndex = "10";
-    utilMethods.showHide([], [mainContainer]);
+    // utilMethods.showHide([], [mainContainer]);
   }
+
   function soloHide(element, mainContainer) {
     element.style.visibility = "hidden";
     element.style.zIndex = "10";
-    utilMethods.showHide([mainContainer], []);
+    // utilMethods.showHide([mainContainer], []);
   }
+
   function resetQuizProperty(quizStats) {
     quizStats.numAnswered = 0;
     quizStats.numCorrect = 0;
