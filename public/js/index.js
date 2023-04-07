@@ -263,11 +263,11 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     if (bool) {
       element.classList.add("correct-answer");
       element.classList.remove("incorrect-answer");
-      element.textContent = "Correct";
+      element.textContent = "CORRECT";
     } else {
       element.classList.remove("correct-answer");
       element.classList.add("incorrect-answer");
-      element.textContent = "Incorrect";
+      element.textContent = "INCORRECT";
     }
   }
 
@@ -432,13 +432,13 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   function soloReveal(element, mainContainer) {
     element.style.visibility = "visible";
     element.style.zIndex = "10";
-    // utilMethods.showHide([], [mainContainer]);
+    utilMethods.showHide([], [mainContainer]);
   }
 
   function soloHide(element, mainContainer) {
     element.style.visibility = "hidden";
-    element.style.zIndex = "10";
-    // utilMethods.showHide([mainContainer], []);
+    element.style.zIndex = "00";
+    utilMethods.showHide([mainContainer], []);
   }
 
   function resetQuizProperty(quizStats) {
