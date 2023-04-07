@@ -1664,7 +1664,7 @@ $button-color:rgba(240,240,240,1);
     height:130px;
     margin:10px;
   }
-  .icon-text{
+  .icon-text, .operator-text{
     font-size:24px;
   }
   .bottom{
@@ -1724,13 +1724,14 @@ $button-color:rgba(240,240,240,1);
   height:130px;
   margin:10px;
 }
-.icon-text{
-  font-size:30px;
+.icon-text, .operator-text{
+  font-size:24px;
+
 }
 .bottom{
   position: absolute;
 
-  justify-content: space-evenly;
+  justify-content: space-between;
   width:90vw;
 }
 .nav-button{
