@@ -1688,7 +1688,7 @@ $button-color:rgba(240,240,240,1);
     font-size:3.25em;
   }
   .flash-answer-box,.flash-question-box{
-    min-width:400px;
+    max-width:400px;
     height:300px;
     font-size:1.4em;
   }
@@ -1760,7 +1760,7 @@ width:500px;
   font-size:3.25em;
 }
 .flash-answer-box,.flash-question-box{
-  min-width:400px;
+  max-width:400px;
   height:300px;
   font-size:1.4em;
 }
