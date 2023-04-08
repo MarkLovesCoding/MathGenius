@@ -262,7 +262,7 @@
         <div class="mc-middle-lower">
         <div class="mc-middle">
           <form id="mc-answer-form" class="question-box mc-question-box">
-            <div class="wood">
+            <!-- <div class="wood"> -->
             <div id="mc-question-box" class="question mc-question">
               <div id="mc-first-number" class="question-number question-text"></div>
               <div id="mc-first-operator" class="operator question-text"></div>
@@ -271,7 +271,7 @@
   
               <input type="number" min="0" id="mc-answer-input" class="input" placeholder="?" autocomplete="off"></input> -->
             </div>
-          </div>
+          <!-- </div> -->
   <!--           <button type="submit" id="mc-answer-submit-btn" class="answer-submit">ENTER</button> -->
           </form>
         </div>
@@ -366,7 +366,7 @@
         
           <div class="quiz-scores-container">
             <div class="quiz-curr-score-container">
-              Curr Score:<p id="quiz-curr-score"></p>
+              Current Score:<p id="quiz-curr-score"></p>
               <p>/</p>
               <p id="quiz-curr-question"></p>
   
@@ -392,7 +392,7 @@
         <div class="titles-group game-titles-group">
           <div class="titles-left">
             <h2 class="activity-title">High Score</h2>  <h2 class="activity-type"> Challenge</h2> </div>
-            <div class="title-icon"><i class=" quiz-icon icon fas fa-crown fa-large"></i>
+            <div class="title-icon"><i class=" game-icon icon-small icon fas fa-crown fa-large"></i>
     </div>
   </div>
 
@@ -414,10 +414,11 @@
           </form>
   
         </div>
+        <div class="game-lower-landscape">
         <div class="game-lower">
         <!--     <div class="temp" id="temp"></div> -->
         <div class="correctness-container ">
-          <div id="game-correctness" class="correctness"></div>
+          <div id="game-correctness" class="correctness game-correctness"></div>
           <div class="actual-container hidden" id="game-actual-container">
             <div class="actual-text">The correct answer was:</div>
             <div class="actual" id="game-actual"></div>
@@ -450,7 +451,7 @@
             <div class="tracker" id="game-tracker-2"></div>
           </div>
         </div>
-      
+      </div>
       </div>
       </div>
       </div>

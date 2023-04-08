@@ -263,11 +263,11 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     if (bool) {
       element.classList.add("correct-answer");
       element.classList.remove("incorrect-answer");
-      element.textContent = "CORRECT";
+      element.textContent = "Correct";
     } else {
       element.classList.remove("correct-answer");
       element.classList.add("incorrect-answer");
-      element.textContent = "INCORRECT";
+      element.textContent = "Incorrect";
     }
   }
 
@@ -437,7 +437,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   function soloHide(element, mainContainer) {
     element.style.visibility = "hidden";
-    element.style.zIndex = "00";
+    element.style.zIndex = "0";
     utilMethods.showHide([mainContainer], []);
   }
 

@@ -381,15 +381,13 @@ window.onload = function () {
   function soloReveal(element, mainContainer) {
     element.style.visibility = "visible";
     element.style.zIndex = "10";
-    // utilMethods.showHide([], [mainContainer]);
+    utilMethods.showHide([], [mainContainer]);
   }
-
   function soloHide(element, mainContainer) {
     element.style.visibility = "hidden";
-    element.style.zIndex = "10";
-    // utilMethods.showHide([mainContainer], []);
+    element.style.zIndex = "0";
+    utilMethods.showHide([mainContainer], []);
   }
-
   function resetQuizProperty(quizStats) {
     quizStats.numAnswered = 0;
     quizStats.numCorrect = 0;
