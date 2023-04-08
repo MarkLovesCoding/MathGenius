@@ -543,6 +543,7 @@ body {
 
 .actual-container {
   display: flex;
+  visibility: hidden;
   flex-direction: row;
   padding: 0.5em;
   text-align: left;
