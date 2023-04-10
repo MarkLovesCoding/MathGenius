@@ -18,6 +18,7 @@ html {
   touch-action: manipulation;
   width: 100%;
   height: 100%;
+  min-height: -webkit-fill-available;
   overflow: hidden;
 }
 
@@ -58,9 +59,7 @@ body {
   justify-content: center;
   flex-direction: column;
   min-width: 100%;
-  max-width: 100vw;
-  height: 100vh;
-  min-height: -webkit-fill-available;
+  max-width: 100%;
   position: relative;
 }
 
@@ -382,7 +381,7 @@ body {
   color: #eae6df;
   font-family: "Pangolin", cursive;
   max-width: 100%;
-  padding: 2em;
+  font-size: 2em;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -398,26 +397,20 @@ body {
 }
 
 .question-number {
-  font-size: 2.8em;
   padding: 1rem;
-}
-
-.question-text {
-  font-size: 2.2em;
 }
 
 .operator {
   transform: translate(0px, 0px);
-  font-size: 2.2em;
   padding: 4px;
 }
 
 .input {
   font-family: "Pangolin", cursive;
   margin-left: 10px;
-  width: 20px;
-  height: 2.9ch;
-  font-size: 2.2em;
+  width: 5ch;
+  height: 3.6ch;
+  font-size: 1em;
   text-align: center;
   padding: 0;
   min-width: 4ch;
@@ -772,7 +765,6 @@ body {
   max-width: 100%;
   max-height: 100%;
   min-height: calc(-webkit-fill-available - 4vh);
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   border: 12px solid #BA8C63;
@@ -1130,7 +1122,6 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5vh;
 }
 
 .activity-title, .activity-type {
@@ -1187,7 +1178,7 @@ body {
 .quiz-question {
   border-radius: 10px;
   max-width: 94vw;
-  padding: 1.2em;
+  padding: 2em;
 }
 
 .quiz-input::placeholder {
@@ -1195,7 +1186,7 @@ body {
 }
 
 .quiz-container {
-  padding-top: 10%;
+  padding-top: 15%;
 }
 
 .quiz-icon {
@@ -1264,6 +1255,21 @@ body {
   padding-top: 25px;
 }
 
+.nav-left-upper {
+  display: none;
+}
+
+.activity-menu-container, .operator-menu-container, .difficulty-menu-container {
+  flex-direction: column;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 @media only screen and (orientation: landscape) and (min-aspect-ratio: 2) {
   .header {
     width: 200px;
@@ -1273,7 +1279,7 @@ body {
     padding-right: 25px;
   }
 
-  .display-container {
+  .activity-menu-container, .operator-menu-container, .difficulty-menu-container {
     flex-direction: row;
   }
 
@@ -1297,16 +1303,6 @@ body {
   .middle-inner {
     justify-content: center;
     width: 260px;
-  }
-
-  .top {
-    justify-content: flex-end;
-    padding-left: 20px;
-    flex-basis: 200px;
-  }
-
-  .mc-container {
-    flex-direction: column;
   }
 
   .mc-middle-lower {
@@ -1342,6 +1338,14 @@ body {
     padding-top: 50px;
   }
 
+  .quiz-container {
+    padding-top: 5%;
+  }
+
+  .titles-group {
+    margin-bottom: 5vh;
+  }
+
   .quiz-container:has(.display-container) {
     flex-direction: column;
     padding-top: 0%;
@@ -1350,7 +1354,7 @@ body {
 
   .quiz-middle-lower {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
   }
 
   .game-container {
@@ -1364,7 +1368,7 @@ body {
 
   .game-middle-lower {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row-row;
   }
 
   .game-lower {
@@ -1395,8 +1399,31 @@ body {
   .actual-text {
     width: max-content;
   }
+
+  .nav-left-lower {
+    display: none;
+  }
+
+  .nav-left-upper {
+    display: inherit;
+  }
+
+  .operator-group, .activity-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .game-container {
+    flex-direction: column;
+  }
+
+  .game-middle-lower {
+    flex-direction: row;
+    display: flex;
+  }
 }
-@media only screen and (min-width: 720px) and (max-aspect-ratio: 2) {
+@media only screen and (max-aspect-ratio: 2) and (orientation: portrait) {
   /* CSS code for tablet devices */
   .header {
     font-size: 30px;
@@ -1422,7 +1449,7 @@ body {
 
   .nav-button {
     font-size: 2.75em;
-    width: 125px;
+    width: 100px;
     height: 75px;
   }
 
@@ -1430,20 +1457,32 @@ body {
     font-size: 3.75em;
   }
 
+  .game-top, .flash-upper {
+    margin-bottom: 5vh;
+  }
+
   .flash-text {
-    font-size: 3.25em;
+    font-size: 2.75em;
   }
 
   .flash-answer-box, .flash-question-box {
-    max-width: 400px;
-    height: 300px;
+    max-width: 300px;
+    max-height: 250px;
     font-size: 1.4em;
   }
 
   .question {
-    min-width: 400px;
-    height: 300px;
+    min-width: 250px;
+    height: 120px;
     font-size: 1.8em;
+  }
+
+  .mc-top {
+    padding-bottom: 25px;
+  }
+
+  .mc-question {
+    font-size: 2.8em;
   }
 
   .option {
@@ -1464,7 +1503,12 @@ body {
   }
 
   .quiz-question {
-    height: 250px;
+    height: 150px;
+    padding: 2em;
+  }
+
+  .titles-group {
+    margin-bottom: inherit;
   }
 
   .progress-container {
@@ -1472,9 +1516,13 @@ body {
     margin: 0;
   }
 }
-@media only screen and (min-width: 720px) and (max-aspect-ratio: 2) and (orientation: landscape) {
-  .display-container {
+@media only screen and (max-aspect-ratio: 2) and (orientation: landscape) {
+  .activity-menu-container, .operator-menu-container, .difficulty-menu-container, .game-middle-lower {
     flex-direction: row;
+  }
+
+  .game-container {
+    flex-direction: column;
   }
 
   .header {
@@ -1499,7 +1547,7 @@ body {
 
   .nav-button {
     font-size: 2.75em;
-    width: 125px;
+    width: 100px;
     height: 75px;
   }
 
@@ -1518,21 +1566,17 @@ body {
   }
 
   .top {
-    padding-right: 30px;
-    flex-basis: 300px;
+    flex-basis: 150px;
   }
 
   .flash-text {
     font-size: 2.75em;
   }
 
-  .flash-container {
-    max-width: 300px;
-    max-height: 250px;
-  }
-
   .flash-answer-box, .flash-question-box {
     font-size: 1.2em;
+    max-width: 300px;
+    max-height: 250px;
   }
 
   .mc-top {
@@ -1543,15 +1587,28 @@ body {
     flex-basis: 60%;
   }
 
+  .mc-container {
+    flex-direction: row;
+  }
+
+  .options {
+    margin-top: 0;
+  }
+
   .question {
     min-width: 250px;
     height: 180px;
-    font-size: 1.5em;
+    font-size: 2.8em;
   }
 
   .mc-question {
     height: 100px;
     padding: 0;
+    min-width: inherit;
+  }
+
+  .mc-question-box {
+    justify-content: flex-start;
   }
 
   .option {
@@ -1570,7 +1627,7 @@ body {
 
   .quiz-container {
     flex-direction: column;
-    padding-top: 0%;
+    padding-top: 5%;
     justify-content: center;
   }
 
@@ -1600,5 +1657,29 @@ body {
   .option {
     width: 120px;
     height: 80px;
+  }
+
+  .nav-left-lower {
+    display: none;
+  }
+
+  .nav-left-upper {
+    display: inherit;
+  }
+
+  .operator-group, .activity-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .game-middle-lower {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .game-question {
+    padding: 0;
+    font-size: 2em;
   }
 }

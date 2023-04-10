@@ -578,9 +578,14 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   const activityMenuForward = document.getElementById("activity-menu-forward")
   const operatorMenuForward = document.getElementById("operator-menu-forward")
-  const operatorMenuBackward = document.getElementById("operator-menu-backward")
+  const operatorMenuBackwarUpper = document.getElementById("operator-menu-backward-upper")
+  const operatorMenuBackwardLower = document.getElementById("operator-menu-backward-lower")
+  // const operatorMenuBackward = document.getElementsByClassName("operator-menu-backward");
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward")
-  const difficultyMenuBackward = document.getElementById("difficulty-menu-backward")
+  const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
+  const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower")
+  const operatorMenuBackwards = [operatorMenuBackwarUpper,operatorMenuBackwardLower];
+  const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
 
   function alertChooseActivity(){
     const newModal = document.createElement("div");
@@ -601,9 +606,12 @@ const operatorAlert = document.getElementById("operator-alert-modal")
     utilMethods.loadSection('operator-menu')
   })
 
-  operatorMenuBackward.addEventListener("click",(e)=>{
-    utilMethods.loadSection("activity-menu")
-  })  
+  for (let el of operatorMenuBackwards){
+    el.addEventListener("click",(e)=>{
+      utilMethods.loadSection("activity-menu")
+    }) 
+  }
+ 
   
   operatorMenuForward.addEventListener("click",(e)=>{
     console.log(operatorChoices)
@@ -618,10 +626,11 @@ const operatorAlert = document.getElementById("operator-alert-modal")
     //LOAD DIFFICULTY PAGE
     utilMethods.loadSection("difficulty-menu")
   })
-
-  difficultyMenuBackward.addEventListener("click",(e)=>{
+for (let el of difficultyMenuBackwards){
+ el.addEventListener("click",(e)=>{
     utilMethods.loadSection("operator-menu") 
   })
+}
 
   difficultyMenuForward.addEventListener("click",(e)=>{
     updateDifficultyRange()
