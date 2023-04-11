@@ -378,7 +378,7 @@ body {
 }
 
 .question {
-  background: #274c43;
+  background: transparent;
   color: #eae6df;
   font-family: "Pangolin", cursive;
   max-width: 100%;
@@ -797,8 +797,8 @@ body {
   transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
   border: 2px solid rgba(100, 100, 100, 0);
   border-radius: 100%;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -895,7 +895,7 @@ body {
 .nav-button {
   outline: none;
   border: 0px solid rgba(157, 157, 157, 0);
-  background-color: #274c43;
+  background-color: transparent;
   width: 100px;
   height: 50px;
   transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -1179,7 +1179,7 @@ body {
 .quiz-question {
   border-radius: 10px;
   max-width: 94vw;
-  padding: 2em;
+  padding: 0.8em;
 }
 
 .quiz-input::placeholder {
@@ -1187,7 +1187,7 @@ body {
 }
 
 .quiz-container {
-  padding-top: 15%;
+  padding-top: 22%;
 }
 
 .quiz-icon {
@@ -1460,7 +1460,7 @@ body {
   }
 
   .icon {
-    font-size: 3.75em;
+    font-size: 2.75em;
   }
 
   .game-top, .flash-upper {
