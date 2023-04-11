@@ -37,7 +37,10 @@
       <div class="message-intro">You got <span id="amountCorrect" class="amountCorrect"></span> /10 Correct! </br> That's <span id="amountCorrectPercentage" class="amountCorrect"> </span>
       </div>
     </div>
-    
+    <div id="mc-quiz-modal" class="message-modal">
+      <div class="message-intro">You got <span id="mc-quiz-amountCorrect" class="amountCorrect"></span> /10 Correct! </br> That's <span id="mc-quiz-amountCorrectPercentage" class="amountCorrect"> </span>
+      </div>
+    </div>
   <!--   <form id="user-submit" class="login-container">
   
       <input type="text" autocomplete="off" placeholder="username" name="login" class="login-input">
@@ -121,6 +124,13 @@
               <p class="icon-text">Practice</p>
             </div>
 
+            <div class="inner">
+              <div class=" icon-container mc activity-choice" id="new-mc-quiz" data-type="multiple-choice-quiz">
+                <p></p>
+                <i class=" mc-quiz-icon icon fas fa-list-ol fa-large"></i>
+              </div>
+              <p class="icon-text">Quiz</p>
+            </div>
     
           </div>
         </div>
@@ -261,6 +271,87 @@
       </div>
    -->
   
+  
+   <div class="mc-quiz-container sub-container display-container" id="mc-quiz-container">
+      
+        
+        
+    <div class="mc-top">
+      
+        <div class="titles-group">
+          <div class="titles-left">
+        <h2 class="activity-title mc">Multiple Choice</h2>  <h2 class="activity-type"> Quiz</h2> </div>
+        <div class="title-icon"><i class=" mc-icon icon fas fa-list-ol fa-large"></i>
+        </div>
+        <!-- <div class="ops-diff">
+          <p class="ops">Operators: <span id="operators-display"> +, -</span></p>
+          <p class="ops">Difficulty: <span id="difficulty-display">4</span></p>
+        </div> -->
+      </div>
+     
+    </div>
+    <div class="mc-middle-lower">
+    <div class="mc-middle">
+      <form id="mc-quiz-answer-form" class="question-box mc-question-box">
+        <!-- <div class="wood"> -->
+        <div id="mc-quiz-question-box" class="question mc-question">
+          <div id="mc-quiz-first-number" class="question-number question-text"></div>
+          <div id="mc-quiz-first-operator" class="operator question-text"></div>
+          <div id="mc-quiz-second-number" class="question-number question-text"></div>
+<!--             <div id="mc-second-operator" class="operator question-text">=</div>
+
+          <input type="number" min="0" id="mc-answer-input" class="input" placeholder="?" autocomplete="off"></input> -->
+        </div>
+      <!-- </div> -->
+<!--           <button type="submit" id="mc-answer-submit-btn" class="answer-submit">ENTER</button> -->
+      </form>
+    </div>
+    <div class="mc-bottom">
+      <div id="mc-quiz-options-container" class="options-container">
+        <div id="mc-quiz-options" class="options"></div>
+      </div>
+    </div>
+    <div class="mc-quiz-stats">
+      <div class="mc-question-number">
+        <p>Question:</p><span id="mc-question-number"></span> 
+      </div>
+      <div class="mc-num-correct"> <p>Correct:</p><span id="mc-questions-correct"></span> </div>
+      <!-- <div class="mc-num-answered"></div> -->
+    </div>
+  </div>
+<!--         <div class="mc-scores-container">
+        <div class="mc-curr-score-container">
+          Curr Score:<p id="mc-curr-score"></p>
+          <p>/</p>
+          <p id="mc-curr-question"></p>
+
+        </div>
+        <div class="mc-last-score-container">
+          Last Score:<p id="mc-last-score"></p>
+
+          <p>/</p>
+          <p>10</p>
+
+        </div>
+      </div> -->
+
+    
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div class="mc-container sub-container display-container" id="mc-container">
       
         
