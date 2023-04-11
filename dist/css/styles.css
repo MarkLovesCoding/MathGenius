@@ -36,7 +36,7 @@ body {
   background-position: center;
   min-width: 100vw;
   height: auto;
-  min-height: 100vh;
+  min-height: 99vh;
   min-height: -webkit-fill-available;
   background: -webkit-linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
 }
