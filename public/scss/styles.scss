@@ -5,10 +5,9 @@
 
 /* SCSS HEX */
 $kelly-green: rgba(41, 191, 18, 1);
-$green-yellow: rgba(171, 255, 79, 1);
-$verdigris: rgba(8, 189, 189, 1);
+
 $red-munsell: rgba(242, 27, 63, 1);
-$princeton-orange: rgba(255, 153, 20, 1);
+
 $minus-blue:#00bdff;
 $plus-green:#6ee06e;
 $division-purple:#e46fe4;
@@ -20,17 +19,13 @@ $chalk-white:#eae6df;;
 $wood:#BA8C63;
 
 /* Variable Declarations */
-$french-violet: rgba(102, 34, 204, 1);
-$purple-plum: rgba(167, 85, 194, 1);
-$opera-mauve: rgba(176, 124, 158, 1);
-$rosy-brown: rgba(181, 145, 148, 1);
-$kobi: rgba(210, 161, 184, 1);
+
 $shadow: rgba(255, 225, 225, 0.1);
 $headerSize: 24px;
 $lightText: rgba(255, 225, 225, 1);
 $darkText: rgba(25, 25, 25, 1);
-$correctGreen: rgba(50, 225, 50, 1);
-$falseRed: rgba(255, 50, 0, 1);
+
+
 $cardShadow:3px 4px 5px -1px rgba(0,0,0,0.5);
 $shadowLarge:14px 12px 4px -1px rgba(0, 0, 0, 0.5);
 
@@ -62,8 +57,8 @@ $DesktopIconTextSize: 20px;
 html {
   -ms-touch-action: manipulation;
       touch-action: manipulation;
-      width:100%;
-      height:100%;
+      width:auto;
+      height:auto;
       min-height: -webkit-fill-available;
       overflow: hidden;
 }
@@ -80,7 +75,8 @@ body {
   position: relative;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100%;
+  min-width:100vw;
+  height: auto;
   min-height: -webkit-fill-available;
 background: -webkit-linear-gradient(225deg, hsla(306, 38%, 73%, 1) 29%, hsla(204, 49%, 70%, 1) 63%, hsla(202, 56%, 74%, 1) 81%, hsla(176, 58%, 72%, 1) 100%);
 
@@ -1334,7 +1330,7 @@ background:rgba(255, 255, 255, 0.25);
 }
 
 // Mobile Landscape (max-width:1000px)
-@media only screen and  (orientation:landscape) and (min-aspect-ratio:2) {
+@media only screen and  (orientation:landscape) and (min-aspect-ratio:1.75) {
   .header{
     width:200px;
     align-items: center;
@@ -1476,7 +1472,7 @@ padding-top:50px;
   // /* 
 
 
-@media only screen  and (max-aspect-ratio:2) and (orientation:portrait)   {
+@media only screen  and (max-aspect-ratio:1.75) and (orientation:portrait) {
   /* CSS code for tablet devices */
 
   .header{
@@ -1558,7 +1554,7 @@ padding-top:50px;
 
 }
 //  (min-width:720px)
-@media only screen  and (max-aspect-ratio:2) and (orientation:landscape) {
+@media only screen  and (max-aspect-ratio:1.75) and (orientation:landscape) {
   // .display-container{
   // flex-direction: row;
 
@@ -1643,7 +1639,7 @@ height: 180px;
 
 }
 .mc-question-box{
-  justify-content: flex-start;
+  // justify-content: flex-start;
 }
 .option{
   max-width:150px;

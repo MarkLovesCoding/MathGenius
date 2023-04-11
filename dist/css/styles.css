@@ -16,8 +16,8 @@
 html {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
   min-height: -webkit-fill-available;
   overflow: hidden;
 }
@@ -34,7 +34,8 @@ body {
   position: relative;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100%;
+  min-width: 100vw;
+  height: auto;
   min-height: -webkit-fill-available;
   background: -webkit-linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
 }
@@ -1270,7 +1271,7 @@ body {
   justify-content: center;
 }
 
-@media only screen and (orientation: landscape) and (min-aspect-ratio: 2) {
+@media only screen and (orientation: landscape) and (min-aspect-ratio: 1.75) {
   .header {
     width: 200px;
     align-items: center;
@@ -1423,7 +1424,7 @@ body {
     display: flex;
   }
 }
-@media only screen and (max-aspect-ratio: 2) and (orientation: portrait) {
+@media only screen and (max-aspect-ratio: 1.75) and (orientation: portrait) {
   /* CSS code for tablet devices */
   .header {
     font-size: 30px;
@@ -1516,7 +1517,7 @@ body {
     margin: 0;
   }
 }
-@media only screen and (max-aspect-ratio: 2) and (orientation: landscape) {
+@media only screen and (max-aspect-ratio: 1.75) and (orientation: landscape) {
   .activity-menu-container, .operator-menu-container, .difficulty-menu-container, .game-middle-lower {
     flex-direction: row;
   }
@@ -1605,10 +1606,6 @@ body {
     height: 100px;
     padding: 0;
     min-width: inherit;
-  }
-
-  .mc-question-box {
-    justify-content: flex-start;
   }
 
   .option {
