@@ -1328,6 +1328,7 @@ background:rgba(255, 255, 255, 0.25);
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top:25px;
 }
 
 // Mobile Landscape (max-width:1000px)
@@ -1466,6 +1467,9 @@ padding-top:50px;
   flex-direction: row;
   display: flex;
 }
+.nav-buttons{
+  margin-top:0;
+}
 }
 
 // Tablet - Portrait
@@ -1552,7 +1556,9 @@ padding-top:50px;
   width:100%;
   margin:0;
 }
-
+.nav-buttons{
+  margin-top:25px;
+}
 }
 //  (min-width:720px)
 @media only screen  and (max-aspect-ratio:1.75) and (orientation:landscape) {
@@ -1699,6 +1705,9 @@ height: 180px;
 .game-question{
   padding:0;
   font-size:2em;
+}
+.nav-buttons{
+  margin-top:0;
 }
 }
 

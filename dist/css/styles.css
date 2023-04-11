@@ -1269,6 +1269,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top: 25px;
 }
 
 @media only screen and (orientation: landscape) and (min-aspect-ratio: 1.75) {
@@ -1423,6 +1424,10 @@ body {
     flex-direction: row;
     display: flex;
   }
+
+  .nav-buttons {
+    margin-top: 0;
+  }
 }
 @media only screen and (max-aspect-ratio: 1.75) and (orientation: portrait) {
   /* CSS code for tablet devices */
@@ -1515,6 +1520,10 @@ body {
   .progress-container {
     width: 100%;
     margin: 0;
+  }
+
+  .nav-buttons {
+    margin-top: 25px;
   }
 }
 @media only screen and (max-aspect-ratio: 1.75) and (orientation: landscape) {
@@ -1678,5 +1687,9 @@ body {
   .game-question {
     padding: 0;
     font-size: 2em;
+  }
+
+  .nav-buttons {
+    margin-top: 0;
   }
 }
