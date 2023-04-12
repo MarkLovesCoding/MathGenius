@@ -33,5 +33,12 @@ export const state = {
       color: "purple"
     }
   },
-  activity: null
+  activity: null,
+  type: null,
+  mcQuizActive: {
+    mcqNumAnswered: 0,
+    mcqFailedAttempts: 0,
+    mcqNumCorrect: 0,
+    mcqNumQuestion: 10
+  }
 };

@@ -751,7 +751,7 @@ body {
     transform: translateX(0);
   }
 }
-.operator-menu-container, .difficulty-menu-container {
+.operator-menu-container, .difficulty-menu-container, .real-menu-container, .practice-menu-container {
   display: none;
 }
 
@@ -1260,7 +1260,7 @@ body {
   display: none;
 }
 
-.activity-menu-container, .operator-menu-container, .difficulty-menu-container {
+.activity-menu-container, .operator-menu-container, .difficulty-menu-container, .real-menu-container, .practice-menu-container {
   flex-direction: column;
 }
 
@@ -1281,7 +1281,7 @@ body {
     padding-right: 25px;
   }
 
-  .activity-menu-container, .operator-menu-container, .difficulty-menu-container {
+  .activity-menu-container, .operator-menu-container, .difficulty-menu-container, .real-menu-container, .practice-menu-container {
     flex-direction: row;
   }
 
@@ -1468,7 +1468,7 @@ body {
   }
 
   .flash-text {
-    font-size: 2.75em;
+    font-size: 2.75rem;
   }
 
   .flash-answer-box, .flash-question-box {
@@ -1527,7 +1527,7 @@ body {
   }
 }
 @media only screen and (max-aspect-ratio: 1.75) and (orientation: landscape) {
-  .activity-menu-container, .operator-menu-container, .difficulty-menu-container, .game-middle-lower {
+  .activity-menu-container, .operator-menu-container, .difficulty-menu-container, .game-middle-lower, .real-menu-container, .practice-menu-container {
     flex-direction: row;
   }
 
