@@ -837,6 +837,7 @@ background:rgba(255, 255, 255, 0.25);
   align-items:center;
   justify-content:space-around;
   flex-direction: column;
+  margin:0 15px;
 }
 .icon-container{
   background-color:$chalkboard-green;
@@ -867,7 +868,7 @@ background:rgba(255, 255, 255, 0.25);
   margin-bottom:15px;
 
 }
-.quiz{
+.quiz,.real{
    &:hover{    
      background-color:$minus-blue;
      & > * {
@@ -886,7 +887,7 @@ background:rgba(255, 255, 255, 0.25);
     };
  }
 }
-.mc{
+.practice {
    &:hover{
      
      background-color:$division-purple;
@@ -908,7 +909,7 @@ background:rgba(255, 255, 255, 0.25);
     };
  }
 }
-.flash{
+.flash, .mc-quiz{ 
    &:hover{
      
      background-color:$multiply-orange;
@@ -930,7 +931,7 @@ background:rgba(255, 255, 255, 0.25);
     };
  }
 }
-.game{
+.game,.mc{
    &:hover{
      
      background-color:$plus-green;
@@ -1006,18 +1007,23 @@ background:rgba(255, 255, 255, 0.25);
   font-size:3em;
 }
 .pen-icon{
-  color:$minus-blue
+  color:$minus-blue;
 }
-.flash-icon{
-  color:$multiply-orange
+.flash-icon, .mc-quiz-icon{
+  color:$multiply-orange;
 }
 .mc-icon{
-  color:$division-purple
+  color:$plus-green;
 }
 .game-icon{
-  color:$plus-green
+  color:$plus-green;
 }
-
+.real-icon{
+  color:$minus-blue;
+}
+.practice-icon{
+  color:$division-purple;
+}
 
 
 
@@ -1232,6 +1238,7 @@ background:rgba(255, 255, 255, 0.25);
   font-size: $mobileIconTextSize;
   margin-bottom:15px;
   color:$chalk-white;
+  text-align:center;
 }
 .difficulty-text{
   font-family:'Pangolin', cursive;
@@ -1362,7 +1369,7 @@ background:rgba(255, 255, 255, 0.25);
 }
 .middle{
   justify-content: flex-start;
-  flex-basis:260px;
+  flex-basis:200px;
   z-index:2;
 }
 .middle-inner{

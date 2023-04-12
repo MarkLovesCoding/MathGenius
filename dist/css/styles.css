@@ -790,6 +790,7 @@ body {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+  margin: 0 15px;
 }
 
 .icon-container {
@@ -820,59 +821,59 @@ body {
   margin-bottom: 15px;
 }
 
-.quiz:hover {
+.quiz:hover, .real:hover {
   background-color: #00bdff;
 }
-.quiz:hover > * {
+.quiz:hover > *, .real:hover > * {
   color: #274c43;
 }
-.quiz.activity-selected {
+.quiz.activity-selected, .real.activity-selected {
   background-color: #00bdff;
   border-radius: 5px;
 }
-.quiz.activity-selected > * {
+.quiz.activity-selected > *, .real.activity-selected > * {
   color: #274c43;
 }
 
-.mc:hover {
+.practice:hover {
   background-color: #e46fe4;
 }
-.mc:hover > * {
+.practice:hover > * {
   color: #274c43;
 }
-.mc.activity-selected {
+.practice.activity-selected {
   background-color: #e46fe4;
   border-radius: 5px;
 }
-.mc.activity-selected > * {
+.practice.activity-selected > * {
   color: #274c43;
 }
 
-.flash:hover {
+.flash:hover, .mc-quiz:hover {
   background-color: #f5ba42;
 }
-.flash:hover > * {
+.flash:hover > *, .mc-quiz:hover > * {
   color: #274c43;
 }
-.flash.activity-selected {
+.flash.activity-selected, .mc-quiz.activity-selected {
   background-color: #f5ba42;
   border-radius: 5px;
 }
-.flash.activity-selected > * {
+.flash.activity-selected > *, .mc-quiz.activity-selected > * {
   color: #274c43;
 }
 
-.game:hover {
+.game:hover, .mc:hover {
   background-color: #6ee06e;
 }
-.game:hover > * {
+.game:hover > *, .mc:hover > * {
   color: #274c43;
 }
-.game.activity-selected {
+.game.activity-selected, .mc.activity-selected {
   background-color: #6ee06e;
   border-radius: 5px;
 }
-.game.activity-selected > * {
+.game.activity-selected > *, .mc.activity-selected > * {
   color: #274c43;
 }
 
@@ -934,16 +935,24 @@ body {
   color: #00bdff;
 }
 
-.flash-icon {
+.flash-icon, .mc-quiz-icon {
   color: #f5ba42;
 }
 
 .mc-icon {
-  color: #e46fe4;
+  color: #6ee06e;
 }
 
 .game-icon {
   color: #6ee06e;
+}
+
+.real-icon {
+  color: #00bdff;
+}
+
+.practice-icon {
+  color: #e46fe4;
 }
 
 .add:hover {
@@ -1149,6 +1158,7 @@ body {
   font-size: 18px;
   margin-bottom: 15px;
   color: #eae6df;
+  text-align: center;
 }
 
 .difficulty-text {
@@ -1298,7 +1308,7 @@ body {
 
   .middle {
     justify-content: flex-start;
-    flex-basis: 260px;
+    flex-basis: 200px;
     z-index: 2;
   }
 

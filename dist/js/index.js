@@ -311,12 +311,12 @@ window.onload = function () {
   async function mcAnswerCheck(bool, correctEl, falseEl = null) {
     if (bool) {
       utilMethods.animateCorrect(correctEl);
-      await utilMethods.delay(700);
+      await utilMethods.delay(250);
       newQuestion("multiple-choice", state.activeOperators, mcCreateOptions);
     } else {
       utilMethods.animateIncorrect(falseEl);
       utilMethods.animateCorrect(correctEl);
-      await utilMethods.delay(700);
+      await utilMethods.delay(250);
       newQuestion("multiple-choice", state.activeOperators, mcCreateOptions);
     }
   }
@@ -414,7 +414,7 @@ window.onload = function () {
       state.mcQuizActive.mcqFailedAttempts = 0;
       checkMCQAnswered();
       utilMethods.animateCorrect(correctEl);
-      await utilMethods.delay(250);
+      await utilMethods.delay(150);
       updateMCQuizPage();
       newQuestion("multiple-choice-quiz", state.activeOperators, mcQuizCreateOptions);
     } else {
@@ -422,7 +422,7 @@ window.onload = function () {
       checkMCQAnswered();
       utilMethods.animateIncorrect(falseEl);
       utilMethods.animateCorrect(correctEl);
-      await utilMethods.delay(250);
+      await utilMethods.delay(150);
       updateMCQuizPage();
       newQuestion("multiple-choice-quiz", state.activeOperators, mcQuizCreateOptions);
     }
