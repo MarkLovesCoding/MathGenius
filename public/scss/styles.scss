@@ -790,7 +790,7 @@ background:rgba(255, 255, 255, 0.25);
 }
 
 
-.operator-menu-container,.difficulty-menu-container{
+.operator-menu-container,.difficulty-menu-container, .real-menu-container,.practice-menu-container{
   display:none;
 }
 
@@ -1320,7 +1320,7 @@ background:rgba(255, 255, 255, 0.25);
 .nav-left-upper{
   display:none;
 }
-.activity-menu-container, .operator-menu-container, .difficulty-menu-container{
+.activity-menu-container, .operator-menu-container, .difficulty-menu-container, .real-menu-container, .practice-menu-container{
   flex-direction:column;
 }
 .nav-buttons{
@@ -1331,6 +1331,8 @@ background:rgba(255, 255, 255, 0.25);
   margin-top:25px;
 }
 
+
+
 // Mobile Landscape (max-width:1000px)
 @media only screen and  (orientation:landscape) and (min-aspect-ratio:1.75) {
   .header{
@@ -1340,7 +1342,7 @@ background:rgba(255, 255, 255, 0.25);
     display: flex;
     padding-right:25px;
   }
-.activity-menu-container, .operator-menu-container, .difficulty-menu-container{
+.activity-menu-container, .operator-menu-container, .difficulty-menu-container, .real-menu-container, .practice-menu-container{
   flex-direction: row;
 }
 .bottom{
@@ -1511,7 +1513,7 @@ padding-top:50px;
     margin-bottom:5vh;
   }
   .flash-text{
-    font-size:2.75em;
+    font-size:2.75rem;
   }
   .flash-answer-box,.flash-question-box{
     max-width:300px;

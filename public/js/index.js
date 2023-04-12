@@ -577,7 +577,17 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
   const activityMenuForward = document.getElementById("activity-menu-forward")
+
+  const realMenuForward = document.getElementById("real-menu-forward")
+  const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper")
+  const realMenuBackwardLower = document.getElementById("real-menu-backward-lower")
+
+  const practiceMenuForward = document.getElementById("practice-menu-forward")
+  const practiceMenuBackwardUpper = document.getElementById("practice-menu-backward-upper")
+  const practiceMenuBackwardLower = document.getElementById("practice-menu-backward-lower")
+
   const operatorMenuForward = document.getElementById("operator-menu-forward")
+
   const operatorMenuBackwarUpper = document.getElementById("operator-menu-backward-upper")
   const operatorMenuBackwardLower = document.getElementById("operator-menu-backward-lower")
   // const operatorMenuBackward = document.getElementsByClassName("operator-menu-backward");
@@ -586,7 +596,12 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower")
   const operatorMenuBackwards = [operatorMenuBackwarUpper,operatorMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
-
+  const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower]
+  const realMenuBackwards = [realMenuBackwardUpper,realMenuBackwardLower]
+  const activitiesChoices = document.querySelectorAll(".activity-choice")
+  const realChoices = document.querySelectorAll(".real-choice")
+  const practiceChoices = document.querySelectorAll(".practice-choice")
+  
   function alertChooseActivity(){
     const newModal = document.createElement("div");
     newModal.innerHTML  = "Please Select An Activity"
@@ -597,16 +612,80 @@ const operatorAlert = document.getElementById("operator-alert-modal")
 
   activityMenuForward.addEventListener("click",async(e)=>{
     console.log("go forward");
-    if (updateActivity(activitiesChoices) == null || undefined){
+    if (updateActivity(activitiesChoices, 2) == null || undefined){
       utilMethods.visibilityTimedToggle(true,activityAlert,1000)
       return;
     }
-    state.activity = updateActivity(activitiesChoices)
-    console.log("state-activity: ",state.activity)
-    utilMethods.loadSection('operator-menu')
+    state.type = updateActivity(activitiesChoices, 2)
+    console.log("state-activity: ",state.type)
+    if(state.type == 'real'){
+      utilMethods.loadSection('real-menu')
+
+    }
+    if(state.type == 'practice'){
+    utilMethods.loadSection('practice-menu')
+  }
+  // utilMethods.loadSection('real-menu')
   })
 
+  realMenuForward.addEventListener("click",async(e)=>{
+    console.log("go forward real");
+    if (updateActivity(realChoices, 3) == null || undefined){
+      utilMethods.visibilityTimedToggle(true,activityAlert,1000)
+      return;
+    }
+    state.activity = updateActivity(realChoices, 3)
+    console.log("state-activity: ",state.activity)
+  
+    utilMethods.loadSection('operator-menu')
+  
+  // utilMethods.loadSection('real-menu')
+  })
+
+  practiceMenuForward.addEventListener("click",async(e)=>{
+    console.log("go forward practice");
+    if (updateActivity(practiceChoices, 2) == null || undefined){
+      utilMethods.visibilityTimedToggle(true,activityAlert,1000)
+      return;
+    }
+    state.activity = updateActivity(practiceChoices, 2)
+    console.log("state-activity: ",state.activity)
+  
+    utilMethods.loadSection('operator-menu')
+  
+  // utilMethods.loadSection('real-menu')
+  })
+
+
+
+
+
+
+
+
   for (let el of operatorMenuBackwards){
+    el.addEventListener("click",(e)=>{
+      utilMethods.loadSection("activity-menu")
+    }) 
+  }
+  // realMenuBackwardLower.addEventListener("click",(e)=>{
+  //   utilMethods.loadSection("activity-menu")
+  // })
+  // realMenuBackwardUpper.addEventListener("click",(e)=>{
+  //   utilMethods.loadSection("activity-menu")
+  // })
+//  practiceMenuBackwardLower.addEventListener("click",(e)=>{
+//     utilMethods.loadSection("activity-menu")
+//   })
+  // practiceMenuBackwardUpper.addEventListener("click",(e)=>{
+  //   utilMethods.loadSection("activity-menu")
+  // })
+  for (let el of realMenuBackwards){
+    el.addEventListener("click",(e)=>{
+      utilMethods.loadSection("activity-menu")
+    }) 
+  }
+  for (let el of practiceMenuBackwards){
     el.addEventListener("click",(e)=>{
       utilMethods.loadSection("activity-menu")
     }) 
@@ -641,7 +720,27 @@ for (let el of difficultyMenuBackwards){
     newQuestion(state.activity,state.activeOperators)
     }
 })
-const activitiesChoices = document.querySelectorAll(".activity-choice")
+
+function addEventsForTypes(activitiesChoices,state){
+  for (let activity of activitiesChoices){
+    activity.addEventListener("click",(e)=>{
+      activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"))
+      let type;
+      if (e.target.getAttribute("data-type")){
+        type = e.target.getAttribute("data-type")
+      }
+      else{
+        type = e.target.parentNode.getAttribute("data-type")
+      }
+      activity.classList.add("activity-selected")
+      console.log("type: ",type)
+      state.type = type
+      console.log("state - type: ",state.type)
+
+      
+    })
+  }
+}
 
 function addEventsForActivities(activitiesChoices,state){
   for (let activity of activitiesChoices){
@@ -656,14 +755,13 @@ function addEventsForActivities(activitiesChoices,state){
       }
       activity.classList.add("activity-selected")
       console.log("type: ",type)
-      state.activity = type
-      console.log("state - type: ",state.activity)
+      state.type = type
+      console.log("state - type: ",state.type)
 
       
     })
   }
 }
-
 
 function toggleOperators(e){
   
@@ -675,11 +773,18 @@ function addEventsForOperators(operatorsChoices){
   for (let operator of operatorsChoices){
     operator.addEventListener("click",toggleOperators)}
 }
-addEventsForActivities(activitiesChoices,state)
+addEventsForTypes(activitiesChoices,state)
 addEventsForOperators(operatorChoices,state)
-function updateActivity(activitiesChoices){
+addEventsForActivities(realChoices,state)
+addEventsForActivities(practiceChoices,state)
+
+
+
+
+
+function updateActivity(activitiesChoices, numChoices){
   let userSelection;
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < numChoices; i++) {
     if (activitiesChoices[i].classList.contains("activity-selected")){
       userSelection = activitiesChoices[i].getAttribute("data-type")
 
