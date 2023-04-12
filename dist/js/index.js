@@ -15,6 +15,7 @@ import * as utilMethods from './ulils.js';
 import { burger, burgerContainer, mainContainer, subjects, diffButtons } from './domElements.js';
 import { flashAnswer, flashCard, flashNumOne, flashNumTwo, flashOpOne, newFlash, flashContainer } from './domElements.js';
 import { mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './domElements.js';
+import { mcQuizNumOne, mcQuizNumTwo, mcQuizOpOne, mcQuizOptions, newMCQuiz } from './domElements.js';
 import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz } from './domElements.js';
 import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
 import { state } from './state.js';
@@ -87,6 +88,12 @@ window.onload = function () {
         num1 = mcNumOne;
         num2 = mcNumTwo;
         op1 = mcOpOne;
+        break;
+      case "multiple-choice-quiz":
+        utilMethods.loadSection("mc-quiz");
+        num1 = mcQuizNumOne;
+        num2 = mcQuizNumTwo;
+        op1 = mcQuizOpOne;
         break;
       case "quiz":
         utilMethods.loadSection("quiz");
@@ -342,6 +349,112 @@ window.onload = function () {
   //END MC
   ////////////////////////////////////////////////////////////
 
+  //////MCQUIZ
+  ///
+  function finishMCQuiz() {
+    //do action
+    const numCorrect = state.mcQuizActive.mcqNumCorrect;
+    const numQuestion = state.mcQuizActive.mcqNumQuestion;
+    // const numCorrect = state.mcQuizActive.mcqNumCorrect;
+
+    console.log(state.mcQuizActive);
+    console.log("You answered: ", numCorrect, " questions correctly out of", numQuestion, ". That is ", Math.round(100 * numCorrect / numQuestion), "%.");
+    // alert("You answered: ", numCorrect, " questions correctly out of", numQuestion, ". That is " ,Math.round(100 * numCorrect / numQuestion), "%.")
+    state.mcQuizActive.mcqNumAnswered = 0;
+    state.mcQuizActive.mcqNumCorrect = 0;
+    state.mcQuizActive.mcqFailedAttempts = 0;
+  }
+  const mcQuestionNumber = document.getElementById("mc-question-number");
+  const mcQuestionsCorrect = document.getElementById("mc-questions-correct");
+  const mcQuizModal = document.getElementById("mc-quiz-modal");
+  const mcQuizAmountCorrect = document.getElementById("mc-quiz-amountCorrect");
+  const mcQuizAmountCorrectPercentage = document.getElementById("mc-quiz-amountCorrectPercentage");
+  async function mcQuizShowScore() {
+    mcQuizAmountCorrect.textContent = state.mcQuizActive.mcqNumCorrect;
+    mcQuizAmountCorrectPercentage.textContent = utilMethods.percentage(state.mcQuizActive.mcqNumCorrect, state.mcQuizActive.mcqNumAnswered).toString() + "%";
+    console.log("HI: ", mcQuizAmountCorrect);
+    console.log("HI: ", mcQuizModal);
+    // soloReveal(mcQuizModal, mainContainer);
+    mcQuizModal.style.visibility = "visible";
+    mcQuizModal.style.zIndex = 101;
+    utilMethods.emphasize(mcQuizModal);
+    await utilMethods.delay(1600);
+    mcQuizModal.style.visibility = "hidden";
+    mcQuizModal.style.zIndex = 0;
+
+    // soloHide(mcQuizModal, mainContainer);
+
+    // utilMethods.enableInput(quizAnswerInput);
+  }
+
+  function updateMCQuizPage() {
+    const numCorrect = state.mcQuizActive.mcqNumCorrect;
+    const numQuestion = state.mcQuizActive.mcqNumQuestion;
+    const numAnswered = state.mcQuizActive.mcqNumAnswered;
+    mcQuestionNumber.textContent = numAnswered;
+    mcQuestionsCorrect.textContent = numCorrect;
+    // mcQuestionsCorrect.textContent = numCorrect;
+  }
+
+  function checkMCQAnswered() {
+    if (state.mcQuizActive.mcqNumAnswered == state.mcQuizActive.mcqNumQuestion) {
+      mcQuizShowScore();
+      finishMCQuiz();
+    }
+  }
+  async function mcQuizAnswerCheck(bool, correctEl, falseEl = null) {
+    if (bool) {
+      if (state.mcQuizActive.mcqFailedAttempts === 0) {
+        state.mcQuizActive.mcqNumCorrect += 1;
+        state.mcQuizActive.mcqNumAnswered += 1;
+      }
+      if (state.mcQuizActive.mcqFailedAttempts > 0) {
+        state.mcQuizActive.mcqNumAnswered += 1;
+      }
+      state.mcQuizActive.mcqFailedAttempts = 0;
+      checkMCQAnswered();
+      utilMethods.animateCorrect(correctEl);
+      await utilMethods.delay(250);
+      updateMCQuizPage();
+      newQuestion("multiple-choice-quiz", state.activeOperators, mcQuizCreateOptions);
+    } else {
+      state.mcQuizActive.mcqFailedAttempts += 1;
+      checkMCQAnswered();
+      utilMethods.animateIncorrect(falseEl);
+      utilMethods.animateCorrect(correctEl);
+      await utilMethods.delay(250);
+      updateMCQuizPage();
+      newQuestion("multiple-choice-quiz", state.activeOperators, mcQuizCreateOptions);
+    }
+  }
+  function mcQuizCreateOptions(n1, n2, o1) {
+    let options = utilMethods.createOptions(n1, n2, o1);
+    mcQuizOptions.innerHTML = "";
+    let ans = utilMethods.calculation(n1, n2, o1);
+    options.forEach((option, index) => {
+      const optionEl = document.createElement("button");
+      optionEl.classList.add("option");
+      optionEl.textContent = option;
+      let correctOption;
+      if (option == ans) {
+        correctOption = optionEl;
+      }
+      optionEl.addEventListener("mousedown", function (e) {
+        let targetEl = e.target;
+        if (targetEl.textContent == ans) {
+          mcQuizAnswerCheck(true, targetEl);
+        }
+        if (targetEl.textContent != ans) {
+          mcQuizAnswerCheck(false, correctOption, targetEl);
+        }
+      });
+      mcQuizOptions.appendChild(optionEl);
+    });
+  }
+
+  ///
+  ///
+
   ////////////////////////////////////////////////////////////
   //QUIZ
   //
@@ -372,20 +485,25 @@ window.onload = function () {
   async function quizShowScore() {
     quizAmountCorrect.textContent = state.quizStats.numCorrect;
     quizAmountCorrectPercentage.textContent = utilMethods.percentage(state.quizStats.numCorrect, state.quizStats.numAnswered).toString() + "%";
-    soloReveal(quizModal, mainContainer);
+
+    // soloReveal(quizModal, mainContainer);
+    quizModal.style.visibility = "visible";
+    quizModal.style.zIndex = 101;
     utilMethods.emphasize(quizModal);
-    await utilMethods.delay(2200);
-    soloHide(quizModal, mainContainer);
+    await utilMethods.delay(1600);
+    // soloHide(quizModal, mainContainer);
+    quizModal.style.visibility = "hidden";
+    quizModal.style.zIndex = 0;
     utilMethods.enableInput(quizAnswerInput);
   }
   function soloReveal(element, mainContainer) {
     element.style.visibility = "visible";
-    element.style.zIndex = "10";
+    element.style.zIndex = 101;
     utilMethods.showHide([], [mainContainer]);
   }
   function soloHide(element, mainContainer) {
     element.style.visibility = "hidden";
-    element.style.zIndex = "0";
+    element.style.zIndex = 0;
     utilMethods.showHide([mainContainer], []);
   }
   function resetQuizProperty(quizStats) {
@@ -605,6 +723,9 @@ window.onload = function () {
     updateDifficultyRange();
     if (state.activity === "multiple-choice") {
       newQuestion(state.activity, state.activeOperators, mcCreateOptions);
+    }
+    if (state.activity === "multiple-choice-quiz") {
+      newQuestion(state.activity, state.activeOperators, mcQuizCreateOptions);
     } else {
       newQuestion(state.activity, state.activeOperators);
     }

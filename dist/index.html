@@ -18,13 +18,13 @@
 
     <div class="spacer"></div>
     <div id="burger-container" class="burger-container box-container">
-  
+
       <div class="burger open" id="burger">
        <span></span>
        <span></span>
        <span></span>
-        
-  
+
+
       </div>
     </div>
     <div id="activity-alert-modal" class="message-modal">
@@ -37,9 +37,12 @@
       <div class="message-intro">You got <span id="amountCorrect" class="amountCorrect"></span> /10 Correct! </br> That's <span id="amountCorrectPercentage" class="amountCorrect"> </span>
       </div>
     </div>
-    
+    <div id="mc-quiz-modal" class="message-modal">
+      <div class="message-intro">You got <span id="mc-quiz-amountCorrect" class="amountCorrect"></span> /10 Correct! </br> That's <span id="mc-quiz-amountCorrectPercentage" class="amountCorrect"> </span>
+      </div>
+    </div>
   <!--   <form id="user-submit" class="login-container">
-  
+
       <input type="text" autocomplete="off" placeholder="username" name="login" class="login-input">
       <button type="submit" for="name" class="login-button">Log-In</button>
     </form> -->
@@ -66,27 +69,27 @@
         <div class="activity-group">
         <div class="top">
           <div class="header">What would you like to do?</div>
-          
+
         </div>
         <div class="middle">
           <div class="middle-inner">
 
 
-            
+
             <div class="inner">
               <div class=" icon-container quiz activity-choice" id="new-real" data-type="real">
                 <p></p>
                 <i class="pen-icon icon fas fa-pen fa-large"></i>
-             
-    
+
+
               </div>
               <p class="icon-text">Test Mode</p>
             </div>
 
 
-            
-         
-            
+
+
+
             <div class="inner">
               <div class=" icon-container mc activity-choice" id="new-practice" data-type="practice">
                 <p></p>
@@ -95,22 +98,22 @@
               <p class="icon-text">Practice Mode</p>
             </div>
 
-     
+
         </div>
-      </div> 
+      </div>
       </div>
 
       <div class="nav-buttons">
         <div class="nav-right"> <button class="nav-button"  id="activity-menu-forward" >
-            
+
           <i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button></div>
           </div>
         <!-- <div class="bottom"> -->
           <!-- <button class="nav-button"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button> -->
-         
-         
+
+
         <!-- </div> -->
-   
+
 
 </div>
 
@@ -122,19 +125,19 @@
         <div class="activity-group">
         <div class="top">
           <div class="header">Test Mode</div>
-          
+
         </div>
         <div class="middle">
           <div class="middle-inner">
 
 
             <div class="inner">
-    
+
               <div  class=" icon-container game real-choice" id="new-game" data-type="game">
                 <p></p>
                 <i class=" game-icon icon fas fa-crown fa-large"></i>
-             
-    
+
+
               </div>
               <p class="icon-text">High Score Challenge</p>
             </div>
@@ -142,16 +145,16 @@
               <div class=" icon-container quiz real-choice" id="new-quiz" data-type="quiz">
                 <p></p>
                 <i class="pen-icon icon fas fa-pen fa-large"></i>
-             
-    
+
+
               </div>
               <p class="icon-text">Pop Quiz</p>
             </div>
 
 
-            
-     
-            
+
+
+
 
             <div class="inner">
               <div class=" icon-container mc real-choice" id="new-mc-quiz" data-type="multiple-choice-quiz">
@@ -160,7 +163,7 @@
               </div>
               <p class="icon-text">Mulitple Choice</p>
             </div>
-    
+
           </div>
         </div>
       </div>
@@ -168,31 +171,31 @@
         <div class="nav-left nav-left-lower">          <button class="nav-button"  id="real-menu-backward-lower"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button>
         </div>
         <div class="nav-right"> <button class="nav-button"  id="real-menu-forward" >
-            
+
           <i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button></div>
           </div>
         <!-- <div class="bottom"> -->
           <!-- <button class="nav-button"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button> -->
-         
-         
+
+
         <!-- </div> -->
       </div>
 
-      
+
       <div class="practice-menu-container display-container" id="practice-menu-container">
         <div class="nav-left nav-left-upper "> <button class="nav-button " id="practice-menu-backward-upper"><i class="forward-arrow fas fa-arrow-left fa-lg"></i></button>
         </div>
         <div class="activity-group">
         <div class="top">
           <div class="header">Practice Mode</div>
-          
+
         </div>
         <div class="middle">
           <div class="middle-inner">
 
 
 
-            
+
             <div class="inner">
               <div class=" icon-container flash practice-choice" id="new-flash" data-type="flash">
                 <p></p>
@@ -200,10 +203,10 @@
 
               </div>
               <p class="icon-text">Flash Cards</p>
-    
+
             </div>
-            
-            
+
+
             <div class="inner">
               <div class=" icon-container mc practice-choice" id="new-mc" data-type="multiple-choice">
                 <p></p>
@@ -212,8 +215,8 @@
               <p class="icon-text">Multiple Choice</p>
             </div>
 
-           
-    
+
+
           </div>
         </div>
       </div>
@@ -221,13 +224,13 @@
         <div class="nav-left nav-left-lower">          <button class="nav-button"  id="practice-menu-backward-lower"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button>
       </div>
         <div class="nav-right"> <button class="nav-button"  id="practice-menu-forward" >
-            
+
           <i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button></div>
           </div>
         <!-- <div class="bottom"> -->
           <!-- <button class="nav-button"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button> -->
-         
-         
+
+
         <!-- </div> -->
       </div>
 
@@ -237,15 +240,15 @@
         <div class="operator-group">
         <div class="top">
           <div class="header">What would you like to learn about?</div>
-  
-         
+
+
         </div>
         <div class="middle">
           <div class="middle-inner">
           <div class="inner">
             <div class=" icon-container add operator-choice" data-sub="+" id="add">
               <i class="plus-icon icon fas fa-plus fa-large"></i>
-              
+
             </div>
             <div class="operator-text addition">Addition</div>
           </div>
@@ -254,10 +257,10 @@
             <i class=" minus-icon icon fas fa-minus fa-large"></i>
             </div>
             <div class="operator-text subtraction">Subtraction</div>
-    
+
           </div>
           <div class="inner">
-            <div class=" icon-container mult operator-choice" data-sub="x" id="mul"> 
+            <div class=" icon-container mult operator-choice" data-sub="x" id="mul">
               <i class=" times-icon icon fas fa-times fa-large"></i></div>
             <div class="operator-text multiplication">Multiplication</div>
 
@@ -279,10 +282,10 @@
     </div>
   </div>
         <!-- <div class="bottom"> -->
-          
+
         <!-- </div> -->
       </div>
-      
+
 
       <div class="difficulty-menu-container display-container" id="difficulty-menu-container">
         <div class="nav-left nav-left-upper"> <button class="nav-button" id="difficulty-menu-backward-upper"><i class=" forward-arrow fas fa-arrow-left fa-lg"></i></button>
@@ -290,15 +293,15 @@
         <div class="difficulty-group">
         <div class="top">
           <div class="header">Select Difficulty</div>
-    
+
         </div>
         <div class="middle difficulty">
-    
+
           <!-- <label  class="difficulty-text difficulty-text-title" for="range-input">Select a level:</label> -->
           <span   class="difficulty-text difficulty-text-number" id="range-value">1</span>
           <p  class="difficulty-text difficulty-text-description"  id="level-text">Easy</p>
           <input type="range" id="range-input" min="1" max="5" value="1" class="range-slider">
-    
+
         </div>
       </div>
       <div class="nav-buttons">
@@ -308,13 +311,13 @@
     </div>
   </div>
         <!-- <div class="bottom">
-    
+
           -->
-      
+
         <!-- </div> -->
       </div>
 
-<!--       
+<!--
       <div class="menu-container box-container display-container" id="menu-container">
 
               <div class="difficulty-container">
@@ -327,7 +330,7 @@
             <button id="dif-5" class="diff-button">5</button>
           </div>
         </div>
-        
+
         <div class="subjects-bar">
           <div class="menu-title">Operator</div>
         <div class=" menu-box">
@@ -340,27 +343,108 @@
         <div class="choose-container">
           <div class="menu-title"> Activity</div>
         <div class="menu-box" id="choose-container">
-           
+
           <button class="new-game choose-option" id="new-game" data-type="game">
             Game
-         
+
           </button>
           <button class="new-quiz choose-option" id="new-quiz" data-type="quiz">Quiz</button>
           <button class="new-mc choose-option" id="new-mc" data-type="multiple-choice">Practice</button>
           <button class="new-flash choose-option" id="new-flash" data-type="flash" >Flash</button>
-          
+
         </div>
           </div>
 
       </div>
    -->
-  
+
+
+   <div class="mc-quiz-container sub-container display-container" id="mc-quiz-container">
+
+
+
+    <div class="mc-top">
+
+        <div class="titles-group">
+          <div class="titles-left">
+        <h2 class="activity-title mc">Multiple Choice</h2>  <h2 class="activity-type"> Quiz</h2> </div>
+        <div class="title-icon"><i class=" mc-icon icon fas fa-list-ol fa-large"></i>
+        </div>
+        <!-- <div class="ops-diff">
+          <p class="ops">Operators: <span id="operators-display"> +, -</span></p>
+          <p class="ops">Difficulty: <span id="difficulty-display">4</span></p>
+        </div> -->
+      </div>
+
+    </div>
+    <div class="mc-middle-lower">
+    <div class="mc-middle">
+      <form id="mc-quiz-answer-form" class="question-box mc-question-box">
+        <!-- <div class="wood"> -->
+        <div id="mc-quiz-question-box" class="question mc-question">
+          <div id="mc-quiz-first-number" class="question-number question-text"></div>
+          <div id="mc-quiz-first-operator" class="operator question-text"></div>
+          <div id="mc-quiz-second-number" class="question-number question-text"></div>
+<!--             <div id="mc-second-operator" class="operator question-text">=</div>
+
+          <input type="number" min="0" id="mc-answer-input" class="input" placeholder="?" autocomplete="off"></input> -->
+        </div>
+      <!-- </div> -->
+<!--           <button type="submit" id="mc-answer-submit-btn" class="answer-submit">ENTER</button> -->
+      </form>
+    </div>
+    <div class="mc-bottom">
+      <div id="mc-quiz-options-container" class="options-container">
+        <div id="mc-quiz-options" class="options"></div>
+      </div>
+    </div>
+    <div class="mc-quiz-stats">
+      <div class="mc-question-number">
+        <p>Question:</p><span id="mc-question-number"></span>
+      </div>
+      <div class="mc-num-correct"> <p>Correct:</p><span id="mc-questions-correct"></span> </div>
+      <!-- <div class="mc-num-answered"></div> -->
+    </div>
+  </div>
+<!--         <div class="mc-scores-container">
+        <div class="mc-curr-score-container">
+          Curr Score:<p id="mc-curr-score"></p>
+          <p>/</p>
+          <p id="mc-curr-question"></p>
+
+        </div>
+        <div class="mc-last-score-container">
+          Last Score:<p id="mc-last-score"></p>
+
+          <p>/</p>
+          <p>10</p>
+
+        </div>
+      </div> -->
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div class="mc-container sub-container display-container" id="mc-container">
-      
-        
-        
+
+
+
         <div class="mc-top">
-          
+
             <div class="titles-group">
               <div class="titles-left">
             <h2 class="activity-title mc">Multiple Choice</h2>  <h2 class="activity-type"> Practice</h2> </div>
@@ -371,7 +455,7 @@
               <p class="ops">Difficulty: <span id="difficulty-display">4</span></p>
             </div> -->
           </div>
-         
+
         </div>
         <div class="mc-middle-lower">
         <div class="mc-middle">
@@ -382,7 +466,7 @@
               <div id="mc-first-operator" class="operator question-text"></div>
               <div id="mc-second-number" class="question-number question-text"></div>
   <!--             <div id="mc-second-operator" class="operator question-text">=</div>
-  
+
               <input type="number" min="0" id="mc-answer-input" class="input" placeholder="?" autocomplete="off"></input> -->
             </div>
           <!-- </div> -->
@@ -400,22 +484,22 @@
               Curr Score:<p id="mc-curr-score"></p>
               <p>/</p>
               <p id="mc-curr-question"></p>
-  
+
             </div>
             <div class="mc-last-score-container">
               Last Score:<p id="mc-last-score"></p>
-  
+
               <p>/</p>
               <p>10</p>
-  
+
             </div>
           </div> -->
-  
-        
-  
+
+
+
       </div>
 
-      <div class="flash-container sub-container display-container"  id="flash-container">     
+      <div class="flash-container sub-container display-container"  id="flash-container">
     <div class="flash-upper">
         <div class="titles-group">
           <div class="titles-left">
@@ -429,15 +513,15 @@
       </div>
     </div>
       <div class="flash-card-container middle flash-middle" id="flash-card">
-    
+
         <!-- <div class="wood"> -->
             <div id="flash-question-box question" class="flash-box flash-question-box">
               <div id="flash-first-number" class="question-number flash-text"></div>
               <div id="flash-first-operator" class="operator flash-text"></div>
               <div id="flash-second-number" class="question-number flash-text"></div>
-  
-  
-  
+
+
+
             </div>
           <!-- </div> -->
           <div class=" flash-box flash-answer-box" id="flash-answer-box">
@@ -447,7 +531,7 @@
         </div>
       </div>
 
-      
+
       <div class="quiz-container sub-container display-container" id="quiz-container">
         <!-- <div class="quiz-box"> -->
           <div class="titles-group ">
@@ -464,7 +548,7 @@
               <div id="quiz-first-operator" class="operator question-text"></div>
               <div id="quiz-second-number" class="question-number question-text"></div>
               <div id="quiz-second-operator" class="operator question-text">=</div>
-  
+
               <input type="number" min="0" id="quiz-answer-input" class="input quiz-input" placeholder="?" autocomplete="off"></input>
             </div>
             <button type="submit" id="quiz-answer-submit-btn" class="answer-submit">Check</button>
@@ -477,30 +561,30 @@
             <div class="actual" id="quiz-actual"></div>
           </div> -->
         </div>
-        
+
           <div class="quiz-scores-container">
             <div class="quiz-curr-score-container">
               Current Score:<p id="quiz-curr-score"></p>
               <p>/</p>
               <p id="quiz-curr-question"></p>
-  
+
             </div>
             <div class="quiz-last-score-container">
               Last Score:<p id="quiz-last-score"></p>
-  
+
               <p>/</p>
               <p>10</p>
-  
+
             </div>
           </div>
         </div>
         </div>
         <!-- </div> -->
-  
+
       </div>
-  
+
       <div class="game-container sub-container display-container" id="game-container">
-  
+
         <!-- <h1 class="title">Game</h1><h3 class="title-description">How many in a row can you answer correctly?</h3> -->
         <div class="top game-top">
         <div class="titles-group game-titles-group">
@@ -510,23 +594,23 @@
     </div>
   </div>
 
-    </div>    
+    </div>
     <div class="game-middle-inner">
       <div class="game-middle-lower">
         <div class="game-box">
-  
+
           <form id="game-answer-form" class="question-box game-questiion-box">
             <div class="question game-question">
               <div id="game-first-number" class="question-number question-text"></div>
               <div id="game-first-operator" class="operator question-text"></div>
               <div id="game-second-number" class="question-number question-text"></div>
               <div id="game-second-operator" class="operator question-text">=</div>
-  
+
               <input type="number" min="0" id="game-answer-input" class="input game-input" placeholder="?" autocomplete="off"></input>
             </div>
             <button type="submit" id="answer-submit-btn" class="answer-submit">Check</button>
           </form>
-  
+
         </div>
         <div class="game-lower-landscape">
         <div class="game-lower">
@@ -538,7 +622,7 @@
             <div class="actual" id="game-actual"></div>
           </div>
         </div>
-     
+
         <div class="score-container">
           <div class="curr-score-container">
             <div class="score-title">Current Score:</div>
@@ -556,12 +640,12 @@
             <div class="level-number" id="game-level-number">0</div>
           </div>
           <div class="tracker-container" id="game-tracker-container">
-  
+
             <div class="tracker" id="game-tracker"></div>
           </div>
-          
+
             <div class="tracker-container" id="game-tracker-container-2">
-  
+
             <div class="tracker" id="game-tracker-2"></div>
           </div>
         </div>
@@ -569,8 +653,8 @@
       </div>
       </div>
       </div>
-  
+
     </div>
-  
+
   </body>
 </html>

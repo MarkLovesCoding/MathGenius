@@ -34,7 +34,6 @@ export const state = {
     }
   },
   activity: null,
-  type: null,
   mcQuizActive: {
     mcqNumAnswered: 0,
     mcqFailedAttempts: 0,

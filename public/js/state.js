@@ -18,7 +18,6 @@ export const state = {
         5: { name: "Genius!", color: "purple" }
       },
     activity:null,
-    type:null,
     mcQuizActive:{
       mcqNumAnswered:0,
       mcqFailedAttempts:0,

@@ -729,7 +729,7 @@ body {
   align-items: center;
 }
 
-.mc-container {
+.mc-container, .mc-quiz-container {
   display: none;
   justify-content: center;
 }
@@ -1429,6 +1429,26 @@ body {
     margin-top: 0;
   }
 }
+.mc-quiz-stats, .mc-question-number, .mc-num-correct {
+  display: flex;
+  color: #eae6df;
+  font-size: 1em;
+}
+
+.mc-quiz-stats {
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.mc-question-number, .mc-num-correct {
+  padding-top: 10px;
+  flex-direction: row;
+  align-items: center;
+}
+.mc-question-number > p, .mc-num-correct > p {
+  padding-right: 10px;
+}
+
 @media only screen and (max-aspect-ratio: 1.75) and (orientation: portrait) {
   /* CSS code for tablet devices */
   .header {
