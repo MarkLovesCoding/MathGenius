@@ -46,18 +46,18 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
     let n1 = utilMethods.randomNumber(0, state.activeHighVal);
     let n2 = utilMethods.randomNumber(0, state.activeHighVal);
+    console.log('test 1');
     console.log(n1, n2, o1)
     console.log(opEl)
     console.log(n1El);
     console.log(n2El);
     console.log(operators);
+      
     if (o1 === "x") {
-      console.log("activeMH:",state.activeMultiplyHighVal)
+    
       n1 = utilMethods.randomNumber(state.activeMultiplyLowVal, state.activeMultiplyHighVal);
-      console.log(n1);
       n2 = utilMethods.randomNumber(state.activeMultiplyLowVal, state.activeMultiplyHighVal);
-      console.log(n2);
-      console.log("CHECK")
+
     }
     if (o1 === "÷") {
       while (n1 % n2 != 0) {
@@ -852,12 +852,14 @@ for (let el of difficultyMenuBackwards){
   difficultyMenuForward.addEventListener("click",(e)=>{
     updateDifficultyRange()
     if (state.activity === "multiple-choice"){
+
       newQuestion(state.activity,state.activeOperators,mcCreateOptions)
     }
-    if (state.activity === "multiple-choice-quiz"){
+    else if (state.activity === "multiple-choice-quiz"){
       newQuestion(state.activity,state.activeOperators,mcQuizCreateOptions)
     }
     else{
+
     newQuestion(state.activity,state.activeOperators)
     }
 })
@@ -938,7 +940,7 @@ function updateOperators(operatorChoices) {
   let amount = 0;
   for (let i = 0; i < 4; i++) {
     if (operatorChoices[i].classList.contains("active-operator")) {
-      console.log("this one: ", i)
+
       let operatorText;
       switch(operatorChoices[i].getAttribute("id")){
         case "add":
