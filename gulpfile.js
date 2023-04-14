@@ -24,6 +24,16 @@ function transpileJs() {
 
 gulp.task('babel', transpileJs);
 
+//transpile for build
+function transpileBuildJs() {
+  return gulp.src('public/js/**/*.js')
+    .pipe(babel())
+    .pipe(gulp.dest('dist/js'));
+}
+
+gulp.task('babel-build', transpileBuildJs);
+
+
 // Copy HTML files to dist folder
 function copyHtml() {
   return gulp.src('public/**/*.html')
@@ -75,7 +85,7 @@ console.log(process.env.NODE_ENV);
     
  gulp.task('build-project',buildProject);
 
-    gulp.task('build', gulp.series('sass', 'babel', 'copy-html', 'copy-assets', 'build-project'));
+    gulp.task('build', gulp.series('sass', 'babel-build', 'copy-html', 'copy-assets', 'build-project'));
 
 gulp.task('default', gulpif(isDev, gulp.task('dev'), gulp.task('build')));
 
