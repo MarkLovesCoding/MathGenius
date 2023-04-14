@@ -713,7 +713,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 //     newQuestion(e.target.getAttribute("data-type"))
 //   })
 
-
+const loginMenuForward = document.getElementById("login-menu-forward")
+const activityMenuBackwardUpper = document.getElementById("activity-menu-backward-upper")
+const activityMenuBackwardLower = document.getElementById("activity-menu-backward-lower")
   const activityMenuForward = document.getElementById("activity-menu-forward")
 
   const realMenuForward = document.getElementById("real-menu-forward")
@@ -732,6 +734,8 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward")
   const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower")
+  const activityMenuBackwards = [activityMenuBackwardUpper,activityMenuBackwardLower];
+
   const operatorMenuBackwards = [operatorMenuBackwarUpper,operatorMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
   const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower]
@@ -747,6 +751,16 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
 const activityAlert = document.getElementById("activity-alert-modal")
 const operatorAlert = document.getElementById("operator-alert-modal")
+
+
+
+
+loginMenuForward.addEventListener('click',async(e)=>[
+  utilMethods.loadSection('activity-menu')
+])
+
+
+
 
   activityMenuForward.addEventListener("click",async(e)=>{
     console.log("go forward");
@@ -795,10 +809,22 @@ const operatorAlert = document.getElementById("operator-alert-modal")
   })
 
 
+  // activityMenuBackwardUpper.addEventListener("click",(e)=>{
+  //   console.log('upper test ');
+  //   utilMethods.loadSection("login-menu")
+  // })
+  // activityMenuBackwardLower.addEventListener("click",(e)=>{
+  //   console.log('lower test ');
+
+  //   utilMethods.loadSection("login-menu")
+  // })
+  for (let el of activityMenuBackwards){
+    el.addEventListener("click",(e)=>{
 
 
-
-
+      utilMethods.loadSection("login-menu")
+    })
+  }
 
 
   for (let el of operatorMenuBackwards){
@@ -858,7 +884,7 @@ for (let el of difficultyMenuBackwards){
     else if (state.activity === "multiple-choice-quiz"){
       newQuestion(state.activity,state.activeOperators,mcQuizCreateOptions)
     }
-    else{
+    else{ 
 
     newQuestion(state.activity,state.activeOperators)
     }

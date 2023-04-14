@@ -601,6 +601,9 @@ window.onload = function () {
   //     newQuestion(e.target.getAttribute("data-type"))
   //   })
 
+  const loginMenuForward = document.getElementById("login-menu-forward");
+  const activityMenuBackwardUpper = document.getElementById("activity-menu-backward-upper");
+  const activityMenuBackwardLower = document.getElementById("activity-menu-backward-lower");
   const activityMenuForward = document.getElementById("activity-menu-forward");
   const realMenuForward = document.getElementById("real-menu-forward");
   const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper");
@@ -615,6 +618,7 @@ window.onload = function () {
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward");
   const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper");
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower");
+  const activityMenuBackwards = [activityMenuBackwardUpper, activityMenuBackwardLower];
   const operatorMenuBackwards = [operatorMenuBackwarUpper, operatorMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower];
   const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower];
@@ -628,6 +632,7 @@ window.onload = function () {
   }
   const activityAlert = document.getElementById("activity-alert-modal");
   const operatorAlert = document.getElementById("operator-alert-modal");
+  loginMenuForward.addEventListener('click', async e => [utilMethods.loadSection('activity-menu')]);
   activityMenuForward.addEventListener("click", async e => {
     console.log("go forward");
     if (updateActivity(activitiesChoices, 2) == null || undefined) {
@@ -671,6 +676,20 @@ window.onload = function () {
     // utilMethods.loadSection('real-menu')
   });
 
+  // activityMenuBackwardUpper.addEventListener("click",(e)=>{
+  //   console.log('upper test ');
+  //   utilMethods.loadSection("login-menu")
+  // })
+  // activityMenuBackwardLower.addEventListener("click",(e)=>{
+  //   console.log('lower test ');
+
+  //   utilMethods.loadSection("login-menu")
+  // })
+  for (let el of activityMenuBackwards) {
+    el.addEventListener("click", e => {
+      utilMethods.loadSection("login-menu");
+    });
+  }
   for (let el of operatorMenuBackwards) {
     el.addEventListener("click", e => {
       utilMethods.loadSection("activity-menu");
