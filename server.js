@@ -18,9 +18,9 @@ const app = express();
 //   outputStyle: 'expanded'
 // }));
 
-if (process.env.NODE_ENV === 'development') {
-  require('./dev.js');
-}
+// if (process.env.NODE_ENV === 'development') {
+//   require('./dev.js');
+// }
 
 // set up the logger middleware
 app.use(morgan('dev'));
@@ -31,15 +31,22 @@ app.use(cors());
 
 // Set up Content Security Policy middleware
 
+// set up the home route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/routes/login.html'));
+});
+app.get('/play', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+
 
 // serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// set up the home route
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
-});
+
+
 
 // start the server
 const port = 4000;
