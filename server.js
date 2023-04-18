@@ -1,26 +1,17 @@
 const express = require('express');
-// const sassMiddleware = require('node-sass-middleware');
 const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const helmet = require('helmet');
-// const csp = require('helmet-csp');
+const passport = require('passport')
+const session = require('express-session')
+const routes = require('./routes/routes');
+const passportConfig = require('./passport'); // import the passport configuration
+
+
 
 const app = express();
 
-// set up the Sass middleware
-// app.use(sassMiddleware({
-//   src: path.join(__dirname, 'public'),
-//   dest: path.join(__dirname, 'public'),
-//   indentedSyntax:false,
-//   debug: true,
-//   outputStyle: 'expanded'
-// }));
-
-// if (process.env.NODE_ENV === 'development') {
-//   require('./dev.js');
-// }
 
 // set up the logger middleware
 app.use(morgan('dev'));
@@ -29,23 +20,50 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-// Set up Content Security Policy middleware
 
+ app.use(session({
+  secret: 'my-secret-key-2lkj2n3ifulsidfnlkj3r23r232nkiiiicc7s8s873hdkn4k',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+app.use(passport.initialize()) 
+ app.use(passport.session())
+
+
+
+const requireAuth = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    // redirect to login page if not authenticated
+    return res.redirect('/login');
+  }
+  next();
+}
+app.use('/', routes);
+
+
+app.get('/', requireAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 // set up the home route
-app.get('/', (req, res) => {
+app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/routes/login.html'));
 });
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+
 app.get('/play', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/routes/play.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/routes/signup.html'));
 });
 
 
 
 // serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'dist')));
-// app.use(express.static(path.join(__dirname, 'public')));
-
-
+app.use(express.static(path.join(__dirname, 'dist'))  );
 
 
 // start the server

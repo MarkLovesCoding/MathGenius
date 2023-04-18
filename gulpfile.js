@@ -104,6 +104,8 @@ console.log(process.env.NODE_ENV);
             routes:{
               "/":'./dist/routes/login.html',
               "/play":'./dist/routes/play.html',
+              "/login":'./dist/routes/login.html',
+              "/signup":'./dist/routes/signup.html',
             }
           },
         });

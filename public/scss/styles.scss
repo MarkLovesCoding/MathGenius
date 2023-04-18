@@ -794,8 +794,8 @@ background:rgba(255, 255, 255, 0.25);
   display:none;
 }
 
-.login-menu-container, .activity-menu-container,.middle, .top,.bottom{
-  display:flex;
+.login-menu-container, .signup-menu-container, .activity-menu-container,.middle, .top,.bottom{
+  display:flex; 
 
 
 }
@@ -1347,7 +1347,7 @@ background:rgba(255, 255, 255, 0.25);
 
 
   /* Container */
-  .login-container {
+  .login-container, .signup-container {
     max-width: 500px;
     margin: 0 auto;
     padding: 40px;
@@ -1357,7 +1357,7 @@ background:rgba(255, 255, 255, 0.25);
   }
   
   /* Headings */
-  .login-header {
+  .login-header,.signup-header {
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 32px;
@@ -1366,11 +1366,11 @@ background:rgba(255, 255, 255, 0.25);
   }
   
   /* Form */
-  .login-form-group {
+  .login-form-group , .signup-form-group{
     margin-bottom: 20px;
   }
   
-  .login-label {
+  .login-label, .signup--label {
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -1378,8 +1378,8 @@ background:rgba(255, 255, 255, 0.25);
     color: #333;
   }
   
-  .login-input[type="text"],
-  .login-input[type="password"] {
+  .login-input[type="text"], .signup-input[type="text"],
+  .login-input[type="password"], .signup-input[type="password"] {
     width: 100%;
     padding: 8px 16px;
     border: 1px solid #ccc;
