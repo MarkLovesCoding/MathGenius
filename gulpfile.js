@@ -5,6 +5,15 @@ const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
 require('dotenv').config();
 // Compile SASS
+
+gulp.task('browser-sync', function() {
+  browserSync.init({
+      socket: {
+          domain:'localhost:4000'
+      }
+  });
+});
+
 function compileSass() {
   return gulp.src('public/scss/styles.scss')
     .pipe(sass())
@@ -82,10 +91,9 @@ console.log(process.env.NODE_ENV);
 
     gulp.task('dev', gulp.series('sass', 'babel', 'copy-html', startServer));
 
-    
+
  gulp.task('build-project',buildProject);
 
     gulp.task('build', gulp.series('sass', 'babel-build', 'copy-html', 'copy-assets', 'build-project'));
 
 gulp.task('default', gulpif(isDev, gulp.task('dev'), gulp.task('build')));
-
