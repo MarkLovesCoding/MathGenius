@@ -83,7 +83,7 @@ MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true }, (
   });
 
   // Set up routes
-  const loginRoute = require('./routes/login');
+  const loginRoute = require('./public/routes/login');
   app.use('/', loginRoute(db));
 });
 

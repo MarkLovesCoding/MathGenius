@@ -713,7 +713,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 //     newQuestion(e.target.getAttribute("data-type"))
 //   })
 
-const loginMenuForward = document.getElementById("login-menu-forward")
 const activityMenuBackwardUpper = document.getElementById("activity-menu-backward-upper")
 const activityMenuBackwardLower = document.getElementById("activity-menu-backward-lower")
   const activityMenuForward = document.getElementById("activity-menu-forward")
@@ -754,10 +753,11 @@ const operatorAlert = document.getElementById("operator-alert-modal")
 
 
 
+// const loginMenuForward = document.getElementById("login-menu-forward")
 
-loginMenuForward.addEventListener('click',async(e)=>[
-  utilMethods.loadSection('activity-menu')
-])
+// loginMenuForward.addEventListener('click',async(e)=>[
+//   utilMethods.loadSection('activity-menu')
+// ])
 
 
 
