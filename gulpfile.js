@@ -5,6 +5,15 @@ const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
 require('dotenv').config();
 // Compile SASS
+
+gulp.task('browser-sync', function() {
+  browserSync.init({
+      socket: {
+          domain:'localhost:4000'
+      }
+  });
+});
+
 function compileSass() {
   return gulp.src('public/scss/styles.scss')
     .pipe(sass())
