@@ -6,13 +6,7 @@ const browserSync = require('browser-sync').create();
 require('dotenv').config();
 // Compile SASS
 
-gulp.task('browser-sync', function() {
-  browserSync.init({
-      socket: {
-          domain:'localhost:4000'
-      }
-  });
-});
+
 
 function compileSass() {
   return gulp.src('public/scss/styles.scss')
@@ -60,12 +54,19 @@ gulp.task('copy-assets', copyAssets);
 
 // Start browser-sync server
 function startServer() {
-  browserSync.init({
-    port: 4000,
-    server: {
-      baseDir: './dist',
-    },
-  });
+
+  // browserSync.init({
+
+  //   port: 4000,
+  //   server: {
+  //     baseDir: './dist',
+  //     index:'routes/login.html',
+  //     routes:{
+  //       "/":'./dist/routes/login.html',
+  //       "/play":'./dist/routes/play.html',
+  //     }
+  //   },
+  // });
 
   gulp.watch('public/scss/**/*.scss', compileSass);
   gulp.watch('public/js/**/*.js', transpileJs);
@@ -89,7 +90,34 @@ let isDev = process.env.NODE_ENV.trim() == 'development';
 
 console.log(process.env.NODE_ENV);
 
-    gulp.task('dev', gulp.series('sass', 'babel', 'copy-html', startServer));
+    gulp.task('dev', gulp.series('sass', 'babel', 'copy-html', 
+    
+    function startDevServer(done){
+      if (isDev){
+
+        browserSync.init({
+
+          port: 4000,
+          server: {
+            baseDir: './dist',
+            index:'routes/login.html',
+            routes:{
+              "/":'./dist/routes/login.html',
+              "/play":'./dist/routes/play.html',
+            }
+          },
+        });
+
+        startServer();
+        done()
+      }
+      else{
+        done()
+      }
+   
+  
+    }
+    ));
 
 
  gulp.task('build-project',buildProject);

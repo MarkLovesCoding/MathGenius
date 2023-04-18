@@ -601,8 +601,8 @@ window.onload = function () {
   //     newQuestion(e.target.getAttribute("data-type"))
   //   })
 
-  const activityMenuBackwardUpper = document.getElementById("activity-menu-backward-upper");
-  const activityMenuBackwardLower = document.getElementById("activity-menu-backward-lower");
+  // const activityMenuBackwardUpper = document.getElementById("activity-menu-backward-upper")
+  // const activityMenuBackwardLower = document.getElementById("activity-menu-backward-lower")
   const activityMenuForward = document.getElementById("activity-menu-forward");
   const realMenuForward = document.getElementById("real-menu-forward");
   const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper");
@@ -617,7 +617,8 @@ window.onload = function () {
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward");
   const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper");
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower");
-  const activityMenuBackwards = [activityMenuBackwardUpper, activityMenuBackwardLower];
+  // const activityMenuBackwards = [activityMenuBackwardUpper,activityMenuBackwardLower];
+
   const operatorMenuBackwards = [operatorMenuBackwarUpper, operatorMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower];
   const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower];
@@ -690,11 +691,13 @@ window.onload = function () {
 
   //   utilMethods.loadSection("login-menu")
   // })
-  for (let el of activityMenuBackwards) {
-    el.addEventListener("click", e => {
-      utilMethods.loadSection("login-menu");
-    });
-  }
+  // for (let el of activityMenuBackwards){
+  //   el.addEventListener("click",(e)=>{
+
+  //     utilMethods.loadSection("login-menu")
+  //   })
+  // }
+
   for (let el of operatorMenuBackwards) {
     el.addEventListener("click", e => {
       utilMethods.loadSection("activity-menu");

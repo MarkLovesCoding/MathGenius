@@ -33,17 +33,17 @@ app.use(cors());
 
 // set up the home route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/routes/login.html'));
+  res.sendFile(path.join(__dirname, 'dist/routes/login.html'));
 });
 app.get('/play', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/routes/play.html'));
 });
 
 
 
 // serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 
 

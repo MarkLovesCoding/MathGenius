@@ -713,8 +713,8 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 //     newQuestion(e.target.getAttribute("data-type"))
 //   })
 
-const activityMenuBackwardUpper = document.getElementById("activity-menu-backward-upper")
-const activityMenuBackwardLower = document.getElementById("activity-menu-backward-lower")
+// const activityMenuBackwardUpper = document.getElementById("activity-menu-backward-upper")
+// const activityMenuBackwardLower = document.getElementById("activity-menu-backward-lower")
   const activityMenuForward = document.getElementById("activity-menu-forward")
 
   const realMenuForward = document.getElementById("real-menu-forward")
@@ -733,7 +733,7 @@ const activityMenuBackwardLower = document.getElementById("activity-menu-backwar
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward")
   const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower")
-  const activityMenuBackwards = [activityMenuBackwardUpper,activityMenuBackwardLower];
+  // const activityMenuBackwards = [activityMenuBackwardUpper,activityMenuBackwardLower];
 
   const operatorMenuBackwards = [operatorMenuBackwarUpper,operatorMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
@@ -818,13 +818,13 @@ const operatorAlert = document.getElementById("operator-alert-modal")
 
   //   utilMethods.loadSection("login-menu")
   // })
-  for (let el of activityMenuBackwards){
-    el.addEventListener("click",(e)=>{
+  // for (let el of activityMenuBackwards){
+  //   el.addEventListener("click",(e)=>{
 
 
-      utilMethods.loadSection("login-menu")
-    })
-  }
+  //     utilMethods.loadSection("login-menu")
+  //   })
+  // }
 
 
   for (let el of operatorMenuBackwards){
