@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
+const mongoURI = 'mongodb://localhost:27017/mydb';
 
-// Replace <database-name> with the name of your database
-mongoose.connect('mongodb://localhost:27017/<database-name>', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  console.log('Connected to MongoDB');
-}).catch((err) => {
-  console.log(`Error connecting to MongoDB: ${err}`);
-});
+mongoose.connect(mongoURI, { useNewUrlParser: true })
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(`MongoDB Error: ${err}`));
+
+const db = mongoose.connection;
+
+module.exports = db;
