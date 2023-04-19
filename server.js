@@ -5,7 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
-const routes = require('./routes/routes');
+const routes = require('./routes');
 const passportConfig = require('./config/passport-config');
 const db = require('./db/db');
 

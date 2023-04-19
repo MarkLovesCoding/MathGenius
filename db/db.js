@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb://localhost:27017/mydb';
+const mongoURI = 'mongodb://localhost:27017/mathgenius';
 
 mongoose.connect(mongoURI, { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))

@@ -34,8 +34,8 @@ function passportConfig(passport) {
 
   // configure Google strategy
   passport.use(new GoogleStrategy({
-    clientID: process.env.clientID,
-    clientSecret: process.env.clientSecret,
+    clientID: "1005807464121-k2r2f22oiemmc5o16936b3so662i02vm.apps.googleusercontent.com",
+    clientSecret:"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",
     callbackURL: '/auth/google/callback'
   }, (accessToken, refreshToken, profile, done) => {
     User.findOne({ googleId: profile.id }, (err, user) => {
