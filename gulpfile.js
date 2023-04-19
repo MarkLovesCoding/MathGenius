@@ -19,7 +19,7 @@ gulp.task('sass', compileSass);
 
 // Transpile JS with Babel
 function transpileJs() {
-  return gulp.src('public/**/**/*.js')
+  return gulp.src('public/js/**/*.js')
     .pipe(babel())
     .pipe(gulp.dest('dist/js'))
     .pipe(browserSync.stream());
@@ -29,7 +29,7 @@ gulp.task('babel', transpileJs);
 
 //transpile for build
 function transpileBuildJs() {
-  return gulp.src('public/**/**/*.js')
+  return gulp.src('public/js/**/*.js')
     .pipe(babel())
     .pipe(gulp.dest('dist/js'));
 }

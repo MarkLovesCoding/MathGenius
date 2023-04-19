@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport')
 const session = require('express-session')
 const routes = require('./routes/routes');
-const passportConfig = require('./passport'); // import the passport configuration
-
+const passportConfig = require('./config/passport-config'); // import the passport configuration
+const db = require('./db/db');
 
 
 const app = express();
@@ -30,7 +30,7 @@ app.use(cors());
 app.use(passport.initialize()) 
  app.use(passport.session())
 
-
+ passportConfig(passport);
 
 const requireAuth = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -45,9 +45,24 @@ app.use('/', routes);
 app.get('/', requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+
+// 
+
+// app.get('/', (req, res) => {
+//   db.collection('myCollection').find().toArray((err, data) => {
+//     if (err) throw err;
+//     res.send(data);
+//   });
+// });
+// 
+
+
+
+
+
 // set up the home route
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/routes/login.html'));
+  res.sendFile(path.join(__dirname, 'dist/views/login.html'));
 });
 
 app.post('/login',
@@ -57,13 +72,15 @@ app.get('/play', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 app.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/routes/signup.html'));
+  res.sendFile(path.join(__dirname, 'dist/views/signup.html'));
 });
 
 
 
 // serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'dist'))  );
+
+
 
 
 // start the server

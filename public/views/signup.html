@@ -1,0 +1,72 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=0 , initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes" >
+<title>Math Genius</title>
+<link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="/css/styles.css">
+<!-- <script type="module" src="/js/index.js"></script> -->
+<!-- <script type="module" src="/js/signup-script.js"></script> -->
+
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Delicious+Handrawn&family=Fredericka+the+Great&family=Mansalva&family=Pangolin&family=Short+Stack&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <div class="signup-menu-container display-container" id="signup-menu-container">
+        <!-- <div class="nav-left nav-left-upper hide-from-view"> <button class="nav-button hide-from-view " id="signup-menu-backward"><i class="forward-arrow fas fa-arrow-left fa-lg"></i></button> -->
+        <!-- </div> -->
+     
+          <div class="signup-container">
+            <h1 class="signup-header">Sign Up</h1>
+            <form id="signup-form" action="/signup" method="post">
+              <div class="form-group">
+                <label  class="signup-label" for="username">Email:</label>
+                <input class="signup-input" type="text" id="username" name="username" required>
+              </div>
+              <div class="signup-form-group">
+                <label  class="signup-label" for="password">Password:</label>
+                <input class="signup-input" type="password" id="password" name="password" required>
+              </div>
+              <div class="signup-form-group">
+                <button type="submit" class="btn btn-primary">SignUp</button>
+              </div>
+            </form>
+            <div class="signup-form-group">
+              <a href="/auth/google" class="btn btn-google">
+                <span class="material-icons">person</span>
+                Sign Up with Google
+              </a>
+            </div>
+            <div class="signup-form-group">
+              <a href="/login">Have an account alread? Log in now!</a>
+            </div>
+            <div class="guest">
+                <a href="/play">Play as a guest.</a>
+              </div>
+            
+          </div>
+   
+
+      <!-- <div class="nav-buttons">
+        <div class="nav-right"> <button class="nav-button"  onclick="window.location.href='/play'" id="signup-menu-forward" >
+
+          <i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button></div>
+          </div> -->
+        <!-- <div class="bottom"> -->
+          <!-- <button class="nav-button"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button> -->
+
+
+        <!-- </div> -->
+
+
+</div>
+
+</body>
+</html>
