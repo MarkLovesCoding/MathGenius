@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
+  username:{
+    type:String,
+    required:true,
+    unique:true
+  },
   email: {
     type: String,
     required: true,
@@ -36,6 +41,7 @@ UserSchema.pre('save', function (next) {
 
 // Compare user's password with hashed password
 UserSchema.methods.comparePassword = function (passw, cb) {
+
   bcrypt.compare(passw, this.password, (err, isMatch) => {
     if (err) {
       return cb(err);
