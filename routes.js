@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const path = require('path');
-
+const User = require('./models/User')
 
 
 const requireAuth = (req, res, next) => {
@@ -23,7 +23,7 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+  passport.authenticate('local', { successRedirect: '/play', failureRedirect: '/login' }));
 
 router.get('/play', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
@@ -53,17 +53,62 @@ router.get('/signup', (req, res) => {
 //   res.render('signup', { title: 'Sign Up' });
 // });
 
-router.post('/signup', function(req, res, next) {
-  const { firstName, lastName, email, password } = req.body;
-  const user = new User({ firstName, lastName, email, password });
-  user.save(function(err) {
-    if (err) { return next(err); }
+// router.post('/signup', function(req, res, next) {
+//   const { firstName, lastName, email, password } = req.body;
+//   const user = new User({ email, password });
+//   user.save(function(err) {
+//     if (err) { return next(err); }
+//     req.logIn(user, function(err) {
+//       if (err) { return next(err); }
+//       return res.redirect('/play');
+//     });
+//   });
+// });
+// router.post('/signup', function(req, res, next) {
+//   const { email, password } = req.body;
+//   const user = new User({ email, password });
+//   user.save()
+//     .then(() => {
+//       req.logIn(user, function(err) {
+//         if (err) { return next(err); }
+//         return res.redirect('/play');
+//       });
+//     })
+//     .catch((err) => next(err));
+// });
+
+
+// router.post('/signup', (req, res) => {
+//   const {email, password } = req.body;
+//   const user = new User({email, password });
+//   user.save()
+//     .then(user => res.send(user))
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).send(err);
+//     });
+// });
+router.post('/signup', async function(req, res, next) {
+  const { username, email, password } = req.body;
+
+  // Check if email field exists and is not empty
+  if (!email) {
+    return res.status(400).json({ error: 'Email field is required' });
+  }
+
+  const user = new User({ username, email, password });
+  try {
+    await user.save();
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('/profile');
+      return res.redirect('/play');
     });
-  });
+  } catch (err) {
+    return next(err);
+  }
 });
+
+
 
 router.get('/logout', function(req, res){
   req.logout();
