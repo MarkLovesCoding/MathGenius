@@ -96,7 +96,7 @@ router.post('/signup', async function(req, res, next) {
     return res.status(400).json({ error: 'Email field is required' });
   }
 
-  const user = new User({ username, email, password });
+  const user = new User({ username, email, password, authType:'local' });
   try {
     await user.save();
     req.logIn(user, function(err) {
