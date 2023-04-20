@@ -100,12 +100,12 @@ console.log(process.env.NODE_ENV);
           port: 4000,
           server: {
             baseDir: './dist',
-            index:'routes/login.html',
+            index:'views/login.html',
             routes:{
-              "/":'./dist/routes/login.html',
-              "/play":'./dist/routes/play.html',
-              "/login":'./dist/routes/login.html',
-              "/signup":'./dist/routes/signup.html',
+              "/":'./dist/views/login.html',
+              "/play":'./dist/index.html',
+              "/login":'./dist/views/login.html',
+              "/signup":'./dist/views/signup.html',
             }
           },
         });

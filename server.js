@@ -29,6 +29,7 @@ app.use(passport.session());
 
 passportConfig(passport);
 
+
 app.use('/', routes);
 
 // serve static files from the public directory
