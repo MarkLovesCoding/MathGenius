@@ -89,16 +89,22 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-// Compare user's password with hashed password
-UserSchema.methods.comparePassword = function (passw, cb) {
-
-  bcrypt.compare(passw, this.password, (err, isMatch) => {
-    if (err) {
-      return cb(err);
-    }
-    cb(null, isMatch);
-  });
+UserSchema.methods.comparePassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
 };
+
+
+
+// Compare user's password with hashed password
+// UserSchema.methods.comparePassword = function (passw, cb) {
+
+//   bcrypt.compare(passw, this.password, (err, isMatch) => {
+//     if (err) {
+//       return cb(err);
+//     }
+//     cb(null, isMatch);
+//   });
+// };
 
 const User = mongoose.model('User', UserSchema);
 

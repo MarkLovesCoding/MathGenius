@@ -43,7 +43,7 @@ passport.deserializeUser(async (id, done) => {
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
+      if (!user.comparePassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);
@@ -87,7 +87,7 @@ passport.use(new GoogleStrategy({
     const user = await User.findOne({ googleId: profile.id });
     if (!user) {
       const newUser = new User({
-  
+        username: profile.displayName ? profile.displayName : profile.id,
          email: profile.emails && profile.emails.length ? profile.emails[0].value : '',
         googleId: profile.id,
         authType:'google'

@@ -2,8 +2,8 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const path = require('path');
-const User = require('./models/User')
-
+const User = require('./models/User');
+const Swal = require('sweetalert2');
 
 const requireAuth = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -33,61 +33,6 @@ router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/views/signup.html'));
 });
 
-
-
-
-
-
-
-// router.get('/login', function(req, res, next) {
-//   res.render('login', { title: 'Login' });
-// });
-
-// router.post('/login', passport.authenticate('local', {
-//   successRedirect: '/profile',
-//   failureRedirect: '/login',
-//   failureFlash: true
-// }));
-
-// router.get('/signup', function(req, res, next) {
-//   res.render('signup', { title: 'Sign Up' });
-// });
-
-// router.post('/signup', function(req, res, next) {
-//   const { firstName, lastName, email, password } = req.body;
-//   const user = new User({ email, password });
-//   user.save(function(err) {
-//     if (err) { return next(err); }
-//     req.logIn(user, function(err) {
-//       if (err) { return next(err); }
-//       return res.redirect('/play');
-//     });
-//   });
-// });
-// router.post('/signup', function(req, res, next) {
-//   const { email, password } = req.body;
-//   const user = new User({ email, password });
-//   user.save()
-//     .then(() => {
-//       req.logIn(user, function(err) {
-//         if (err) { return next(err); }
-//         return res.redirect('/play');
-//       });
-//     })
-//     .catch((err) => next(err));
-// });
-
-
-// router.post('/signup', (req, res) => {
-//   const {email, password } = req.body;
-//   const user = new User({email, password });
-//   user.save()
-//     .then(user => res.send(user))
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).send(err);
-//     });
-// });
 router.post('/signup', async function(req, res, next) {
   const { username, email, password } = req.body;
 
@@ -104,23 +49,34 @@ router.post('/signup', async function(req, res, next) {
       return res.redirect('/play');
     });
   } catch (err) {
-    return next(err);
+    console.log("swal should run here")
+    if (err.code === 11000) { // Duplicate email error
+     
+      Swal.fire({
+        icon: 'error',
+        title: 'Sign up failed',
+        text: 'This email has already been registered'
+      });
+    } else { // Other error
+      Swal.fire({
+        icon: 'error',
+        title: 'Sign up failed',
+        text: 'An error occurred while signing up'
+      });
+    }
+    return res.redirect('/signup');
   }
 });
 
-
-
 router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+  req.logout(function(err){
+    if(err){
+      console.log(err);
+      return next(err);
+    }
+    res.redirect('/');
+  });
 });
-
-// router.get('/profile', isLoggedIn, function(req, res){
-//   res.render('profile', { title: 'Profile', user: req.user });
-// });
-
-
-
 
 // route for Google authentication
 router.get(
@@ -147,5 +103,3 @@ router.post(
 );
 
 module.exports = router;
-
-

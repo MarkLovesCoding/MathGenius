@@ -51,6 +51,7 @@ $DesktopIconTextSize: 20px;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  -webkit-user-select: none;
   user-select:none;
 }
 
@@ -1388,6 +1389,25 @@ background:rgba(255, 255, 255, 0.25);
     line-height: 1.5;
   }  
 
+.logout-container{
+  position:absolute;
+  bottom:25px;
+  right:25px;
+
+}
+.logout-btn{
+  appearance: none;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+ &>*{
+  font-size:16px;
+  font-family:'Pangolin';
+  color:$chalk-white;
+ }
+}
 
 
 
@@ -1425,10 +1445,26 @@ background:rgba(255, 255, 255, 0.25);
 
 
 
+//maybe should be on landscape media query not sure
 
+.mc-quiz-stats,.mc-question-number,.mc-num-correct{
+  display:flex;
+  color:$chalk-white;
+  font-size:1em;
+}
+.mc-quiz-stats{
+  flex-direction:column;
+  padding-top:10px;
+}
 
-
-
+.mc-question-number,.mc-num-correct{
+  padding-top:10px;
+  flex-direction:row;
+  align-items:center;
+  &>p{
+    padding-right:10px;
+  }
+}
 
 
 
@@ -1581,24 +1617,6 @@ padding-top:50px;
 
   // /* 
 
-  .mc-quiz-stats,.mc-question-number,.mc-num-correct{
-    display:flex;
-    color:$chalk-white;
-    font-size:1em;
-  }
-  .mc-quiz-stats{
-    flex-direction:column;
-    padding-top:10px;
-  }
-
-  .mc-question-number,.mc-num-correct{
-    padding-top:10px;
-    flex-direction:row;
-    align-items:center;
-    &>p{
-      padding-right:10px;
-    }
-  }
 @media only screen  and (max-aspect-ratio:1.75) and (orientation:portrait) {
   /* CSS code for tablet devices */
 

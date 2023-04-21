@@ -883,4 +883,8 @@ window.onload = function () {
     rangeInput.style.setProperty('--thumb-color', sliderColor);
     levelText.textContent = state.difficultyLevels[selectedDifficulty].name;
   });
+  const logoutBtn = document.getElementById('logout-btn');
+  logoutBtn.addEventListener('click', () => {
+    window.location.href = '/logout';
+  });
 }; //close window.onload function
