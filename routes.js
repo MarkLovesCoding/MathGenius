@@ -72,28 +72,58 @@ router.get('/login', (req, res) => {
   //   })(req, res, next);
   // });
   
+  // router.post('/login', (req, res, next) => {
+  //   passport.authenticate('local', (err, user, info) => {
+      
+  //     console.log('err', err);
+  //     console.log('user', user);
+  //     console.log('info', info);
+  //     if (err) {
+  //       return next(err);
+  //     }
+  //     if (!user) {
+  //       console.log("invalid username????");
+  //       return res.status(401).json({ error: 'Invalid username or password' });
+  //     }
+  //     req.logIn(user, (err) => {
+  //       if (err) {
+  //         return next(err);
+  //       }
+  //       return res.status(200).json({ message: 'Login successful' });
+  //     });
+  //   })(req, res, next);
+  // });
+  
   router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
-      
-      console.log('err', err);
-      console.log('user', user);
-      console.log('info', info);
       if (err) {
-        return next(err);
+        console.log(" error first")
+        req.flash('error', 'An error occurred while logging in. Please try again.');
+        return res.redirect('/login');
       }
       if (!user) {
-        console.log("invalid username????");
-        return res.status(401).json({ error: 'Invalid username or password' });
+        console.log(" error username pass")
+
+        req.flash('error', 'Invalid username or password.');
+        return res.redirect('/login');
       }
       req.logIn(user, (err) => {
         if (err) {
+        console.log(" error logging in")
+
+          req.flash('error', 'An error occurred while logging in. Please try again.');
           return next(err);
         }
-        return res.status(200).json({ message: 'Login successful' });
+        req.flash('success', 'Login successful!');
+        return res.redirect('/play');
       });
     })(req, res, next);
   });
   
+
+
+
+
 
 router.get('/play', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
