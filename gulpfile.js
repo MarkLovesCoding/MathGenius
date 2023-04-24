@@ -4,14 +4,14 @@ const babel = require('gulp-babel');
 const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
 const clean = require('gulp-clean')
-
+const nodemon = require('gulp-nodemon')
 require('dotenv').config();
 // Compile SASS
 
 
 gulp.task('clean', function () {
   return gulp.src('dist/*')
-      .pipe(clean());
+    .pipe(clean());
 });
 
 
@@ -97,41 +97,55 @@ let isDev = process.env.NODE_ENV.trim() == 'development';
 
 console.log(process.env.NODE_ENV);
 
-    gulp.task('dev', gulp.series('clean','sass', 'babel', 'copy-html', 
-    
-    function startDevServer(done){
-      if (isDev){
+gulp.task('dev', gulp.series('clean', 'sass', 'babel', 'copy-html',
 
-        browserSync.init({
-
-          port: 4000,
-          server: {
-            baseDir: './dist',
-            index:'views/login.html',
-            routes:{
-              "/":'./dist/views/login.html',
-              "/play":'./dist/index.html',
-              "/login":'./dist/views/login.html',
-              "/signup":'./dist/views/signup.html',
-              "/logout":'./dist/views/login.html',
-            }
-          },
-        });
-
-        startServer();
-        done()
-      }
-      else{
-        done()
-      }
-   
-  
-    }
-    ));
+  function startDevServer(){
+ 
+    nodemon({
+      script: 'server.js',
+      watch: 'server.js' // watch the server file for changes
+    });
+    startServer();
 
 
- gulp.task('build-project',buildProject);
+  }
 
-    gulp.task('build', gulp.series('clean','sass', 'babel-build', 'copy-html', 'copy-assets', 'build-project'));
+
+
+
+  // function startDevServer(done) {
+  //   if (isDev) {
+
+  //     browserSync.init({
+
+  //       port: 4000,
+  //       server: {
+  //         baseDir: './dist',
+  //         index: 'views/login.html',
+  //         routes: {
+  //           "/": './dist/views/login.html',
+  //           "/play": './dist/index.html',
+  //           "/login": './dist/views/login.html',
+  //           "/signup": './dist/views/signup.html',
+  //           "/logout": './dist/views/login.html',
+  //         }
+  //       },
+  //     });
+
+  //     startServer();
+  //     done()
+  //   }
+  //   else {
+  //     done()
+  //   }
+
+
+  // }
+));
+
+
+gulp.task('build-project', buildProject);
+
+gulp.task('build', gulp.series('clean', 'sass', 'babel-build', 'copy-html', 'copy-assets', 'build-project'));
 
 gulp.task('default', gulpif(isDev, gulp.task('dev'), gulp.task('build')));

@@ -1,6 +1,6 @@
 const express = require('express');
-const flash = require('connect-flash')
-const session = require('express-session')
+// const flash = require('connect-flash')
+// const session = require('express-session')
 const passport = require('passport');
 const router = express.Router();
 const path = require('path');
@@ -17,7 +17,7 @@ const requireAuth = (req, res, next) => {
   next();
 };
 
-router.use(flash());
+// router.use(flash());
 // set up the home route
 router.get('/', requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
@@ -32,23 +32,23 @@ router.get('/login', (req, res) => {
     passport.authenticate('local', (err, user, info) => {
       if (err) {
         console.log(" error first")
-        req.flash('error', 'An error occurred while logging in. Please try again.');
+        // req.flash('error', 'An error occurred while logging in. Please try again.');
         return res.redirect('/login');
       }
       if (!user) {
         console.log(" error username pass")
 
-        req.flash('error', 'Invalid username or password.');
+        // req.flash('error', 'Invalid username or password.');
         return res.redirect('/login');
       }
       req.login(user, (err) => {
         if (err) {
         console.log(" error logging in")
 
-          req.flash('error', 'An error occurred while logging in. Please try again.');
+          // req.flash('error', 'An error occurred while logging in. Please try again.');
           return next(err);
         }
-        req.flash('success', 'Login successful!');
+        // req.flash('success', 'Login successful!');
         return res.redirect('/play');
       });
     })(req, res, next);
@@ -86,9 +86,9 @@ router.post('/signup', async function(req, res, next) {
     });
   } catch (err) {
     if (err.code === 11000) { // Duplicate email error
-      req.flash('error', 'This email has already been registered');
+      // req.flash('error', 'This email has already been registered');
     } else { // Other error
-      req.flash('error', 'An error occurred while signing up');
+      // req.flash('error', 'An error occurred while signing up');
     }
     return res.redirect('/signup');
   }
