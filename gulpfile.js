@@ -3,9 +3,16 @@ const sass = require('gulp-sass')(require('sass'));
 const babel = require('gulp-babel');
 const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
+const clean = require('gulp-clean')
+
 require('dotenv').config();
 // Compile SASS
 
+
+gulp.task('clean', function () {
+  return gulp.src('dist/*')
+      .pipe(clean());
+});
 
 
 function compileSass() {
@@ -90,7 +97,7 @@ let isDev = process.env.NODE_ENV.trim() == 'development';
 
 console.log(process.env.NODE_ENV);
 
-    gulp.task('dev', gulp.series('sass', 'babel', 'copy-html', 
+    gulp.task('dev', gulp.series('clean','sass', 'babel', 'copy-html', 
     
     function startDevServer(done){
       if (isDev){
@@ -106,6 +113,7 @@ console.log(process.env.NODE_ENV);
               "/play":'./dist/index.html',
               "/login":'./dist/views/login.html',
               "/signup":'./dist/views/signup.html',
+              "/logout":'./dist/views/login.html',
             }
           },
         });
@@ -124,6 +132,6 @@ console.log(process.env.NODE_ENV);
 
  gulp.task('build-project',buildProject);
 
-    gulp.task('build', gulp.series('sass', 'babel-build', 'copy-html', 'copy-assets', 'build-project'));
+    gulp.task('build', gulp.series('clean','sass', 'babel-build', 'copy-html', 'copy-assets', 'build-project'));
 
 gulp.task('default', gulpif(isDev, gulp.task('dev'), gulp.task('build')));

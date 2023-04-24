@@ -22,6 +22,11 @@ app.use(session({
   secret: 'my-secret-key-2lkj2n3ifulsidfnlkj3r23r232nkiiiicc7s8s873hdkn4k',
   resave: false,
   saveUninitialized: false,
+  rolling: true,
+  cookie: {
+    secure: false,
+    maxAge: (5 * 1000)
+  }
 }));
 
 app.use(passport.initialize());

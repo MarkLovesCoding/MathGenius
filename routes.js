@@ -5,7 +5,9 @@ const passport = require('passport');
 const router = express.Router();
 const path = require('path');
 const User = require('./models/User');
-const Swal = require('sweetalert2');
+const passportConfig = require('./config/passport-config');
+
+passportConfig(passport);
 
 const requireAuth = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -14,11 +16,7 @@ const requireAuth = (req, res, next) => {
   }
   next();
 };
-router.use(session({
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: true
-}));
+
 router.use(flash());
 // set up the home route
 router.get('/', requireAuth, (req, res) => {
@@ -29,71 +27,7 @@ router.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/views/login.html'));
 });
 
-// router.post('/login',
-//   passport.authenticate('local', { successRedirect: '/play', failureRedirect: '/login' }));
 
-  // router.post('/login', passport.authenticate('local', {
-  //   successRedirect: '/play',
-  //   failureRedirect: '/login',
-  //   // failureFlash: true
-  // }), (req, res, next) => {
-  //   // This middleware will only be executed if there is an authentication error
-  //   const errors = req.flash('error');
-  //   const errorMessage = errors.length ? errors[0] : 'Unknown error';
-  //   if (errorMessage) {
-  //     res.status(401).json({ error: errorMessage });
-  //   } else {
-  //     res.status(200).json({ message: 'Login successful' });
-  //   }
-  // });
-  
-
-  // router.post('/login', (req, res, next) => {
-  //   passport.authenticate('local', (err, user, info) => {
-  //     if (err) {
-  //       return next(err);
-  //     }
-  //     if (!user) {
-  //       switch (info.type) {
-  //         case 'username':
-  //           return res.status(401).json({ error: 'Incorrect username' });
-  //         case 'password':
-  //           return res.status(401).json({ error: 'Incorrect password' });
-  //         default:
-  //           return res.status(401).json({ error: 'Unknown error' });
-  //       }
-  //     }
-  //     req.logIn(user, (err) => {
-  //       if (err) {
-  //         return next(err);
-  //       }
-  //       return res.status(200).json({ message: 'Login successful' });
-  //     });
-  //   })(req, res, next);
-  // });
-  
-  // router.post('/login', (req, res, next) => {
-  //   passport.authenticate('local', (err, user, info) => {
-      
-  //     console.log('err', err);
-  //     console.log('user', user);
-  //     console.log('info', info);
-  //     if (err) {
-  //       return next(err);
-  //     }
-  //     if (!user) {
-  //       console.log("invalid username????");
-  //       return res.status(401).json({ error: 'Invalid username or password' });
-  //     }
-  //     req.logIn(user, (err) => {
-  //       if (err) {
-  //         return next(err);
-  //       }
-  //       return res.status(200).json({ message: 'Login successful' });
-  //     });
-  //   })(req, res, next);
-  // });
-  
   router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
       if (err) {
@@ -107,7 +41,7 @@ router.get('/login', (req, res) => {
         req.flash('error', 'Invalid username or password.');
         return res.redirect('/login');
       }
-      req.logIn(user, (err) => {
+      req.login(user, (err) => {
         if (err) {
         console.log(" error logging in")
 
@@ -133,43 +67,6 @@ router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/views/signup.html'));
 });
 
-// router.post('/signup', async function(req, res, next) {
-//   const { username, email, password } = req.body;
-
-//   // Check if email field exists and is not empty
-//   if (!email) {
-//     return res.status(400).json({ error: 'Email field is required' });
-//   }
-
-//   const user = new User({ username, email, password, authType:'local' });
-//   try {
-//     await user.save();
-//     req.logIn(user, function(err) {
-//       if (err) { return next(err); }
-//       return res.redirect('/play');
-//     });
-//   } catch (err) {
-//     console.log("swal should run here")
-//     if (err.code === 11000) { // Duplicate email error
-     
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Sign up failed',
-//         text: 'This email has already been registered'
-//       });
-//     } else { // Other error
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Sign up failed',
-//         text: 'An error occurred while signing up'
-//       });
-//     }
-//     return res.redirect('/signup');
-//   }
-// });
-
-
-
 
 
 router.post('/signup', async function(req, res, next) {
@@ -183,7 +80,7 @@ router.post('/signup', async function(req, res, next) {
   const user = new User({ username, email, password, authType:'local' });
   try {
     await user.save();
-    req.logIn(user, function(err) {
+    req.login(user, function(err) {
       if (err) { return next(err); }
       return res.redirect('/play');
     });
@@ -198,19 +95,6 @@ router.post('/signup', async function(req, res, next) {
 });
 
 
-
-
-
-
-router.get('/logout', function(req, res){
-  req.logout(function(err){
-    if(err){
-      console.log(err);
-      return next(err);
-    }
-    res.redirect('/');
-  });
-});
 
 // route for Google authentication
 router.get(
@@ -235,5 +119,23 @@ router.post(
     res.redirect('/');
   }
 );
+
+
+
+router.get('/logout', function(req, res) {
+  req.logout(function(err) {
+    if (err) {
+      console.log(err);
+    }
+    req.session.destroy(function(err) {
+      if (err) {
+        console.log(err);
+      }
+      res.redirect('/login');
+    });
+  });
+});
+
+
 
 module.exports = router;
