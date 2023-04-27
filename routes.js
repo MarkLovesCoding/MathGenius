@@ -26,26 +26,48 @@ router.get('/login', (req, res) => {
 });
 
 
+// router.post('/login', (req, res, next) => {
+//   passport.authenticate('local', (err, user, info) => {
+//     if (err) {
+//       console.log(" error first")
+//       return res.redirect('/login');
+//     }
+//     if (!user) {
+//       console.log(" error with username or pass")
+//       return res.redirect('/login');
+//     }
+//     req.login(user, (err) => {
+//       if (err) {
+//         console.log(" error logging in")
+//         return next(err);
+//       }
+//       return res.redirect('/play');
+//     });
+//   })(req, res, next);
+// });
+
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
+    console.log("userrouter:")
     if (err) {
       console.log(" error first")
-      return res.redirect('/login');
+      return res.status(401).json({message: err.message});
     }
     if (!user) {
       console.log(" error with username or pass")
-      return res.redirect('/login');
+      return res.status(401).json({message:"Invalid username or password."});
     }
     req.login(user, (err) => {
       if (err) {
         console.log(" error logging in")
         return next(err);
       }
-      return res.redirect('/play');
+      return res.status(200).json({success:true});
+
+      // return res.redirect('/play');
     });
   })(req, res, next);
 });
-
 
 
 

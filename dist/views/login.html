@@ -21,15 +21,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <input type="hidden" id="login-error-message" value="">
-  <div class="login-error-message" id="login-error-message"></div>
+  
+
 
     <div class="login-menu-container display-container" id="login-menu-container">
         <!-- <div class="nav-left nav-left-upper hide-from-view"> <button class="nav-button hide-from-view " id="login-menu-backward"><i class="forward-arrow fas fa-arrow-left fa-lg"></i></button>
         </div> -->
-     
           <div class="login-container">
             <h1 class="login-header">Login</h1>
+        <div class="login-error-message" id="login-error-message">errorMESSAGE: </div>
+
             <form id="login-form" action="/login" method="post">
            
               <div class="login-form-group">
@@ -75,6 +76,6 @@
 </div>
 
 
-<!-- <script type="module" src="/js/formInteraction.js"></script> -->
+<script type="module" src="/js/formInteraction.js"></script>
 </body>
 </html>

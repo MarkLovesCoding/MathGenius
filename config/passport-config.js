@@ -1,4 +1,4 @@
-// const passport = require('passport');
+const passport = require('passport');
 require('dotenv').config()
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -27,16 +27,19 @@ passport.deserializeUser(async (id, done) => {
 
 
   passport.use(new LocalStrategy(async (username, password, done) => {
+    console.log("LOCAL STRATEGY:")
     try {
       const user = await User.findOne({ username: username, authType: 'local' });
+      console.log("user , local",user)
       if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
+        return done(null, false);
       }
       if (!user.comparePassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
+        return done(null, false);
       }
       return done(null, user);
     } catch (err) {
+      console.log("err , local",username)
       return done(err);
     }
   }));
