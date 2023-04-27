@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use(session({
-  secret: 'my-secret-key-2lkj2n3ifulsidfnlkj3r23r232nkiiiicc7s8s873hdkn4k',
+  secret: process.env.MY_SECRET,
   resave: false,
   saveUninitialized: false,
   rolling: true,
