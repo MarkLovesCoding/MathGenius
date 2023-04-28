@@ -15,40 +15,18 @@ const requireAuth = (req, res, next) => {
   next();
 };
 
-
 // set up the home route
 router.get('/', requireAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.render('index');
 });
 
 router.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/views/login.html'));
+  res.render('login');
 });
-
-
-// router.post('/login', (req, res, next) => {
-//   passport.authenticate('local', (err, user, info) => {
-//     if (err) {
-//       console.log(" error first")
-//       return res.redirect('/login');
-//     }
-//     if (!user) {
-//       console.log(" error with username or pass")
-//       return res.redirect('/login');
-//     }
-//     req.login(user, (err) => {
-//       if (err) {
-//         console.log(" error logging in")
-//         return next(err);
-//       }
-//       return res.redirect('/play');
-//     });
-//   })(req, res, next);
-// });
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    console.log("userrouter:")
+    console.log("userrouter:");
     if (err) {
       console.log(" error first")
       return res.status(401).json({message: err.message});
@@ -63,25 +41,17 @@ router.post('/login', (req, res, next) => {
         return next(err);
       }
       return res.status(200).json({success:true});
-
-      // return res.redirect('/play');
     });
   })(req, res, next);
 });
 
-
-
-
-
 router.get('/play', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.render('index');
 });
 
 router.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/views/signup.html'));
+  res.render('signup');
 });
-
-
 
 router.post('/signup', async function (req, res, next) {
   const { username, email, password } = req.body;
@@ -105,8 +75,6 @@ router.post('/signup', async function (req, res, next) {
     return res.redirect('/signup');
   }
 });
-
-
 
 // route for Google authentication
 router.get(
@@ -132,8 +100,6 @@ router.post(
   }
 );
 
-
-
 router.get('/logout', function (req, res) {
   req.logout(function (err) {
     if (err) {
@@ -147,7 +113,5 @@ router.get('/logout', function (req, res) {
     });
   });
 });
-
-
 
 module.exports = router;

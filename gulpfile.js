@@ -5,8 +5,9 @@ const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
 const clean = require('gulp-clean')
 const nodemon = require('gulp-nodemon')
+const ejs = require('gulp-ejs')
 require('dotenv').config();
-// Compile SASS
+
 
 
 gulp.task('clean', function () {
@@ -14,7 +15,7 @@ gulp.task('clean', function () {
     .pipe(clean());
 });
 
-
+// Compile SASS
 function compileSass() {
   return gulp.src('public/scss/styles.scss')
     .pipe(sass())
@@ -34,7 +35,7 @@ function transpileJs() {
 
 gulp.task('babel', transpileJs);
 
-//transpile for build
+// Transpile JS for build
 function transpileBuildJs() {
   return gulp.src('public/js/**/*.js')
     .pipe(babel())
@@ -43,15 +44,16 @@ function transpileBuildJs() {
 
 gulp.task('babel-build', transpileBuildJs);
 
-
-// Copy HTML files to dist folder
-function copyHtml() {
-  return gulp.src('public/**/*.html')
-    .pipe(gulp.dest('dist'));
+// Copy EJS files to dist folder
+function copyEjs() {
+  return gulp.src('public/views/**/*.ejs')
+    .pipe(ejs())
+    .pipe(gulp.dest('dist/views'));
 }
 
-gulp.task('copy-html', copyHtml);
+gulp.task('copy-ejs', copyEjs);
 
+// Copy assets to dist folder
 function copyAssets() {
   return gulp.src('public/assets/**/*')
     .pipe(gulp.dest('dist/assets'));
@@ -61,91 +63,44 @@ gulp.task('copy-assets', copyAssets);
 
 // Start browser-sync server
 function startServer() {
-
-  // browserSync.init({
-
-  //   port: 4000,
-  //   server: {
-  //     baseDir: './dist',
-  //     index:'routes/login.html',
-  //     routes:{
-  //       "/":'./dist/routes/login.html',
-  //       "/play":'./dist/routes/play.html',
-  //     }
-  //   },
-  // });
-
+  browserSync.init({
+    port: 4000,
+    server: {
+      baseDir: './dist',
+    },
+  });
+  
   gulp.watch('public/scss/**/*.scss', compileSass);
   gulp.watch('public/js/**/*.js', transpileJs);
-  gulp.watch('public/**/*.html').on('change', gulp.series('copy-html', browserSync.reload));
+  gulp.watch('public/views/**/*.ejs', gulp.series('copy-ejs', browserSync.reload));
 }
 
 // Build project
 function buildProject() {
-  return gulp.src(['public/**/*', '!public/scss', '!public/scss/**/*', '!public/js', '!public/js/**/*'])
+  return gulp.src(['public/**/*', '!public/scss', '!public/scss/**/*', '!public/js', '!public/js/**/*', '!public/views', '!public/views/**/*'])
     .pipe(gulp.dest('dist'));
 }
 
-
-// function copyAssets() {
-//     return gulp.src(['public/**/*', '!public/scss', '!public/scss/**/*', '!public/js', '!public/js/**/*'])
-//       .pipe(gulp.dest('dist'));
-//   }
 // Development tasks
 let isDev = process.env.NODE_ENV.trim() == 'development';
-// isDev = true;
 
-console.log(process.env.NODE_ENV);
-
-gulp.task('dev', gulp.series('clean', 'sass', 'babel', 'copy-html',
-
-  function startDevServer(){
- 
+gulp.task('dev', gulp.series('clean', 'sass', 'babel', 'copy-ejs', 'copy-assets',
+  function startDevServer() {
     nodemon({
       script: 'server.js',
       watch: 'server.js' // watch the server file for changes
     });
     startServer();
-
-
   }
-
-
-
-
-  // function startDevServer(done) {
-  //   if (isDev) {
-
-  //     browserSync.init({
-
-  //       port: 4000,
-  //       server: {
-  //         baseDir: './dist',
-  //         index: 'views/login.html',
-  //         routes: {
-  //           "/": './dist/views/login.html',
-  //           "/play": './dist/index.html',
-  //           "/login": './dist/views/login.html',
-  //           "/signup": './dist/views/signup.html',
-  //           "/logout": './dist/views/login.html',
-  //         }
-  //       },
-  //     });
-
-  //     startServer();
-  //     done()
-  //   }
-  //   else {
-  //     done()
-  //   }
-
-
-  // }
 ));
-
 
 gulp.task('build-project', buildProject);
 
-gulp.task('build', gulp.series('clean', 'sass', 'babel-build', 'copy-html', 'copy-assets', 'build-project'));
+gulp.task('build', gulp.series('clean', 'sass', 'babel-build', 'copy-ejs', 'copy-assets', 'build-project'));
+
+gulp.task('clean', function () {
+  return gulp.src('dist/*')
+    .pipe(clean());
+});
 
 gulp.task('default', gulpif(isDev, gulp.task('dev'), gulp.task('build')));

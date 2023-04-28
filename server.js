@@ -11,6 +11,8 @@ const db = require('./db/db');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './dist/views'));
 // set up the logger middleware
 app.use(morgan('dev'));
 
@@ -40,7 +42,7 @@ app.use('/', routes);
 // serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// start the server
+// start the servernpm run
 const port = 4000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
