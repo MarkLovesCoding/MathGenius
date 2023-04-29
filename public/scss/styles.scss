@@ -1417,11 +1417,47 @@ background:rgba(255, 255, 255, 0.25);
 
 
 
+.divider{
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+  padding:10px 0px;
+
+} .line{
+  width:40%;
+  height:1px;
+  background:black;
+
+}
+.or{
+  padding:15px 10px;
+  font-size:0.8em;
+}
 
 
+.login-form, .signup-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:10px;
+}
 
+.login-form-group, .signup-form-group{
+ width:100%
 
+}
 
+.login-form-button, .signup-form-button{
+  width:100%;
+  padding:10px;
+  font-family:'pangolin';
+  margin-top:20px;
+  cursor:pointer;
+  outline:none;
+}
 
 
 

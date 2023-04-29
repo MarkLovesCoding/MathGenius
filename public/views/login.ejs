@@ -29,7 +29,7 @@
           <p><%= loginMessage %></p><%} %>
          </div>
 
-            <form id="login-form" action="/login" method="post">
+            <form class="login-form" id="login-form" action="/login" method="post">
            
               <div class="login-form-group">
                 <label  class="login-label" for="username">Username:</label>
@@ -40,10 +40,13 @@
                 <input class="login-input" type="password" id="password" name="password" required>
               </div>
               <div class="login-form-group">
-                <button title="login-button" type="submit" class="btn btn-primary">Login</button>
+                <button title="login-button" type="submit" class="btn btn-primary login-form-button">Login</button>
               </div>
             </form>
-            <div class="login-form-group">
+
+            <div class="divider"><div class="line"></div><span class="or">or</span><div class="line"></div></div>
+
+            <!-- <div class="login-form-group">
               <a href="/auth/google" class="btn btn-google">
                 <span class="material-icons">person</span>
                 Login with Google
@@ -51,14 +54,24 @@
             </div>
             <div class="login-form-group">
               <a href="/signup">Don't have an account? Sign up now!</a>
-            </div>
+            </div> -->
+
+
+            <form  class="login-form-group" action="/auth/google" method="GET">
+              <label for="google"></label>
+              <button  class="btn btn-primary login-form-button google-button" id="google" type="submit">Sign in with Google</button>
+            </form>
+            <form  class="login-form-group"action="/signup" method="GET">
+              <label for="signup"></label>
+              <button  class="btn btn-primary login-form-button new-account-button" id="signup" type="submit">Create Account</button>
+            </form>
             <!-- <div class="guest">
                 <a href="/guest">Play as a guest.</a>
               </div>
              -->
-              <form action="/guest" method="POST">
-                <label for="guest">Play as guest</label>
-                <button id="guest" type="submit">Play as guest</button>
+              <form  class="login-form-group" action="/guest" method="POST">
+                <label for="guest"></label>
+                <button class="btn btn-primary login-form-button guest-button"  id="guest" type="submit">Play as guest</button>
               </form>
 
               
