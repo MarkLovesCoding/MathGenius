@@ -7,6 +7,11 @@ const passportConfig = require('./config/passport-config');
 
 passportConfig(passport);
 
+
+// 
+// Rendering Routes
+// 
+
 const requireAuth = (req, res, next) => {
   if (!req.isAuthenticated()) {
     // redirect to login page if not authenticated
@@ -17,11 +22,58 @@ const requireAuth = (req, res, next) => {
 
 // set up the home route
 router.get('/', requireAuth, (req, res) => {
-  res.render('index');
+  res.render('index',{
+    welcomeMessage:null,
+    userData:null
+  });
 });
 
 router.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login',{
+    loginMessage:""
+  });
+});
+
+router.post('/guest', async (req, res) => {
+  const username = 'guest' + Math.floor(Math.random() * 10000);
+  const guestEmail = `${username}@${username }.com`  // res.render('index',{
+  //   welcomeMessage:`Hi ${username}`,
+  //   userData:{
+  //     name:username,
+  //     session:{},
+  //     badges:[]
+  //   }
+  // })
+
+  try {
+    // Check if a guest user with this username already exists
+    let user = await User.findOne({ username: username, guest: true });
+
+    // If not, create a new user and save it to the database
+    if (!user) {
+      user = new User({
+        username: username,
+        email:guestEmail,
+        authType:'guest',
+        guest: true
+      });
+      await user.save();
+    }
+
+    // Render the "play" view with the guest user's data
+    res.render('index', {
+      welcomeMessage: `Hi ${user.username}`,
+      userData: {
+        name: user.username,
+        session: {},
+        badges: []
+      }
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
 });
 
 router.post('/login', (req, res, next) => {
@@ -29,28 +81,47 @@ router.post('/login', (req, res, next) => {
     console.log("userrouter:");
     if (err) {
       console.log(" error first")
-      return res.status(401).json({message: err.message});
+      return res.render('login',{
+        loginMessage:'Login Error Occurred. Try Again.'
+      });
     }
     if (!user) {
       console.log(" error with username or pass")
-      return res.status(401).json({message:"Invalid username or password."});
+      return res.render('login',{
+        loginMessage:'Invalid Username or Password.'
+      });
     }
     req.login(user, (err) => {
       if (err) {
         console.log(" error logging in")
         return next(err);
       }
-      return res.status(200).json({success:true});
+     
+
+      return res.render('index',{
+        welcomeMessage:`Hi ${user.username}`,
+        userData:{
+          _id:user._id,
+          name:user.name,
+          session:{},
+          badges:user.badges
+        }
+      });
     });
   })(req, res, next);
 });
 
 router.get('/play', (req, res) => {
-  res.render('index');
-});
+  res.render('index',{
+    welcomeMessage:req.data.welcomeMessage || "nowelcome",
+    userData:req.data.userData||"nodata"
+  });
+}); 
 
 router.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('signup',{
+    signupMessage:''
+  });
 });
 
 router.post('/signup', async function (req, res, next) {
@@ -58,22 +129,39 @@ router.post('/signup', async function (req, res, next) {
 
   // Check if email field exists and is not empty
   if (!email) {
-    return res.status(400).json({ error: 'Email field is required' });
+    return res.render('signup',{
+      errorMessage:`Email Required.`
+    });
   }
 
-  const user = new User({ username, email, password, authType: 'local' });
+  const user = new User({ username, email, password, authType: 'local',session:{},badges:[] });
   try {
     await user.save();
     req.login(user, function (err) {
       if (err) { return next(err); }
-      return res.redirect('/play');
+   
+      return res.render('index',{
+        welcomeMessage:`Hi ${username}`,
+        userData:{
+        }
+    })
     });
   } catch (err) {
     if (err.code === 11000) { // Duplicate email error
+      return res.render('signup',{
+        signupMessage:"Duplicate email. Please use a different email."
+        
+      });
     } else { // Other error
-    }
-    return res.redirect('/signup');
-  }
+      return res.render('signup',{
+        signupMessage:"Error Signing Up. Try Again."
+        
+      });
+    }}
+
+
+
+
 });
 
 // route for Google authentication
@@ -87,7 +175,14 @@ router.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
-    res.redirect('/');
+    const loadUser = req.user;
+
+    const profileName = loadUser.username
+    res.render('index',{
+      welcomeMessage:`Hi ${profileName}`,
+      userData:{
+      }
+    });
   }
 );
 
@@ -113,5 +208,21 @@ router.get('/logout', function (req, res) {
     });
   });
 });
+
+
+
+
+
+
+
+
+
+// Protected Routes
+// 
+// 
+
+
+
+
 
 module.exports = router;

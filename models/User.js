@@ -23,6 +23,7 @@ const bcrypt = require('bcrypt');
 // });
 
 const UserSchema = new mongoose.Schema({
+  guest:{type:Boolean, default:false},
   username:{
 type:String,
 required:function() {
@@ -44,14 +45,21 @@ required:function() {
   },
   authType: {
     type: String,
-    enum: ['local', 'google'],
+    enum: ['local', 'google','guest'],
     required: true
   },
   googleId: {
     type: String,
     required: function() {
       return this.authType === 'google';
-    }}
+    }},
+  session:{
+    type: Object,
+  },
+  badges:{
+  type:Array,
+
+}
 });
 
 

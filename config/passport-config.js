@@ -61,7 +61,9 @@ passport.use(new GoogleStrategy({
         username: profile.displayName ? profile.displayName : profile.id,
          email: profile.emails && profile.emails.length ? profile.emails[0].value : '',
         googleId: profile.id,
-        authType:'google'
+        authType:'google',
+        session:{},
+        badges:[]
       });
       await newUser.save();
       return done(null, newUser);
@@ -72,6 +74,30 @@ passport.use(new GoogleStrategy({
   }
 }));
 
+
+// try out guest login:
+
+
+passport.use('guest', new LocalStrategy( async (req, username, done) => {
+  try {
+    const existingUser = await User.findOne({ username: username ,authType:'local'});
+    if (existingUser && existingUser.guest) {
+      return done(null, existingUser);
+    } else {
+      const newUser = new User({
+        username: username,
+        guest: true,
+        authType:'guest',
+        session:{},
+        badges:[]
+      });
+      await newUser.save();
+      return done(null, newUser);
+    }
+  } catch (error) {
+    return done(error);
+  }
+}));
 
 
 

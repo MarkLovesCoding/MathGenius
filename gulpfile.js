@@ -47,7 +47,7 @@ gulp.task('babel-build', transpileBuildJs);
 // Copy EJS files to dist folder
 function copyEjs() {
   return gulp.src('public/views/**/*.ejs')
-    .pipe(ejs())
+    // .pipe(ejs())
     .pipe(gulp.dest('dist/views'));
 }
 
@@ -65,7 +65,7 @@ gulp.task('copy-assets', copyAssets);
 function startServer() {
   browserSync.init({
     port: 4000,
-    server: {
+    server: { 
       baseDir: './dist',
     },
   });
@@ -74,6 +74,19 @@ function startServer() {
   gulp.watch('public/js/**/*.js', transpileJs);
   gulp.watch('public/views/**/*.ejs', gulp.series('copy-ejs', browserSync.reload));
 }
+
+function devServer() {
+  // nodemon({
+  //   script: 'server.js', // Enter the name of your server script file
+  //   ext: 'js ejs html css', // The file types to watch for changes
+  //   ignore: ['node_modules/**'], // Directories to ignore when watching for changes
+  //   env: { 'NODE_ENV': 'development' } // Set the environment variable to development
+  // });
+  gulp.watch('public/scss/**/*.scss', compileSass);
+  gulp.watch('public/js/**/*.js', transpileJs);
+  gulp.watch('public/views/**/*.ejs', gulp.series('copy-ejs', browserSync.reload));
+}
+
 
 // Build project
 function buildProject() {
@@ -90,7 +103,7 @@ gulp.task('dev', gulp.series('clean', 'sass', 'babel', 'copy-ejs', 'copy-assets'
       script: 'server.js',
       watch: 'server.js' // watch the server file for changes
     });
-    startServer();
+    devServer();
   }
 ));
 

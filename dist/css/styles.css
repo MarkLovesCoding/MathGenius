@@ -5,6 +5,11 @@
   --thumb-width: 20px;
 }
 
+.user-data-holder {
+  visibility: hidden;
+  display: none;
+}
+
 /* Global Styles */
 * {
   padding: 0;

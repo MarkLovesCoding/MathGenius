@@ -12,24 +12,22 @@
 <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="/css/styles.css">
-<!-- Sweet Alert CSS -->
 
 
 
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap" rel="stylesheet">
-<!-- <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Delicious+Handrawn&family=Fredericka+the+Great&family=Mansalva&family=Pangolin&family=Short+Stack&display=swap" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  
+
 
 
     <div class="login-menu-container display-container" id="login-menu-container">
-        <!-- <div class="nav-left nav-left-upper hide-from-view"> <button class="nav-button hide-from-view " id="login-menu-backward"><i class="forward-arrow fas fa-arrow-left fa-lg"></i></button>
-        </div> -->
           <div class="login-container">
             <h1 class="login-header">Login</h1>
-        <div class="login-error-message" id="login-error-message">errorMESSAGE: </div>
+        <div class="login-error-message" id="login-error-message"><% if (loginMessage) { %>
+          <p><%= loginMessage %></p><%} %>
+         </div>
 
             <form id="login-form" action="/login" method="post">
            
@@ -54,32 +52,27 @@
             <div class="login-form-group">
               <a href="/signup">Don't have an account? Sign up now!</a>
             </div>
-            <div class="guest">
-                <a href="/play">Play as a guest.</a>
+            <!-- <div class="guest">
+                <a href="/guest">Play as a guest.</a>
               </div>
-            
+             -->
+              <form action="/guest" method="POST">
+                <label for="guest">Play as guest</label>
+                <button id="guest" type="submit">Play as guest</button>
+              </form>
+
+              
           </div>
    
 
-      <!-- <div class="nav-buttons">
-        <div class="nav-right"> <button class="nav-button"  onclick="window.location.href='/play'" id="login-menu-forward" >
-
-          <i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button></div>
-          </div> -->
-        <!-- <div class="bottom"> -->
-          <!-- <button class="nav-button"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button> -->
-
-
-        <!-- </div> -->
 
 
 </div>
 
 
-<!-- <script type="module" src="/js/formInteraction.js"></script> -->
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="../js/axios_.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+<!-- <script src="../js/axios_.js"></script> -->
 
 </body>
 </html>
