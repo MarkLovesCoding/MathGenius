@@ -1,52 +1,62 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,  initial-scale=1.0">
-<meta name="apple-mobile-web-app-capable" content="yes" >
-<meta name="description"content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description"
+    content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
 
-<title>Math Genius</title>
-<link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="/css/styles.css">
+  <title>Math Genius</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/css/styles.css">
 
 
 
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
 
 
-    <div class="login-menu-container display-container" id="login-menu-container">
-          <div class="login-container">
-            <h1 class="login-header">Login</h1>
-        <div class="login-error-message" id="login-error-message"><% if (loginMessage) { %>
-          <p><%= loginMessage %></p><%} %>
-         </div>
+  <div class="login-menu-container display-container" id="login-menu-container">
+    <div class="login-container">
+      <h1 class="login-header">Login</h1>
+      <div class="login-error-message" id="login-error-message">
+        <% if (loginMessage) { %>
+          <p>
+            <%= loginMessage %>
+          </p>
+          <%} %>
+      </div>
 
-            <form class="login-form" id="login-form" action="/login" method="post">
-           
-              <div class="login-form-group">
-                <label  class="login-label" for="username">Username:</label>
-                <input class="login-input" type="text" id="username" name="username" required>
-              </div>
-              <div class="login-form-group">
-                <label  class="login-label" for="password">Password:</label>
-                <input class="login-input" type="password" id="password" name="password" required>
-              </div>
-              <div class="login-form-group">
-                <button title="login-button" type="submit" class="btn btn-primary login-form-button">Login</button>
-              </div>
-            </form>
+      <form class="login-form" id="login-form" action="/login" method="post">
 
-            <div class="divider"><div class="line"></div><span class="or">or</span><div class="line"></div></div>
+        <div class="login-form-group">
+          <label class="login-label" for="username">Username:</label>
+          <input class="login-input" type="text" id="username" name="username" required>
+        </div>
+        <div class="login-form-group">
+          <label class="login-label" for="password">Password:</label>
+          <input class="login-input" type="password" id="password" name="password" required>
+        </div>
+        <div class="login-form-group">
+          <button title="login-button" type="submit" class="btn btn-primary login-form-button">Login</button>
+        </div>
+      </form>
 
-            <!-- <div class="login-form-group">
+      <div class="divider">
+        <div class="line"></div><span class="or">or</span>
+        <div class="line"></div>
+      </div>
+
+      <!-- <div class="login-form-group">
               <a href="/auth/google" class="btn btn-google">
                 <span class="material-icons">person</span>
                 Login with Google
@@ -57,35 +67,41 @@
             </div> -->
 
 
-            <form  class="login-form-group" action="/auth/google" method="GET">
-              <label for="google"></label>
-              <button  class="btn btn-primary login-form-button google-button" id="google" type="submit">Sign in with Google</button>
-            </form>
-            <form  class="login-form-group"action="/signup" method="GET">
-              <label for="signup"></label>
-              <button  class="btn btn-primary login-form-button new-account-button" id="signup" type="submit">Create Account</button>
-            </form>
-            <!-- <div class="guest">
+      <form class="login-form-group" action="/auth/google" method="GET">
+        <!-- <label for="google"></label> -->
+
+        <button class="btn btn-primary login-form-button google-button" id="google" type="submit">
+          <div class="google-icon-container"><i class="google-icon fa-brands fa-google "></i></div>
+          <div class="google-text">Sign in with Google</div>
+        </button>
+      </form>
+      <form class="login-form-group" action="/signup" method="GET">
+        <label for="signup"></label>
+        <button class="btn btn-primary login-form-button new-account-button" id="signup" type="submit">Create
+          Account</button>
+      </form>
+      <!-- <div class="guest">
                 <a href="/guest">Play as a guest.</a>
               </div>
              -->
-              <form  class="login-form-group" action="/guest" method="POST">
-                <label for="guest"></label>
-                <button class="btn btn-primary login-form-button guest-button"  id="guest" type="submit">Play as guest</button>
-              </form>
-
-              
-          </div>
-   
+      <form class="login-form-group" action="/guest" method="POST">
+        <label for="guest"></label>
+        <button class="btn btn-primary login-form-button guest-button" id="guest" type="submit">Play as guest</button>
+      </form>
 
 
-
-</div>
+    </div>
 
 
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-<!-- <script src="../js/axios_.js"></script> -->
+
+  </div>
+
+
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+  <!-- <script src="../js/axios_.js"></script> -->
 
 </body>
+
 </html>
