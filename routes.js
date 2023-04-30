@@ -35,16 +35,30 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/guest', async (req, res) => {
-  const username = 'guest' + Math.floor(Math.random() * 10000);
-  const guestEmail = `${username}@${username }.com`  // res.render('index',{
-  //   welcomeMessage:`Hi ${username}`,
-  //   userData:{
-  //     name:username,
-  //     session:{},
-  //     badges:[]
-  //   }
-  // })
+  let username, guestEmail;
+  let userExists = true;
+  // const username = 'guest' + Math.floor(Math.random() * 1000000);
+  // const guestEmail = `${username}@${username }.com`  // res.render('index',{
+  // //   welcomeMessage:`Hi ${username}`,
+  // //   userData:{
+  // //     name:username,
+  // //     session:{},
+  // //     badges:[]
+  // //   }
+  // // })
 
+  while (userExists) {
+    username = 'Guest_' + Math.floor(Math.random() * 100000);
+    guestEmail = `${username}@${username }.com`;
+    try {
+      let user = await User.findOne({ username: username, guest: true });
+      userExists = user ? true : false;
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(500);
+      return;
+    }
+  }
   try {
     // Check if a guest user with this username already exists
     let user = await User.findOne({ username: username, guest: true });
@@ -153,9 +167,20 @@ router.post('/signup', async function (req, res, next) {
         
       });
     } else { // Other error
+      console.log(err)
+      let message
+      if(err.errors.username){
+        message = err.errors.username
+      }
+      else if(err.errors.password){
+        message = err.errors.password
+      }
+      else if(err.errors.email){
+        message = err.errors.email
+      }  
       return res.render('signup',{
-        signupMessage:"Error Signing Up. Try Again."
         
+       signupMessage:message
       });
     }}
 

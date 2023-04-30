@@ -62,18 +62,18 @@ function copyAssets() {
 gulp.task('copy-assets', copyAssets);
 
 // Start browser-sync server
-function startServer() {
-  browserSync.init({
-    port: 4000,
-    server: { 
-      baseDir: './dist',
-    },
-  });
+// function startServer() {
+//   browserSync.init({
+//     port: 4000,
+//     server: { 
+//       baseDir: './dist',
+//     },
+//   });
   
-  gulp.watch('public/scss/**/*.scss', compileSass);
-  gulp.watch('public/js/**/*.js', transpileJs);
-  gulp.watch('public/views/**/*.ejs', gulp.series('copy-ejs', browserSync.reload));
-}
+//   gulp.watch('public/scss/**/*.scss', compileSass);
+//   gulp.watch('public/js/**/*.js', transpileJs);
+//   gulp.watch('public/views/**/*.ejs', gulp.series('copy-ejs', browserSync.reload));
+// }
 
 function devServer() {
   // nodemon({
@@ -98,14 +98,41 @@ function buildProject() {
 let isDev = process.env.NODE_ENV.trim() == 'development';
 
 gulp.task('dev', gulp.series('clean', 'sass', 'babel', 'copy-ejs', 'copy-assets',
-  function startDevServer() {
-    nodemon({
-      script: 'server.js',
-      watch: 'server.js' // watch the server file for changes
-    });
-    devServer();
-  }
-));
+
+function nodemonTask(cb) {
+  let started = false;
+
+   nodemon({
+    script: 'server.js',
+    ignore: [ 'node_modules/*'],
+    ext: 'js html ejs scss',
+    env: { NODE_ENV: 'development' },
+    watch: ['server.js', 'routes/*', 'config/*', 'models/*', 'public/scss/*','public/js/*','public/views/*'] // add any additional folders or files to watch here
+  })
+  .on('start', () => {
+    if (!started) {
+      cb();
+      started = true;
+    }
+  })
+  .on('change', ['sass','babel','copy-ejs']); // run the compileSass task when changes are detected in the watched folders
+
+ devServer()}
+
+))
+
+
+
+
+
+  // function startDevServer() {
+  //   nodemon({
+  //     script: 'server.js',
+  //     watch: 'server.js' // watch the server file for changes
+  //   });
+  //   devServer();
+  // }
+// ));
 
 gulp.task('build-project', buildProject);
 

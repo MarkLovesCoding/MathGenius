@@ -33,7 +33,7 @@
               </div>
               <div class="signup-form-group">
                 <label  class="signup-label" for="email">Email:</label>
-                <input class="signup-input" type="text" id="email" name="email" required>
+                <input class="signup-input" type="email" id="email" name="email" required>
               </div>
               <div class="signup-form-group">
                 <label  class="signup-label" for="password">Password:</label>
@@ -54,12 +54,12 @@
               <a href="/login">Have an account alread? Log in now!</a>
             </div> -->
 
-            <form  class="signup-form-group" action="/login" method="GET">
+            <form  class="signup-form-group go-to-login" action="/login" method="GET">
               <label for="login"></label>
               <button  class="btn btn-primary signup-form-button go-to-login-button" id="login" type="submit">Log In</button>
             </form>
 
-            <form action="/guest" method="POST">
+            <form class="play-as-guest" action="/guest" method="POST">
               <label for="guest"></label>
               <button  class="signup-form-button" id="guest" type="submit">Play as guest</button>
             </form>

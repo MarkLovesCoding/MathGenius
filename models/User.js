@@ -22,23 +22,43 @@ const bcrypt = require('bcrypt');
 //   }
 // });
 
+
+
+
+var validateEmail = function(email) {
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email)
+};
+
+
+
+
+
 const UserSchema = new mongoose.Schema({
   guest:{type:Boolean, default:false},
   username:{
 type:String,
+minLength:[6,"Username must be 6 or more characters"],
+maxLength:[16, "Username too long."],
 required:function() {
   return this.authType === 'local';
 }
   },
   email: {
     type: String,
+    trim: true,
+    lowercase: true,
+    unique: true,
+    validate: [validateEmail, 'Please fill a valid email address'],
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
     required: function() {
       return this.authType === 'local';
-    },
-    unique: true
+    }
+
   },
   password: {
     type: String,
+    minLength:[6, "Password must be atleast 6 characters"],
     required: function() {
       return this.authType === 'local';
     }

@@ -1380,6 +1380,12 @@ body {
   border: none;
   border-radius: 2px;
 }
+.google-button:hover {
+  background: #2c6bd2;
+}
+.google-button:active {
+  background: #164ea8;
+}
 
 .google-text {
   display: flex;

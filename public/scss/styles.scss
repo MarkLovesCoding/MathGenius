@@ -1468,7 +1468,12 @@ background:rgba(255, 255, 255, 0.25);
   height:54px;
   border:none;
   border-radius:2px;
-
+  &:hover{
+    background:#2c6bd2
+  }
+&:active{
+  background:#164ea8
+}
 }
 .google-text{
   display: flex;
