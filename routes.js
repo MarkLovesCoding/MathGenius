@@ -22,21 +22,22 @@ const requireAuth = (req, res, next) => {
 
 // set up the home route
 router.get('/', requireAuth, (req, res) => {
-  res.render('index', {
-    signupSuccessMessage: "Hello!",
-    welcomeMessage: null,
-    userData: null
-  });
+
+  var flashData = req.flash('flashData')[0]
+
+
+
+  res.render('index', flashData);
 });
 
 router.get('/login', (req, res) => {
-  const flashMessage = req.flash('flashMessage')[0]
- var loginMessage = ''
+  const flashMessage = req.flash('flashAlert')[0]
+  var loginMessage = ''
   var messageType = ''
- if (flashMessage){
-   messageType = flashMessage.type;
-   loginMessage = flashMessage.message;
- }
+  if (flashMessage) {
+    messageType = flashMessage.type;
+    loginMessage = flashMessage.message;
+  }
   console.log(messageType)
   console.log(loginMessage)
   res.render('login', {
@@ -45,37 +46,31 @@ router.get('/login', (req, res) => {
   });
 });
 
-router.post('/guest', async (req, res) => {
-  let username, guestEmail;
-  let userExists = true;
-  // const username = 'guest' + Math.floor(Math.random() * 1000000);
-  // const guestEmail = `${username}@${username }.com`  // res.render('index',{
-  // //   welcomeMessage:`Hi ${username}`,
-  // //   userData:{
-  // //     name:username,
-  // //     session:{},
-  // //     badges:[]
-  // //   }
-  // // })
-
-  while (userExists) {
-    username = 'Guest_' + Math.floor(Math.random() * 100000);
-    guestEmail = `${username}@${username}.com`;
-    try {
-      let user = await User.findOne({ username: username, guest: true });
-      userExists = user ? true : false;
-    } catch (error) {
-      console.error(error);
-      res.sendStatus(500);
-      return;
+router.post('/guest',  (req, res, next) => {
+  passport.authenticate('guest', async (err, user, info) => {
+    if(err){
+      console.log("error occured authenticating guest:", err)
     }
-  }
-  try {
-    // Check if a guest user with this username already exists
-    let user = await User.findOne({ username: username, guest: true });
 
-    // If not, create a new user and save it to the database
-    if (!user) {
+    let username, guestEmail;
+    let userExists = true;
+    
+    while (userExists) {
+      username = 'Guest_' + Math.floor(Math.random() * 100000);
+      guestEmail = `${username}@${username}.com`;
+      try {
+         user = await User.findOne({ username: username, guest: true });
+        userExists = user ? true : false;
+      } catch (error) {
+        console.error(error);
+        res.sendStatus(500);
+        return;
+      }
+    }
+    try {
+      // Check if a guest user with this username already exists
+      // If not, create a new user and save it to the database
+
       user = new User({
         username: username,
         email: guestEmail,
@@ -83,50 +78,80 @@ router.post('/guest', async (req, res) => {
         guest: true
       });
       await user.save();
+      console.log("HERE")
+
+
+      req.login(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+        // Redirect to the home page
+        req.flash("flashData", {
+          welcomeMessage: `Hi ${user.username}`,
+          userData: {
+            name: user.username,
+            session: {},
+            badges: []
+          },
+          flashMessage: "guest"
+        });
+        return res.redirect('/');
+      });
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(500);
     }
 
-    // Render the "play" view with the guest user's data
-    res.render('index', {
-      signupSuccessMessage: "Hello Guest!",
-      welcomeMessage: `Hi ${user.username}`,
-      userData: {
-        name: user.username,
-        session: {},
-        badges: []
-      }
-    });
+  //     // console.log(req.isAuthenticated)
+  //     req.flash("flashData", {
+  //       // signupSuccessMessage: "Hello Guest!",
+  //       welcomeMessage: `Hi ${user.username}`,
+  //       userData: {
+  //         name: user.username,
+  //         session: {},
+  //         badges: []
+  //       },
+  //       flashMessage: "guest"
+  //     })
 
-  } catch (error) {
-    console.error(error);
-    res.sendStatus(500);
-  }
+  //     console.log('redirect now');
+  //     return res.redirect('/')
+
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.sendStatus(500);
+  //   }
+  })(req, res, next);
+
+
+
+
+
+
 });
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    // console.log("userrouter:");
-    if (err) {
-      // console.log(" error first")
 
-      req.flash('flashMessage', {
+    if (err) {
+
+
+      req.flash('flashAlert', {
         type: 'error',
         message: 'Error Loging In'
       })
       return res.redirect('/login')
-      // return res.render('login',{
-      //   loginMessage:'Login Error Occurred. Try Again.'
-      // });
+
     }
     if (!user) {
-      // console.log(" error with username or pass")
 
-      req.flash('flashMessage', {
+      req.flash('flashAlert', {
         type: 'error',
         message: 'Invalid Username or Password.'
       })
       return res.redirect('/login')
 
-      // return res.render('login',{
+
 
       // });
     }
@@ -136,22 +161,24 @@ router.post('/login', (req, res, next) => {
         return next(err);
       }
 
-      req.flash('flashMessage', {
-        type: 'success',
-        message: 'Successfully Logged In'
-      }
-      )
-      return res.render('index', {
-        signupSuccessMessage: "Hello 2!",
+      req.flash('flashData', {
         welcomeMessage: `Hi ${user.username}`,
         userData: {
           _id: user._id,
           name: user.name,
           session: {},
-          badges: user.badges 
+          badges: user.badges,
+
         },
-        flashMessage: req.flash('flashMessage')[0] // pass flashMessage to the view
-      });
+        flashMessage: 'success' // pass flashMessage to the view
+        //
+      }
+      )
+
+      return res.redirect('/')
+
+
+
     });
   })(req, res, next);
 });
@@ -166,9 +193,22 @@ router.get('/play', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
+
+
+  const flashMessage = req.flash('flashAlert')[0]
+  var signupMessage = ''
+  var messageType = ''
+  if (flashMessage) {
+    messageType = flashMessage.type;
+    signupMessage = flashMessage.message;
+  }
+  console.log(messageType)
+  console.log(signupMessage)
   res.render('signup', {
-    signupMessage: ''
+    messageType: messageType,
+    signupMessage: signupMessage.message
   });
+
 });
 
 router.post('/signup', async function (req, res, next) {
@@ -186,20 +226,41 @@ router.post('/signup', async function (req, res, next) {
     await user.save();
     req.login(user, function (err) {
       if (err) { return next(err); }
-      req.flash('sign-up-successful,"Account Created Succesfully')
-      return res.render('index', {
-        signupSuccessMessage: "success4",
+      // req.flash('sign-up-successful,"Account Created Succesfully')
+      req.flash('flashMessage', {
+        type: 'success',
+        message: 'Account Created Succesfully'
+      })
+      req.flash("flashData", {
         welcomeMessage: `Hi ${username}`,
         userData: {
-        }
+          name: user.username,
+          session: {},
+          badges: []
+        },
+        flashMessage: "guest"
+      })
+
+
+      return res.render('index', {
+        welcomeMessage: `Hi ${username}`,
+        userData: {
+          name: user.username,
+          session: {},
+          badges: []
+        },
+        flashMessage: "success"
       })
     });
   } catch (err) {
     if (err.code === 11000) { // Duplicate email error
-      return res.render('signup', {
-        signupMessage: "Duplicate email. Please use a different email."
 
-      });
+      req.flash('flashAlert', {
+        type: 'error',
+        message: "Duplicate email. Please use a different email."
+      })
+      return res.redirect('/signup')
+
     } else { // Other error
       console.log(err)
       let message
@@ -212,10 +273,13 @@ router.post('/signup', async function (req, res, next) {
       else if (err.errors.email) {
         message = err.errors.email
       }
-      return res.render('signup', {
 
-        signupMessage: message
-      });
+      req.flash('flashAlert', {
+        type: 'error',
+        message: message
+      })
+
+      return res.redirect('/signup')
     }
   }
 
@@ -238,12 +302,27 @@ router.get(
     const loadUser = req.user;
 
     const profileName = loadUser.username
-    res.render('index', {
-      signupSuccessMessage: req.flash('google-sign-in'),
+
+
+    req.flash('flashData', {
       welcomeMessage: `Hi ${profileName}`,
       userData: {
-      }
-    });
+        _id: loadUser._id,
+        name: profileName,
+        session: {},
+        badges: loadUser.badges,
+
+      },
+      flashMessage: 'success' // pass flashMessage to the view
+    })
+    return res.redirect('/')
+
+    // res.render('index', {
+    //   signupSuccessMessage: req.flash('google-sign-in'),
+    //   welcomeMessage: `Hi ${profileName}`,
+    //   userData: {
+    //   }
+    // });
   }
 );
 
@@ -251,6 +330,14 @@ router.get(
 router.post(
   '/auth/local',
   passport.authenticate('local', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect('/');
+  }
+);
+
+router.post(
+  '/auth/guest',
+  passport.authenticate('guest'),
   (req, res) => {
     res.redirect('/');
   }

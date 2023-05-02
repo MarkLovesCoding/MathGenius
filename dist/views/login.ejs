@@ -29,25 +29,15 @@
     <div class="login-container">
       <h1 class="login-header">Log In</h1>
       <% if(loginMessage) { %>
-        <!-- <div class="login-flash-message <%= messageType %>" id="login-flash-message">
+        <div class="login-flash-message <%= messageType %>" id="login-flash-message">
           <p>
             <%= loginMessage %>
           </p>
+          <button class="close-login-alert" id="close-login-alert"><i class="close-login-alert-icon">x</i></button>
         </div>
- -->
 
 
-        <div id="flash-message-modal" class="modal login-flash-message <%= messageType %>">
-  
-            <div class="modal-content">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-button">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            <p><%= loginMessage %></p>
-          </div>
-        </div>
-        <% } %>
-
+      <% } %>
 
 
           <!-- <div class="login-form-group">
@@ -98,7 +88,7 @@
                 required>
             </div>
             <div class="login-form-group">
-              <button title="login-button" type="submit" class="btn btn-primary login-form-button">Sign In</button>
+              <button title="login-button" type="submit" class="login-form-button">Sign In</button>
             </div>
           </form>
 
@@ -106,14 +96,14 @@
 
           <form class="create-account-container " action="/signup" method="GET">
             <label class="create-account-label" for="signup">Don't have an account? </label>
-            <button class="btn btn-primary create-account-link  new-account-button" id="signup" type="submit">Create
+            <button class="create-account-link  new-account-button" id="signup" type="submit">Create
               Account</button>
           </form>
 
 
           <form class=" play-as-guest login-form-group" action="/guest" method="POST">
             <label for="guest"></label>
-            <button class="btn btn-primary login-form-button guest-button" id="guest" type="submit">Play as
+            <button class="login-form-button guest-button" id="guest" type="submit">Play as
               guest</button>
           </form>
 
@@ -130,28 +120,29 @@
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
   <!-- <script src="../js/axios_.js"></script> -->
-<script>
-  var modal = document.getElementById("flash-message-modal");
+  <!-- <script>
+  var loginAlert = document.getElementById("login-flash-message");
 
 
 // When the user clicks the button, open the modal 
 
 // When the user clicks on <span> (x), close the modal
-  function closeModal() {
-    var modal = document.getElementById('flash-modal');
-    modal.style.display = 'none';
+  function closeAlert() {
+    
+    loginAlert.style.display = 'none';
   }
 
-  var closeButton = document.getElementById('close-button');
-  closeButton.addEventListener('click', closeModal);
+  var closeButton = document.getElementById('close-login-alert');
+  closeButton.addEventListener('click', closeAlert);
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == modal) {
+  if (loginAlert.target == loginAlert) {
     modal.style.display = "none";
   }
 }
-</script>
+</script> -->
+  <script src="../js/loginAlert.js"></script>
 </body>
 
 </html>

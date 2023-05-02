@@ -25,9 +25,24 @@
             <h1 class="signup-header">Sign Up</h1>
             
             
-            <div class="signup-error-message" id="signup-error-message"><% if (signupMessage) { %>
+            <!-- <div class="signup-error-message" id="signup-error-message"><% if (signupMessage) { %>
               <p><%= signupMessage %></p><%} %>
-             </div>
+             </div> -->
+
+             <% if(signupMessage) { %>
+              <div class="signup-flash-message <%= messageType %>" id="signup-flash-message">
+                <p>
+                  <%= signupMessage %>
+                </p>
+                <button class="close-signup-alert" id="close-signup-alert"><i class="close-signup-alert-icon">x</i></button>
+              </div>
+      
+      
+    
+              <% } %>
+
+
+
             <form class="signup-form" id="signup-form" action="/signup" method="post">
               <div class="signup-form-group">
                 <label  class="input-label" for="username">Username:</label>
@@ -73,6 +88,7 @@
 
 </div>
 
+<script src="../js/signupAlert.js"></script>
  
 </body>
 </html>

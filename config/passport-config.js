@@ -80,7 +80,7 @@ passport.use(new GoogleStrategy({
 
 passport.use('guest', new LocalStrategy( async (req, username, done) => {
   try {
-    const existingUser = await User.findOne({ username: username ,authType:'local'});
+    const existingUser = await User.findOne({ username: username ,authType:'guest'});
     if (existingUser && existingUser.guest) {
       return done(null, existingUser);
     } else {
@@ -92,6 +92,7 @@ passport.use('guest', new LocalStrategy( async (req, username, done) => {
         badges:[]
       });
       await newUser.save();
+      console.log("newuser")
       return done(null, newUser);
     }
   } catch (error) {
