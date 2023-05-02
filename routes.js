@@ -300,7 +300,6 @@ router.get(
     req.flash('flashData', {
       welcomeMessage: `Hi ${profileName}`,
       userData: {
-        _id: loadUser._id,
         name: profileName,
         session: {},
         badges: loadUser.badges,
