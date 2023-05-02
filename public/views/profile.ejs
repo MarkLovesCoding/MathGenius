@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description"content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+  <meta name="apple-mobile-web-app-capable" content="yes" >
+  <title>Math Genius</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+
+
+
+  <div class="user-data-holder" id="user-data-holder"><% if (userData) { %>
+    <span><%= userData.name %></span>
+    <span><%= userData.session %></span>
+    <span><%= userData.badges %></span><% 
+  
+  }
+    
+    %>
+   </div>
+
+    <% if(flashMessage == "success"){ %>
+   <div class="success" id="success">
+   <svg class="success-svg" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+      <path class="success-circle" d="M13 1C6.372583 1 1 6.372583 1 13s5.372583 12 12 12 12-5.372583 12-12S19.627417 1 13 1z"/>
+      <path class="succes-tick" d="M6.5 13.5L10 17 l8.808621-8.308621"/>
+    </g>
+  </svg>
+</div>
+<%} %> 
+
+
+
+
+
+
+
+    <div id="burger-container" class="burger-container box-container">
+
+      <div class="burger open" id="burger">
+       <span></span>
+       <span></span>
+       <span></span>
+
+
+      </div>
+    </div>
+    
+    
+
+
+
+
+
+
+
+
+
+
+      <div class="profile display-container" id="profile-container">
+
+
+
+
+
+
+        <div class="logout-container">
+          <button title="logout-button" class="logout-btn" id="logout-btn">
+            <div class="logout-text">Logout</div>
+          </button>
+        </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+    </div>
+    <script type="module" src="/js/success.js"></script>
+
+  <script type="module" src="/js/profile.js"></script>
+  <!-- <script type="module" src="/js/formInteraction.js"></script> -->
+    
+ 
+ 
+  </body>
+</html>

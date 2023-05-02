@@ -57,14 +57,16 @@ passport.use(new GoogleStrategy({
   try {
     const user = await User.findOne({ googleId: profile.id });
     if (!user) {
+ 
       const newUser = new User({
         username: profile.displayName ? profile.displayName : profile.id,
-         email: profile.emails && profile.emails.length ? profile.emails[0].value : '',
+         email: profile.emails && profile.emails.length ? profile.emails[0].value : profile.id +"@google.com",
         googleId: profile.id,
         authType:'google',
         session:{},
         badges:[]
       });
+      console.log(newUser);
       await newUser.save();
       return done(null, newUser);
     }

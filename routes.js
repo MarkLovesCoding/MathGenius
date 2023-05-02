@@ -183,14 +183,7 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-router.get('/play', (req, res) => {
-  res.render('index', {
-    signupSuccessMessage: "Hello 3!",
 
-    welcomeMessage: req.data.welcomeMessage || "nowelcome",
-    userData: req.data.userData || "nodata"
-  });
-});
 
 router.get('/signup', (req, res) => {
 

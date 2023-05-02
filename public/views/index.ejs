@@ -20,7 +20,13 @@
 
 
   <div class="user-data-holder" id="user-data-holder"><% if (userData) { %>
-    <span><%= userData %></span><% } %>
+    <span><%= userData.name %></span>
+    <span><%= userData.session %></span>
+    <span><%= userData.badges %></span><% 
+  
+  }
+    
+    %>
    </div>
 
     <% if(flashMessage == "success"){ %>
