@@ -28,17 +28,29 @@
   <div class="login-menu-container display-container" id="login-menu-container">
     <div class="login-container">
       <h1 class="login-header">Log In</h1>
-      <div class="login-error-message" id="login-error-message">
-        <% if (loginMessage) { %>
+      <% if(loginMessage) { %>
+        <!-- <div class="login-flash-message <%= messageType %>" id="login-flash-message">
           <p>
             <%= loginMessage %>
           </p>
-          <%} %>
-      </div>
+        </div>
+ -->
+
+
+        <div id="flash-message-modal" class="modal login-flash-message <%= messageType %>">
+  
+            <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-button">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            <p><%= loginMessage %></p>
+          </div>
+        </div>
+        <% } %>
 
 
 
-      <!-- <div class="login-form-group">
+          <!-- <div class="login-form-group">
               <a href="/auth/google" class="btn btn-google">
                 <span class="material-icons">person</span>
                 Login with Google
@@ -48,58 +60,62 @@
               <a href="/signup">Don't have an account? Sign up now!</a>
             </div> -->
 
-      <!-- <div class="guest">
+          <!-- <div class="guest">
                 <a href="/guest">Play as a guest.</a>
               </div>
              -->
-             <form class="login-form-group" action="/auth/google" method="GET">
-              <!-- <label for="google"></label> -->
-      
-              <button class="btn btn-primary login-form-button google-button" id="google" type="submit">
-                <div class="google-icon-container"><i class="google-icon fa-brands fa-google "></i></div>
-                <div class="google-text">Sign in with Google</div>
-              </button>
-            </form>
+          <form class="login-form-group" action="/auth/google" method="GET">
+            <!-- <label for="google"></label> -->
+
+            <button class="btn btn-primary login-form-button google-button" id="google" type="submit">
+              <div class="google-icon-container"><i class="google-icon fa-brands fa-google "></i></div>
+              <div class="google-text">Sign in with Google</div>
+            </button>
+          </form>
 
 
 
 
 
-      <div class="divider">
-        <div class="line"></div><span class="or">or</span>
-        <div class="line"></div>
-      </div>
+          <div class="divider">
+            <div class="line"></div><span class="or">or</span>
+            <div class="line"></div>
+          </div>
 
 
 
 
-      <form class="login-form" id="login-form" action="/login" method="post">
+          <form class="login-form" id="login-form" action="/login" method="post">
 
-        <div class="login-form-group">
-          <label class="input-label" for="username">Username or Email:</label>
-          <input class="form-input" type="text" id="username" name="username" placeholder="Enter your username or email" required>
-        </div>
-        <div class="login-form-group">
-          <label class="input-label" for="password">Password:</label>
-          <input class="form-input" type="password" id="password" name="password" placeholder="Type your password" required>
-        </div>
-        <div class="login-form-group">
-          <button title="login-button" type="submit" class="btn btn-primary login-form-button">Sign In</button>
-        </div>
-      </form>
+            <div class="login-form-group">
+              <label class="input-label" for="username">Username or Email:</label>
+              <input class="form-input" type="text" id="username" name="username"
+                placeholder="Enter your username or email" required>
+            </div>
+            <div class="login-form-group">
+              <label class="input-label" for="password">Password:</label>
+              <input class="form-input" type="password" id="password" name="password" placeholder="Type your password"
+                required>
+            </div>
+            <div class="login-form-group">
+              <button title="login-button" type="submit" class="btn btn-primary login-form-button">Sign In</button>
+            </div>
+          </form>
 
 
 
-      <form class="create-account-container " action="/signup" method="GET">
-        <label class="create-account-label" for="signup">Don't have an account? </label>
-        <button class="btn btn-primary create-account-link  new-account-button" id="signup" type="submit">Create Account</button>
-      </form>
- 
+          <form class="create-account-container " action="/signup" method="GET">
+            <label class="create-account-label" for="signup">Don't have an account? </label>
+            <button class="btn btn-primary create-account-link  new-account-button" id="signup" type="submit">Create
+              Account</button>
+          </form>
 
-      <form class=" play-as-guest login-form-group" action="/guest" method="POST">
-        <label for="guest"></label>
-        <button class="btn btn-primary login-form-button guest-button" id="guest" type="submit">Play as guest</button>
-      </form>
+
+          <form class=" play-as-guest login-form-group" action="/guest" method="POST">
+            <label for="guest"></label>
+            <button class="btn btn-primary login-form-button guest-button" id="guest" type="submit">Play as
+              guest</button>
+          </form>
 
 
 
@@ -114,7 +130,28 @@
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
   <!-- <script src="../js/axios_.js"></script> -->
+<script>
+  var modal = document.getElementById("flash-message-modal");
 
+
+// When the user clicks the button, open the modal 
+
+// When the user clicks on <span> (x), close the modal
+  function closeModal() {
+    var modal = document.getElementById('flash-modal');
+    modal.style.display = 'none';
+  }
+
+  var closeButton = document.getElementById('close-button');
+  closeButton.addEventListener('click', closeModal);
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 </body>
 
 </html>

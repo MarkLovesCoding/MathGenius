@@ -4,7 +4,7 @@ const router = express.Router();
 const path = require('path');
 const User = require('./models/User');
 const passportConfig = require('./config/passport-config');
-const flash =('connect-flash')
+const flash = ('connect-flash')
 passportConfig(passport);
 
 
@@ -22,16 +22,26 @@ const requireAuth = (req, res, next) => {
 
 // set up the home route
 router.get('/', requireAuth, (req, res) => {
-  res.render('index',{
-    signupSuccessMessage:"Hello!",
-    welcomeMessage:null,
-    userData:null
+  res.render('index', {
+    signupSuccessMessage: "Hello!",
+    welcomeMessage: null,
+    userData: null
   });
 });
 
 router.get('/login', (req, res) => {
-  res.render('login',{
-    loginMessage:""
+  const flashMessage = req.flash('flashMessage')[0]
+ var loginMessage = ''
+  var messageType = ''
+ if (flashMessage){
+   messageType = flashMessage.type;
+   loginMessage = flashMessage.message;
+ }
+  console.log(messageType)
+  console.log(loginMessage)
+  res.render('login', {
+    messageType: messageType,
+    loginMessage: loginMessage
   });
 });
 
@@ -50,7 +60,7 @@ router.post('/guest', async (req, res) => {
 
   while (userExists) {
     username = 'Guest_' + Math.floor(Math.random() * 100000);
-    guestEmail = `${username}@${username }.com`;
+    guestEmail = `${username}@${username}.com`;
     try {
       let user = await User.findOne({ username: username, guest: true });
       userExists = user ? true : false;
@@ -68,8 +78,8 @@ router.post('/guest', async (req, res) => {
     if (!user) {
       user = new User({
         username: username,
-        email:guestEmail,
-        authType:'guest',
+        email: guestEmail,
+        authType: 'guest',
         guest: true
       });
       await user.save();
@@ -77,7 +87,7 @@ router.post('/guest', async (req, res) => {
 
     // Render the "play" view with the guest user's data
     res.render('index', {
-      signupSuccessMessage:"Hello Guest!",
+      signupSuccessMessage: "Hello Guest!",
       welcomeMessage: `Hi ${user.username}`,
       userData: {
         name: user.username,
@@ -94,52 +104,70 @@ router.post('/guest', async (req, res) => {
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    console.log("userrouter:");
+    // console.log("userrouter:");
     if (err) {
-      console.log(" error first")
-      return res.render('login',{
-        loginMessage:'Login Error Occurred. Try Again.'
-      });
+      // console.log(" error first")
+
+      req.flash('flashMessage', {
+        type: 'error',
+        message: 'Error Loging In'
+      })
+      return res.redirect('/login')
+      // return res.render('login',{
+      //   loginMessage:'Login Error Occurred. Try Again.'
+      // });
     }
     if (!user) {
-      console.log(" error with username or pass")
-      return res.render('login',{
-        loginMessage:'Invalid Username or Password.'
-      });
+      // console.log(" error with username or pass")
+
+      req.flash('flashMessage', {
+        type: 'error',
+        message: 'Invalid Username or Password.'
+      })
+      return res.redirect('/login')
+
+      // return res.render('login',{
+
+      // });
     }
     req.login(user, (err) => {
       if (err) {
         console.log(" error logging in")
         return next(err);
       }
-     
 
-      return res.render('index',{
-        signupSuccessMessage:"Hello 2!",
-        welcomeMessage:`Hi ${user.username}`,
-        userData:{
-          _id:user._id,
-          name:user.name,
-          session:{},
-          badges:user.badges
-        }
+      req.flash('flashMessage', {
+        type: 'success',
+        message: 'Successfully Logged In'
+      }
+      )
+      return res.render('index', {
+        signupSuccessMessage: "Hello 2!",
+        welcomeMessage: `Hi ${user.username}`,
+        userData: {
+          _id: user._id,
+          name: user.name,
+          session: {},
+          badges: user.badges 
+        },
+        flashMessage: req.flash('flashMessage')[0] // pass flashMessage to the view
       });
     });
   })(req, res, next);
 });
 
 router.get('/play', (req, res) => {
-  res.render('index',{
-    signupSuccessMessage:"Hello 3!",
+  res.render('index', {
+    signupSuccessMessage: "Hello 3!",
 
-    welcomeMessage:req.data.welcomeMessage || "nowelcome",
-    userData:req.data.userData||"nodata"
+    welcomeMessage: req.data.welcomeMessage || "nowelcome",
+    userData: req.data.userData || "nodata"
   });
-}); 
+});
 
 router.get('/signup', (req, res) => {
-  res.render('signup',{
-    signupMessage:''
+  res.render('signup', {
+    signupMessage: ''
   });
 });
 
@@ -148,47 +176,48 @@ router.post('/signup', async function (req, res, next) {
 
   // Check if email field exists and is not empty
   if (!email) {
-    return res.render('signup',{
-      errorMessage:`Email Required.`
+    return res.render('signup', {
+      errorMessage: `Email Required.`
     });
   }
 
-  const user = new User({ username, email, password, authType: 'local',session:{},badges:[] });
+  const user = new User({ username, email, password, authType: 'local', session: {}, badges: [] });
   try {
     await user.save();
     req.login(user, function (err) {
       if (err) { return next(err); }
       req.flash('sign-up-successful,"Account Created Succesfully')
-      return res.render('index',{
-        signupSuccessMessage:"success4",
-        welcomeMessage:`Hi ${username}`,
-        userData:{
+      return res.render('index', {
+        signupSuccessMessage: "success4",
+        welcomeMessage: `Hi ${username}`,
+        userData: {
         }
-    })
+      })
     });
   } catch (err) {
     if (err.code === 11000) { // Duplicate email error
-      return res.render('signup',{
-        signupMessage:"Duplicate email. Please use a different email."
-        
+      return res.render('signup', {
+        signupMessage: "Duplicate email. Please use a different email."
+
       });
     } else { // Other error
       console.log(err)
       let message
-      if(err.errors.username){
+      if (err.errors.username) {
         message = err.errors.username
       }
-      else if(err.errors.password){
+      else if (err.errors.password) {
         message = err.errors.password
       }
-      else if(err.errors.email){
+      else if (err.errors.email) {
         message = err.errors.email
-      }  
-      return res.render('signup',{
-        
-       signupMessage:message
+      }
+      return res.render('signup', {
+
+        signupMessage: message
       });
-    }}
+    }
+  }
 
 
 
@@ -209,10 +238,10 @@ router.get(
     const loadUser = req.user;
 
     const profileName = loadUser.username
-    res.render('index',{
-      signupSuccessMessage:"signup through google",
-      welcomeMessage:`Hi ${profileName}`,
-      userData:{
+    res.render('index', {
+      signupSuccessMessage: req.flash('google-sign-in'),
+      welcomeMessage: `Hi ${profileName}`,
+      userData: {
       }
     });
   }
