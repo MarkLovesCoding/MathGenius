@@ -7,6 +7,7 @@ const passport = require('passport');
 const session = require('express-session');
 const routes = require('./routes');
 const passportConfig = require('./config/passport-config');
+const flash = require('connect-flash')
 const db = require('./db/db');
 
 const app = express();
@@ -30,6 +31,8 @@ app.use(session({
     maxAge: (5 * 1000)
   }
 }));
+
+app.use(flash())
 
 app.use(passport.initialize());
 app.use(passport.session());

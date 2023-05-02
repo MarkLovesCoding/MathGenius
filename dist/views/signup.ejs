@@ -23,21 +23,23 @@
      
           <div class="signup-container">
             <h1 class="signup-header">Sign Up</h1>
+            
+            
             <div class="signup-error-message" id="signup-error-message"><% if (signupMessage) { %>
               <p><%= signupMessage %></p><%} %>
              </div>
             <form class="signup-form" id="signup-form" action="/signup" method="post">
-              <div class="form-group">
-                <label  class="signup-label" for="username">Username:</label>
-                <input class="signup-input" type="text" id="username" name="username" required>
+              <div class="signup-form-group">
+                <label  class="input-label" for="username">Username:</label>
+                <input class="form-input" type="text" id="username" name="username" required>
               </div>
               <div class="signup-form-group">
-                <label  class="signup-label" for="email">Email:</label>
-                <input class="signup-input" type="email" id="email" name="email" required>
+                <label  class="input-label" for="email">Email:</label>
+                <input class="form-input" type="email" id="email" name="email" required>
               </div>
               <div class="signup-form-group">
-                <label  class="signup-label" for="password">Password:</label>
-                <input class="signup-input" type="password" id="password" name="password" required>
+                <label  class="input-label" for="password">Password:</label>
+                <input class="form-input" type="password" id="password" name="password" required>
               </div>
               <div class="signup-form-group">
                 <button class="signup-form-button" title="signup-button" type="submit" class="btn btn-primary">SignUp</button>
@@ -55,8 +57,8 @@
             </div> -->
 
             <form  class="signup-form-group go-to-login" action="/login" method="GET">
-              <label for="login"></label>
-              <button  class="btn btn-primary signup-form-button go-to-login-button" id="login" type="submit">Log In</button>
+              <label class="have-account-label" for="login">Already have an account? </label>
+              <button  class="btn btn-primary go-to-login-button" id="login" type="submit">Log In</button>
             </form>
 
             <form class="play-as-guest" action="/guest" method="POST">

@@ -26,6 +26,7 @@ const bcrypt = require('bcrypt');
 
 
 var validateEmail = function(email) {
+
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email)
 };
@@ -49,7 +50,14 @@ required:function() {
     trim: true,
     lowercase: true,
     unique: true,
-    validate: [validateEmail, 'Please fill a valid email address'],
+    validate: function(){
+      if (this.authtype === ' google') return true
+      
+     return [validateEmail, 'Please fill a valid email address']
+    }
+    
+    
+,
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
     required: function() {
       return this.authType === 'local';

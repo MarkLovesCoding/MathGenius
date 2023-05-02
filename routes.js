@@ -4,7 +4,7 @@ const router = express.Router();
 const path = require('path');
 const User = require('./models/User');
 const passportConfig = require('./config/passport-config');
-
+const flash =('connect-flash')
 passportConfig(passport);
 
 
@@ -23,6 +23,7 @@ const requireAuth = (req, res, next) => {
 // set up the home route
 router.get('/', requireAuth, (req, res) => {
   res.render('index',{
+    signupSuccessMessage:"Hello!",
     welcomeMessage:null,
     userData:null
   });
@@ -76,6 +77,7 @@ router.post('/guest', async (req, res) => {
 
     // Render the "play" view with the guest user's data
     res.render('index', {
+      signupSuccessMessage:"Hello Guest!",
       welcomeMessage: `Hi ${user.username}`,
       userData: {
         name: user.username,
@@ -113,6 +115,7 @@ router.post('/login', (req, res, next) => {
      
 
       return res.render('index',{
+        signupSuccessMessage:"Hello 2!",
         welcomeMessage:`Hi ${user.username}`,
         userData:{
           _id:user._id,
@@ -127,6 +130,8 @@ router.post('/login', (req, res, next) => {
 
 router.get('/play', (req, res) => {
   res.render('index',{
+    signupSuccessMessage:"Hello 3!",
+
     welcomeMessage:req.data.welcomeMessage || "nowelcome",
     userData:req.data.userData||"nodata"
   });
@@ -153,8 +158,9 @@ router.post('/signup', async function (req, res, next) {
     await user.save();
     req.login(user, function (err) {
       if (err) { return next(err); }
-   
+      req.flash('sign-up-successful,"Account Created Succesfully')
       return res.render('index',{
+        signupSuccessMessage:"success4",
         welcomeMessage:`Hi ${username}`,
         userData:{
         }
@@ -204,6 +210,7 @@ router.get(
 
     const profileName = loadUser.username
     res.render('index',{
+      signupSuccessMessage:"signup through google",
       welcomeMessage:`Hi ${profileName}`,
       userData:{
       }

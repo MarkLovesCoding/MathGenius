@@ -61,6 +61,9 @@
       <div class="activity-menu-container display-container" id="activity-menu-container">
         <div class="activity-group">
         <div class="top">
+          <div class="signup-success-message" id="signup-success-message"><% if (signupSuccessMessage) { %>
+            <p><%= signupSuccessMessage %></p><%} %>
+           </div>
           <div class="welcome-message" id="welcome-message"><% if (welcomeMessage) { %>
             <p><%= welcomeMessage %></p><%} %>
            </div>
