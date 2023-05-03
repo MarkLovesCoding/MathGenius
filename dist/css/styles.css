@@ -1945,6 +1945,8 @@ body {
   width: 40vw;
   color: #eae6df;
   /* SVG path use currentColor to inherit this */
+  max-width: 250px;
+  max-height: 250px;
 }
 
 .success-circle {

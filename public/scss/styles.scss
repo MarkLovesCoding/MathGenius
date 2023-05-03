@@ -2078,7 +2078,10 @@ $color: $chalk-white;
   display: block;
   height: $size;
   width: $size;
-  color: $color; /* SVG path use currentColor to inherit this */
+  color: $chalk-white; /* SVG path use currentColor to inherit this */
+  max-width: 250px;
+
+  max-height: 250px;
 }
 
 .success-circle {

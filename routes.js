@@ -325,16 +325,35 @@ router.get(
     const profileName = loadUser.username
 
 
+    // req.flash('flashData', {
+    //   welcomeMessage: `Hi ${profileName}`,
+    //   userData: {
+    //     name: profileName,
+    //     session: {},
+    //     badges: loadUser.badges,
+
+    //   },
+    //   flashMessage: 'success' // pass flashMessage to the view
+    // })
+
+
+    const sessionId = uuid.v4();
     req.flash('flashData', {
       welcomeMessage: `Hi ${profileName}`,
-      userData: {
+      flashMessage: 'success' // pass flashMessage to the view
+      //
+    })
+    
+    req.session.userData = {
         name: profileName,
         session: {},
         badges: loadUser.badges,
+    }
+    req.session.sessionId=sessionId
 
-      },
-      flashMessage: 'success' // pass flashMessage to the view
-    })
+
+
+
     return res.redirect('/')
 
     // res.render('index', {
