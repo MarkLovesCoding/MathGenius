@@ -29,19 +29,6 @@
     %>
    </div>
 
-    <% if(flashMessage == "success"){ %>
-   <div class="success" id="success">
-   <svg class="success-svg" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-      <path class="success-circle" d="M13 1C6.372583 1 1 6.372583 1 13s5.372583 12 12 12 12-5.372583 12-12S19.627417 1 13 1z"/>
-      <path class="succes-tick" d="M6.5 13.5L10 17 l8.808621-8.308621"/>
-    </g>
-  </svg>
-</div>
-<%} %> 
-
-
-
 
 
 
@@ -70,8 +57,16 @@
 
       <div class="profile display-container" id="profile-container">
 
-
-
+        <div class="user-data-holder" id="user-data-holder"><% if (userData) { %>
+          <span><%= userData.name %></span>
+          <span><%= userData.session %></span>
+          <span><%= userData.badges %></span><% 
+        
+        }
+          
+          %>
+         </div>
+      
 
 
 
@@ -92,7 +87,7 @@
 
 
     </div>
-    <script type="module" src="/js/success.js"></script>
+    <!-- <script type="module" src="/js/success.js"></script> -->
 
   <script type="module" src="/js/profile.js"></script>
   <!-- <script type="module" src="/js/formInteraction.js"></script> -->

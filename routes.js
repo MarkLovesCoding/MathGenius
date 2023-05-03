@@ -5,6 +5,7 @@ const path = require('path');
 const User = require('./models/User');
 const passportConfig = require('./config/passport-config');
 const flash = ('connect-flash')
+const uuid = require('uuid')
 passportConfig(passport);
 
 
@@ -25,12 +26,16 @@ router.get('/', requireAuth, (req, res) => {
 
   var flashData = req.flash('flashData')[0]
 
-
-
-  res.render('index', flashData);
+  const userData = req.session.userData  || {};
+  const sessionId = req.session.sessionId || null;
+  console.log("flashdata:",flashData)
+  console.log("userdata:",userData)
+  console.log("sessionId:",sessionId)
+  res.render('index', {flashData, userData, sessionId});
 });
 
 router.get('/login', (req, res) => {
+
   const flashMessage = req.flash('flashAlert')[0]
   var loginMessage = ''
   var messageType = ''
@@ -77,24 +82,33 @@ router.post('/guest',  (req, res, next) => {
         authType: 'guest',
         guest: true
       });
+
+      const sessionId = uuid.v4();
+      // user.token = token;
+
       await user.save();
       console.log("HERE")
+
 
 
       req.login(user, (err) => {
         if (err) {
           return next(err);
         }
-        // Redirect to the home page
+
         req.flash("flashData", {
           welcomeMessage: `Hi ${user.username}`,
-          userData: {
-            name: user.username,
-            session: {},
-            badges: []
-          },
           flashMessage: "guest"
         });
+
+        req.session.sessionId = sessionId
+        req.session.userData = {
+          name: user.username,
+          session: {},
+          badges: []
+        }
+
+     
         return res.redirect('/');
       });
     } catch (error) {
@@ -160,20 +174,20 @@ router.post('/login', (req, res, next) => {
         console.log(" error logging in")
         return next(err);
       }
-
+      const sessionId = uuid.v4();
       req.flash('flashData', {
         welcomeMessage: `Hi ${user.username}`,
-        userData: {
-          _id: user._id,
-          name: user.name,
-          session: {},
-          badges: user.badges,
-
-        },
         flashMessage: 'success' // pass flashMessage to the view
         //
+      })
+      
+      req.session.userData = {
+          name: user.username,
+          session: {},
+          badges: user.badges,
       }
-      )
+      req.session.sessionId=sessionId
+      
 
       return res.redirect('/')
 
@@ -220,30 +234,44 @@ router.post('/signup', async function (req, res, next) {
     req.login(user, function (err) {
       if (err) { return next(err); }
       // req.flash('sign-up-successful,"Account Created Succesfully')
-      req.flash('flashMessage', {
-        type: 'success',
-        message: 'Account Created Succesfully'
+      // req.flash('flashMessage', {
+      //   type: 'success',
+      //   message: 'Account Created Succesfully'
+      // })
+      // req.flash("flashData", {
+      //   welcomeMessage: `Hi ${username}`,
+      //   userData: {
+      //     name: user.username,
+      //     session: {},
+      //     badges: []
+      //   },
+      //   flashMessage: "guest"
+      // })
+
+      const sessionId = uuid.v4();
+      req.flash('flashData', {
+        welcomeMessage: `Hi ${user.username}`,
+        flashMessage: 'success' // pass flashMessage to the view
+        //
       })
-      req.flash("flashData", {
-        welcomeMessage: `Hi ${username}`,
-        userData: {
+      
+      req.session.userData = {
           name: user.username,
           session: {},
-          badges: []
-        },
-        flashMessage: "guest"
-      })
+          badges: user.badges,
+      }
+      req.session.sessionId=sessionId
+      return res.redirect('/')
 
-
-      return res.render('index', {
-        welcomeMessage: `Hi ${username}`,
-        userData: {
-          name: user.username,
-          session: {},
-          badges: []
-        },
-        flashMessage: "success"
-      })
+      // return res.render('index', {
+      //   welcomeMessage: `Hi ${username}`,
+      //   userData: {
+      //     name: user.username,
+      //     session: {},
+      //     badges: []
+      //   },
+      //   flashMessage: "success"
+      // })
     });
   } catch (err) {
     if (err.code === 11000) { // Duplicate email error

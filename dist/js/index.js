@@ -354,6 +354,14 @@ window.onload = function () {
     const numQuestion = state.mcQuizActive.mcqNumQuestion;
     // const numCorrect = state.mcQuizActive.mcqNumCorrect;
 
+    //
+    //
+    //
+
+    // const storedData = JSON.parse(localStorage.getItem('userData'));
+    // console.log(("STORED DATA"));
+    // console.log(storedData)
+
     console.log(state.mcQuizActive);
     console.log("You answered: ", numCorrect, " questions correctly out of", numQuestion, ". That is ", Math.round(100 * numCorrect / numQuestion), "%.");
     // alert("You answered: ", numCorrect, " questions correctly out of", numQuestion, ". That is " ,Math.round(100 * numCorrect / numQuestion), "%.")

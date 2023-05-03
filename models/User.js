@@ -25,7 +25,7 @@ const bcrypt = require('bcrypt');
 
 
 
-var validateEmail = function(email) {
+var validateEmail = function (email) {
 
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email)
@@ -36,58 +36,63 @@ var validateEmail = function(email) {
 
 
 const UserSchema = new mongoose.Schema({
-  guest:{type:Boolean, default:false},
-  username:{
-type:String,
-minLength:[6,"Username must be 6 or more characters"],
-maxLength:[16, "Username too long."],
-required:function() {
-  return this.authType === 'local';
-}
+  guest: { type: Boolean, default: false },
+  username: {
+    type: String,
+    minLength: [6, "Username must be 6 or more characters"],
+    maxLength: [16, "Username too long."],
+    required: function () {
+      return this.authType === 'local';
+    }
   },
   email: {
     type: String,
     trim: true,
     lowercase: true,
     unique: true,
-    validate: function(){
+    validate: function () {
       if (this.authtype === ' google') return true
-      
-     return [validateEmail, 'Please fill a valid email address']
+
+      return [validateEmail, 'Please fill a valid email address']
     }
-    
-    
-,
+
+
+    ,
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
-    required: function() {
+    required: function () {
       return this.authType === 'local';
     }
 
   },
   password: {
     type: String,
-    minLength:[6, "Password must be atleast 6 characters"],
-    required: function() {
+    minLength: [6, "Password must be atleast 6 characters"],
+    required: function () {
       return this.authType === 'local';
     }
   },
   authType: {
     type: String,
-    enum: ['local', 'google','guest'],
+    enum: ['local', 'google', 'guest'],
     required: true
   },
   googleId: {
     type: String,
-    required: function() {
+    required: function () {
       return this.authType === 'google';
-    }},
-  session:{
+    }
+  },
+  session: {
     type: Object,
   },
-  badges:{
-  type:Array,
+  badges: {
+    type: Array,
 
-}
+  },
+  // token:{
+  //   type:String,
+  //   unique:true
+  // }
 });
 
 
