@@ -1,66 +1,85 @@
-
-
 <!DOCTYPE html>
 <htm lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="apple-mobile-web-app-capable" content="yes" >
-<meta name="description"content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
 
-<title>Math Genius</title>
-<link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="/css/styles.css">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description"
+      content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+
+    <title>Math Genius</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+    <link rel="stylesheet" href="/css/styles.css">
 
 
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+
+  <body>
+
     <div class="signup-menu-container display-container" id="signup-menu-container">
-     
-          <div class="signup-container">
-            <h1 class="signup-header">Sign Up</h1>
-            
-            
-            <!-- <div class="signup-error-message" id="signup-error-message"><% if (signupMessage) { %>
+
+      <div class="signup-container">
+        <h1 class="signup-header">Create Account</h1>
+
+
+        <!-- <div class="signup-error-message" id="signup-error-message"><% if (signupMessage) { %>
               <p><%= signupMessage %></p><%} %>
              </div> -->
 
-             <% if(signupMessage) { %>
-              <div class="signup-flash-message <%= messageType %>" id="signup-flash-message">
-                <p>
-                  <%= signupMessage %>
-                </p>
-                <button class="close-signup-alert" id="close-signup-alert"><i class="close-signup-alert-icon">x</i></button>
-              </div>
-      
-      
-    
-              <% } %>
+        <% if(signupMessage) { %>
+          <div class="signup-flash-message <%= messageType %>" id="signup-flash-message">
+            <p>
+              <%= signupMessage %>
+            </p>
+            <button class="close-signup-alert" id="close-signup-alert"><i class="close-signup-alert-icon">x</i></button>
+          </div>
+
+
+
+          <% } %>
 
 
 
             <form class="signup-form" id="signup-form" action="/signup" method="post">
               <div class="signup-form-group">
-                <label  class="input-label" for="username">Username:</label>
-                <input class="form-input" type="text" id="username" name="username" required>
+                <!-- <label class="input-label" for="username">Username:</label> -->
+                <div class="input-shell">
+                  <i class="input-icon fa-solid fa-user-large"></i>
+                  <div class="input-seperator"></div>
+                  <input class="form-input" type="text" id="username" name="username" placeholder="Username" required>
+                </div>
               </div>
               <div class="signup-form-group">
-                <label  class="input-label" for="email">Email:</label>
-                <input class="form-input" type="email" id="email" name="email" required>
+                <!-- <label class="input-label" for="email">Email:</label> -->
+                <div class="input-shell">
+                  <i class="input-icon fa-regular fa-envelope"></i>
+                  <div class="input-seperator"></div>
+                <input class="form-input" type="email" id="email" name="email" placeholder="Email" required>
+                </div>
               </div>
               <div class="signup-form-group">
-                <label  class="input-label" for="password">Password:</label>
-                <input class="form-input" type="password" id="password" name="password" required>
+                <!-- <label class="input-label" for="password">Password:</label> -->
+                <div class="input-shell">
+                  <i class="input-icon fa-solid fa-key"></i>
+                  <div class="input-seperator"></div>
+                <input class="form-input" type="password" id="password" name="password" placeholder="Password" required>
+                </div>
               </div>
               <div class="signup-form-group">
-                <button class="signup-form-button" title="signup-button" type="submit" class="btn btn-primary">SignUp</button>
+                <button class="signup-form-button" title="signup-button" type="submit" class="btn btn-primary">Create
+                  Account</button>
               </div>
             </form>
-            <div class="divider"><div class="line"></div><span class="or">or</span><div class="line"></div></div>
+            <div class="divider">
+              <div class="line"></div><span class="or">or</span>
+              <div class="line"></div>
+            </div>
             <!-- <div class="signup-form-group">
               <a href="/auth/google" class="btn btn-google">
                 <span class="material-icons">person</span>
@@ -71,24 +90,25 @@
               <a href="/login">Have an account alread? Log in now!</a>
             </div> -->
 
-            <form  class="signup-form-group go-to-login" action="/login" method="GET">
+            <form class="signup-form-group go-to-login" action="/login" method="GET">
               <label class="have-account-label" for="login">Already have an account? </label>
-              <button  class="btn btn-primary go-to-login-button" id="login" type="submit">Log In</button>
+              <button class="btn btn-primary go-to-login-button" id="login" type="submit">Log in</button>
             </form>
 
             <form class="play-as-guest" action="/guest" method="POST">
               <label for="guest"></label>
-              <button  class="signup-form-button" id="guest" type="submit">Play as guest</button>
+              <button class="signup-form-button guest-button" id="guest" type="submit">Play as guest</button>
             </form>
 
-            
-          </div>
-   
+
+      </div>
 
 
-</div>
 
-<script src="../js/signupAlert.js"></script>
- 
-</body>
-</html>
+    </div>
+
+    <script src="../js/signupAlert.js"></script>
+
+  </body>
+
+  </html>

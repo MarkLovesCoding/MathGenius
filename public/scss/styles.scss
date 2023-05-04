@@ -1355,13 +1355,13 @@ background:rgba(255, 255, 255, 0.25);
   .login-container, .signup-container {
     display: flex;
     flex-direction: column;
-    max-width: 90vw;
-    max-height:90vh;
+    // max-width: 90vw;
+    // max-height:90vh;
     margin: 0 auto;
-    padding: 5%;
-    border-radius: 4px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    // padding: 5%;
+    // border-radius: 4px;
+    // background-color: #fff;
+    // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   /* Headings */
@@ -1372,6 +1372,8 @@ background:rgba(255, 255, 255, 0.25);
     font-weight: 500;
     text-align: center;
     font-family:'Roboto';
+    font-weight: 600;
+    color: $chalk-white;
   }
   
   /* Form */
@@ -1391,11 +1393,31 @@ background:rgba(255, 255, 255, 0.25);
   .form-input[type="password"],
     .form-input[type="email"] {
     width: 100%;
-    padding: 8px 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 8px 4px;
+    // border: 1px solid #ccc;
+    // border-radius: 4px;
+    border:none;
+    outline:0;
     font-size: 14px;
     line-height: 1.5;
+    height:40px;
+
+    &:active,:focus{
+      border:none;
+      outline:0;
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
   }  
   .login-input::placeholder,.signup-input::placeholder{
     font-size:11px;
@@ -1437,12 +1459,14 @@ background:rgba(255, 255, 255, 0.25);
 } .line{
   width:40%;
   height:1px;
-  background:black;
+  background:$chalk-white;
 
 }
 .or{
   padding:15px 10px;
   font-size:0.8em;
+  color:$chalk-white;
+
 }
 
 
@@ -1451,7 +1475,7 @@ background:rgba(255, 255, 255, 0.25);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding:10px;
+  // padding:10px;
 }
 
 .login-form-group, .signup-form-group{
@@ -1463,11 +1487,20 @@ background:rgba(255, 255, 255, 0.25);
   width:100%;
   padding:10px;
   font-family:'Roboto';
+  font-weight:600;
   margin-top:20px;
   cursor:pointer;
   outline:none;
+  height: 45px;
+  border-radius: 25px;
+  border: none;
+  // background-color: #dd8ca7;
+  background-color:$minus-blue;
+  // background: #fad787;
 }
-
+.guest-button{
+  background-color:$plus-green;
+}
 .form-input{
 
 }
@@ -1477,66 +1510,116 @@ background:rgba(255, 255, 255, 0.25);
 
 
 .google-button{
-  display:flex;
+  display: flex;
   flex-direction: row;
-  justify-content:flex-start;
+  justify-content: center;
   align-items: center;
-  padding:2px;
-  background: #4285f4 ;
-  height:54px;
-  border:none;
-  border-radius:2px;
+  padding: 2px;
+  background: $chalk-white;
+  height: 50px;
+  border: none;
+  border-radius: 34px;
+  color:transparent;
+  transition:all 250ms ease-in;
+
+  background-image:url("https://www.svgrepo.com/download/448227/google.svg");
+  // background-image:url("/dist/assets/google-svg.svg");
+  // background-size:auto;
+  background-repeat:no-repeat;
+  background-size:  40px 40px;
+  background-position: center;
   &:hover{
-    background:#2c6bd2
+    background:#ea4335;
+    background-image:none;
+    color:$chalk-white;
+    transition:all 250ms ease-in;
+    background-position: center;
+
   }
 &:active{
-  background:#164ea8
-}
-}
-.google-text{
-  display: flex;
-  justify-content: center;
-  width:100%;
-  font-family:'Roboto';
-  color:white;
-}
+  background-position: center;
+  color:$chalk-white;
 
-.fa-google {
+  background:#db3c2d
+}
+&:focus{
+  background-position: center;
+  color:$chalk-white;
+
+  background:#db3c2d
+}
+}
+// .google-text{
+//   display: flex;
+//   justify-content: center;
+//   width:100%;
+//   font-family:'Roboto';
+//   color:$chalk-white;
+// }
+
+// .fa-google {
 
   
-  background: 
-    linear-gradient(to bottom left,transparent 49%,#fbbc05 50%) 0 25%/48% 40%,
-    linear-gradient(to top    left,transparent 49%,#fbbc05 50%) 0 75%/48% 40%,
+//   background: 
+//     linear-gradient(to bottom left,transparent 49%,#fbbc05 50%) 0 25%/48% 40%,
+//     linear-gradient(to top    left,transparent 49%,#fbbc05 50%) 0 75%/48% 40%,
   
-    linear-gradient(-40deg ,transparent 53%,#ea4335 54%),
-    linear-gradient( 45deg ,transparent 46%,#4285f4 48%),
-    #34a853;
-  background-repeat:no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  // line-height:2em !important;
- transform:scale(1.8);
-}
+//     linear-gradient(-40deg ,transparent 53%,#ea4335 54%),
+//     linear-gradient( 45deg ,transparent 46%,#4285f4 48%),
+//     #34a853;
+//   background-repeat:no-repeat;
+//   -webkit-background-clip: text;
+//   background-clip: text;
+//   color: transparent;
+//   -webkit-text-fill-color: transparent;
+//   // line-height:2em !important;
+//  transform:scale(1.8);
+// }
 
 .google-icon-container{
-  min-width:50px;
-  height:50px;  
+  min-width:40px;
+  margin-left:5px;
+  height:40px;  
   display: flex;
   justify-content: center;
   align-items: center;
-  background:white;
-  border-radius:2px;
+  border-radius:20px;
+  background:rgb(190, 89, 89);
+  color:white;
 }
 .google-icon{
   line-height:inherit !important;
+  min-width:40px;
+  // margin-left:5px;
+  height:40px;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius:20px;
+  // background:white;
+
 }
 
-
-
-
-
+.input-shell{
+  background:white;
+  // border: solid grey 2px;
+  border-radius: 25px;
+  display: flex;
+  padding:0rem 1rem;
+  gap: 1rem;
+  justify-content: center;
+  height:45px;
+  align-items: center;
+  border:2px solid white;
+  &:focus-within{ border: solid 2px orange;
+  transition: border 100ms ease-in;
+  }
+}
+.input-seperator{
+  border-left: 1px solid gray;
+  height: 30px;
+  width:2px;
+}
 
 
 
@@ -1589,17 +1672,20 @@ background:rgba(255, 255, 255, 0.25);
 
 
 
-.create-account-container{
+.create-account-container, .go-to-login{
 display: flex;
+justify-content: center;
 }
 .create-account-label, .have-account-label{
 justify-content: flex-end;
 font-size:12px;
 font-family:'Roboto';
+color:$chalk-white;
 }
 .create-account-link,.go-to-login-button{
   text-decoration:underline;
   justify-content: flex-start;
+  color:$chalk-white
 }
 .new-account-button,.go-to-login-button{
   background:none;

@@ -63,14 +63,33 @@
       <form class="login-form" id="login-form" action="/login" method="post">
 
         <div class="login-form-group">
-          <label class="input-label" for="username">Username or Email:</label>
-          <input class="form-input" type="text" id="username" name="username" placeholder="Enter your username or email"
-            required>
+          <!-- <label class="input-label" for="username">Username or Email:</label> -->
+          <!-- <input class="form-input" type="text" id="username" name="username" placeholder="Email or Username"
+            required> -->
+            <div class="input-shell">
+              <i class="input-icon fa-solid fa-user-large"></i>
+              <div class="input-seperator"></div>
+            <input class="form-input" type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+
+
         </div>
         <div class="login-form-group">
-          <label class="input-label" for="password">Password:</label>
-          <input class="form-input" type="password" id="password" name="password" placeholder="Type your password"
-            required>
+          <!-- <label class="input-label" for="password">Password:</label> -->
+          <!-- <input class="form-input" type="password" id="password" name="password" placeholder="Password"
+            required> -->
+
+            <div class="input-shell">
+              <i class="input-icon fa-solid fa-key"></i>
+              <div class="input-seperator"></div>
+            <input class="form-input" type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+
+
+
+
+
+
         </div>
         <div class="login-form-group">
           <button title="login-button" type="submit" class="login-form-button">Sign In</button>
@@ -88,8 +107,9 @@
           <!-- <label for="google"></label> -->
 
           <button class="btn btn-primary login-form-button google-button" id="google" type="submit">
-            <div class="google-icon-container"><i class="google-icon fa-brands fa-google "></i></div>
-            <div class="google-text">Sign in with Google</div>
+        
+
+           Sign in with Google  
           </button>
         </form>
 
