@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="/css/styles.css">
 
-
+  <script src="https://www.google.com/recaptcha/api.js"></script>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Roboto&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
@@ -92,7 +92,11 @@
 
         </div>
         <div class="login-form-group">
-          <button title="login-button" type="submit" class="login-form-button">Sign In</button>
+          <button title="login-button" type="submit" class="login-form-button g-recaptcha"
+        
+          data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" 
+          data-callback='onSubmit' 
+          data-action='submit'>Sign In</button>
         </div>
       </form>
 
@@ -170,6 +174,11 @@ window.onclick = function(event) {
 }
 </script> -->
   <script src="../js/loginAlert.js"></script>
+  <script>
+    function onSubmit(token) {
+      document.getElementById("login-form").submit();
+    }
+  </script>
 </body>
 
 </html>
