@@ -9,9 +9,10 @@ const uuid = require('uuid')
 
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-
+const sendinblue = require('./config/email-config')
 passportConfig(passport);
 
+const SibApiV3Sdk = require('sib-api-v3-sdk');
 
 // 
 // Rendering Routes
@@ -463,14 +464,41 @@ router.get('/logout', function (req, res) {
 // 
 
 
+const sendEmail = async (to, subject, html) => {
+  const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'admin@mathgenius.ca',
-    pass: process.env.EMAILPASS
+  sendSmtpEmail.to = [{ email: to }];
+  sendSmtpEmail.sender = { name: 'Math Genius', email: 'markdavidjameshalstead@gmail.com' };
+  sendSmtpEmail.subject = subject;
+  sendSmtpEmail.htmlContent = html;
+
+
+  try {
+    const response = await sendinblue.sendTransacEmail(sendSmtpEmail);
+    console.log(response);
+  } catch (error) {
+    console.error(error);
   }
-});
+};
+
+sendEmail('recipient@example.com', 'Test Email', '<p>Hello, World!</p>');
+
+
+
+
+
+
+
+
+
+
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'admin@mathgenius.ca',
+//     pass: process.env.EMAILPASS
+//   }
+// });
 
 
 
@@ -514,26 +542,31 @@ try{
     //     return res.redirect('/forgot-password');
     //   }
 
-      const mailOptions = {
-        from: 'admin@mathgenius.ca',
-        to: email,
-        subject: 'Password reset request',
-        html: `Please click this link to reset your password: <a href="http://localhost:4000/reset-password/${token}">Reset Password</a>`
-      };
+      // const mailOptions = {
+      //   from: 'admin@mathgenius.ca',
+      //   to: email,
+      //   subject: 'Password reset request',
+      //   html: `Please click this link to reset your password: <a href="http://localhost:4000/reset-password/${token}">Reset Password</a>`
+      // };
 
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log(error);
-          req.flash('flashAlert', {type:'error',message: 'Error sending password reset email.'});
-          return res.redirect('/forgot-password');
-        } else {
-          console.log('Email sent: ' + info.response);
-          req.flash('flashAlert',  {type:'success',message:'Password reset email sent. Check your inbox.'});
-          return res.redirect('/forgot-password');
-        }
+      // transporter.sendMail(mailOptions, (error, info) => {
+      //   if (error) {
+      //     console.log(error);
+      //     req.flash('flashAlert', {type:'error',message: 'Error sending password reset email.'});
+      //     return res.redirect('/forgot-password');
+      //   } else {
+      //     console.log('Email sent: ' + info.response);
+      //     req.flash('flashAlert',  {type:'success',message:'Password reset email sent. Check your inbox.'});
+      //     return res.redirect('/forgot-password');
+      //   }
       
       
-      });
+      // });
+      const html = `Please click this link to reset your password: <a href="http://localhost:4000/reset-password/${token}">Reset Password</a>`;
+      await sendEmail(email, 'Password reset request', html);
+      req.flash('flashAlert', {type:'success',message:'Email Sent. Please Check your inbox'});
+      return res.redirect('/forgot-password');
+
     }
     catch(err){
       console.log(err);
@@ -548,10 +581,13 @@ router.get('/reset-password/:token', async (req, res) => {
   const user = await User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } })
  
     if (!user) {
-      req.flash('error', 'Password reset token is invalid or has expired.');
+  
+      req.flash('flashAlert',{
+        message:'Password reset token is invalid or has expired.', type:'error'
+      })
       return res.redirect('/forgot-password');
     }
-    res.render('reset-password', { token: req.params.token });
+    res.render('forgotPassword', { token: req.params.token });
   }
   catch(err){
     console.error(err);
@@ -570,8 +606,10 @@ router.post('/reset-password/:token', async (req, res) => {
   const user = await User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } })
   
     if (!user) {
-      req.flash('error', 'Password reset token is invalid or has expired.');
-      return res.redirect('back');
+
+      req.flash('flashAlert', {type:'error',message:'Password reset token is invalid or has expired.'});
+      return res.redirect('/forgot-password');
+
     }
     user.password = req.body.password;
     user.resetPasswordToken = undefined;
