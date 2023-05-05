@@ -1689,64 +1689,6 @@ body {
 }
 
 @media only screen and (orientation: landscape) and (min-aspect-ratio: 1.75) {
-  .divider {
-    display: none;
-  }
-
-  .login-bottom {
-    display: flex;
-    flex-direction: row;
-    width: 600px;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  .login-bottom-two {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    min-height: 225px;
-  }
-
-  .login-left-upper {
-    min-height: 225px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  .google-login-group {
-    margin-bottom: 0;
-  }
-
-  .play-as-guest {
-    margin-bottom: 0;
-  }
-
-  .create-account-form-group {
-    margin-bottom: 0;
-  }
-
-  .signup-landscape-bottom {
-    display: flex;
-    width: 600px;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-end;
-  }
-
-  .login-form, .signup-form, .forgot-password-form {
-    justify-content: flex-end;
-  }
-
-  .login-blocks, .google-block {
-    min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   .header {
     width: 200px;
     align-items: center;
@@ -2001,64 +1943,6 @@ body {
   }
 }
 @media only screen and (max-aspect-ratio: 1.75) and (orientation: landscape) {
-  .divider {
-    display: none;
-  }
-
-  .login-bottom {
-    display: flex;
-    flex-direction: row;
-    width: 600px;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  .login-bottom-two {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    min-height: 225px;
-  }
-
-  .login-left-upper {
-    min-height: 225px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  .google-login-group {
-    margin-bottom: 0;
-  }
-
-  .play-as-guest {
-    margin-bottom: 0;
-  }
-
-  .create-account-form-group {
-    margin-bottom: 0;
-  }
-
-  .signup-landscape-bottom {
-    display: flex;
-    width: 600px;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-end;
-  }
-
-  .login-form, .signup-form, .forgot-password-form {
-    justify-content: flex-end;
-  }
-
-  .login-blocks, .google-block {
-    min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   .activity-menu-container, .operator-menu-container, .difficulty-menu-container, .game-middle-lower, .real-menu-container, .practice-menu-container {
     flex-direction: row;
   }
@@ -2281,16 +2165,79 @@ body {
     margin-bottom: 10px;
   }
 }
+@media only screen and (max-width: 900px) and (orientation: landscape) {
+  .divider {
+    display: none;
+  }
+
+  .login-bottom {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .login-bottom-two {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 225px;
+  }
+
+  .login-left-upper {
+    min-height: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .google-login-group {
+    margin-bottom: 0;
+  }
+
+  .play-as-guest {
+    margin-bottom: 0;
+  }
+
+  .create-account-form-group {
+    margin-bottom: 0;
+  }
+
+  .signup-landscape-bottom {
+    display: flex;
+    width: 600px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+
+  .login-form, .signup-form, .forgot-password-form {
+    justify-content: flex-end;
+  }
+
+  .login-blocks, .google-block {
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 @media only screen and (max-width: 580px) and (orientation: landscape) {
-  .login-top {
+  .login-top, .signup-header {
     height: 3ch;
+  }
+
+  .signup-header {
+    margin-bottom: 0;
   }
 
   .google-login-group {
     margin-bottom: 10px;
   }
 
-  .login-bottom {
+  .login-bottom, .signup-landscape-bottom {
     display: flex;
     flex-direction: row;
     width: 540px;
@@ -2304,5 +2251,13 @@ body {
 
   .form-input[type=text], .form-input[type=password], .form-input[type=email] {
     font-size: 12px;
+  }
+
+  .signup-top-left, .signup-bottom-right {
+    max-width: 240px;
+  }
+
+  .create-account-form-button {
+    margin-top: 0;
   }
 }
