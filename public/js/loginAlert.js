@@ -11,8 +11,11 @@
         loginAlert.style.display = 'none';
       }
     
-      // var closeButton = document.getElementById('close-login-alert');
-      // closeButton.addEventListener('click', closeAlert);
+      var closeButton = document.getElementById('close-login-alert');
+      if(closeButton){
+        closeButton.addEventListener('click', closeAlert);
+
+      }
     
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {

@@ -10,7 +10,10 @@ var signupAlert = document.getElementById("signup-flash-message");
   }
 
   var closeButton = document.getElementById('close-signup-alert');
-  closeButton.addEventListener('click', closeAlert);
+  if (closeButton){
+    closeButton.addEventListener('click', closeAlert);
+
+  }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
