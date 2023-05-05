@@ -7,7 +7,7 @@ const passportConfig = require('./config/passport-config');
 const flash = ('connect-flash')
 const uuid = require('uuid')
 
-const nodemailer = require('nodemailer');
+
 const crypto = require('crypto');
 const sendinblue = require('./config/email-config')
 passportConfig(passport);
@@ -17,41 +17,6 @@ const SibApiV3Sdk = require('sib-api-v3-sdk');
 // 
 // Rendering Routes
 // 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -169,25 +134,6 @@ router.post('/guest',  (req, res, next) => {
       res.sendStatus(500);
     }
 
-  //     // console.log(req.isAuthenticated)
-  //     req.flash("flashData", {
-  //       // signupSuccessMessage: "Hello Guest!",
-  //       welcomeMessage: `Hi ${user.username}`,
-  //       userData: {
-  //         name: user.username,
-  //         session: {},
-  //         badges: []
-  //       },
-  //       flashMessage: "guest"
-  //     })
-
-  //     console.log('redirect now');
-  //     return res.redirect('/')
-
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.sendStatus(500);
-  //   }
   })(req, res, next);
 
 
@@ -288,20 +234,6 @@ router.post('/signup', async function (req, res, next) {
     await user.save();
     req.login(user, function (err) {
       if (err) { return next(err); }
-      // req.flash('sign-up-successful,"Account Created Succesfully')
-      // req.flash('flashMessage', {
-      //   type: 'success',
-      //   message: 'Account Created Succesfully'
-      // })
-      // req.flash("flashData", {
-      //   welcomeMessage: `Hi ${username}`,
-      //   userData: {
-      //     name: user.username,
-      //     session: {},
-      //     badges: []
-      //   },
-      //   flashMessage: "guest"
-      // })
 
       const sessionId = uuid.v4();
       req.flash('flashData', {
@@ -318,15 +250,7 @@ router.post('/signup', async function (req, res, next) {
       req.session.sessionId=sessionId
       return res.redirect('/')
 
-      // return res.render('index', {
-      //   welcomeMessage: `Hi ${username}`,
-      //   userData: {
-      //     name: user.username,
-      //     session: {},
-      //     badges: []
-      //   },
-      //   flashMessage: "success"
-      // })
+
     });
   } catch (err) {
     if (err.code === 11000) { // Duplicate email error
@@ -380,16 +304,6 @@ router.get(
     const profileName = loadUser.username
 
 
-    // req.flash('flashData', {
-    //   welcomeMessage: `Hi ${profileName}`,
-    //   userData: {
-    //     name: profileName,
-    //     session: {},
-    //     badges: loadUser.badges,
-
-    //   },
-    //   flashMessage: 'success' // pass flashMessage to the view
-    // })
 
 
     const sessionId = uuid.v4();
@@ -411,12 +325,7 @@ router.get(
 
     return res.redirect('/')
 
-    // res.render('index', {
-    //   signupSuccessMessage: req.flash('google-sign-in'),
-    //   welcomeMessage: `Hi ${profileName}`,
-    //   userData: {
-    //   }
-    // });
+
   }
 );
 
@@ -526,16 +435,6 @@ router.post('/forgot-username', async (req, res) => {
 
 
 
-// const transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: 'admin@mathgenius.ca',
-//     pass: process.env.EMAILPASS
-//   }
-// });
-
-
-
 router.get('/forgot-password', (req, res) => {
    const flashMessage = req.flash('flashAlert')[0]
   var passwordMessage = ''
@@ -578,32 +477,8 @@ try{
     user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
     user.save()
-    // (err) => {
-    //   if (err) {
-    //     req.flash('flashAlert', {type:'error',message: 'Error saving user with reset token.'});
-    //     return res.redirect('/forgot-password');
-    //   }
 
-      // const mailOptions = {
-      //   from: 'admin@mathgenius.ca',
-      //   to: email,
-      //   subject: 'Password reset request',
-      //   html: `Please click this link to reset your password: <a href="http://localhost:4000/reset-password/${token}">Reset Password</a>`
-      // };
-
-      // transporter.sendMail(mailOptions, (error, info) => {
-      //   if (error) {
-      //     console.log(error);
-      //     req.flash('flashAlert', {type:'error',message: 'Error sending password reset email.'});
-      //     return res.redirect('/forgot-password');
-      //   } else {
-      //     console.log('Email sent: ' + info.response);
-      //     req.flash('flashAlert',  {type:'success',message:'Password reset email sent. Check your inbox.'});
-      //     return res.redirect('/forgot-password');
-      //   }
-      
-      
-      // });
+  
       const html = `Almost there ${user.username }! Click this link to reset your password: <a href="http://localhost:4000/reset-password/${token}">Reset Password</a>`;
       await sendEmail(email, 'Password reset request', html);
       req.flash('flashAlert', {type:'success',message:'Email Sent. Please Check your inbox'});
