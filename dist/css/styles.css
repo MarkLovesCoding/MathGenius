@@ -1271,6 +1271,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  align-items: center;
 }
 
 /* Headings */
@@ -1288,6 +1289,10 @@ body {
 /* Form */
 .login-form-group, .signup-form-group, .forgot-password-form-group {
   margin-bottom: 20px;
+}
+
+.signin-button-group, .play-as-guest {
+  width: 100%;
 }
 
 .input-label {
@@ -1372,11 +1377,11 @@ body {
   align-items: center;
 }
 
-.login-form-group, .signup-form-group, .forgot-password-form-group {
+.login-form-group, .signup-form-group, .forgot-password-form-group, .create-account-form-group {
   width: 100%;
 }
 
-.login-form-button, .signup-form-button, .forgot-password-form-button {
+.login-form-button, .signup-form-button, .forgot-password-form-button, .create-account-form-button {
   width: 100%;
   padding: 10px;
   font-family: "Roboto";
@@ -1390,8 +1395,19 @@ body {
   background-color: #00bdff;
 }
 
+.create-account-form-button {
+  margin-bottom: 0;
+}
+
 .guest-button {
   background-color: #6ee06e;
+}
+
+.login-blocks, .google-block {
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .google-button {
@@ -1401,15 +1417,17 @@ body {
   align-items: center;
   padding: 2px;
   background: #eae6df;
-  height: 50px;
+  height: 45px;
+  width: 264px;
   border: none;
-  border-radius: 34px;
+  border-radius: 3px;
   color: transparent;
   transition: all 250ms ease-in;
   background-image: url("https://www.svgrepo.com/download/448227/google.svg");
   background-repeat: no-repeat;
-  background-size: 40px 40px;
+  background-size: 30px 30px;
   background-position: center;
+  margin-top: 0;
 }
 .google-button:hover {
   background: #ea4335;
@@ -1417,6 +1435,7 @@ body {
   color: #eae6df;
   transition: all 250ms ease-in;
   background-position: center;
+  border-radius: 25px;
 }
 .google-button:active {
   background-position: center;
@@ -1453,7 +1472,7 @@ body {
 
 .input-shell {
   background: white;
-  border-radius: 25px;
+  border-radius: 3px;
   display: flex;
   padding: 0rem 1rem;
   gap: 1rem;
@@ -1629,6 +1648,17 @@ body {
   cursor: pointer;
 }
 
+.google-login-group {
+  margin-bottom: 80px;
+}
+
+.signup-top-left, .signup-bottom-right {
+  width: 264px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
 @media only screen and (orientation: landscape) and (min-aspect-ratio: 1.75) {
   .divider {
     display: none;
@@ -1637,6 +1667,52 @@ body {
   .login-bottom {
     display: flex;
     flex-direction: row;
+    width: 600px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .login-bottom-two {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 225px;
+  }
+
+  .login-left-upper {
+    min-height: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .google-login-group {
+    margin-bottom: 0;
+  }
+
+  .play-as-guest {
+    margin-bottom: 0;
+  }
+
+  .login-blocks {
+    justify-content: flex-start;
+  }
+
+  .create-account-form-group {
+    margin-bottom: 0;
+  }
+
+  .signup-landscape-bottom {
+    display: flex;
+    width: 600px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+
+  .login-form, .signup-form, .forgot-password-form {
+    justify-content: flex-end;
   }
 
   .header {

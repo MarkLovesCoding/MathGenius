@@ -36,7 +36,7 @@
             <p>
               <%= loginMessage %>
             </p>
-            <button class="close-login-alert" id="close-login-alert"><i class="close-login-alert-icon">x</i></button>
+            <!-- <button class="close-login-alert" id="close-login-alert"><i class="close-login-alert-icon">x</i></button> -->
           </div>
 
 
@@ -61,7 +61,7 @@
       <div class="login-bottom">
         <div class="login-left-upper">
         <form class="login-form" id="login-form" action="/login" method="post">
-
+          <div class="login-blocks">
           <div class="login-form-group">
             <!-- <label class="input-label" for="username">Username or Email:</label> -->
             <!-- <input class="form-input" type="text" id="username" name="username" placeholder="Email or Username"
@@ -85,18 +85,21 @@
 
 
           </div>
-          <div class="login-form-group">
+        </div>
+          <div class="forgot-text-container">
+            <a class='forgot-text-link login-forgot-password' href="/forgot-password">Forgot Password?</a>
+  
+            <a class='forgot-text-link login-forgot-username' href="/forgot-username">Forgot Username?</a>
+          </div>
+
+          <div class="signin-button-group">
             <button title="login-button" type="submit" class="login-form-button g-recaptcha"
               data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmit' data-action='submit'>Sign
               In</button>
           </div>
         </form>
 
-        <div class="forgot-text-container">
-          <a class='forgot-text-link login-forgot-password' href="/forgot-password">Forgot Password?</a>
-
-          <a class='forgot-text-link login-forgot-username' href="/forgot-username">Forgot Username?</a>
-        </div>
+ 
       </div>
 
         <div class="divider">
@@ -105,8 +108,8 @@
         </div>
 
         <div class="login-bottom-two">
-
-          <form class="login-form-group" action="/auth/google" method="GET">
+          <div class="google-block">
+          <form class="login-form-group google-login-group" action="/auth/google" method="GET">
 
 
             <button class="btn btn-primary login-form-button google-button" id="google" type="submit">
@@ -115,7 +118,7 @@
               Sign in with Google
             </button>
           </form>
-
+        </div>
 
 
 
@@ -127,7 +130,7 @@
 
 
 
-          <form class=" play-as-guest login-form-group" action="/guest" method="POST">
+          <form class=" play-as-guest " action="/guest" method="POST">
             <label for="guest"></label>
             <button class="login-form-button guest-button" id="guest" type="submit">Play as
               guest</button>

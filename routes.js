@@ -468,7 +468,7 @@ const sendEmail = async (to, subject, html) => {
   const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
   sendSmtpEmail.to = [{ email: to }];
-  sendSmtpEmail.sender = { name: 'Math Genius', email: 'admin@mathgenius.ca' };
+  sendSmtpEmail.sender = { name: 'Math Genius', email: 'no-reply@mathgenius.ca' };
   sendSmtpEmail.subject = subject;
   sendSmtpEmail.htmlContent = html;
 
