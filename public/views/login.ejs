@@ -109,10 +109,11 @@
 
         <div class="login-bottom-two">
           <div class="google-block">
-          <form class="login-form-group google-login-group" action="/auth/google" method="GET">
+          <form class="login-form-group google-login-group" id="google-login-form" action="/auth/google" method="GET">
 
 
-            <button class="btn btn-primary login-form-button google-button" id="google" type="submit">
+            <button class="btn btn-primary login-form-button google-button  g-recaptcha"
+            data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGoogle' data-action='submit' id="google" type="submit">
 
 
               Sign in with Google
@@ -130,9 +131,10 @@
 
 
 
-          <form class=" play-as-guest " action="/guest" method="POST">
+          <form class=" play-as-guest " id="guest-login-form" action="/guest" method="POST">
             <label for="guest"></label>
-            <button class="login-form-button guest-button" id="guest" type="submit">Play as
+            <button class="login-form-button guest-button  g-recaptcha"
+            data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGuest' data-action='submit' id="guest" type="submit">Play as
               guest</button>
           </form>
         </div>
@@ -175,6 +177,12 @@ window.onclick = function(event) {
   <script>
     function onSubmit(token) {
       document.getElementById("login-form").submit();
+    }
+    function onSubmitGoogle(token) {
+      document.getElementById("google-login-form").submit();
+    }
+    function onSubmitGuest(token) {
+      document.getElementById("guest-login-form").submit();
     }
   </script>
 </body>

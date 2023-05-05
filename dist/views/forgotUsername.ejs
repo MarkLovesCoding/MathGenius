@@ -68,7 +68,8 @@
           </div>
     
        
-            <button id=" forgot-username-button" title="forgot-username-button" class="forgot-username-form-button"
+            <button id=" forgot-username-button" title="forgot-username-button" class="forgot-username-form-button g-recaptcha"
+            data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitUsername' data-action='submit'
                 type="submit">Forgot Username</button>
 
         </form>
@@ -114,8 +115,8 @@
   <script src="../js/resetPasswordAlert.js"></script>
   <script src="../js/resetPasswordAuth.js"></script>
   <script>
-    function onSubmit(token) {
-      document.getElementById("login-form").submit();
+    function onSubmitUsername(token) {
+      document.getElementById("forgot-username-form").submit();
     }
   </script>
 </body>

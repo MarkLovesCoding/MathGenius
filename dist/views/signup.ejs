@@ -12,12 +12,15 @@
     <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
     <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://www.google.com/recaptcha/api.js"></script>
 
 
     <link
       href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
       rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
   </head>
 
   <body>
@@ -73,7 +76,8 @@
                   </div>
                 </div>
                 <div class="create-account-form-group">
-                  <button class="create-account-form-button" title="signup-button" type="submit" class="btn btn-primary">Create
+                  <button class="create-account-form-button g-recaptcha"
+                  data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitSignup' data-action='submit' title="signup-button" type="submit" >Create
                     Account</button>
                 </div>
               </form>
@@ -105,9 +109,10 @@
 
 
 
-              <form class="play-as-guest" action="/guest" method="POST">
+              <form class="play-as-guest" id="guest-login-form" action="/guest" method="POST">
                 <label for="guest"></label>
-                <button class="signup-form-button guest-button" id="guest" type="submit">Play as guest</button>
+                <button class="signup-form-button guest-button g-recaptcha"
+                data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGuest' data-action='submit' id="guest" type="submit">Play as guest</button>
               </form>
 
             </div>
@@ -119,7 +124,17 @@
     </div>
 
     <script src="../js/signupAlert.js"></script>
-
+    <script>
+      function onSubmitSignup(token) {
+        document.getElementById("signup-form").submit();
+      }
+      // function onSubmitGoogle(token) {
+      //   document.getElementById("google-login-form").submit();
+      // }
+      function onSubmitGuest(token) {
+        document.getElementById("guest-login-form").submit();
+      }
+    </script>
   </body>
 
   </html>
