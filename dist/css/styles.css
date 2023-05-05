@@ -1473,6 +1473,25 @@ body {
   width: 2px;
 }
 
+.reset-password-form-button:invalid {
+  border: 2px solid red;
+  background-color: #F8D7DA;
+  color: #721C24;
+  padding: 0.5em;
+  margin: 1em 0;
+  border-radius: 0.25em;
+  font-size: 0.8em;
+}
+.reset-password-form-button:valid {
+  border: 2px solid green;
+  background-color: #D4EDDA;
+  color: #155724;
+  padding: 0.5em;
+  margin: 1em 0;
+  border-radius: 0.25em;
+  font-size: 0.8em;
+}
+
 .mc-quiz-stats, .mc-question-number, .mc-num-correct {
   display: flex;
   color: #eae6df;
@@ -2021,7 +2040,7 @@ body {
   }
 }
 /* For styling demo, not required */
-.success {
+.success-container {
   background-color: #274c43;
   position: absolute;
   left: 0;

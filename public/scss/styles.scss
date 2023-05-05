@@ -1619,7 +1619,28 @@ background:rgba(255, 255, 255, 0.25);
 }
 
 
-
+.reset-password-form-button{
+  &:invalid {
+    border: 2px solid red;
+    background-color: #F8D7DA;
+    color: #721C24;
+    padding: 0.5em;
+    margin: 1em 0;
+    border-radius: 0.25em;
+    font-size: 0.8em;
+  }
+  
+  &:valid {
+    border: 2px solid green;
+    background-color: #D4EDDA;
+    color: #155724;
+    padding: 0.5em;
+    margin: 1em 0;
+    border-radius: 0.25em;
+    font-size: 0.8em;
+  }
+  
+}
 
 
 
@@ -1732,6 +1753,23 @@ text-align:center;
   text-decoration: none;
   cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2199,7 +2237,7 @@ $color: $chalk-white;
 
 /* For styling demo, not required */
 
-.success {
+.success-container {
   background-color: $chalkboard-green;
   position:absolute;
   left:0;

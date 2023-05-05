@@ -468,7 +468,7 @@ const sendEmail = async (to, subject, html) => {
   const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
   sendSmtpEmail.to = [{ email: to }];
-  sendSmtpEmail.sender = { name: 'Math Genius', email: 'markdavidjameshalstead@gmail.com' };
+  sendSmtpEmail.sender = { name: 'Math Genius', email: 'admin@mathgenius.ca' };
   sendSmtpEmail.subject = subject;
   sendSmtpEmail.htmlContent = html;
 
@@ -481,12 +481,46 @@ const sendEmail = async (to, subject, html) => {
   }
 };
 
-sendEmail('recipient@example.com', 'Test Email', '<p>Hello, World!</p>');
+const url = "http://localhost:4000"
 
 
 
+router.get('/forgot-username', (req, res) => {
+  const flashMessage = req.flash('flashAlert')[0]
+ var passwordMessage = ''
+ var messageType = ''
+ if (flashMessage) {
+   messageType = flashMessage.type;
+   passwordMessage = flashMessage.message;
+ }
+ console.log(messageType)
+ console.log(passwordMessage)
+ res.render('forgotUsername', {
+   messageType: messageType,
+   passwordMessage: passwordMessage
+ });
+});
 
 
+router.post('/forgot-username', async (req, res) => {
+  try {
+    const  email  = req.body.email;
+    const user = await User.findOne({ email });
+    if (!user) {
+      req.flash('flashAlert', { type: 'error', message: 'No account with that email address exists.' });
+      return res.redirect('/forgot-password');
+    }
+
+    const html = `Hey there! Your username is: ${user.username}.  <a href="${url}/login">Click here to Login.</a> `;
+    await sendEmail(email, 'Username Retrieval', html);
+    req.flash('flashAlert', { type: 'success', message: 'Username sent to your email. Please check your inbox.' });
+    return res.redirect('/login');
+  } catch (err) {
+    console.log(err);
+    req.flash('flashAlert', { type: 'error', message: 'Error retrieving your username. Please try again.' });
+    return res.redirect('/forgot-password');
+  }
+});
 
 
 
@@ -519,9 +553,17 @@ router.get('/forgot-password', (req, res) => {
 });
 
 
+const rateLimit = require("express-rate-limit");
+
+// Set up rate limiter to prevent brute force attacks
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 3, // limit each IP to 3 requests per windowMs
+  message: "Too many requests from this IP, please try again after 15 minutes"
+});
 
 
-router.post('/forgot-password', async(req, res) => {
+router.post('/forgot-password', limiter, async(req, res) => {
   const { email } = req.body;
 try{
   const user = await User.findOne({ email })
@@ -562,7 +604,7 @@ try{
       
       
       // });
-      const html = `Please click this link to reset your password: <a href="http://localhost:4000/reset-password/${token}">Reset Password</a>`;
+      const html = `Almost there ${user.username }! Click this link to reset your password: <a href="http://localhost:4000/reset-password/${token}">Reset Password</a>`;
       await sendEmail(email, 'Password reset request', html);
       req.flash('flashAlert', {type:'success',message:'Email Sent. Please Check your inbox'});
       return res.redirect('/forgot-password');
@@ -576,7 +618,17 @@ try{
     });
 
 
+
+   
+      
 router.get('/reset-password/:token', async (req, res) => {
+
+
+
+
+
+
+
  try{ 
   const user = await User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } })
  
@@ -588,9 +640,23 @@ router.get('/reset-password/:token', async (req, res) => {
       return res.redirect('/forgot-password');
     }
     req.flash('flashAlert',{
-      type:'success', message:'Password reset! Please log in.'
+      type:'success', message:'Resetting Password.'
     })
-    res.redirect('/forgot-password');
+    const flashMessage = req.flash('flashAlert')[0]
+    var passwordMessage = ''
+    var messageType = ''
+    if (flashMessage) {
+      messageType = flashMessage.type;
+      passwordMessage = flashMessage.message;
+    }
+ 
+
+    res.render('resetPassword', {
+      messageType: messageType,
+      passwordMessage: passwordMessage,
+      token:req.params.token
+    });
+
   }
   catch(err){
     console.error(err);
