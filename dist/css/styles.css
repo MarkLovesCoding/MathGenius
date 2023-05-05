@@ -1538,12 +1538,12 @@ body {
   text-align: center;
 }
 
-.login-flash-message.error, .signup-flash-message.error {
+.login-flash-message.error, .signup-flash-message.error, .forgot-password-flash-message.error {
   background-color: pink;
   color: red;
 }
 
-.login-flash-message.success, .signup-flash-message.success {
+.login-flash-message.success, .signup-flash-message.success, .forgot-password-flash-message.success {
   background-color: #6bd881;
   color: #104b0f;
 }
