@@ -2210,7 +2210,7 @@ body {
     width: 600px;
     flex-direction: row;
     justify-content: space-around;
-    align-items: flex-end;
+    align-items: center;
   }
 
   .login-form, .signup-form, .forgot-password-form {
