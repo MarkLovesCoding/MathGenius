@@ -1267,14 +1267,14 @@ body {
 }
 
 /* Container */
-.login-container, .signup-container {
+.login-container, .signup-container, .forgot-password-container {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
 }
 
 /* Headings */
-.login-header, .signup-header {
+.login-header, .signup-header, .forgot-password-header {
   margin-top: 0;
   margin-bottom: 20px;
   font-size: 28px;
@@ -1286,7 +1286,7 @@ body {
 }
 
 /* Form */
-.login-form-group, .signup-form-group {
+.login-form-group, .signup-form-group, .forgot-password-form-group {
   margin-bottom: 20px;
 }
 
@@ -1319,7 +1319,7 @@ body {
   outline: 0;
 }
 
-.login-input::placeholder, .signup-input::placeholder {
+.login-input::placeholder, .signup-input::placeholder, .forgot-password-input::placeholder {
   font-size: 11px;
 }
 
@@ -1365,18 +1365,18 @@ body {
   color: #eae6df;
 }
 
-.login-form, .signup-form {
+.login-form, .signup-form, .forgot-password-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.login-form-group, .signup-form-group {
+.login-form-group, .signup-form-group, .forgot-password-form-group {
   width: 100%;
 }
 
-.login-form-button, .signup-form-button {
+.login-form-button, .signup-form-button, .forgot-password-form-button {
   width: 100%;
   padding: 10px;
   font-family: "Roboto";

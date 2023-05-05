@@ -6,12 +6,64 @@ const User = require('./models/User');
 const passportConfig = require('./config/passport-config');
 const flash = ('connect-flash')
 const uuid = require('uuid')
+
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+
 passportConfig(passport);
 
 
 // 
 // Rendering Routes
 // 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const requireAuth = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -223,9 +275,11 @@ router.post('/signup', async function (req, res, next) {
 
   // Check if email field exists and is not empty
   if (!email) {
-    return res.render('signup', {
-      errorMessage: `Email Required.`
-    });
+    req.flash('flashAlert', {
+      type: 'error',
+      message: "Email Required."
+    })
+    return res.redirect('/signup')
   }
 
   const user = new User({ username, email, password, authType: 'local', session: {}, badges: [] });
@@ -407,6 +461,156 @@ router.get('/logout', function (req, res) {
 // Protected Routes
 // 
 // 
+
+
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'admin@mathgenius.ca',
+    pass: process.env.EMAILPASS
+  }
+});
+
+
+
+router.get('/forgot-password', (req, res) => {
+   const flashMessage = req.flash('flashAlert')[0]
+  var passwordMessage = ''
+  var messageType = ''
+  if (flashMessage) {
+    messageType = flashMessage.type;
+    passwordMessage = flashMessage.message;
+  }
+  console.log(messageType)
+  console.log(passwordMessage)
+  res.render('forgotPassword', {
+    messageType: messageType,
+    passwordMessage: passwordMessage
+  });
+});
+
+
+
+
+router.post('/forgot-password', async(req, res) => {
+  const { email } = req.body;
+try{
+  const user = await User.findOne({ email })
+  
+    if ( !user) {
+      req.flash('flashAlert', {type:'error',message:'No account with that email address exists.'});
+      return res.redirect('/forgot-password');
+    }
+
+    const token = crypto.randomBytes(20).toString('hex');
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+    user.save()
+    // (err) => {
+    //   if (err) {
+    //     req.flash('flashAlert', {type:'error',message: 'Error saving user with reset token.'});
+    //     return res.redirect('/forgot-password');
+    //   }
+
+      const mailOptions = {
+        from: 'admin@mathgenius.ca',
+        to: email,
+        subject: 'Password reset request',
+        html: `Please click this link to reset your password: <a href="http://localhost:4000/reset-password/${token}">Reset Password</a>`
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+          req.flash('flashAlert', {type:'error',message: 'Error sending password reset email.'});
+          return res.redirect('/forgot-password');
+        } else {
+          console.log('Email sent: ' + info.response);
+          req.flash('flashAlert',  {type:'success',message:'Password reset email sent. Check your inbox.'});
+          return res.redirect('/forgot-password');
+        }
+      
+      
+      });
+    }
+    catch(err){
+      console.log(err);
+      req.flash('flashAlert', {type:'error',message:'Error occurred resetting your password.'});
+      return res.redirect('/forgot-password');
+    }
+    });
+
+
+router.get('/reset-password/:token', async (req, res) => {
+ try{ 
+  const user = await User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } })
+ 
+    if (!user) {
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('/forgot-password');
+    }
+    res.render('reset-password', { token: req.params.token });
+  }
+  catch(err){
+    console.error(err);
+    req.flash('flashAlert',{
+      message:'An error occurred while resetting your password.', type:'error'
+    })
+  }
+});
+
+
+
+
+router.post('/reset-password/:token', async (req, res) => {
+
+  try{
+  const user = await User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } })
+  
+    if (!user) {
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('back');
+    }
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+
+    await user.save()
+    
+
+      req.logIn(user, (err) => {
+        if (err) {
+          req.flash('flashAlert',{type:'error', message:'Error logging in with new password.'});
+          return res.redirect('/login');
+        } else {
+          req.flash('flashAlert',{type:'success', message: 'Password successfully reset.'});
+          return res.redirect('/');
+        }
+      });
+    }
+  catch(err){
+    console.log(err);
+    req.flash('flashAlert', {type:'error',message:'Error occurred resetting your password.'});
+    return res.redirect('/forgot-password');
+  }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

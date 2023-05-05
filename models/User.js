@@ -82,6 +82,8 @@ const UserSchema = new mongoose.Schema({
       return this.authType === 'google';
     }
   },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   session: {
     type: Object,
   },

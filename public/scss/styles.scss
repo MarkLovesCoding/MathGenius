@@ -1352,7 +1352,7 @@ background:rgba(255, 255, 255, 0.25);
 
 
   /* Container */
-  .login-container, .signup-container {
+  .login-container, .signup-container,.forgot-password-container {
     display: flex;
     flex-direction: column;
     // max-width: 90vw;
@@ -1365,7 +1365,7 @@ background:rgba(255, 255, 255, 0.25);
   }
   
   /* Headings */
-  .login-header,.signup-header {
+  .login-header,.signup-header, .forgot-password-header {
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 28px;
@@ -1377,7 +1377,7 @@ background:rgba(255, 255, 255, 0.25);
   }
   
   /* Form */
-  .login-form-group , .signup-form-group{
+  .login-form-group , .signup-form-group, .forgot-password-form-group{
     margin-bottom: 20px;
   }
   .input-label {
@@ -1419,7 +1419,7 @@ background:rgba(255, 255, 255, 0.25);
 
 
   }  
-  .login-input::placeholder,.signup-input::placeholder{
+  .login-input::placeholder,.signup-input::placeholder, .forgot-password-input::placeholder{
     font-size:11px;
   }
 
@@ -1470,7 +1470,7 @@ background:rgba(255, 255, 255, 0.25);
 }
 
 
-.login-form, .signup-form{
+.login-form, .signup-form, .forgot-password-form{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1478,12 +1478,12 @@ background:rgba(255, 255, 255, 0.25);
   // padding:10px;
 }
 
-.login-form-group, .signup-form-group{
+.login-form-group, .signup-form-group, .forgot-password-form-group{
  width:100%
 
 }
 
-.login-form-button, .signup-form-button{
+.login-form-button, .signup-form-button, .forgot-password-form-button{
   width:100%;
   padding:10px;
   font-family:'Roboto';
@@ -1500,9 +1500,6 @@ background:rgba(255, 255, 255, 0.25);
 }
 .guest-button{
   background-color:$plus-green;
-}
-.form-input{
-
 }
 
 
