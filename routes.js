@@ -583,16 +583,19 @@ router.get('/reset-password/:token', async (req, res) => {
     if (!user) {
   
       req.flash('flashAlert',{
-        message:'Password reset token is invalid or has expired.', type:'error'
+        type:'error', message:'Password reset token is invalid or has expired.'
       })
       return res.redirect('/forgot-password');
     }
-    res.render('forgotPassword', { token: req.params.token });
+    req.flash('flashAlert',{
+      type:'success', message:'Password reset! Please log in.'
+    })
+    res.redirect('/forgot-password');
   }
   catch(err){
     console.error(err);
     req.flash('flashAlert',{
-      message:'An error occurred while resetting your password.', type:'error'
+      type:'error',  message:'An error occurred while resetting your password.'
     })
   }
 });
@@ -624,7 +627,7 @@ router.post('/reset-password/:token', async (req, res) => {
           return res.redirect('/login');
         } else {
           req.flash('flashAlert',{type:'success', message: 'Password successfully reset.'});
-          return res.redirect('/');
+          return res.redirect('/login');
         }
       });
     }
