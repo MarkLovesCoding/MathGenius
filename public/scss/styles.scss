@@ -1641,10 +1641,51 @@ background:rgba(255, 255, 255, 0.25);
   }
   
 }
+.forgot-text-container,.login-create-account-container,.signup-login-link-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width:100%;
+}
+.login-create-account-text,.signup-login-link-text{
+  color:$chalk-white;
+  font-family:'roboto';
+  font-size:12px;
+  text-align:center;
+}
+.forgot-text-link,.login-create-account-link,.signup-login-link{
+  color:$chalk-white;
+  font-family:'roboto';
+  font-size:12px;
+  text-align:center;
+  &:visited{
+    color:$chalk-white;
+  }
+  &:link{
+    color:$chalk-white;
+  }
+  &:hover{
+    color:rgb(208, 219, 231);
+    
+  }
+  &:active,:focus{
+    color:rgb(165, 193, 221);
+  }
+}
 
+.welcome-top{
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  
+}
+.welcome-message{
+      text-align: center;
+    font-size: 26px;
+    color:$chalk-white;
+    padding-bottom: 10px;
 
-
-
+}
 
 
 
@@ -1792,7 +1833,9 @@ text-align:center;
 
 // Mobile Landscape (max-width:1000px)
 @media only screen and  (orientation:landscape) and (min-aspect-ratio:1.75) {
-
+  .divider{
+    display:none;
+  }
   .login-bottom{
     display: flex;
     flex-direction: row;

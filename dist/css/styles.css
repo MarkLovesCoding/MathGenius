@@ -1492,6 +1492,52 @@ body {
   font-size: 0.8em;
 }
 
+.forgot-text-container, .login-create-account-container, .signup-login-link-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.login-create-account-text, .signup-login-link-text {
+  color: #eae6df;
+  font-family: "roboto";
+  font-size: 12px;
+  text-align: center;
+}
+
+.forgot-text-link, .login-create-account-link, .signup-login-link {
+  color: #eae6df;
+  font-family: "roboto";
+  font-size: 12px;
+  text-align: center;
+}
+.forgot-text-link:visited, .login-create-account-link:visited, .signup-login-link:visited {
+  color: #eae6df;
+}
+.forgot-text-link:link, .login-create-account-link:link, .signup-login-link:link {
+  color: #eae6df;
+}
+.forgot-text-link:hover, .login-create-account-link:hover, .signup-login-link:hover {
+  color: #d0dbe7;
+}
+.forgot-text-link:active, .forgot-text-link :focus, .login-create-account-link:active, .login-create-account-link :focus, .signup-login-link:active, .signup-login-link :focus {
+  color: #a5c1dd;
+}
+
+.welcome-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-message {
+  text-align: center;
+  font-size: 26px;
+  color: #eae6df;
+  padding-bottom: 10px;
+}
+
 .mc-quiz-stats, .mc-question-number, .mc-num-correct {
   display: flex;
   color: #eae6df;
@@ -1584,6 +1630,10 @@ body {
 }
 
 @media only screen and (orientation: landscape) and (min-aspect-ratio: 1.75) {
+  .divider {
+    display: none;
+  }
+
   .login-bottom {
     display: flex;
     flex-direction: row;

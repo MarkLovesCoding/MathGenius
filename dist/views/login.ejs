@@ -58,103 +58,86 @@
               </div>
              -->
 
-      <div class="login-bottom">       
+      <div class="login-bottom">
+        <div class="login-left-upper">
+        <form class="login-form" id="login-form" action="/login" method="post">
 
-      <form class="login-form" id="login-form" action="/login" method="post">
-
-        <div class="login-form-group">
-          <!-- <label class="input-label" for="username">Username or Email:</label> -->
-          <!-- <input class="form-input" type="text" id="username" name="username" placeholder="Email or Username"
+          <div class="login-form-group">
+            <!-- <label class="input-label" for="username">Username or Email:</label> -->
+            <!-- <input class="form-input" type="text" id="username" name="username" placeholder="Email or Username"
             required> -->
             <div class="input-shell">
               <i class="input-icon fa-solid fa-user-large"></i>
               <div class="input-seperator"></div>
-            <input class="form-input" type="text" id="username" name="username" placeholder="Username" required>
+              <input class="form-input" type="text" id="username" name="username" placeholder="Username" required>
             </div>
 
 
-        </div>
-        <div class="login-form-group">
-          <!-- <label class="input-label" for="password">Password:</label> -->
-          <!-- <input class="form-input" type="password" id="password" name="password" placeholder="Password"
-            required> -->
+          </div>
+          <div class="login-form-group">
+
 
             <div class="input-shell">
               <i class="input-icon fa-solid fa-key"></i>
               <div class="input-seperator"></div>
-            <input class="form-input" type="password" id="password" name="password" placeholder="Password" required>
+              <input class="form-input" type="password" id="password" name="password" placeholder="Password" required>
             </div>
 
 
+          </div>
+          <div class="login-form-group">
+            <button title="login-button" type="submit" class="login-form-button g-recaptcha"
+              data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmit' data-action='submit'>Sign
+              In</button>
+          </div>
+        </form>
 
+        <div class="forgot-text-container">
+          <a class='forgot-text-link login-forgot-password' href="/forgot-password">Forgot Password?</a>
 
-
-
+          <a class='forgot-text-link login-forgot-username' href="/forgot-username">Forgot Username?</a>
         </div>
-        <div class="login-form-group">
-          <button title="login-button" type="submit" class="login-form-button g-recaptcha"
-        
-          data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" 
-          data-callback='onSubmit' 
-          data-action='submit'>Sign In</button>
-        </div>
-      </form>
-
-
-      <form class="forgot-password-link-container " action="/forgot-password" method="GET">
-        <!-- <label class="forgot-password-link-label" for="forgot-password"></label>Forgot Password? </label> -->
-        <button class="forgot-password-link  forgot-password-button" id="forgot-password" type="submit">Forgot Password?</button>
-      </form>
-<a href="/forgot-username">Forgot Username?</a>
-
-      <!-- <form class="forgot-username-link-container " action="/forgot-username" method="GET">
-        <button class="forgot-username-link  forgot-username-button" id="forgot-username" type="submit">Forgot Username?</button>
-      </form> -->
-
-
-      <div class="divider">
-        <div class="line"></div><span class="or">or</span>
-        <div class="line"></div>
       </div>
 
-      <div class="login-bottom-two">
+        <div class="divider">
+          <div class="line"></div><span class="or">or</span>
+          <div class="line"></div>
+        </div>
 
-        <form class="login-form-group" action="/auth/google" method="GET">
-          <!-- <label for="google"></label> -->
+        <div class="login-bottom-two">
 
-          <button class="btn btn-primary login-form-button google-button" id="google" type="submit">
-        
-
-           Sign in with Google  
-          </button>
-        </form>
+          <form class="login-form-group" action="/auth/google" method="GET">
 
 
+            <button class="btn btn-primary login-form-button google-button" id="google" type="submit">
+
+
+              Sign in with Google
+            </button>
+          </form>
 
 
 
 
 
+          <div class="login-create-account-container">
+            <p class="login-create-account-text">Don't have an account?</p><a
+              class='login-create-account-link login-create-account' href="/signup">Create Account</a>
+          </div>
 
 
-        <form class="create-account-container " action="/signup" method="GET">
-          <label class="create-account-label" for="signup">Don't have an account? </label>
-          <button class="create-account-link  new-account-button" id="signup" type="submit">Create
-            Account</button>
-        </form>
 
-
-        <form class=" play-as-guest login-form-group" action="/guest" method="POST">
-          <label for="guest"></label>
-          <button class="login-form-button guest-button" id="guest" type="submit">Play as
-            guest</button>
-        </form>
-      </div>
+          <form class=" play-as-guest login-form-group" action="/guest" method="POST">
+            <label for="guest"></label>
+            <button class="login-form-button guest-button" id="guest" type="submit">Play as
+              guest</button>
+          </form>
+        </div>
       </div>
 
     </div>
 
-</div>
+  </div>
 
 
   </div>
