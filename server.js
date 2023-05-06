@@ -9,7 +9,7 @@ const routes = require('./routes');
 const passportConfig = require('./config/passport-config');
 const flash = require('connect-flash')
 const db = require('./db/db');
-
+const helmet = require('helmet')
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -20,6 +20,25 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+// Set up Helmet.js configurations
+app.use(helmet.xssFilter());
+app.use(helmet.noSniff());
+// app.use(helmet.contentSecurityPolicy({
+//   directives: {
+//     defaultSrc: ["'self'"],
+//     scriptSrc: ["'self'"],
+//     styleSrc: ["'self'", 'https://fonts.googleapis.com', 'https://cdnjs.cloudflare.com'],
+//     fontSrc: ["'self'", 'https://fonts.gstatic.com', 'https://cdnjs.cloudflare.com'],
+//     imgSrc: ["'self'", 'data:', 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com', 'blob:'],
+//     connectSrc: ["'self'"]
+//   }
+// }));
+
+
+app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
+app.disable('x-powered-by');
+
 
 app.use(session({
   secret: process.env.MY_SECRET,

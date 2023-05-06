@@ -1424,7 +1424,7 @@ body {
   border-radius: 3px;
   color: transparent;
   transition: all 250ms ease-in;
-  background-image: url("https://www.svgrepo.com/download/448227/google.svg");
+  background-image: url("../assets/google-svg.svg");
   background-repeat: no-repeat;
   background-size: 30px 30px;
   background-position: center;
