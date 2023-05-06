@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb://localhost:27017/mathgenius';
+var mongoURI
+if(process.env.NODE_ENV = 'development'){
+  
+  mongoURI = process.env.MONGOURI_PROD
+}
+if(process.env.NODE_ENV = 'production'){
+  mongoURI = process.env.MONGOURI_PROD
+}
 
 mongoose.connect(mongoURI, { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
