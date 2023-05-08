@@ -41,11 +41,11 @@ router.get('/', requireAuth, (req, res) => {
   var flashData = req.flash('flashData')[0]
 
   const userData = req.session.userData || {};
-  const sessionId = req.session.sessionId || null;
+  // const sessionId = req.session.sessionId || null;
   console.log("flashdata:", flashData)
   console.log("userdata:", userData)
-  console.log("sessionId:", sessionId)
-  res.render('index', { flashData, userData, sessionId });
+  // console.log("sessionId:", sessionId)
+  res.render('index', { flashData, userData });
 });
 
 
@@ -111,15 +111,18 @@ router.post('/login', (req, res, next) => {
         return next(err);
       }
       
-      user.session = {
-        expires: new Date(Date.now() + 86400000), // set session to expire in 24 hours
-        ip: req.ip,
-        userAgent: req.headers['user-agent'],
-      };
-      await user.save(); // save the session data to the database
+      // user.session = {
+      //   expires: new Date(Date.now() + 86400000), // set session to expire in 24 hours
+      //   ip: req.ip,
+      //   userAgent: req.headers['user-agent'],
+      // };
+      // await user.save(); // save the session data to the database
+      // const sessionId = uuid.v4();
+      // req.session.sessionId = sessionId
+
       req.session.userData = {
         name: user.username,
-        session: user.session,
+        session:{},
         badges: user.badges,
       }
       req.flash('flashData', {
@@ -158,7 +161,7 @@ router.post('/signup', async function (req, res, next) {
     req.login(user, function (err) {
       if (err) { return next(err); }
 
-      const sessionId = uuid.v4();
+      // const sessionId = uuid.v4();
       req.flash('flashData', {
         welcomeMessage: `Hi ${user.username}`,
         flashMessage: 'success' // pass flashMessage to the view
@@ -170,7 +173,7 @@ router.post('/signup', async function (req, res, next) {
         session: {},
         badges: user.badges,
       }
-      req.session.sessionId = sessionId
+      // req.session.sessionId = sessionId
       return res.redirect('/')
 
 
@@ -245,7 +248,7 @@ router.post('/guest', (req, res, next) => {
         guest: true
       });
 
-      const sessionId = uuid.v4();
+      // const sessionId = uuid.v4();
       // user.token = token;
 
       await user.save();
@@ -261,7 +264,7 @@ router.post('/guest', (req, res, next) => {
           flashMessage: "guest"
         });
 
-        req.session.sessionId = sessionId
+        // req.session.sessionId = sessionId
         req.session.userData = {
           name: user.username,
           session: {},
@@ -303,7 +306,7 @@ router.get(
 
 
 
-    const sessionId = uuid.v4();
+    // const sessionId = uuid.v4();
     req.flash('flashData', {
       welcomeMessage: `Hi ${profileName}`,
       flashMessage: 'success' // pass flashMessage to the view
@@ -315,7 +318,7 @@ router.get(
       session: {},
       badges: loadUser.badges,
     }
-    req.session.sessionId = sessionId
+    // req.session.sessionId = sessionId
 
     return res.redirect('/')
 

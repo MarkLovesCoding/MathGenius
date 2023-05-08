@@ -88,8 +88,8 @@
         <div class="activity-group">
         <div class="top welcome-top">
         
-          <div class="welcome-message" id="welcome-message">  <% if (flashData) { %>  <% if (flashData.welcomeMessage) { %>
-            <p><%= flashData.welcomeMessage %></p><%} %> <%}%>
+          <div class="welcome-message" id="welcome-message">  <% if (userData) { %>  <% if (userData.name) { %>
+            <p><%= userData.name %></p><%} %> <%}%>
 
            </div>
           <div class="header">What would you like to do?</div>
@@ -554,7 +554,6 @@
   <!-- <script type="module" src="/js/formInteraction.js"></script> -->
    
 <!-- Include the script and pass userData as a parameter -->
-<script src="/js/localStorageScript.js" data-sessionId="<%= JSON.stringify(sessionId) %>" ></script>
 
 
 

@@ -8,9 +8,13 @@ const session = require('express-session');
 const routes = require('./routes');
 const passportConfig = require('./config/passport-config');
 const flash = require('connect-flash')
-const db = require('./db/db');
+// const db = require('./db/db');
+// const MongoStore = require('connect-mongo')(session);
+
 const helmet = require('helmet')
 const app = express();
+const { db, store } = require('./db/db');
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './dist/views'));
@@ -46,10 +50,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   rolling: true,
-  cookie: {
-    secure: false,
-    maxAge: (86400000)
-  }
+  store
 }));
 
 app.use(flash())

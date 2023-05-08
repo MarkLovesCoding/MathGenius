@@ -24,28 +24,6 @@ passport.deserializeUser(async (id, done) => {
   }
 });
   
-// passport.deserializeUser(async (id, done) => {
-//   try {
-//     const user = await User.findById(id);
-//     if (user) {
-//       // Check if session is expired or not
-//       if (user.session && user.session.expires && new Date() < new Date(user.session.expires)) {
-//         // Session is not expired yet, so restore it
-//         done(null, user);
-//       } else {
-//         // Session has expired, so remove session data from user and save changes
-//         user.session = {};
-//         await user.save();
-//         done(null, null);
-//       }
-//     } else {
-//       done(null, null);
-//     }
-//   } catch (error) {
-//     done(error, null);
-//   }
-// });
-  
 
 
   passport.use(new LocalStrategy(async (username, password, done) => {
