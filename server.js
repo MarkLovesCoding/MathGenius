@@ -48,7 +48,7 @@ app.use(session({
   rolling: true,
   cookie: {
     secure: false,
-    maxAge: (360000 / 60)
+    maxAge: (86400000)
   }
 }));
 
