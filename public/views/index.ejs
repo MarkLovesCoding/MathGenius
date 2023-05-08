@@ -28,7 +28,7 @@
     
     %>
    </div>
-
+   <% if (flashData) { %>
     <% if(flashData.flashMessage == "success"){ %>
    <div class="success-container" id="success">
    <svg class="success-svg" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
@@ -38,8 +38,8 @@
     </g>
   </svg>
 </div>
-<%} %> 
-
+  <%} %> 
+<%}%>
 
 
 
@@ -88,8 +88,9 @@
         <div class="activity-group">
         <div class="top welcome-top">
         
-          <div class="welcome-message" id="welcome-message"><% if (flashData.welcomeMessage) { %>
-            <p><%= flashData.welcomeMessage %></p><%} %>
+          <div class="welcome-message" id="welcome-message">  <% if (flashData) { %>  <% if (flashData.welcomeMessage) { %>
+            <p><%= flashData.welcomeMessage %></p><%} %> <%}%>
+
            </div>
           <div class="header">What would you like to do?</div>
 

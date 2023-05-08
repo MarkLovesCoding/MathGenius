@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 var mongoURI
-if(process.env.NODE_ENV = 'development'){
+if(process.env.NODE_ENV == 'development'){
   
-  mongoURI = process.env.MONGOURI_PROD
+  mongoURI = process.env.MONGOURI_DEV
+
 }
-if(process.env.NODE_ENV = 'production'){
+ if(process.env.NODE_ENV == 'production'){
   mongoURI = process.env.MONGOURI_PROD
 }
 
