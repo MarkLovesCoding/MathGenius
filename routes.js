@@ -126,7 +126,7 @@ router.post('/login', (req, res, next) => {
         badges: user.badges,
       }
       req.flash('flashData', {
-        welcomeMessage: `Hi ${user.username}`,
+        welcomeMessage: 'Successful Login',
         flashMessage: 'success' // pass flashMessage to the view
         //
       })
@@ -163,7 +163,7 @@ router.post('/signup', async function (req, res, next) {
 
       // const sessionId = uuid.v4();
       req.flash('flashData', {
-        welcomeMessage: `Hi ${user.username}`,
+        welcomeMessage: `Successful Login`,
         flashMessage: 'success' // pass flashMessage to the view
         //
       })
@@ -260,14 +260,14 @@ router.post('/guest', (req, res, next) => {
         }
 
         req.flash("flashData", {
-          welcomeMessage: `Hi ${user.username}`,
+          welcomeMessage: `Successful Login`,
           flashMessage: "guest"
         });
 
         // req.session.sessionId = sessionId
         req.session.userData = {
           name: user.username,
-          session: {},
+          session: {lastLogin:Date.now},
           badges: []
         }
 
