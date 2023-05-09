@@ -64,6 +64,17 @@ router.get('/login', (req, res) => {
     loginMessage: loginMessage
   });
 });
+
+router.get('/profile',requireAuth, (req, res) => {
+
+  const userData = req.session.userData || {};
+
+  
+  res.render('profile', {
+    userData
+  });
+});
+
 router.get('/signup', (req, res) => {
 
 
@@ -267,7 +278,7 @@ router.post('/guest', (req, res, next) => {
         // req.session.sessionId = sessionId
         req.session.userData = {
           name: user.username,
-          session: {lastLogin:Date.now},
+          session: {lastLogin:new Date()},
           badges: []
         }
 
