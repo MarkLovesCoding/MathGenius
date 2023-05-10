@@ -57,16 +57,44 @@
 
       <div class="profile display-container" id="profile-container">
 
-        <div class="user-data-holder" id="user-data-holder"><% if (userData) { %>
-          <span><%= userData.name %></span>
-          <span><%= userData.session %></span>
-          <span><%= userData.badges %></span><% 
+
+
+
+
+         <div class="profile-section">
+          <div class="profile-user-section">
+            <img class="profile-user-image" src="user-image.jpg" alt="User Image" />
+            <h1 class="profile-username" id="profile-username"><%= userData.name %></h1>
+          </div>
+          <div class="badges">
+            <div class="badge">
+              <img src="badge1.jpg" alt="Badge 1" />
+              <p class="badge-description">Badge 1 description</p>
+            </div>
+            <div class="badge">
+              <img src="badge2.jpg" alt="Badge 2" />
+              <p class="badge-description">Badge 2 description</p>
+            </div>
+            <div class="badge">
+              <img src="badge3.jpg" alt="Badge 3" />
+              <p class="badge-description">Badge 3 description</p>
+            </div>
+            <div class="badge">
+              <img src="badge4.jpg" alt="Badge 4" />
+              <p class="badge-description">Badge 4 description</p>
+            </div>
+            <div class="badge">
+              <img src="badge5.jpg" alt="Badge 5" />
+              <p class="badge-description">Badge 5 description</p>
+            </div>
+            <div class="badge">
+              <img src="badge6.jpg" alt="Badge 6" />
+              <p class="badge-description">Badge 6 description</p>
+            </div>
+            <!-- more badges can be added here -->
+          </div>
+        </div>
         
-        }
-          
-          %>
-         </div>
-      
 
 
 
@@ -90,6 +118,7 @@
     <!-- <script type="module" src="/js/success.js"></script> -->
 
   <script type="module" src="/js/profile.js"></script>
+  <script type="module" src="/js/logout.js"></script>
   <!-- <script type="module" src="/js/formInteraction.js"></script> -->
     
  

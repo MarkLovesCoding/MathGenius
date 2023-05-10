@@ -21,6 +21,11 @@ import { state } from './state.js'
 window.onload = function () {  //Ensure DOM is loaded before functions
 
 
+
+
+
+
+
   ////////////////////////////////////////////////////////////
   //SHARED
   //
@@ -205,6 +210,29 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   ////////////////////////////////////////////////////////////
   //GAME
   //
@@ -317,6 +345,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
 
   // This function updates the game level based on the user's score and increases the difficulty of the game as the level progresses.
+  
   async function updateLevel() {
     // Gets the current level number and checks if the user has made progress towards the next level or not
     let level = parseInt(gameLevelNumber.textContent);
@@ -377,6 +406,30 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //
   //END GAME
   ////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -458,7 +511,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
   
 
-
   //
   //END MC
   ////////////////////////////////////////////////////////////
@@ -467,16 +519,39 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //////MCQUIZ
 
   /**
-   * Calculates and logs the results of the multiple-choice quiz,
-   * and resets the relevant state values.
+   * resets the relevant state values.
    */
   function finishMCQuiz() {
-    const numCorrect = state.mcQuizActive.mcqNumCorrect;
-    const numQuestion = state.mcQuizActive.mcqNumQuestion;
 
+
+
+
+    // add state db flow
+
+
+
+
+    
     // Reset state values
     state.mcQuizActive.mcqNumAnswered = 0;
     state.mcQuizActive.mcqNumCorrect = 0;
@@ -603,6 +678,22 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   ///
   ///
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   ////////////////////////////////////////////////////////////
@@ -740,6 +831,24 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //
   //END QUIZ
   ////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1059,6 +1168,15 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     // Return the array of active operators
     return ops;
   }
+
+
+
+
+
+
+
+
+
 
   // Initialize variables for the range input, range value, and level text elements
   var rangeInput = document.getElementById("range-input");

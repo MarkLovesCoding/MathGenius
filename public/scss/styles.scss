@@ -2524,3 +2524,115 @@ $color: $chalk-white;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PROFILE
+// 
+// 
+// 
+// 
+
+
+
+/* profile section */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* user section */
+.profile-user-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-user-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.profile-username {
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+/* badges section */
+.badges {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 320px;
+}
+
+@media screen and (min-width: 768px) {
+  .profile-section {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .profile-user-section {
+    flex-basis: 20%;
+  }
+  
+  .badges {
+    margin-left: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+   .profile-section{
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .user {
+    flex-basis: 20%;
+  }
+  
+  .badges {
+    margin-left: 40px;
+    grid-template-columns: repeat(5, 1fr);
+    max-width: none;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 767px) {
+   .profile-section{
+    flex-direction: row;
+  }
+  
+  .profile-user-section {
+    flex-basis: 33.33%;
+  }
+  
+  .badges {
+    margin-left: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-y: auto;
+    flex-basis: 66.66%;
+  }
+}

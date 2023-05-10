@@ -50,6 +50,7 @@ router.get('/', requireAuth, (req, res) => {
 
 
 
+
 router.get('/login', (req, res) => {
 
   const flashMessage = req.flash('flashAlert')[0]
@@ -64,14 +65,20 @@ router.get('/login', (req, res) => {
     loginMessage: loginMessage
   });
 });
+function requireLogin(req, res, next) {
+  if (!req.session.userData) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
+}
+router.get('/profile',requireLogin, (req, res) => {
 
-router.get('/profile',requireAuth, (req, res) => {
-
-  const userData = req.session.userData || {};
+  // const userData = req.session.userData || {};
 
   
   res.render('profile', {
-    userData
+    userData:req.session.userData
   });
 });
 

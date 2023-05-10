@@ -310,6 +310,7 @@ window.onload = function () {
   }
 
   // This function updates the game level based on the user's score and increases the difficulty of the game as the level progresses.
+
   async function updateLevel() {
     // Gets the current level number and checks if the user has made progress towards the next level or not
     let level = parseInt(gameLevelNumber.textContent);
@@ -447,12 +448,10 @@ window.onload = function () {
   //////MCQUIZ
 
   /**
-   * Calculates and logs the results of the multiple-choice quiz,
-   * and resets the relevant state values.
+   * resets the relevant state values.
    */
   function finishMCQuiz() {
-    const numCorrect = state.mcQuizActive.mcqNumCorrect;
-    const numQuestion = state.mcQuizActive.mcqNumQuestion;
+    // add state db flow
 
     // Reset state values
     state.mcQuizActive.mcqNumAnswered = 0;
