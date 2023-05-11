@@ -1,4 +1,4 @@
-const hamburgerMenu = document.getElementById('burger');
+const hamburgerMenu = document.getElementById('burger-new');
 const circularMenu = document.getElementById('burger-menu-open');
 function toggleMenu() {
   hamburgerMenu.classList.toggle('active');

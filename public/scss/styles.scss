@@ -2764,15 +2764,18 @@ $color: $chalk-white;
 // BURGER
 
 
-// .burger-container {
+// .burger-container-new {
 //   display: flex;
 //   justify-content: flex-end;
 //   align-items: center;
-//   position: relative;
+//   position: absolute;
+//   top:5vh;
+//   right:5vw;
 //   height: 50px;
+//   width:50px;
 // }
 
-// .burger{
+// .burger-new{
 //   display: flex;
 //   flex-direction: column;
 //   justify-content: center;
@@ -2780,7 +2783,7 @@ $color: $chalk-white;
 //   margin-right: 20px;
 // }
 
-// .burger span {
+// .burger-new span {
 //   display: block;
 //   width: 25px;
 //   height: 3px;
@@ -2789,25 +2792,27 @@ $color: $chalk-white;
 //   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 // }
 
-// .circular-menu {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 50%;
-//   background-color: #ffffff1c;
-//   transform-origin: center;
-//   overflow: hidden;
-//   transition: width 0.3s ease-in-out, height 0.3s ease-in-out, border-radius 0.3s ease-in-out;
-//   z-index: 1;
-// }
+.circular-menu {
+  position: absolute;
+  display:none;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffffff1c;
+  transform-origin: center;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+  z-index: 1;
+}
 
 
 .circular-menu.active {
   width: 300px;
   height: 600px;
   border-radius: 10px;
+  display:flex;
 }
 
 
