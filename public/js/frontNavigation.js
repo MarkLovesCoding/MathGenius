@@ -1,21 +1,28 @@
-const testNav = document.getElementById('test-nav')
-const practiceNav = document.getElementById('practice-nav')
+
 import { state } from './state.js'
 
 
-testNav.addEventListener("click",function(){
+
+
+  
+
+const linkToTests = document.getElementById('new-real')
+linkToTests.addEventListener("click",function(){
+    // navigate to a different page
+    
     state.type = "real"
+    window.location.href = "/tests";
     
     utilMethods.loadSection('real-menu')
-
-    
-
 })
-practiceNav.addEventListener("click",function(){
-    utilMethods.loadSection('practice-menu')
+
+
+
+const linkToPractice = document.getElementById('new-practice')
+linkToPractice.addEventListener("click",function(){
+
     state.type = "practice"
+    window.location.href = "/practice";
+    utilMethods.loadSection('practice-menu')
+
 })
-
-
-  
-  

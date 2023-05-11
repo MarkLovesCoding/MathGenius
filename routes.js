@@ -48,6 +48,28 @@ router.get('/', requireAuth, (req, res) => {
   res.render('index', { flashData, userData });
 });
 
+router.get('/tests', requireAuth, (req, res) => {
+
+  var flashData = req.flash('flashData')[0]
+
+  const userData = req.session.userData || {};
+  // const sessionId = req.session.sessionId || null;
+  console.log("flashdata:", flashData)
+  console.log("userdata:", userData)
+  // console.log("sessionId:", sessionId)
+  res.render('tests', { flashData, userData });
+});
+router.get('/practice', requireAuth, (req, res) => {
+
+  var flashData = req.flash('flashData')[0]
+
+  const userData = req.session.userData || {};
+  // const sessionId = req.session.sessionId || null;
+  console.log("flashdata:", flashData)
+  console.log("userdata:", userData)
+  // console.log("sessionId:", sessionId)
+  res.render('practice', { flashData, userData });
+});
 
 
 

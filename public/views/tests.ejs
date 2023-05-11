@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description"
+    content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Math Genius</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+
+
+
+  <div class="user-data-holder" id="user-data-holder">
+    <% if (userData) { %>
+      <span>
+        <%= userData.name %>
+      </span>
+      <span>
+        <%= userData.session %>
+      </span>
+      <span>
+        <%= userData.badges %>
+      </span>
+      <% } %>
+  </div>
+ 
+
+
+
+
+          <!-- 
+    <div id="burger-container" class="burger-container box-container">
+
+      <div class="burger open" id="burger">
+       <span></span>
+       <span></span>
+       <span></span>
+
+
+      </div>
+
+    </div> -->
+
+
+
+          <%- include('partials/_burger') %>
+
+
+
+
+
+            <div id="activity-alert-modal" class="message-modal">
+              <div class="message-intro">Please Select An Activity </div>
+            </div>
+            <div id="operator-alert-modal" class="message-modal">
+              <div class="message-intro">Please Select One or More Operators </div>
+            </div>
+            <div id="quiz-modal" class="message-modal">
+              <div class="message-intro">You got <span id="amountCorrect" class="amountCorrect"></span> /10 Correct!
+                </br> That's <span id="amountCorrectPercentage" class="amountCorrect"> </span>
+              </div>
+            </div>
+            <div id="mc-quiz-modal" class="message-modal">
+              <div class="message-intro">You got <span id="mc-quiz-amountCorrect" class="amountCorrect"></span> /10
+                Correct! </br> That's <span id="mc-quiz-amountCorrectPercentage" class="amountCorrect"> </span>
+              </div>
+            </div>
+
+            <div class="main-container" id="main-container">
+              <title class="brand-title">Math Genius</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="real-menu-container display-container" id="real-menu-container">
+                <div class="nav-left nav-left-upper "> <button title="nav-button-backward" class="nav-button "
+                    id="real-menu-backward-upper"><i class="forward-arrow fas fa-arrow-left fa-lg"></i></button>
+                </div>
+                <div class="activity-group">
+                  <div class="top">
+                    <div class="header">Test Mode</div>
+
+                  </div>
+                  <div class="middle">
+                    <div class="middle-inner">
+
+
+                      <div class="inner">
+
+                        <div class=" icon-container game real-choice" id="new-game" data-type="game">
+                          <p></p>
+                          <i class=" game-icon icon fas fa-crown fa-large"></i>
+
+
+                        </div>
+                        <p class="icon-text">High Score Challenge</p>
+                      </div>
+                      <div class="inner">
+                        <div class=" icon-container quiz real-choice" id="new-quiz" data-type="quiz">
+                          <p></p>
+                          <i class="pen-icon icon fas fa-arrow-up-1-9 fa-large"></i>
+
+
+                        </div>
+                        <p class="icon-text">Pop Quiz</p>
+                      </div>
+
+
+
+
+
+
+                      <div class="inner">
+                        <div class=" icon-container mc-quiz real-choice" id="new-mc-quiz"
+                          data-type="multiple-choice-quiz">
+                          <p></p>
+                          <i class=" mc-quiz-icon icon fas fa-list-ol fa-large"></i>
+                        </div>
+                        <p class="icon-text">Multiple Choice</p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="nav-buttons">
+                  <div class="nav-left nav-left-lower"> <button title="nav-button-backward" class="nav-button"
+                      id="real-menu-backward-lower"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button>
+                  </div>
+                  <div class="nav-right"> <button title="nav-button-forward" class="nav-button" id="real-menu-forward">
+
+                      <i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button></div>
+                </div>
+              </div>
+
+
+              <div class="operator-menu-container display-container" id="operator-menu-container">
+                <div class="nav-left nav-left-upper"> <button title="nav-button-backward" class="nav-button"
+                    id="operator-menu-backward-upper"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button>
+                </div>
+                <div class="operator-group">
+                  <div class="top">
+                    <div class="header">What would you like to learn about?</div>
+
+
+                  </div>
+                  <div class="middle">
+                    <div class="middle-inner">
+                      <div class="inner">
+                        <div class=" icon-container add operator-choice" data-sub="+" id="add">
+                          <i class="plus-icon icon fas fa-plus fa-large"></i>
+
+                        </div>
+                        <div class="operator-text addition">Addition</div>
+                      </div>
+                      <div class="inner">
+                        <div class=" icon-container minus operator-choice" data-sub="-" id="sub">
+                          <i class=" minus-icon icon fas fa-minus fa-large"></i>
+                        </div>
+                        <div class="operator-text subtraction">Subtraction</div>
+
+                      </div>
+                      <div class="inner">
+                        <div class=" icon-container mult operator-choice" data-sub="x" id="mul">
+                          <i class=" times-icon icon fas fa-times fa-large"></i>
+                        </div>
+                        <div class="operator-text multiplication">Multiplication</div>
+
+                      </div>
+                      <div class="inner">
+                        <div class=" icon-container div operator-choice" data-sub="/" id="div">
+                          <i class=" divide-icon icon fas fa-divide fa-large"></i>
+                        </div>
+                        <div class="operator-text division">Division</div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="nav-buttons">
+                  <div class="nav-left nav-left-lower"> <button title="nav-button-backward" class="nav-button"
+                      id="operator-menu-backward-lower"><i class=" back-arrow fas fa-arrow-left fa-lg"></i></button>
+                  </div>
+                  <div class="nav-right"> <button title="nav-button-forward" class="nav-button"
+                      id="operator-menu-forward"><i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="difficulty-menu-container display-container" id="difficulty-menu-container">
+                <div class="nav-left nav-left-upper"> <button title="nav-button-backward" class="nav-button"
+                    id="difficulty-menu-backward-upper"><i class=" forward-arrow fas fa-arrow-left fa-lg"></i></button>
+                </div>
+                <div class="difficulty-group">
+                  <div class="top">
+                    <div class="header">Select Difficulty</div>
+
+                  </div>
+                  <div class="middle difficulty">
+
+                    <span class="difficulty-text difficulty-text-number" id="range-value">1</span>
+                    <p class="difficulty-text difficulty-text-description" id="level-text">Easy</p>
+                    <input title="difficulty-slider" type="range" id="range-input" min="1" max="5" value="1"
+                      class="range-slider">
+
+                  </div>
+                </div>
+                <div class="nav-buttons">
+                  <div class="nav-left nav-left-lower"> <button title="nav-button-backward" class="nav-button"
+                      id="difficulty-menu-backward-lower"><i
+                        class=" forward-arrow fas fa-arrow-left fa-lg"></i></button>
+                  </div>
+                  <div class="nav-right"> <button title="nav-button-forward" class="nav-button"
+                      id="difficulty-menu-forward"><i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="mc-quiz-container sub-container display-container" id="mc-quiz-container">
+
+
+
+                <div class="mc-top">
+
+                  <div class="titles-group">
+                    <div class="titles-left">
+                      <h2 class="activity-title mc">Multiple Choice</h2>
+                      <h2 class="activity-type"> Quiz</h2>
+                    </div>
+                    <div class="title-icon"><i class=" mc-quiz-icon icon fas fa-list-ol fa-large"></i>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="mc-middle-lower">
+                  <div class="mc-middle">
+                    <form id="mc-quiz-answer-form" class="question-box mc-question-box">
+                      <div id="mc-quiz-question-box" class="question mc-question">
+                        <div id="mc-quiz-first-number" class="question-number question-text"></div>
+                        <div id="mc-quiz-first-operator" class="operator question-text"></div>
+                        <div id="mc-quiz-second-number" class="question-number question-text"></div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="mc-bottom">
+                    <div id="mc-quiz-options-container" class="options-container">
+                      <div id="mc-quiz-options" class="options"></div>
+                    </div>
+                  </div>
+                  <div class="mc-quiz-stats">
+                    <div class="mc-question-number">
+                      <p>Question:</p><span id="mc-question-number"></span>
+                    </div>
+                    <div class="mc-num-correct">
+                      <p>Correct:</p><span id="mc-questions-correct"></span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="mc-container sub-container display-container" id="mc-container">
+
+
+
+                <div class="mc-top">
+
+                  <div class="titles-group">
+                    <div class="titles-left">
+                      <h2 class="activity-title mc">Multiple Choice</h2>
+                      <h2 class="activity-type"> Practice</h2>
+                    </div>
+                    <div class="title-icon"><i class=" mc-icon icon fas fa-table-cells-large fa-large"></i>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="mc-middle-lower">
+                  <div class="mc-middle">
+                    <form id="mc-answer-form" class="question-box mc-question-box">
+                      <div id="mc-question-box" class="question mc-question">
+                        <div id="mc-first-number" class="question-number question-text"></div>
+                        <div id="mc-first-operator" class="operator question-text"></div>
+                        <div id="mc-second-number" class="question-number question-text"></div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="mc-bottom">
+                    <div id="mc-options-container" class="options-container">
+                      <div id="mc-options" class="options"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="flash-container sub-container display-container" id="flash-container">
+                <div class="flash-upper">
+                  <div class="titles-group">
+                    <div class="titles-left">
+                      <h2 class="activity-title">Flash Cards</h2>
+                      <h2 class="activity-type"> Practice</h2>
+                    </div>
+                    <div class="title-icon"><i class=" flash-icon icon fas fa-bolt fa-large"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="flash-card-container middle flash-middle" id="flash-card">
+
+                  <div id="flash-question-box question" class="flash-box flash-question-box">
+                    <div id="flash-first-number" class="question-number flash-text"></div>
+                    <div id="flash-first-operator" class="operator flash-text"></div>
+                    <div id="flash-second-number" class="question-number flash-text"></div>
+
+
+
+                  </div>
+                  <div class=" flash-box flash-answer-box" id="flash-answer-box">
+                    <div class="flash-answer flash-text" id='flash-answer'></div>
+                  </div>
+
+                </div>
+              </div>
+
+
+              <div class="quiz-container sub-container display-container" id="quiz-container">
+                <div class="titles-group ">
+                  <div class="titles-left">
+                    <h2 class="activity-title quiz-activity-title">Ten Questions</h2>
+                    <h2 class="activity-type"> Pop Quiz</h2>
+                  </div>
+                  <div class="title-icon"><i class=" quiz-icon icon fas fa-arrow-up-1-9 fa-large"></i>
+                  </div>
+                </div>
+                <div class="quiz-middle-lower">
+                  <form id="quiz-answer-form" class="question-box quiz-question-box">
+                    <div id="question-box" class="question quiz-question">
+                      <div id="quiz-first-number" class="question-number question-text"></div>
+                      <div id="quiz-first-operator" class="operator question-text"></div>
+                      <div id="quiz-second-number" class="question-number question-text"></div>
+                      <div id="quiz-second-operator" class="operator question-text">=</div>
+
+                      <input type="number" min="0" id="quiz-answer-input" class="input quiz-input" placeholder="?"
+                        autocomplete="off"></input>
+                    </div>
+                    <button type="submit" id="quiz-answer-submit-btn" class="answer-submit">Check</button>
+                  </form>
+                  <div class="quiz-correctness-scores">
+                    <div class="correctness-container ">
+                      <div id="quiz-correctness" class="correctness"></div>
+                    </div>
+
+                    <div class="quiz-scores-container">
+                      <div class="quiz-curr-score-container">
+                        Current Score:<p id="quiz-curr-score"></p>
+                        <p>/</p>
+                        <p id="quiz-curr-question"></p>
+
+                      </div>
+                      <div class="quiz-last-score-container">
+                        Last Score:<p id="quiz-last-score"></p>
+
+                        <p>/</p>
+                        <p>10</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="game-container sub-container display-container" id="game-container">
+
+                <div class="top game-top">
+                  <div class="titles-group game-titles-group">
+                    <div class="titles-left">
+                      <h2 class="activity-title">High Score</h2>
+                      <h2 class="activity-type"> Challenge</h2>
+                    </div>
+                    <div class="title-icon"><i class=" game-icon icon-small icon fas fa-crown fa-large"></i>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="game-middle-inner">
+                  <div class="game-middle-lower">
+                    <div class="game-box">
+
+                      <form id="game-answer-form" class="question-box game-questiion-box">
+                        <div class="question game-question">
+                          <div id="game-first-number" class="question-number question-text"></div>
+                          <div id="game-first-operator" class="operator question-text"></div>
+                          <div id="game-second-number" class="question-number question-text"></div>
+                          <div id="game-second-operator" class="operator question-text">=</div>
+
+                          <input type="number" min="0" id="game-answer-input" class="input game-input" placeholder="?"
+                            autocomplete="off"></input>
+                        </div>
+                        <button type="submit" id="answer-submit-btn" class="answer-submit">Check</button>
+                      </form>
+
+                    </div>
+                    <div class="game-lower-landscape">
+                      <div class="game-lower">
+                        <div class="correctness-container ">
+                          <div id="game-correctness" class="correctness game-correctness"></div>
+                          <div class="actual-container hidden" id="game-actual-container">
+                            <div class="actual-text">The correct answer was:</div>
+                            <div class="actual" id="game-actual"></div>
+                          </div>
+                        </div>
+
+                        <div class="score-container">
+                          <div class="curr-score-container">
+                            <div class="score-title">Current Score:</div>
+                            <div id="game-current-score" class="score-text"> 0</div>
+                          </div>
+                          <div class="high-score-container">
+                            <div class="high-title">High Score:</div>
+                            <div id="game-current-high" class="score-text">0</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="progress-container">
+                        <div class="level-container">
+                          <div class="level-text">Level</div>
+                          <div class="level-number" id="game-level-number">0</div>
+                        </div>
+                        <div class="tracker-container" id="game-tracker-container">
+
+                          <div class="tracker" id="game-tracker"></div>
+                        </div>
+
+                        <div class="tracker-container" id="game-tracker-container-2">
+
+                          <div class="tracker" id="game-tracker-2"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <script type="module" src="/js/success.js"></script>
+
+            <script type="module" src="/js/index.js"></script>
+            <!-- <script type="module" src="/js/formInteraction.js"></script> -->
+
+
+            <script type="module" src="/js/burger.js"></script>
+            <!-- <script type="module" src="/js/frontNavigation.js"></script> -->
+
+
+
+
+</body>
+
+</html>

@@ -752,7 +752,8 @@ window.onload = function () {
   //   burger.classList.toggle("open"); // Toggle the "open" class on the burger element when the burgerContainer element is clicked
   // });
 
-  const activityMenuForward = document.getElementById("activity-menu-forward");
+  // const activityMenuForward = document.getElementById("activity-menu-forward")
+
   const realMenuForward = document.getElementById("real-menu-forward");
   const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper");
   const realMenuBackwardLower = document.getElementById("real-menu-backward-lower");
@@ -780,24 +781,25 @@ window.onload = function () {
   const operatorAlert = document.getElementById("operator-alert-modal");
 
   // Handle the click event on the activityMenuForward button
-  activityMenuForward.addEventListener("click", async e => {
-    // Check if the chosen activity has been updated successfully, and show an error message if not
-    if (updateActivity(activitiesChoices, 2) == null || undefined) {
-      utilMethods.visibilityTimedToggle(true, activityAlert, 1000);
-      return;
-    }
+  // activityMenuForward.addEventListener("click", async (e) => {
 
-    // Update the state with the chosen activity
-    state.type = updateActivity(activitiesChoices, 2);
+  //   // Check if the chosen activity has been updated successfully, and show an error message if not
+  //   if (updateActivity(activitiesChoices, 2) == null || undefined) {
+  //     utilMethods.visibilityTimedToggle(true, activityAlert, 1000)
+  //     return;
+  //   }
 
-    // Load the appropriate menu depending on the chosen activity
-    if (state.type == 'real') {
-      utilMethods.loadSection('real-menu');
-    }
-    if (state.type == 'practice') {
-      utilMethods.loadSection('practice-menu');
-    }
-  });
+  //   // Update the state with the chosen activity
+  //   state.type = updateActivity(activitiesChoices, 2)
+
+  //   // Load the appropriate menu depending on the chosen activity
+  //   if (state.type == 'real') {
+  //     utilMethods.loadSection('real-menu')
+  //   }
+  //   if (state.type == 'practice') {
+  //     utilMethods.loadSection('practice-menu')
+  //   }
+  // })
 
   // Handle the click event on the realMenuForward button
   realMenuForward.addEventListener("click", async e => {

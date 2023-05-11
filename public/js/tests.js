@@ -929,9 +929,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper")
   const realMenuBackwardLower = document.getElementById("real-menu-backward-lower")
 
-  const practiceMenuForward = document.getElementById("practice-menu-forward")
-  const practiceMenuBackwardUpper = document.getElementById("practice-menu-backward-upper")
-  const practiceMenuBackwardLower = document.getElementById("practice-menu-backward-lower")
+  // const practiceMenuForward = document.getElementById("practice-menu-forward")
+  // const practiceMenuBackwardUpper = document.getElementById("practice-menu-backward-upper")
+  // const practiceMenuBackwardLower = document.getElementById("practice-menu-backward-lower")
 
   const operatorMenuForward = document.getElementById("operator-menu-forward")
 
@@ -943,11 +943,11 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   const operatorMenuBackwards = [operatorMenuBackwarUpper, operatorMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
-  const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower]
+  // const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower]
   const realMenuBackwards = [realMenuBackwardUpper, realMenuBackwardLower]
   const activitiesChoices = document.querySelectorAll(".activity-choice")
   const realChoices = document.querySelectorAll(".real-choice")
-  const practiceChoices = document.querySelectorAll(".practice-choice")
+  // const practiceChoices = document.querySelectorAll(".practice-choice")
 
   function alertChooseActivity() {
     const newModal = document.createElement("div");
@@ -997,20 +997,20 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   })
 
   // Handle the click event on the practiceMenuForward button
-  practiceMenuForward.addEventListener("click", async (e) => {
+  // practiceMenuForward.addEventListener("click", async (e) => {
 
-    // Check if the chosen activity has been updated successfully, and show an error message if not
-    if (updateActivity(practiceChoices, 2) == null || undefined) {
-      utilMethods.visibilityTimedToggle(true, activityAlert, 1000)
-      return;
-    }
+  //   // Check if the chosen activity has been updated successfully, and show an error message if not
+  //   if (updateActivity(practiceChoices, 2) == null || undefined) {
+  //     utilMethods.visibilityTimedToggle(true, activityAlert, 1000)
+  //     return;
+  //   }
 
-    // Update the state with the chosen activity
-    state.activity = updateActivity(practiceChoices, 2)
+  //   // Update the state with the chosen activity
+  //   state.activity = updateActivity(practiceChoices, 2)
 
-    // Load the operator-menu section
-    utilMethods.loadSection('operator-menu')
-  })
+  //   // Load the operator-menu section
+  //   utilMethods.loadSection('operator-menu')
+  // })
 
   // Handle the click event on the operatorMenuForward button
   operatorMenuForward.addEventListener("click", (e) => {
@@ -1119,7 +1119,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   addEventsForTypes(activitiesChoices, state)
   addEventsForOperators(operatorChoices, state)
   addEventsForActivities(realChoices, state)
-  addEventsForActivities(practiceChoices, state)
+  // addEventsForActivities(practiceChoices, state)
 
   // A function to determine which activity was selected by the user
   function updateActivity(activitiesChoices, numChoices) {

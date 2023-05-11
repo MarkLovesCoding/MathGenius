@@ -9,27 +9,21 @@
 //save to profile. create profile.
 
 import * as utilMethods from './ulils.js';
-import { burger, burgerContainer, mainContainer, subjects, diffButtons } from './domElements.js'
+import { burger, burgerContainer, mainContainer, subjects, diffButtons } from './domElements.js';
 import { flashAnswer, flashCard, flashNumOne, flashNumTwo, flashOpOne, newFlash, flashContainer } from './domElements.js';
 import { mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './domElements.js';
 import { mcQuizNumOne, mcQuizNumTwo, mcQuizOpOne, mcQuizOptions, newMCQuiz } from './domElements.js';
 import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne, newQuiz } from './domElements.js';
 import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
-import { state } from './state.js'
+import { state } from './state.js';
 // import { flashHandler } from './flash.js';
 
-window.onload = function () {  //Ensure DOM is loaded before functions
-
-
-
-
-
-
+window.onload = function () {
+  //Ensure DOM is loaded before functions
 
   ////////////////////////////////////////////////////////////
   //SHARED
   //
-
 
   // Function to update the burger menu
   // function burgerUpdate() {
@@ -48,14 +42,12 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   // Function to generate a new general question
   // Function to generate a new general question
   function newGeneralQuestion(opEl, n1El, n2El, operators, func) {
-
     // Get a random operator from the list of operators
     let o1 = utilMethods.randOp(operators);
 
     // Generate two random numbers between 0 and the active high value
     let n1 = utilMethods.randomNumber(0, state.activeHighVal);
     let n2 = utilMethods.randomNumber(0, state.activeHighVal);
-
 
     // If the operator is multiplication, generate two random numbers between the active multiply low and high values
     if (o1 === "x") {
@@ -97,7 +89,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     switch (type) {
       // If the type is "flash", load the "flash" section
       case "flash":
-        utilMethods.loadSection("flash")
+        utilMethods.loadSection("flash");
 
         // Set the values of num1, num2, and op1 based on the flash question
         num1 = flashNumOne;
@@ -107,7 +99,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
       // If the type is "multiple-choice", load the "mc" section
       case "multiple-choice":
-        utilMethods.loadSection("mc")
+        utilMethods.loadSection("mc");
 
         // Set the values of num1, num2, and op1 based on the multiple-choice question
         num1 = mcNumOne;
@@ -117,7 +109,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
       // If the type is "multiple-choice-quiz", load the "mc-quiz" section
       case "multiple-choice-quiz":
-        utilMethods.loadSection("mc-quiz")
+        utilMethods.loadSection("mc-quiz");
 
         // Set the values of num1, num2, and op1 based on the multiple-choice quiz question
         num1 = mcQuizNumOne;
@@ -127,7 +119,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
       // If the type is "quiz", load the "quiz" section
       case "quiz":
-        utilMethods.loadSection("quiz")
+        utilMethods.loadSection("quiz");
 
         // Set the values of num1, num2, and op1 based on the quiz question
         num1 = quizNumOne;
@@ -137,7 +129,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
       // If the type is "game", load the "game" section
       case "game":
-        utilMethods.loadSection("game")
+        utilMethods.loadSection("game");
 
         // Set the values of num1, num2, and op1 based on the game question
         num1 = gameNumOne;
@@ -157,10 +149,11 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     newGeneralQuestion(op1, num1, num2, operators, options);
   }
 
-
   // Function to update the difficulty range based on the current active difficulty level
   function updateDifficultyRange() {
-    let i = state.activeDifficulty, highVal, lowVal;
+    let i = state.activeDifficulty,
+      highVal,
+      lowVal;
 
     // Set the high and low values based on the current active difficulty level
     switch (i) {
@@ -191,7 +184,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     state.activeMultiplyHighVal = highVal;
 
     // Set the active high value based on the current active difficulty level
-    state.activeHighVal = (i) * 10;
+    state.activeHighVal = i * 10;
   }
 
   // Function to show the main menu
@@ -207,31 +200,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //
   //END SHARED
   ////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   ////////////////////////////////////////////////////////////
   //GAME
@@ -283,11 +251,10 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     checkHighScore();
   }
 
-
   /**
- * Compares the current game score to the current high score and updates the display
- * if necessary.
- */
+  * Compares the current game score to the current high score and updates the display
+  * if necessary.
+  */
   function checkHighScore() {
     let curr = gameCurrScore.innerHTML;
     if (curr > parseInt(state.high_score)) {
@@ -298,14 +265,12 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     }
   }
 
-
-
   /**
- * Displays the correctness of the user's answer by toggling the visibility of the given element and
- * updating its styling and text content based on whether the answer was correct or incorrect.
- * @param {boolean} bool - Whether the user's answer was correct.
- * @param {HTMLElement} element - The element to display the correctness on.
- */
+  * Displays the correctness of the user's answer by toggling the visibility of the given element and
+  * updating its styling and text content based on whether the answer was correct or incorrect.
+  * @param {boolean} bool - Whether the user's answer was correct.
+  * @param {HTMLElement} element - The element to display the correctness on.
+  */
   function correctnessView(bool, element) {
     utilMethods.showHide([element], []);
     if (bool) {
@@ -345,25 +310,24 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
 
   // This function updates the game level based on the user's score and increases the difficulty of the game as the level progresses.
-  
+
   async function updateLevel() {
     // Gets the current level number and checks if the user has made progress towards the next level or not
     let level = parseInt(gameLevelNumber.textContent);
     if (parseInt(gameCurrScore.textContent) % 1 == 0) {
       updateProgress();
     }
-  
+
     // Checks if the user has reached the next level and adds a new level to the game tracker
     if (parseInt(gameCurrScore.textContent) % 10 == 0) {
-  
       // Disables the user input and resets the width of the game tracker
       utilMethods.disableInput(gameAnswerInput);
       utilMethods.resetWidth([gameTracker]);
-  
+
       // Adds a new level to the game tracker and updates the level number
       addlevel();
       level += 1;
-  
+
       // Animates the level up message and waits for 1 second before re-enabling the user input
       levelUp(level);
       await utilMethods.delay(1000);
@@ -372,7 +336,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     // Updates the level number displayed to the user
     gameLevelNumber.textContent = level;
   }
-  
 
   /**
    * Updates the width of the progress bar by adding a fraction of the full width to it.
@@ -381,9 +344,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   async function updateProgress() {
     // Get the full width of the progress bar container and subtract the border width to get the actual width
     let fullWidth = window.getComputedStyle(gameTrackerContainer).width;
-    let borderWidth = window
-      .getComputedStyle(gameTrackerContainer)
-      .getPropertyValue("border-width");
+    let borderWidth = window.getComputedStyle(gameTrackerContainer).getPropertyValue("border-width");
     fullWidth = parseFloat(fullWidth.slice(0, -2));
     borderWidth = parseFloat(borderWidth.slice(0, -2));
     fullWidth = fullWidth - borderWidth * 2;
@@ -401,38 +362,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     }
   }
 
-
-
   //
   //END GAME
   ////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   ////////////////////////////////////////////////////////////
   //MC
@@ -458,7 +390,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       utilMethods.animateCorrect(correctEl);
       await utilMethods.delay(250);
       newQuestion("multiple-choice", state.activeOperators, mcCreateOptions);
-
     }
   }
 
@@ -472,26 +403,26 @@ window.onload = function () {  //Ensure DOM is loaded before functions
    */
   function mcCreateOptions(n1, n2, o1) {
     // Create an array of four possible answer options using the given numbers and operator
-    let options = utilMethods.createOptions(n1, n2, o1)
-  
+    let options = utilMethods.createOptions(n1, n2, o1);
+
     // Clear the mcOptions element (which contains the multiple choice answer buttons)
     mcOptions.innerHTML = "";
-  
+
     // Calculate the correct answer for the question
-    let ans = utilMethods.calculation(n1, n2, o1)
-  
+    let ans = utilMethods.calculation(n1, n2, o1);
+
     // Loop through each answer option and create a button for it
     options.forEach((option, index) => {
       const optionEl = document.createElement("button");
       optionEl.classList.add("option");
       optionEl.textContent = option;
       let correctOption;
-  
+
       // If this answer option is equal to the correct answer, save a reference to the button as the correct option
       if (option == ans) {
         correctOption = optionEl;
       }
-  
+
       // Add a mousedown event listener to each button that checks if the answer is correct or not
       optionEl.addEventListener("mousedown", function (e) {
         let targetEl = e.target;
@@ -504,37 +435,15 @@ window.onload = function () {  //Ensure DOM is loaded before functions
           mcAnswerCheck(false, correctOption, targetEl);
         }
       });
-  
+
       // Add the answer option button to the mcOptions element
       mcOptions.appendChild(optionEl);
     });
   }
-  
 
   //
   //END MC
   ////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   //////MCQUIZ
 
@@ -542,34 +451,18 @@ window.onload = function () {  //Ensure DOM is loaded before functions
    * resets the relevant state values.
    */
   function finishMCQuiz() {
-
-
-
-
     // add state db flow
 
-
-
-
-    
     // Reset state values
     state.mcQuizActive.mcqNumAnswered = 0;
     state.mcQuizActive.mcqNumCorrect = 0;
     state.mcQuizActive.mcqFailedAttempts = 0;
   }
-
-
-
-
-  const mcQuestionNumber = document.getElementById("mc-question-number")
-  const mcQuestionsCorrect = document.getElementById("mc-questions-correct")
-  const mcQuizModal = document.getElementById("mc-quiz-modal")
+  const mcQuestionNumber = document.getElementById("mc-question-number");
+  const mcQuestionsCorrect = document.getElementById("mc-questions-correct");
+  const mcQuizModal = document.getElementById("mc-quiz-modal");
   const mcQuizAmountCorrect = document.getElementById("mc-quiz-amountCorrect");
   const mcQuizAmountCorrectPercentage = document.getElementById("mc-quiz-amountCorrectPercentage");
-
-
-
-
   async function mcQuizShowScore() {
     // Update text content of elements with score information
     mcQuizAmountCorrect.textContent = state.mcQuizActive.mcqNumCorrect;
@@ -583,7 +476,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     mcQuizModal.style.visibility = "hidden";
     mcQuizModal.style.zIndex = 0;
   }
-
   function updateMCQuizPage() {
     // Update text content of elements with question and score information
     const numCorrect = state.mcQuizActive.mcqNumCorrect;
@@ -592,15 +484,13 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     mcQuestionNumber.textContent = numAnswered;
     mcQuestionsCorrect.textContent = numCorrect;
   }
-
   function checkMCQAnswered() {
     // If all questions have been answered, show score and finish quiz
     if (state.mcQuizActive.mcqNumAnswered == state.mcQuizActive.mcqNumQuestion) {
-      mcQuizShowScore()
-      finishMCQuiz()
+      mcQuizShowScore();
+      finishMCQuiz();
     }
   }
-
   async function mcQuizAnswerCheck(bool, correctEl, falseEl = null) {
     // Check if the answer is correct or not
     if (bool) {
@@ -616,37 +506,35 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       }
       state.mcQuizActive.mcqFailedAttempts = 0;
       // Check if all questions are answered and show the score if true. Animate the correct element 
-      checkMCQAnswered()
+      checkMCQAnswered();
       utilMethods.animateCorrect(correctEl);
       // Wait for a short delay before updating the quiz page and generating a new question
       await utilMethods.delay(150);
-      updateMCQuizPage()
+      updateMCQuizPage();
       newQuestion("multiple-choice-quiz", state.activeOperators, mcQuizCreateOptions);
     } else {
       // If the answer is incorrect:
       // Increment the number of failed attempts
       state.mcQuizActive.mcqFailedAttempts += 1;
       // Check if all questions are answered and show the score if true. Animate elements based on correctness
-      checkMCQAnswered()
+      checkMCQAnswered();
       utilMethods.animateIncorrect(falseEl);
       utilMethods.animateCorrect(correctEl);
       // Wait for a short delay before updating the quiz page and generating a new question
       await utilMethods.delay(150);
-      updateMCQuizPage()
+      updateMCQuizPage();
       newQuestion("multiple-choice-quiz", state.activeOperators, mcQuizCreateOptions);
     }
   }
-
   function mcQuizCreateOptions(n1, n2, o1) {
-
     // Create an array of options for the multiple choice question
-    let options = utilMethods.createOptions(n1, n2, o1)
+    let options = utilMethods.createOptions(n1, n2, o1);
 
     // Clear the options element
     mcQuizOptions.innerHTML = "";
 
     // Calculate the answer to the question
-    let ans = utilMethods.calculation(n1, n2, o1)
+    let ans = utilMethods.calculation(n1, n2, o1);
 
     // Create a button element for each option and append it to the options element
     options.forEach((option, index) => {
@@ -675,26 +563,8 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     });
   }
 
-
   ///
   ///
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   ////////////////////////////////////////////////////////////
   //QUIZ
@@ -721,7 +591,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
       // Generate a new question for the quiz
       newQuestion("quiz", state.activeOperators);
-
     } else {
       // Display an animation to indicate an incorrect answer
       utilMethods.incorrectMotion(quizAnswerForm);
@@ -785,13 +654,11 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     quizStats.numAnswered = 0;
     quizStats.numCorrect = 0;
   }
-
   function updateQuizScores(score, question, quizStats) {
     // Update the scores displayed on the quiz interface
     score.innerHTML = quizStats.numCorrect;
     question.innerHTML = quizStats.numAnswered;
   }
-
   function addToQuizProperty(bool, quizStats) {
     // Update the quiz statistics object based on whether the answer was correct or not
     quizStats.numAnswered += 1;
@@ -801,7 +668,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     // Update the scores displayed on the quiz interface
     updateQuizScores(quizCurrScore, quizCurrQuestion, quizStats);
   }
-
   async function checkQuizStatus(quizStats, currScoreContainerEl, lastScoreContainerEl, lastScoreEl) {
     // Check whether the quiz has been completed, and if so, finish the quiz
     if (quizStats.numAnswered == 1) {
@@ -817,8 +683,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       finishQuiz(lastScoreEl, quizStats);
     }
   }
-
-
   function finishQuiz(lastScoreEl, quizStats) {
     // Update the last score element and reset the quiz statistics object
     lastScoreEl.innerHTML = quizStats.numCorrect;
@@ -832,29 +696,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //END QUIZ
   ////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   ////////////////////////////////////////////////////////////
   //EVENT HANDLERS
   //
@@ -867,16 +708,13 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   // Adds an event listener to the gameAnswerSubmit element to check the user's answer when the form is submitted
   function gameCheckAnswerHandler(e) {
-    let realAns = utilMethods.calculation(
-      gameNumOne.innerHTML,
-      gameNumTwo.innerHTML,
-      gameOpOne.innerHTML
-    ); // Calculate the correct answer using the gameNumOne, gameNumTwo, and gameOpOne elements
+    let realAns = utilMethods.calculation(gameNumOne.innerHTML, gameNumTwo.innerHTML, gameOpOne.innerHTML); // Calculate the correct answer using the gameNumOne, gameNumTwo, and gameOpOne elements
 
     gameActual.innerHTML = realAns; // Display the correct answer in the gameActual element
     gameAnswerCheck(realAns == state.userValue); // Check if the user's answer is correct using the gameAnswerCheck function
     e.preventDefault(); // Prevent the form from submitting and refreshing the page
   }
+
   gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler); // Add an event listener to the gameAnswerInput element that updates the state with the user's answer
   gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler); // Add an event listener to the gameAnswerSubmit element that checks the user's answer and updates the gameActual element
 
@@ -888,27 +726,19 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
 
   function quizAnswerHandler(e) {
-    let realAns = utilMethods.calculation(
-      quizNumOne.innerHTML,
-      quizNumTwo.innerHTML,
-      quizOpOne.innerHTML
-    ); // Calculate the correct answer using the quizNumOne, quizNumTwo, and quizOpOne elements
+    let realAns = utilMethods.calculation(quizNumOne.innerHTML, quizNumTwo.innerHTML, quizOpOne.innerHTML); // Calculate the correct answer using the quizNumOne, quizNumTwo, and quizOpOne elements
     quizAnswerCheck(realAns == state.userValue); // Check if the user's answer is correct using the quizAnswerCheck function
     e.preventDefault(); // Prevent the form from submitting and refreshing the page
   }
-
 
   quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler); // Add an event listener to the quizAnswerInput element that updates the state with the user's answer
   quizAnswerForm.addEventListener("submit", quizAnswerHandler); // Add an event listener to the quizAnswerForm element that checks the user's answer
 
   function flashHandler(e) {
-    const ans = utilMethods.calculation(
-      flashNumOne.innerHTML,
-      flashNumTwo.innerHTML,
-      flashOpOne.innerHTML
-    ); // Calculate the correct answer using the flashNumOne, flashNumTwo, and flashOpOne elements
+    const ans = utilMethods.calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML); // Calculate the correct answer using the flashNumOne, flashNumTwo, and flashOpOne elements
     flashAnswer.textContent = ans; // Display the correct answer in the flashAnswer element
-    if (this.classList.contains("flip")) { // If the flashCard element has the "flip" class, generate a new question
+    if (this.classList.contains("flip")) {
+      // If the flashCard element has the "flip" class, generate a new question
       newQuestion("flash", state.activeOperators);
     }
     this.classList.toggle("flip"); // Toggle the "flip" class on the flashCard element
@@ -922,42 +752,34 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //   burger.classList.toggle("open"); // Toggle the "open" class on the burger element when the burgerContainer element is clicked
   // });
 
-
   // const activityMenuForward = document.getElementById("activity-menu-forward")
 
-  const realMenuForward = document.getElementById("real-menu-forward")
-  const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper")
-  const realMenuBackwardLower = document.getElementById("real-menu-backward-lower")
+  // const realMenuForward = document.getElementById("real-menu-forward")
+  // const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper")
+  // const realMenuBackwardLower = document.getElementById("real-menu-backward-lower")
 
-  const practiceMenuForward = document.getElementById("practice-menu-forward")
-  const practiceMenuBackwardUpper = document.getElementById("practice-menu-backward-upper")
-  const practiceMenuBackwardLower = document.getElementById("practice-menu-backward-lower")
-
-  const operatorMenuForward = document.getElementById("operator-menu-forward")
-
-  const operatorMenuBackwarUpper = document.getElementById("operator-menu-backward-upper")
-  const operatorMenuBackwardLower = document.getElementById("operator-menu-backward-lower")
-  const difficultyMenuForward = document.getElementById("difficulty-menu-forward")
-  const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
-  const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower")
-
+  const practiceMenuForward = document.getElementById("practice-menu-forward");
+  const practiceMenuBackwardUpper = document.getElementById("practice-menu-backward-upper");
+  const practiceMenuBackwardLower = document.getElementById("practice-menu-backward-lower");
+  const operatorMenuForward = document.getElementById("operator-menu-forward");
+  const operatorMenuBackwarUpper = document.getElementById("operator-menu-backward-upper");
+  const operatorMenuBackwardLower = document.getElementById("operator-menu-backward-lower");
+  const difficultyMenuForward = document.getElementById("difficulty-menu-forward");
+  const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper");
+  const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower");
   const operatorMenuBackwards = [operatorMenuBackwarUpper, operatorMenuBackwardLower];
-  const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
-  const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower]
-  const realMenuBackwards = [realMenuBackwardUpper, realMenuBackwardLower]
-  const activitiesChoices = document.querySelectorAll(".activity-choice")
-  const realChoices = document.querySelectorAll(".real-choice")
-  const practiceChoices = document.querySelectorAll(".practice-choice")
-
+  const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower];
+  const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower];
+  // const realMenuBackwards = [realMenuBackwardUpper, realMenuBackwardLower]
+  const activitiesChoices = document.querySelectorAll(".activity-choice");
+  // const realChoices = document.querySelectorAll(".real-choice")
+  const practiceChoices = document.querySelectorAll(".practice-choice");
   function alertChooseActivity() {
     const newModal = document.createElement("div");
-    newModal.innerHTML = "Please Select An Activity"
-
+    newModal.innerHTML = "Please Select An Activity";
   }
-  const activityAlert = document.getElementById("activity-alert-modal")
-  const operatorAlert = document.getElementById("operator-alert-modal")
-
-
+  const activityAlert = document.getElementById("activity-alert-modal");
+  const operatorAlert = document.getElementById("operator-alert-modal");
 
   // Handle the click event on the activityMenuForward button
   // activityMenuForward.addEventListener("click", async (e) => {
@@ -981,122 +803,114 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   // })
 
   // Handle the click event on the realMenuForward button
-  realMenuForward.addEventListener("click", async (e) => {
+  // realMenuForward.addEventListener("click", async (e) => {
 
-    // Check if the chosen activity has been updated successfully, and show an error message if not
-    if (updateActivity(realChoices, 3) == null || undefined) {
-      utilMethods.visibilityTimedToggle(true, activityAlert, 1000)
-      return;
-    }
+  //   // Check if the chosen activity has been updated successfully, and show an error message if not
+  //   if (updateActivity(realChoices, 3) == null || undefined) {
+  //     utilMethods.visibilityTimedToggle(true, activityAlert, 1000)
+  //     return;
+  //   }
 
-    // Update the state with the chosen activity
-    state.activity = updateActivity(realChoices, 3)
+  //   // Update the state with the chosen activity
+  //   state.activity = updateActivity(realChoices, 3)
 
-    // Load the operator-menu section
-    utilMethods.loadSection('operator-menu')
-  })
+  //   // Load the operator-menu section
+  //   utilMethods.loadSection('operator-menu')
+  // })
 
   // Handle the click event on the practiceMenuForward button
-  practiceMenuForward.addEventListener("click", async (e) => {
-
+  practiceMenuForward.addEventListener("click", async e => {
     // Check if the chosen activity has been updated successfully, and show an error message if not
     if (updateActivity(practiceChoices, 2) == null || undefined) {
-      utilMethods.visibilityTimedToggle(true, activityAlert, 1000)
+      utilMethods.visibilityTimedToggle(true, activityAlert, 1000);
       return;
     }
 
     // Update the state with the chosen activity
-    state.activity = updateActivity(practiceChoices, 2)
+    state.activity = updateActivity(practiceChoices, 2);
 
     // Load the operator-menu section
-    utilMethods.loadSection('operator-menu')
-  })
+    utilMethods.loadSection('operator-menu');
+  });
 
   // Handle the click event on the operatorMenuForward button
-  operatorMenuForward.addEventListener("click", (e) => {
-
+  operatorMenuForward.addEventListener("click", e => {
     // Update the active operators based on the user's selection
-    state.activeOperators = updateOperators(operatorChoices)
+    state.activeOperators = updateOperators(operatorChoices);
 
     // Show an error message if no operators are selected, and prevent the page from reloading
     if (state.activeOperators.length == 0) {
-      utilMethods.visibilityTimedToggle(true, operatorAlert, 1100)
+      utilMethods.visibilityTimedToggle(true, operatorAlert, 1100);
       return;
     }
 
     // Load the difficulty-menu section
-    utilMethods.loadSection("difficulty-menu")
-  })
+    utilMethods.loadSection("difficulty-menu");
+  });
 
   // Handle the click event on the difficultyMenuBackwards button
   for (let el of difficultyMenuBackwards) {
-    el.addEventListener("click", (e) => {
-      utilMethods.loadSection("operator-menu")
-    })
+    el.addEventListener("click", e => {
+      utilMethods.loadSection("operator-menu");
+    });
   }
 
   // Handle the click event on the difficultyMenuForward button
-  difficultyMenuForward.addEventListener("click", (e) => {
-
+  difficultyMenuForward.addEventListener("click", e => {
     // Update the difficulty range based on the user's selection
-    updateDifficultyRange()
+    updateDifficultyRange();
 
     // Generate a new question based on the chosen activity and active operators
     if (state.activity === "multiple-choice") {
-      newQuestion(state.activity, state.activeOperators, mcCreateOptions)
+      newQuestion(state.activity, state.activeOperators, mcCreateOptions);
+    } else if (state.activity === "multiple-choice-quiz") {
+      newQuestion(state.activity, state.activeOperators, mcQuizCreateOptions);
+    } else {
+      newQuestion(state.activity, state.activeOperators);
     }
-    else if (state.activity === "multiple-choice-quiz") {
-      newQuestion(state.activity, state.activeOperators, mcQuizCreateOptions)
-    }
-    else {
-      newQuestion(state.activity, state.activeOperators)
-    }
-  })
-
+  });
 
   // A function to add event listeners for activity types (real/practice)
   function addEventsForTypes(activitiesChoices, state) {
     for (let activity of activitiesChoices) {
-      activity.addEventListener("click", (e) => {
-        activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"))
+      activity.addEventListener("click", e => {
+        activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"));
         // Remove the "activity-selected" class from all activity options
         let type;
         if (e.target.getAttribute("data-type")) {
-          type = e.target.getAttribute("data-type")
-        }
-        else {
-          type = e.target.parentNode.getAttribute("data-type")
+          type = e.target.getAttribute("data-type");
+        } else {
+          type = e.target.parentNode.getAttribute("data-type");
         }
         // Determine which activity type was selected by looking at the "data-type" attribute
-        activity.classList.add("activity-selected")
+        activity.classList.add("activity-selected");
         // Add the "activity-selected" class to the selected activity option
-        state.type = type
+        state.type = type;
         // Set the state's "type" property to the selected activity type
-      })
+      });
     }
   }
 
   // A function to add event listeners for specific activities (e.g., real addition, practice multiplication)
   function addEventsForActivities(activitiesChoices, state) {
     for (let activity of activitiesChoices) {
-      activity.addEventListener("click", (e) => {
-        activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"))
+      activity.addEventListener("click", e => {
+        activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"));
         // Remove the "activity-selected" class from all activity options
         let type;
         if (e.target.getAttribute("data-type")) {
-          type = e.target.getAttribute("data-type")
-        }
-        else {
-          type = e.target.parentNode.getAttribute("data-type")
+          type = e.target.getAttribute("data-type");
+        } else {
+          type = e.target.parentNode.getAttribute("data-type");
         }
         // Determine which activity was selected by looking at the "data-type" attribute
-        activity.classList.add("activity-selected")
+        activity.classList.add("activity-selected");
 
         // Add the "activity-selected" class to the selected activity option
-        state.type = type
+        state.type = type;
 
         // Set the state's "type" property to the selected activity
-      })
+      });
     }
   }
 
@@ -1104,40 +918,34 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   function toggleOperators(e) {
     e.target.classList.toggle("active-operator");
   }
-
-
-  const operatorChoices = document.querySelectorAll(".operator-choice")
-
-
+  const operatorChoices = document.querySelectorAll(".operator-choice");
 
   // A function to add event listeners for operators (+, -, x, ÷)
   function addEventsForOperators(operatorsChoices) {
     for (let operator of operatorsChoices) {
-      operator.addEventListener("click", toggleOperators)
+      operator.addEventListener("click", toggleOperators);
     }
   }
-  addEventsForTypes(activitiesChoices, state)
-  addEventsForOperators(operatorChoices, state)
-  addEventsForActivities(realChoices, state)
-  addEventsForActivities(practiceChoices, state)
+  addEventsForTypes(activitiesChoices, state);
+  addEventsForOperators(operatorChoices, state);
+  // addEventsForActivities(realChoices, state)
+  addEventsForActivities(practiceChoices, state);
 
   // A function to determine which activity was selected by the user
   function updateActivity(activitiesChoices, numChoices) {
     let userSelection;
     for (let i = 0; i < numChoices; i++) {
       if (activitiesChoices[i].classList.contains("activity-selected")) {
-        userSelection = activitiesChoices[i].getAttribute("data-type")
+        userSelection = activitiesChoices[i].getAttribute("data-type");
       }
     }
     return userSelection;
   }
-
   function updateOperators(operatorChoices) {
     let ops = [];
     let amount = 0;
     for (let i = 0; i < 4; i++) {
       if (operatorChoices[i].classList.contains("active-operator")) {
-
         // Assign the operator symbol based on the id attribute of the selected operator element
         let operatorText;
         switch (operatorChoices[i].getAttribute("id")) {
@@ -1169,15 +977,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     return ops;
   }
 
-
-
-
-
-
-
-
-
-
   // Initialize variables for the range input, range value, and level text elements
   var rangeInput = document.getElementById("range-input");
   var rangeValue = document.getElementById("range-value");
@@ -1189,12 +988,12 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     let selectedDifficulty = parseInt(rangeInput.value);
 
     // Update the active difficulty level in the state object and update the range value text
-    state.activeDifficulty = selectedDifficulty
+    state.activeDifficulty = selectedDifficulty;
     rangeValue.textContent = selectedDifficulty;
 
     // Set the color of the range input thumb based on the selected difficulty level
     var sliderColor = state.difficultyLevels[selectedDifficulty].color;
-    rangeInput.style.setProperty('--thumb-color', sliderColor)
+    rangeInput.style.setProperty('--thumb-color', sliderColor);
 
     // Update the level text with the name of the selected difficulty level
     levelText.textContent = state.difficultyLevels[selectedDifficulty].name;
@@ -1203,11 +1002,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   // Add an event listener for when the logout button is clicked
   const logoutBtn = document.getElementById('logout-btn');
   logoutBtn.addEventListener('click', () => {
-
     // Redirect to the logout page
     window.location.href = '/logout';
   });
-
-
-
-} //close window.onload function
+}; //close window.onload function

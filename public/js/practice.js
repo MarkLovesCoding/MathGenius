@@ -925,9 +925,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   // const activityMenuForward = document.getElementById("activity-menu-forward")
 
-  const realMenuForward = document.getElementById("real-menu-forward")
-  const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper")
-  const realMenuBackwardLower = document.getElementById("real-menu-backward-lower")
+  // const realMenuForward = document.getElementById("real-menu-forward")
+  // const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper")
+  // const realMenuBackwardLower = document.getElementById("real-menu-backward-lower")
 
   const practiceMenuForward = document.getElementById("practice-menu-forward")
   const practiceMenuBackwardUpper = document.getElementById("practice-menu-backward-upper")
@@ -944,9 +944,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   const operatorMenuBackwards = [operatorMenuBackwarUpper, operatorMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
   const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower]
-  const realMenuBackwards = [realMenuBackwardUpper, realMenuBackwardLower]
+  // const realMenuBackwards = [realMenuBackwardUpper, realMenuBackwardLower]
   const activitiesChoices = document.querySelectorAll(".activity-choice")
-  const realChoices = document.querySelectorAll(".real-choice")
+  // const realChoices = document.querySelectorAll(".real-choice")
   const practiceChoices = document.querySelectorAll(".practice-choice")
 
   function alertChooseActivity() {
@@ -981,20 +981,20 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   // })
 
   // Handle the click event on the realMenuForward button
-  realMenuForward.addEventListener("click", async (e) => {
+  // realMenuForward.addEventListener("click", async (e) => {
 
-    // Check if the chosen activity has been updated successfully, and show an error message if not
-    if (updateActivity(realChoices, 3) == null || undefined) {
-      utilMethods.visibilityTimedToggle(true, activityAlert, 1000)
-      return;
-    }
+  //   // Check if the chosen activity has been updated successfully, and show an error message if not
+  //   if (updateActivity(realChoices, 3) == null || undefined) {
+  //     utilMethods.visibilityTimedToggle(true, activityAlert, 1000)
+  //     return;
+  //   }
 
-    // Update the state with the chosen activity
-    state.activity = updateActivity(realChoices, 3)
+  //   // Update the state with the chosen activity
+  //   state.activity = updateActivity(realChoices, 3)
 
-    // Load the operator-menu section
-    utilMethods.loadSection('operator-menu')
-  })
+  //   // Load the operator-menu section
+  //   utilMethods.loadSection('operator-menu')
+  // })
 
   // Handle the click event on the practiceMenuForward button
   practiceMenuForward.addEventListener("click", async (e) => {
@@ -1118,7 +1118,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
   addEventsForTypes(activitiesChoices, state)
   addEventsForOperators(operatorChoices, state)
-  addEventsForActivities(realChoices, state)
+  // addEventsForActivities(realChoices, state)
   addEventsForActivities(practiceChoices, state)
 
   // A function to determine which activity was selected by the user

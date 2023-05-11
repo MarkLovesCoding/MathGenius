@@ -717,11 +717,11 @@ font-family:'Pangolin', cursive;
 }
 
 
-.operator-menu-container,.difficulty-menu-container, .real-menu-container,.practice-menu-container{
+.operator-menu-container,.difficulty-menu-container {
   display:none;
 }
 
-.login-menu-container, .signup-menu-container, .activity-menu-container,.middle, .top,.bottom, .forgot-password-menu-container
+.real-menu-container,.practice-menu-container,.login-menu-container, .signup-menu-container, .activity-menu-container,.middle, .top,.bottom, .forgot-password-menu-container
 ,.forgot-username-menu-container{
   display:flex; 
 
