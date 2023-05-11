@@ -26,18 +26,18 @@ window.onload = function () {
   //
 
   // Function to update the burger menu
-  function burgerUpdate() {
-    if (burger.classList.contains("open")) {
-      burger.classList.remove("open");
-    }
-    burgerContainer.style.display = "flex";
-  }
+  // function burgerUpdate() {
+  //   if (burger.classList.contains("open")) {
+  //     burger.classList.remove("open");
+  //   }
+  //   burgerContainer.style.display = "flex";
+  // }
 
-  // Function to hide the burger menu
-  async function hideBurger() {
-    await utilMethods.delay(400);
-    burgerContainer.style.display = "none";
-  }
+  // // Function to hide the burger menu
+  // async function hideBurger() {
+  //   await utilMethods.delay(400)
+  //   burgerContainer.style.display = "none";
+  // }
 
   // Function to generate a new general question
   // Function to generate a new general question
@@ -143,7 +143,7 @@ window.onload = function () {
     }
 
     // Update the burger menu
-    burgerUpdate();
+    // burgerUpdate();
 
     // Generate a new question based on the values of num1, num2, and op1
     newGeneralQuestion(op1, num1, num2, operators, options);
@@ -190,7 +190,7 @@ window.onload = function () {
   // Function to show the main menu
   function showMainMenu() {
     utilMethods.loadSection("activity-menu"); // Load the activity menu section
-    hideBurger(); // Hide the burger menu
+    // hideBurger(); // Hide the burger menu
     resetQuizProperty(state.quizStats); // Reset the quiz stats
     utilMethods.resetNumberToZero(gameLevelNumber); // Reset the game level number
     utilMethods.resetWidth([gameTracker, gameTracker2]); // Reset the width of game trackers
@@ -224,7 +224,7 @@ window.onload = function () {
     // If the answer is incorrect:
     else {
       // Show incorrect answer message and reset score/tracker
-      utilMethods.showHide([], [burgerContainer]);
+      // utilMethods.showHide([], [burgerContainer]);
       correctnessView(false, gameCorrectness);
       utilMethods.incorrectMotion(gameCorrectness);
       utilMethods.disableInput(gameAnswerInput);
@@ -747,10 +747,10 @@ window.onload = function () {
 
   flashCard.addEventListener("mousedown", flashHandler, false); // Add a mousedown event listener to the flashCard element that handles flipping the card and checking the answer
 
-  burgerContainer.addEventListener("click", showMainMenu); // Add a click event listener to the burgerContainer element that shows the main menu
-  burgerContainer.addEventListener("click", e => {
-    burger.classList.toggle("open"); // Toggle the "open" class on the burger element when the burgerContainer element is clicked
-  });
+  // burgerContainer.addEventListener("click", showMainMenu); // Add a click event listener to the burgerContainer element that shows the main menu
+  // burgerContainer.addEventListener("click", (e) => {
+  //   burger.classList.toggle("open"); // Toggle the "open" class on the burger element when the burgerContainer element is clicked
+  // });
 
   const activityMenuForward = document.getElementById("activity-menu-forward");
   const realMenuForward = document.getElementById("real-menu-forward");
