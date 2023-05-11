@@ -31,19 +31,25 @@
 
 
 
+   <div id="burger-container" class="burger-container box-container">
+
+    <div class="burger open" id="burger">
+     <span></span>
+     <span></span>
+     <span></span>
 
 
-    <div id="burger-container" class="burger-container box-container">
-
-      <div class="burger open" id="burger">
-       <span></span>
-       <span></span>
-       <span></span>
-
-
-      </div>
     </div>
-    
+    <div class="circular-menu" id="burger-menu-open">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Tests</a></li>
+        <li><a href="#">Practice</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+  </div>
     
 
 
@@ -63,33 +69,111 @@
 
          <div class="profile-section">
           <div class="profile-user-section">
-            <img class="profile-user-image" src="user-image.jpg" alt="User Image" />
+            <div class="profile-img-container">
+            <img id="profile-user-avatar" class="profile-user-avatar" src="../assets/dog.png" alt="User Image" />
+              <i aria-name="change-avatar" id="choose-avatar" class="change-avatar fas fa-pencil"></i> 
+
+              <div id="avatar-modal" class="avatar-modal">
+                <div class="avatar-modal-content">
+                  <div class="avatar-modal-header">
+                    <h2>Select a user icon</h2>
+                    <span id="avatar-modal-close" class="avatar-modal-close">&times;</span>
+                  </div>
+                  <div class="avatar-modal-body">
+                    <div class="avatar-user-icons">
+                      <img class="avatar-modal-icon" src="../assets/bunny.png" title="Bunny" alt="Bunny">
+                      <img class="avatar-modal-icon" src="../assets/dog.png" title="Dog" alt="Dog">
+                      <img class="avatar-modal-icon" src="../assets/elephant.png" title="Elephant" alt="Elephant">
+                      <img class="avatar-modal-icon" src="../assets/bear.png" title="Bear" alt="Bear">
+                      <img class="avatar-modal-icon" src="../assets/lion.png" title="Lion" alt="Lion">
+                      <img class="avatar-modal-icon" src="../assets/cat.png" title="Cat" alt="Cat">
+                      <img class="avatar-modal-icon" src="../assets/fox.png" title="Fox" alt="Fox">
+                      <img class="avatar-modal-icon" src="../assets/mouse.png" title="Mouse" alt="Mouse">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- <button id="myBtn"><img src="icon.png" alt="User Icon"></button> -->
+              
+                     </div>
             <h1 class="profile-username" id="profile-username"><%= userData.name %></h1>
           </div>
           <div class="badges">
-            <div class="badge">
-              <img src="badge1.jpg" alt="Badge 1" />
-              <p class="badge-description">Badge 1 description</p>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Easy</p>
+              <p class="badge-description">Multiple Choice Quiz </p>
             </div>
-            <div class="badge">
-              <img src="badge2.jpg" alt="Badge 2" />
-              <p class="badge-description">Badge 2 description</p>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img active" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Novice</p>
+              <p class="badge-description">Multiple Choice Quiz </p>
             </div>
-            <div class="badge">
-              <img src="badge3.jpg" alt="Badge 3" />
-              <p class="badge-description">Badge 3 description</p>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Intermediate</p>
+              <p class="badge-description">Multiple Choice Quiz </p>
             </div>
-            <div class="badge">
-              <img src="badge4.jpg" alt="Badge 4" />
-              <p class="badge-description">Badge 4 description</p>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Advanced</p>
+              <p class="badge-description">Multiple Choice Quiz </p>
             </div>
-            <div class="badge">
-              <img src="badge5.jpg" alt="Badge 5" />
-              <p class="badge-description">Badge 5 description</p>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Genius</p>
+              <p class="badge-description">Multiple Choice Quiz </p>
             </div>
-            <div class="badge">
-              <img src="badge6.jpg" alt="Badge 6" />
-              <p class="badge-description">Badge 6 description</p>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Easy</p>
+              <p class="badge-description">Pop Quiz </p>
+            </div>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Novice</p>
+              <p class="badge-description">Pop Quiz </p>
+            </div>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Intermediate</p>
+              <p class="badge-description">Pop Quiz </p>
+            </div>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Advanced</p>
+              <p class="badge-description">Pop Quiz </p>
+            </div>
+            <div title="To unlock badge, get 10/10 score." class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Genius</p>
+              <p class="badge-description">Pop Quiz </p>
+            </div>
+            <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Easy</p>
+              <p class="badge-description">High Score Challenge </p>
+            </div>
+            <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Novice</p>
+              <p class="badge-description">High Score Challenge </p>
+            </div>
+            <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Intermediate</p>
+              <p class="badge-description">High Score Challenge </p>
+            </div>
+            <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Advanced</p>
+              <p class="badge-description">High Score Challenge </p>
+            </div>
+            <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+              <img class="badge-img" src="../assets/medal.png" alt="Badge 1" />
+              <p class="badge-description-2">Genius</p>
+              <p class="badge-description">High Score Challenge </p>
             </div>
             <!-- more badges can be added here -->
           </div>
