@@ -2329,6 +2329,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     overflow-y: auto;
     max-height: calc(100vh - 80px);
+    margin-top: calc(3vh + 60px);
     max-width: fit-content;
   }
 }

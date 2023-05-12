@@ -2615,7 +2615,7 @@ $color: $chalk-white;
     overflow-y: auto;
     // flex-basis: 66.66%;
     max-height:calc(100vh - 80px);
-    
+    margin-top: calc(3vh + 60px);
     max-width: fit-content;
   }
 }
