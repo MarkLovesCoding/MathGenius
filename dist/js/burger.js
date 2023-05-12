@@ -2,6 +2,7 @@ const hamburgerMenu = document.getElementById('burger');
 const burgerContainer = document.getElementById('burger-container');
 const expandedMenu = document.getElementById('expanded-menu');
 const burgerSpans = document.querySelectorAll('.burger span');
+const burger = document.getElementById('burger');
 function toggleMenu() {
   hamburgerMenu.classList.toggle('active');
   // burgerSpans.classList.toggle('active');
@@ -10,11 +11,6 @@ function toggleMenu() {
     span.classList.toggle('active');
   });
 }
-// if(!hamburgerMenu.classList.contains('active')){
-//   burgerContainer.addEventListener('click', toggleMenu);
-
-// }
-
 burgerContainer.addEventListener("click", e => {
   burger.classList.toggle("open"); // Toggle the "open" class on the burger element when the burgerContainer element is clicked
 });
