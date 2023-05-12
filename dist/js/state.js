@@ -42,6 +42,7 @@ export const state = {
   },
   user: {
     id: null,
-    profileImage: null
+    profileImage: null,
+    badges: []
   }
 };
