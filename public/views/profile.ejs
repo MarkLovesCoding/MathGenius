@@ -20,6 +20,8 @@
 
 
   <div class="user-data-holder" id="user-data-holder"><% if (userData) { %>
+    <span><%= userData.userId %></span>
+
     <span><%= userData.name %></span>
     <span><%= userData.session %></span>
     <span><%= userData.badges %></span><% 
@@ -65,7 +67,7 @@
          <div class="profile-section">
           <div class="profile-user-section">
             <div class="profile-img-container">
-            <img id="profile-user-avatar" class="profile-user-avatar" src="../assets/dog.png" alt="User Image" />
+            <img id="profile-user-avatar" class="profile-user-avatar" src="" alt="User Image" />
               <i aria-name="change-avatar" id="choose-avatar" class="change-avatar fas fa-pencil"></i> 
 
               <div id="avatar-modal" class="avatar-modal">
@@ -176,12 +178,12 @@
         
 
 
-
+<!-- 
         <div class="logout-container">
           <button title="logout-button" class="logout-btn" id="logout-btn">
             <div class="logout-text">Logout</div>
           </button>
-        </div>
+        </div> -->
 
 </div>
 

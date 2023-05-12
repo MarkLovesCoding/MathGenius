@@ -23,5 +23,10 @@ export const state = {
       mcqFailedAttempts:0,
       mcqNumCorrect:0,
       mcqNumQuestion:10
+    },
+
+    user:{
+      id:null,
+      profileImage:null
     }
 }

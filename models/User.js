@@ -91,6 +91,11 @@ const UserSchema = new mongoose.Schema({
     type: Array,
 
   },
+  imageSrc: {
+    type: String,
+    required: false,
+    default:'../assets/cat.png'
+  }
   // token:{
   //   type:String,
   //   unique:true
@@ -149,6 +154,29 @@ UserSchema.methods.comparePassword = function (password) {
 //   });
 // };
 
+
+
+
+
 const User = mongoose.model('User', UserSchema);
+
+
+
+
+UserSchema.statics.updateImageSrc = function (userId, newSrc) {
+  User.findByIdAndUpdate(userId, { imageSrc: newSrc }, (err, image) => {
+    if (err) {
+      console.error(`Error updating image source: ${err}`);
+    } else {
+      console.log(`Image source updated: ${image}`);
+    }
+  });
+};
+
+
+
+
+
+
 
 module.exports = User;

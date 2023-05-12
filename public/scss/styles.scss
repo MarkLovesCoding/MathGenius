@@ -2526,6 +2526,18 @@ $color: $chalk-white;
     border:2px solid $chalk-white;
     border-radius:10px;
   }
+  &::-webkit-scrollbar{
+    width:12px;
+
+  }
+  &::-webkit-scrollbar-track{
+    background-color:$chalkboard-green;
+    border-radius:25px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color:$chalk-white;
+    border-radius:25px;
+  }
 }
 .badge{
   display: flex;
@@ -2554,7 +2566,7 @@ $color: $chalk-white;
 
 @media screen and (min-width: 768px) {
   .profile-section {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
   }
   
@@ -2566,12 +2578,13 @@ $color: $chalk-white;
     margin-left: 40px;
     grid-template-columns: repeat(4, 1fr);
     max-width: none;
+
   }
 }
 
 @media screen and (min-width: 1024px) {
    .profile-section{
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
   }
   
@@ -2596,10 +2609,12 @@ $color: $chalk-white;
   }
   
   .badges {
-    margin-left: 20px;
+    margin: 20px;
     grid-template-columns: repeat(3, 1fr);
     overflow-y: auto;
-    flex-basis: 66.66%;
+    // flex-basis: 66.66%;
+    max-height:calc(100vh - 80px)
+    
   }
 }
 

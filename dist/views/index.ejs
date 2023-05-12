@@ -26,6 +26,9 @@
   <div class="user-data-holder" id="user-data-holder">
     <% if (userData) { %>
       <span>
+        <%= userData.userId %>
+      </span>
+      <span>
         <%= userData.name %>
       </span>
       <span>
@@ -112,7 +115,14 @@
 
                     <div class="welcome-message" id="welcome-message">
                       <% if (userData) { %>
+                        <% if (userData.imgSrc) { %>
+
+                          <div class="profile-img-main">
+                            <img src="<%= userData.imgSrc %>" alt="">
+                          </div>
+                          <%}%>
                         <% if (userData.name) { %>
+                    
                           <a class="profile-link-main" href="/profile">
                            Hi <%= userData.name %>!
                           </a>

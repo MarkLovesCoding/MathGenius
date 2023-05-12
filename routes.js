@@ -161,9 +161,12 @@ router.post('/login', (req, res, next) => {
       // req.session.sessionId = sessionId
 
       req.session.userData = {
+        userId:user._id.toString(),
+
         name: user.username,
         session:{},
         badges: user.badges,
+        imageSrc:user.imageSrc
       }
       req.flash('flashData', {
         welcomeMessage: 'Successful Login',
@@ -209,9 +212,12 @@ router.post('/signup', async function (req, res, next) {
       })
 
       req.session.userData = {
+        userId:user._id.toString(),
         name: user.username,
         session: {},
         badges: user.badges,
+        imageSrc:user.imageSrc
+
       }
       // req.session.sessionId = sessionId
       return res.redirect('/')
@@ -282,6 +288,7 @@ router.post('/guest', (req, res, next) => {
       // If not, create a new user and save it to the database
 
       user = new User({
+        
         username: username,
         email: guestEmail,
         authType: 'guest',
@@ -306,9 +313,13 @@ router.post('/guest', (req, res, next) => {
 
         // req.session.sessionId = sessionId
         req.session.userData = {
+        userId:user._id.toString(),
+
           name: user.username,
           session: {lastLogin:new Date()},
-          badges: []
+          badges: [],
+          imageSrc:"../assets/cat.png"
+
         }
 
         return res.redirect('/');
@@ -354,6 +365,7 @@ router.get(
     })
 
     req.session.userData = {
+      userId:loadUser._id.toString(),
       name: profileName,
       session: {},
       badges: loadUser.badges,
@@ -600,10 +612,58 @@ router.post('/reset-password/:token', async (req, res) => {
   }
 });
 
+// router.patch('/update-image', (req, res) => {
+//   const { imageSrc } = req.query;
+  
+//   // Update the req.session object here
+//   req.session.imageSrc = imageSrc;
+  
+//   // Update the database here
+//   db.updateImageSrc(imageSrc)
+//     .then(() => {
+//       res.sendStatus(200);
+//     })
+//     .catch(error => {
+//       console.error('There was a problem updating the database:', error);
+//       res.sendStatus(500);
+//     });
+// });
 
 
+router.patch('/update-image', requireAuth,async (req, res) => {
+  const {userId, newSrc } = req.body;
+  console.log('userId:', userId);
+  console.log('newSrc:', newSrc);
 
+  try {
+    await User.findByIdAndUpdate(userId, { imageSrc: newSrc });
 
+    res.send('Image source updated successfully!');
+  } catch (error) {
+    console.error(`Error updating image source: ${error}`);
+    res.status(500).send('Error updating image source!');
+  }
+});
+
+router.get('/user-id', requireAuth,async (req, res) => {
+
+  const userId = req.session.userData.userId;
+  console.log("Get user id:",userId)
+  res.json({ userId });
+});
+
+router.get('/get-avatar', requireAuth, async (req, res) => {
+  try {
+    const userId = req.session.userData.userId;
+    const user = await User.findById(userId);
+    const avatarSrc = user.imageSrc;
+    console.log("acrs:",avatarSrc)
+    res.json({ avatarSrc });
+  } catch (error) {
+    console.error(`Error fetching avatar: ${error}`);
+    res.status(500).send('Error fetching avatar');
+  }
+});
 
 
 module.exports = router;
