@@ -1,6 +1,6 @@
 
 import { state } from './state.js'
-
+import {loadSection} from './ulils.js'
 
 
 
@@ -13,7 +13,7 @@ linkToTests.addEventListener("click",function(){
     state.type = "real"
     window.location.href = "/tests";
     
-    utilMethods.loadSection('real-menu')
+//    loadSection('real-menu')
 })
 
 
@@ -23,6 +23,6 @@ linkToPractice.addEventListener("click",function(){
 
     state.type = "practice"
     window.location.href = "/practice";
-    utilMethods.loadSection('practice-menu')
+//    loadSection('practice-menu')
 
 })

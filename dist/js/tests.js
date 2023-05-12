@@ -754,24 +754,24 @@ window.onload = function () {
 
   // const activityMenuForward = document.getElementById("activity-menu-forward")
 
-  const realMenuForward = document.getElementById("real-menu-forward");
-  const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper");
-  const realMenuBackwardLower = document.getElementById("real-menu-backward-lower");
+  // const realMenuForward = document.getElementById("real-menu-forward")
+  // const realMenuBackwardUpper = document.getElementById("real-menu-backward-upper")
+  // const realMenuBackwardLower = document.getElementById("real-menu-backward-lower")
 
   // const practiceMenuForward = document.getElementById("practice-menu-forward")
   // const practiceMenuBackwardUpper = document.getElementById("practice-menu-backward-upper")
   // const practiceMenuBackwardLower = document.getElementById("practice-menu-backward-lower")
 
   const operatorMenuForward = document.getElementById("operator-menu-forward");
-  const operatorMenuBackwarUpper = document.getElementById("operator-menu-backward-upper");
-  const operatorMenuBackwardLower = document.getElementById("operator-menu-backward-lower");
+  const operatorTestMenuBackwarUpper = document.getElementById("operator-test-menu-backward-upper");
+  const operatorTestMenuBackwardLower = document.getElementById("operator-test-menu-backward-lower");
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward");
   const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper");
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower");
-  const operatorMenuBackwards = [operatorMenuBackwarUpper, operatorMenuBackwardLower];
+  const operatorTestMenuBackwards = [operatorTestMenuBackwarUpper, operatorTestMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower];
   // const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower]
-  const realMenuBackwards = [realMenuBackwardUpper, realMenuBackwardLower];
+
   const activitiesChoices = document.querySelectorAll(".activity-choice");
   const realChoices = document.querySelectorAll(".real-choice");
   // const practiceChoices = document.querySelectorAll(".practice-choice")
@@ -805,19 +805,20 @@ window.onload = function () {
   // })
 
   // Handle the click event on the realMenuForward button
-  realMenuForward.addEventListener("click", async e => {
-    // Check if the chosen activity has been updated successfully, and show an error message if not
-    if (updateActivity(realChoices, 3) == null || undefined) {
-      utilMethods.visibilityTimedToggle(true, activityAlert, 1000);
-      return;
-    }
+  // realMenuForward.addEventListener("click", async (e) => {
 
-    // Update the state with the chosen activity
-    state.activity = updateActivity(realChoices, 3);
+  //   // Check if the chosen activity has been updated successfully, and show an error message if not
+  //   if (updateActivity(realChoices, 3) == null || undefined) {
+  //     utilMethods.visibilityTimedToggle(true, activityAlert, 1000)
+  //     return;
+  //   }
 
-    // Load the operator-menu section
-    utilMethods.loadSection('operator-menu');
-  });
+  //   // Update the state with the chosen activity
+  //   state.activity = updateActivity(realChoices, 3)
+
+  //   // Load the operator-menu section
+  //   utilMethods.loadSection('operator-menu')
+  // })
 
   // Handle the click event on the practiceMenuForward button
   // practiceMenuForward.addEventListener("click", async (e) => {
@@ -849,6 +850,11 @@ window.onload = function () {
     // Load the difficulty-menu section
     utilMethods.loadSection("difficulty-menu");
   });
+  for (let el of operatorTestMenuBackwards) {
+    el.addEventListener("click", e => {
+      utilMethods.loadSection("real-menu");
+    });
+  }
 
   // Handle the click event on the difficultyMenuBackwards button
   for (let el of difficultyMenuBackwards) {
@@ -999,12 +1005,5 @@ window.onload = function () {
 
     // Update the level text with the name of the selected difficulty level
     levelText.textContent = state.difficultyLevels[selectedDifficulty].name;
-  });
-
-  // Add an event listener for when the logout button is clicked
-  const logoutBtn = document.getElementById('logout-btn');
-  logoutBtn.addEventListener('click', () => {
-    // Redirect to the logout page
-    window.location.href = '/logout';
   });
 }; //close window.onload function

@@ -2527,3 +2527,14 @@ body {
   text-decoration: none;
   font-size: 14px;
 }
+
+.profile-link-main {
+  color: #eae6df;
+  text-decoration: none;
+}
+.profile-link-main:visited {
+  color: #eae6df;
+}
+.profile-link-main:hover {
+  color: #eae6df;
+}

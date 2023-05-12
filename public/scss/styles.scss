@@ -2877,3 +2877,16 @@ background:rgba(255, 255, 255, 0);
   text-decoration: none;
   font-size: 14px;
 }
+
+// main
+.profile-link-main{
+  color:$chalk-white;
+  text-decoration: none;
+  &:visited{
+    color:$chalk-white
+
+  }
+  &:hover{
+    color:$chalk-white
+  }
+}

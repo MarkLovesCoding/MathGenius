@@ -113,8 +113,8 @@
                     <div class="welcome-message" id="welcome-message">
                       <% if (userData) { %>
                         <% if (userData.name) { %>
-                          <a href="/profile">
-                            <%= userData.name %>
+                          <a class="profile-link-main" href="/profile">
+                           Hi <%= userData.name %>!
                           </a>
                           <%} %>
                             <%}%>
@@ -135,7 +135,7 @@
 
 
                         </div>
-                        <p class="icon-text">Test Mode</p>
+                        <p class="icon-text">Tests</p>
                       </div>
 
 
@@ -147,7 +147,7 @@
                           <p></p>
                           <i class=" practice-icon icon fas fa-calculator fa-large"></i>
                         </div>
-                        <p class="icon-text">Practice Mode</p>
+                        <p class="icon-text">Practice</p>
                       </div>
 
 
@@ -155,12 +155,12 @@
                   </div>
                 </div>
 
-                <div class="nav-buttons">
+                <!-- <div class="nav-buttons">
                   <div class="nav-right"> <button title="nav-button-forward" class="nav-button"
                       id="activity-menu-forward">
 
                       <i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button></div>
-                </div>
+                </div> -->
                 <div class="logout-container">
                   <button title="logout-button" class="logout-btn" id="logout-btn">
                     <div class="logout-text">Logout</div>
@@ -173,7 +173,7 @@
             </div>
             <script type="module" src="/js/success.js"></script>
 
-            <script type="module" src="/js/index.js"></script>
+            <!-- <script type="module" src="/js/index.js"></script> -->
             <!-- <script type="module" src="/js/formInteraction.js"></script> -->
 
 
