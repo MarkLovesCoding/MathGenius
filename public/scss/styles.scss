@@ -2686,6 +2686,7 @@ $color: $chalk-white;
 // BURGER
 
 .burger-container {
+  cursor:pointer;
   width: 60px;
   height: 60px;
   display: flex; // make none after editing.
@@ -2696,13 +2697,22 @@ background:rgba(255, 255, 255, 0);
   transition: all 200ms ease;
   &:hover {
 // background:rgba(255, 255, 255, 0.25);
-    .burger:not(.open) span:nth-child(1) {
+    // .burger:not(.open) span:nth-child(1) {
+    //   transform: scaleX(0.8);
+    // }
+    // .burger:not(.open) span:nth-child(2) {
+    //   transform: scaleX(0.5);
+    // }
+    // .burger:not(.open) span:nth-child(3) {
+    //   transform: scaleX(0.8);
+    // }
+    .burger:not(.active) span:nth-child(1) {
       transform: scaleX(0.8);
     }
-    .burger:not(.open) span:nth-child(2) {
+    .burger:not(.active) span:nth-child(2) {
       transform: scaleX(0.5);
     }
-    .burger:not(.open) span:nth-child(3) {
+    .burger:not(.active) span:nth-child(3) {
       transform: scaleX(0.8);
     }
   }
@@ -2755,17 +2765,31 @@ background:rgba(255, 255, 255, 0);
   left: 0px;
 }
 
-.burger.open span:nth-child(1) {
+// .burger.open span:nth-child(1) {
+//   transform: rotate(90deg);
+//   top: 13px;
+// }
+// .burger.open span:nth-child(2) {
+//   transform: scale(0);
+//   transition-duration: 50ms;
+// }
+// .burger.open span:nth-child(3) {
+//   top: 13px;
+// }
+
+.burger.active span:nth-child(1) {
   transform: rotate(90deg);
   top: 13px;
 }
-.burger.open span:nth-child(2) {
+.burger.active span:nth-child(2) {
   transform: scale(0);
   transition-duration: 50ms;
 }
-.burger.open span:nth-child(3) {
+.burger.active span:nth-child(3) {
   top: 13px;
 }
+
+
 
 
 
@@ -2811,7 +2835,7 @@ background:rgba(255, 255, 255, 0);
 
 .expanded-menu {
   position: absolute;
-  display:flex;
+  display:none;
   top: calc(-3vh + 15px);
   right: calc(-3vw + 15px);
   width: 60px;
@@ -2831,6 +2855,7 @@ background:rgba(255, 255, 255, 0);
 
 
 .expanded-menu.active {
+  
   transition:all 0.5s ease;
   width: 300px;
   height: 600px;

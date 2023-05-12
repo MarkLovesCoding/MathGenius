@@ -1,26 +1,58 @@
-const hamburgerMenu = document.getElementById('burger');
+
 const burgerContainer = document.getElementById('burger-container');
 const expandedMenu = document.getElementById('expanded-menu');
 const burgerSpans = document.querySelectorAll('.burger span');
 const burger = document.getElementById('burger');
 
 function toggleMenu() {
-  hamburgerMenu.classList.toggle('active');
-  // burgerSpans.classList.toggle('active');
+  burger.classList.toggle('active');
   expandedMenu.classList.toggle('active');
-
   burgerSpans.forEach(span => {
     span.classList.toggle('active');
   });
 }
 
-
-burgerContainer.addEventListener("click", (e) => {
-  burger.classList.toggle("open"); // Toggle the "open" class on the burger element when the burgerContainer element is clicked
+document.addEventListener('click', function(e) {
+  if (!burgerContainer.contains(e.target) && !expandedMenu.contains(e.target)) {
+    burger.classList.remove('active');
+    expandedMenu.classList.remove('active');
+    burgerSpans.forEach(span => {
+      span.classList.remove('active');
+    });
+  }
 });
 
-hamburgerMenu.addEventListener('click', toggleMenu);
-expandedMenu.addEventListener('click', toggleMenu);
+burgerContainer.addEventListener('click', toggleMenu);
+
+// Stop the propagation of the click event on the burger and its child elements
+burger.addEventListener('click', function(e) {
+  e.stopPropagation();
+  toggleMenu();
+});
+
+burgerSpans.forEach(span => {
+  span.addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggleMenu();
+  });
+});
+
+document.querySelectorAll('#expanded-menu li a, #close-menu').forEach(el => {
+  el.addEventListener('click', toggleMenu);
+});
+
+
+
+
+
+
+
+
+
+// Internal navigation from burger menu
+
+
+
 
 
 

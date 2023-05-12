@@ -2386,6 +2386,7 @@ body {
 }
 
 .burger-container {
+  cursor: pointer;
   width: 60px;
   height: 60px;
   display: flex;
@@ -2395,13 +2396,13 @@ body {
   right: 5vw;
   transition: all 200ms ease;
 }
-.burger-container:hover .burger:not(.open) span:nth-child(1) {
+.burger-container:hover .burger:not(.active) span:nth-child(1) {
   transform: scaleX(0.8);
 }
-.burger-container:hover .burger:not(.open) span:nth-child(2) {
+.burger-container:hover .burger:not(.active) span:nth-child(2) {
   transform: scaleX(0.5);
 }
-.burger-container:hover .burger:not(.open) span:nth-child(3) {
+.burger-container:hover .burger:not(.active) span:nth-child(3) {
   transform: scaleX(0.8);
 }
 
@@ -2454,23 +2455,23 @@ body {
   left: 0px;
 }
 
-.burger.open span:nth-child(1) {
+.burger.active span:nth-child(1) {
   transform: rotate(90deg);
   top: 13px;
 }
 
-.burger.open span:nth-child(2) {
+.burger.active span:nth-child(2) {
   transform: scale(0);
   transition-duration: 50ms;
 }
 
-.burger.open span:nth-child(3) {
+.burger.active span:nth-child(3) {
   top: 13px;
 }
 
 .expanded-menu {
   position: absolute;
-  display: flex;
+  display: none;
   top: calc(-3vh + 15px);
   right: calc(-3vw + 15px);
   width: 60px;

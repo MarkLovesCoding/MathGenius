@@ -9,7 +9,6 @@
 //save to profile. create profile.
 
 import * as utilMethods from './ulils.js';
-import { burger, burgerContainer, mainContainer, subjects, diffButtons } from './domElements.js'
 import { flashAnswer, flashCard, flashNumOne, flashNumTwo, flashOpOne, newFlash, flashContainer } from './domElements.js';
 import { mcNumOne, mcNumTwo, mcOpOne, mcOptions, newMC } from './domElements.js';
 import { mcQuizNumOne, mcQuizNumTwo, mcQuizOpOne, mcQuizOptions, newMCQuiz } from './domElements.js';
