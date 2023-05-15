@@ -21,7 +21,7 @@ linkToFlash.addEventListener("click",function(){
 const linkToMC = document.getElementById('new-mc')
 linkToMC.addEventListener("click",function(){
 
-    state.activity = "mc"
+    state.activity = "multiple-choice"
 
     // window.location.href = "/practice";
     // utilMethods.loadSection('practice-menu')

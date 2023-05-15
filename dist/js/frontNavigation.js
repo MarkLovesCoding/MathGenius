@@ -16,3 +16,5 @@ linkToPractice.addEventListener("click", function () {
   window.location.href = "/practice";
   //    loadSection('practice-menu')
 });
+
+const userProfile = document.getAnimations;

@@ -26,3 +26,7 @@ linkToPractice.addEventListener("click",function(){
 //    loadSection('practice-menu')
 
 })
+
+
+
+const userProfile = document.getAnimations

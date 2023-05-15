@@ -2409,6 +2409,7 @@ body {
   top: 5vh;
   right: 5vw;
   transition: all 200ms ease;
+  z-index: 200;
 }
 .burger-container:hover .burger:not(.active) span:nth-child(1) {
   transform: scaleX(0.8);

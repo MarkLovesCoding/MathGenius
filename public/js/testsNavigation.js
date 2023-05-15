@@ -32,7 +32,7 @@ linkToQuiz.addEventListener("click",function(){
 const linkToMCQuiz = document.getElementById('new-mc-quiz')
 linkToMCQuiz.addEventListener("click",function(){
 
-    state.activity = "mc-quiz"
+    state.activity = "multiple-choice-quiz"
 
     // window.location.href = "/practice";
 
