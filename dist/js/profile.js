@@ -1,11 +1,9 @@
-// // Saving state
-
 import { state } from './state.js';
 const modal = document.getElementById("avatar-modal");
 const btn = document.getElementById("choose-avatar");
 const profile = document.getElementById("profile-user-avatar");
 const span = document.getElementById("avatar-modal-close");
-const userIcons = document.querySelectorAll(".avatar-user-icons img");
+const userIconsContainer = document.getElementById("avatar-user-icons");
 btn.onclick = function () {
   modal.style.display = "block";
 };
@@ -18,16 +16,18 @@ window.onclick = function (event) {
   }
 };
 
-// add click event listener to user icon options
-userIcons.forEach(function (icon) {
-  icon.addEventListener("click", async function () {
-    // set selected icon as background image for button
-    profile.setAttribute("src", this.src);
-    state.user.profileImage = this.src;
-    updateSessionAndDB(this.src);
+// Handle user icon selection
+userIconsContainer.addEventListener("click", async function (event) {
+  const selectedIcon = event.target.closest("img");
+  if (selectedIcon) {
+    profile.setAttribute("src", selectedIcon.src);
+    state.user.profileImage = selectedIcon.src;
+    await updateSessionAndDB(selectedIcon.src);
     modal.style.display = "none";
-  });
+  }
 });
+
+// Retrieves the user ID
 async function getUserId() {
   try {
     const response = await fetch('/user-id');
@@ -41,20 +41,7 @@ async function getUserId() {
   }
 }
 
-// function getUserId(){
-//   return fetch('/user-id')
-//     .then(response => response.json())
-//     .then(data => {
-//       const userId = data.userId;
-//       // do something with the user ID
-//       return userId;
-//     })
-//     .catch(error => {
-//       console.error(error);
-//       throw error;
-//     });
-// }
-
+// Updates session and database with the new image source
 async function updateSessionAndDB(newSrc) {
   console.log("newsrc:", newSrc);
   try {
@@ -82,19 +69,19 @@ async function updateSessionAndDB(newSrc) {
     console.error('There was a problem with the fetch operation:', error);
   }
 }
+
+// Retrieves the user's avatar
 async function retrieveAvatar() {
   try {
     const response = await fetch('/get-avatar');
     const data = await response.json();
     const avatarSrc = data.avatarSrc;
-    console.log(data);
-    console.log("AVSRC:", avatarSrc);
     const trimmedSrc = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
-    console.log("AVSRC-trim:", trimmedSrc);
     profile.src = trimmedSrc;
-    // return avatarSrc;
   } catch (error) {
     console.error(error);
   }
 }
+
+// Initialize the avatar retrieval
 retrieveAvatar();

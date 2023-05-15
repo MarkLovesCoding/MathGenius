@@ -1,7 +1,7 @@
-    console.log("success")
+
     
     var success = document.getElementById('success')
-    console.log("successsss")
+
     // Fade out the overlay after 1 second
     setTimeout(function() {
         success.style.opacity = "0";

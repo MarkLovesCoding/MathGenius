@@ -217,7 +217,7 @@ router.post('/signup', async function (req, res, next) {
         session: {},
         badges: {
           "game":{
-            1:true,
+            1:false,
             2:false,
             3:false,
             4:false,
@@ -227,7 +227,7 @@ router.post('/signup', async function (req, res, next) {
             1:false,
             2:false,
             3:false,
-            4:true,
+            4:false,
             5:false,
           },
           "mcquiz":{
@@ -314,6 +314,29 @@ router.post('/guest', (req, res, next) => {
         username: username,
         email: guestEmail,
         authType: 'guest',
+        badges: {
+          "game":{
+            1:false,
+            2:false,
+            3:false,
+            4:false,
+            5:false,
+          },
+          "quiz":{
+            1:false,
+            2:false,
+            3:false,
+            4:false,
+            5:false,
+          },
+          "mcquiz":{
+            1:false,
+            2:false,
+            3:false,
+            4:false,
+            5:false,
+          }
+        },
         guest: true
       });
 
@@ -330,7 +353,7 @@ router.post('/guest', (req, res, next) => {
 
         req.flash("flashData", {
           welcomeMessage: `Successful Login`,
-          flashMessage: "guest"
+          flashMessage: "success"
         });
 
         // req.session.sessionId = sessionId
@@ -339,29 +362,7 @@ router.post('/guest', (req, res, next) => {
 
           name: user.username,
           session: {lastLogin:new Date()},
-          badges: {
-            "game":{
-              1:true,
-              2:false,
-              3:false,
-              4:false,
-              5:false,
-            },
-            "quiz":{
-              1:false,
-              2:false,
-              3:false,
-              4:true,
-              5:false,
-            },
-            "mcquiz":{
-              1:false,
-              2:false,
-              3:false,
-              4:false,
-              5:false,
-            }
-          },
+          
           imageSrc:"../assets/cat.png"
 
         }
@@ -377,6 +378,8 @@ router.post('/guest', (req, res, next) => {
 
 
 });
+
+
 
 
 
@@ -709,5 +712,33 @@ router.get('/get-avatar', requireAuth, async (req, res) => {
   }
 });
 
+router.get('/get-badges', requireAuth, async (req, res) => {
+  try {
+    const userId = req.session.userData.userId;
+    console.log(userId);
+    const user = await User.findById(userId);
+    console.log("user",user)
 
+    const badges = user.badges;
+    console.log("userbadgess:",badges)
+    res.json({ badges });
+  } catch (error) {
+    console.error(`Error fetching badges: ${error}`);
+    res.status(500).send('Error fetching badges');
+  }
+});
+router.patch('/update-badges', requireAuth,async (req, res) => {
+  const {userId, updatedBadges } = req.body;
+  console.log('userId:', userId);
+  console.log('newbadges:', updatedBadges);
+
+  try {
+    await User.findByIdAndUpdate(userId, { badges: updatedBadges });
+
+    res.send('Badges updated successfully!');
+  } catch (error) {
+    console.error(`Error updating badges: ${error}`);
+    res.status(500).send('Error updating badges!');
+  }
+});
 module.exports = router;

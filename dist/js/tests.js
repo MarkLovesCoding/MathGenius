@@ -17,7 +17,7 @@ import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAns
 import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
 import { state } from './state.js';
 // import { flashHandler } from './flash.js';
-
+import { updateBadgeStatus } from './badges.js';
 window.onload = function () {
   //Ensure DOM is loaded before functions
 
@@ -484,9 +484,12 @@ window.onload = function () {
     mcQuestionNumber.textContent = numAnswered;
     mcQuestionsCorrect.textContent = numCorrect;
   }
-  function checkMCQAnswered() {
+  async function checkMCQAnswered() {
     // If all questions have been answered, show score and finish quiz
     if (state.mcQuizActive.mcqNumAnswered == state.mcQuizActive.mcqNumQuestion) {
+      if (state.mcQuizActive.mcqNumCorrect == 10) {
+        await updateBadgeStatus("mcquiz", state.activeDifficulty, true);
+      }
       mcQuizShowScore();
       finishMCQuiz();
     }
