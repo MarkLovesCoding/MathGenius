@@ -88,7 +88,7 @@ const UserSchema = new mongoose.Schema({
     type: Object,
   },
   badges: {
-    type: Array,
+    type: Object,
 
   },
   imageSrc: {
