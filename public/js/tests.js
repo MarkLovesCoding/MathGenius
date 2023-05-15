@@ -18,6 +18,7 @@ import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, newGame, gameActual
 import { state } from './state.js'
 // import { flashHandler } from './flash.js';
 import { updateBadgeStatus } from './badges.js';
+import { animateBadge } from './badgeEarned.js';
 window.onload = function () {  //Ensure DOM is loaded before functions
 
 
@@ -355,7 +356,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   
     // Checks if the user has reached the next level and adds a new level to the game tracker
     if (parseInt(gameCurrScore.textContent) % 10 == 0) {
-  
+
+        await updateBadgeStatus("game",state.activeDifficulty, true)
+      await animateBadge()
       // Disables the user input and resets the width of the game tracker
       utilMethods.disableInput(gameAnswerInput);
       utilMethods.resetWidth([gameTracker]);
@@ -596,10 +599,15 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   async function checkMCQAnswered() {
     // If all questions have been answered, show score and finish quiz
     if (state.mcQuizActive.mcqNumAnswered == state.mcQuizActive.mcqNumQuestion) {
+    
       if(state.mcQuizActive.mcqNumCorrect == 10){
         await updateBadgeStatus("mcquiz",state.activeDifficulty, true)
+        await animateBadge()
       }
+      else{
       mcQuizShowScore()
+
+      }
       finishMCQuiz()
     }
   }
@@ -816,7 +824,14 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     }
     if (quizStats.numAnswered >= quizStats.numQuestions) {
       // If this is the last question, show the quiz score modal and update the last score container element
+     if(quizStats.numCorrect == 10){
+     
+      await updateBadgeStatus("quiz",state.activeDifficulty, true)
+      await animateBadge()
+     }
+     else{
       quizShowScore();
+     }
       await utilMethods.delay(1200);
       utilMethods.visibilityToggle(false, currScoreContainerEl);
       utilMethods.visibilityToggle(true, lastScoreContainerEl);
@@ -825,7 +840,8 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
 
 
-  function finishQuiz(lastScoreEl, quizStats) {
+  async function finishQuiz(lastScoreEl, quizStats) {
+
     // Update the last score element and reset the quiz statistics object
     lastScoreEl.innerHTML = quizStats.numCorrect;
     resetQuizProperty(quizStats);

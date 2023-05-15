@@ -2967,3 +2967,50 @@ background:rgba(255, 255, 255, 0);
 }
 
 
+.badge-modal-container{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+
+}
+
+
+.badge-modal-image {
+  width: 80px;
+  height: 80px;
+  opacity: 1;
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
+}
+
+.badge-modal-image.pulse {
+  animation: badgePulseAnimation 2s infinite, badgeFadeOutAnimation 0.3s 1.7s forwards;
+}
+
+@keyframes badgePulseAnimation {
+  0% {
+    width: 80px;
+    height: 80px;
+  }
+  50% {
+    width: 160px;
+    height: 160px;
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@keyframes badgeFadeOutAnimation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
