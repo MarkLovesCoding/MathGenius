@@ -72,6 +72,20 @@ router.get('/practice', requireAuth, (req, res) => {
 });
 
 
+router.get('/landing', (req, res) => {
+
+  const flashMessage = req.flash('flashAlert')[0]
+  var loginMessage = ''
+  var messageType = ''
+  if (flashMessage) {
+    messageType = flashMessage.type;
+    loginMessage = flashMessage.message;
+  }
+  res.render('landing', {
+    messageType: messageType,
+    loginMessage: loginMessage
+  });
+});
 
 router.get('/login', (req, res) => {
 
@@ -87,6 +101,7 @@ router.get('/login', (req, res) => {
     loginMessage: loginMessage
   });
 });
+
 function requireLogin(req, res, next) {
   if (!req.session.userData) {
     res.redirect('/login');
@@ -94,6 +109,7 @@ function requireLogin(req, res, next) {
     next();
   }
 }
+
 router.get('/profile',requireLogin, (req, res) => {
 
   // const userData = req.session.userData || {};

@@ -1612,14 +1612,20 @@ font-family:'Pangolin', cursive;
 }
 .login-create-account-text,.signup-login-link-text, .forgot-password-to-login-text,.forgot-username-to-login-text,.forgot-password-username-text{
   color:$chalk-white;
+  color:#dbd9d6;
   font-family:'roboto';
-  font-size:12px;
+  font-size:11px;
   text-align:center;
+text-decoration: auto;
 }
 .forgot-text-link,.login-create-account-link,.signup-login-link,.forgot-password-to-login-link,.forgot-username-to-login-link,.forgot-password-username-link{
   color:$chalk-white;
+  color:#dbd9d6;
+
+text-decoration: auto;
+
   font-family:'roboto';
-  font-size:12px;
+  font-size:11px;
   text-align:center;
   &:visited{
     color:$chalk-white;
@@ -1634,6 +1640,11 @@ font-family:'Pangolin', cursive;
   &:active,:focus{
     color:rgb(165, 193, 221);
   }
+}
+.login-create-account-text,.login-create-account-link,.signup-login-link-text,.signup-login-link{
+
+  font-size:12px;
+
 }
 
 .welcome-top{

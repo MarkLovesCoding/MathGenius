@@ -1464,15 +1464,19 @@ body {
 
 .login-create-account-text, .signup-login-link-text, .forgot-password-to-login-text, .forgot-username-to-login-text, .forgot-password-username-text {
   color: #eae6df;
+  color: #dbd9d6;
   font-family: "roboto";
-  font-size: 12px;
+  font-size: 11px;
   text-align: center;
+  text-decoration: auto;
 }
 
 .forgot-text-link, .login-create-account-link, .signup-login-link, .forgot-password-to-login-link, .forgot-username-to-login-link, .forgot-password-username-link {
   color: #eae6df;
+  color: #dbd9d6;
+  text-decoration: auto;
   font-family: "roboto";
-  font-size: 12px;
+  font-size: 11px;
   text-align: center;
 }
 .forgot-text-link:visited, .login-create-account-link:visited, .signup-login-link:visited, .forgot-password-to-login-link:visited, .forgot-username-to-login-link:visited, .forgot-password-username-link:visited {
@@ -1486,6 +1490,10 @@ body {
 }
 .forgot-text-link:active, .forgot-text-link :focus, .login-create-account-link:active, .login-create-account-link :focus, .signup-login-link:active, .signup-login-link :focus, .forgot-password-to-login-link:active, .forgot-password-to-login-link :focus, .forgot-username-to-login-link:active, .forgot-username-to-login-link :focus, .forgot-password-username-link:active, .forgot-password-username-link :focus {
   color: #a5c1dd;
+}
+
+.login-create-account-text, .login-create-account-link, .signup-login-link-text, .signup-login-link {
+  font-size: 12px;
 }
 
 .welcome-top {
