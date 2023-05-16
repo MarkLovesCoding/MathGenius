@@ -337,7 +337,8 @@ router.post('/guest', (req, res, next) => {
             5:false,
           }
         },
-        guest: true
+        guest: true,
+        // imgSrc:"http://localhost:4000/assets/mouse.png"
       });
 
       // const sessionId = uuid.v4();
@@ -684,7 +685,7 @@ router.patch('/update-image', requireAuth,async (req, res) => {
 
   try {
     await User.findByIdAndUpdate(userId, { imageSrc: newSrc });
-
+    req.session.userData.imageSrc = newSrc;
     res.send('Image source updated successfully!');
   } catch (error) {
     console.error(`Error updating image source: ${error}`);

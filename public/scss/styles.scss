@@ -1789,7 +1789,12 @@ text-align:center;
 
 
 
-
+.activity-group{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
@@ -2509,6 +2514,7 @@ $color: $chalk-white;
 .profile-username {
   margin-top: 10px;
   font-size: 24px;
+  color:$chalk-white;
 }
 
 /* badges section */
@@ -2516,7 +2522,7 @@ $color: $chalk-white;
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 15px;
+  grid-gap: 10px;
   overflow-y: auto;
   overflow-x:hidden;
   width: 100%;
@@ -2556,8 +2562,12 @@ $color: $chalk-white;
 .badge-description-level, .badge-description{
   font-size:12px;
   text-align:center;
+  color:$chalk-white;
 }
 .badge-description-level{
+  font-size:16px;
+  color:$chalk-white;
+
   margin-top:5px;
   height:20px;
   // align-items: end;

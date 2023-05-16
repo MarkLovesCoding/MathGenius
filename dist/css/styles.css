@@ -1607,6 +1607,13 @@ body {
   min-height: 125px;
 }
 
+.activity-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (orientation: landscape) and (min-aspect-ratio: 1.75) {
   .header {
     width: 200px;
@@ -2223,6 +2230,7 @@ body {
 .profile-username {
   margin-top: 10px;
   font-size: 24px;
+  color: #eae6df;
 }
 
 /* badges section */
@@ -2230,7 +2238,7 @@ body {
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 15px;
+  grid-gap: 10px;
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
@@ -2274,9 +2282,12 @@ body {
 .badge-description-level, .badge-description {
   font-size: 12px;
   text-align: center;
+  color: #eae6df;
 }
 
 .badge-description-level {
+  font-size: 16px;
+  color: #eae6df;
   margin-top: 5px;
   height: 20px;
   display: flex;

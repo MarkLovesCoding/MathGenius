@@ -32,11 +32,11 @@
         <%= userData.name %>
       </span>
       <span>
-        <%= userData.session %>
+        <%= userData.imageSrc %>
       </span>
-      <span>
+      <!-- <span>
         <%= userData.badges %>
-      </span>
+      </span> -->
       <% } %>
   </div>
   <% if (flashData) { %>
@@ -112,19 +112,25 @@
               <div class="activity-menu-container display-container" id="activity-menu-container">
                 <div class="activity-group">
                   <div class="top welcome-top">
-
+           
                     <div class="welcome-message" id="welcome-message">
+                
                       <% if (userData) { %>
-                        <% if (userData.imgSrc) { %>
 
-                          <div class="profile-img-main">
-                            <img src="<%= userData.imgSrc %>" alt="">
-                          </div>
-                          <%}%>
                         <% if (userData.name) { %>
                     
                           <a class="profile-link-main" href="/profile">
+
+                            <% if (userData.imageSrc) { %>
+                              <div class="profile-img-container">
+                                <img id="profile-user-avatar" class="profile-user-avatar" src="" alt="User Image" />
+                              <!-- <div class="profile-img-main">
+                                <img src="" alt=""> -->
+                              </div>
+                              <%}%>
                            Hi <%= userData.name %>!
+
+
                           </a>
                           <%} %>
                             <%}%>
@@ -189,6 +195,7 @@
 
             <script type="module" src="/js/burger.js"></script>
             <script type="module" src="/js/frontNavigation.js"></script>
+            <script type="module" src="/js/landing-profile-load.js"></script>
 
 
 
