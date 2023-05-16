@@ -1,0 +1,679 @@
+
+
+  
+@media screen and  (max-height: 650px) {
+    .expanded-menu.active {
+    
+      transition:all 0.5s ease;
+      width: calc(100vw - 30px - 4vw);
+      height: calc(100vh - 30px + -5vh);
+      border-radius: 10px;
+      background-color:$chalk-white;
+      display:flex;
+      position: absolute;
+        top: calc(-3vh + 15px);
+        right: calc(-3vw + 15px);
+        // border-top-right-radius: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    
+    .expanded-menu li {
+      margin: 5px 0;
+      text-align: center;
+      padding: 10px;
+  
+    }
+  
+    
+  }
+
+  
+@media screen and (min-width: 1024px) {
+    .profile-section{
+     flex-direction: column;
+     align-items: center;
+   }
+   
+   .user {
+     flex-basis: 20%;
+   }
+   
+   .badges {
+     margin-left: 40px;
+     grid-template-columns: repeat(5, 1fr);
+     max-width: none;
+   }
+ }
+ 
+ @media screen and (orientation: landscape) and (max-width: 767px) {
+    .profile-section{
+     flex-direction: row;
+   }
+   
+   .profile-user-section {
+     flex-basis: 33.33%;
+   }
+   
+   .badges {
+     margin: 20px;
+     grid-template-columns: repeat(3, 1fr);
+     overflow-y: auto;
+     // flex-basis: 66.66%;
+     max-height:calc(100vh - 130px);
+     margin-top: calc(3vh + 60px);
+     max-width: fit-content;
+   }
+ }
+ 
+ 
+ @media screen and (min-width: 768px) {
+    .profile-section {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .profile-user-section {
+      flex-basis: 20%;
+    }
+    
+    .badges {
+      margin-left: 40px;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: none;
+  
+    }
+  }
+  
+
+
+  @media only screen  and (max-width:580px) and (orientation:landscape)  {
+    .login-top,.signup-header{
+      height:3ch;
+    }
+    .signup-header{
+      margin-bottom:0;
+    }
+      .google-login-group{
+        margin-bottom:10px;
+      }
+      .login-bottom,.signup-landscape-bottom {
+        display: flex;
+        flex-direction: row;
+        width: 540px;
+        justify-content: space-around;
+        align-items: center;
+    
+    }
+    .google-button,.input-shell{
+      width:240px;
+    }
+    .form-input[type=text], .form-input[type=password], .form-input[type=email]{
+      font-size:12px;
+    }
+    .signup-top-left,.signup-bottom-right{
+      max-width:240px;
+    }
+    .create-account-form-button{
+      margin-top:0;
+    }
+    }
+    
+    
+    
+
+@media only screen  and (max-width:900px) and (orientation:landscape)  {
+
+
+    .divider{
+      display:none;
+    }
+    .login-bottom{
+      display: flex;
+      flex-direction: row;
+      width:600px;
+      justify-content: space-around;
+      align-items: center;
+    }
+  .login-bottom-two{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 225px;
+  }
+  .login-left-upper{
+    min-height: 225px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+  }
+  .google-login-group{
+    margin-bottom:0;
+  }
+  .play-as-guest{
+    margin-bottom:0;
+  }
+  
+  .create-account-form-group{
+    margin-bottom:0;
+  }
+  .signup-landscape-bottom{
+    display: flex;
+    width: 600px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .login-form, .signup-form, .forgot-password-form{
+  
+    justify-content: flex-end;
+  
+  }
+  .login-blocks, .google-block{
+    min-height:140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  }
+  
+  @media only screen  and (max-width:330px)  {
+
+    .google-block{
+      min-height:60px;
+    }
+    
+  
+    .google-login-group{
+      margin-bottom:10px;
+    }
+  //   .login-bottom {
+  //     display: flex;
+  //     flex-direction: row;
+  //     width: 540px;
+  //     justify-content: space-around;
+  //     align-items: center;
+  
+  // }
+  }
+
+
+
+
+
+// Mobile Landscape (max-width:1000px)
+@media only screen and  (orientation:landscape) and (min-aspect-ratio:1.75) {
+    //   .divider{
+    //     display:none;
+    //   }
+    //   .login-bottom{
+    //     display: flex;
+    //     flex-direction: row;
+    //     width:600px;
+    //     justify-content: space-around;
+    //     align-items: center;
+    //   }
+    // .login-bottom-two{
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: flex-end;
+    //   align-items: center;
+    //   min-height: 225px;
+    // }
+    // .login-left-upper{
+    //   min-height: 225px;
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: flex-end;
+    // }
+    // .google-login-group{
+    //   margin-bottom:0;
+    // }
+    // .play-as-guest{
+    //   margin-bottom:0;
+    // }
+    
+    // .create-account-form-group{
+    //   margin-bottom:0;
+    // }
+    // .signup-landscape-bottom{
+    //   display: flex;
+    //   width: 600px;
+    //   flex-direction: row;
+    //   justify-content: space-around;
+    //   align-items: flex-end;
+    // }
+    // .login-form, .signup-form, .forgot-password-form{
+    
+    //   justify-content: flex-end;
+    
+    // }
+    
+    // .login-blocks, .google-block{
+    //   min-height:140px;
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    // }
+    
+    
+      .header{
+        width:200px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding-right:25px;
+      }
+    .activity-menu-container, .operator-menu-container, .difficulty-menu-container, .real-menu-container, .practice-menu-container{
+      flex-direction: row;
+    }
+    .bottom{
+      position: absolute;
+      width:94vw;
+      justify-content: space-between;
+      top: 58vh;
+    }
+    .nav-button{
+      width:75px;
+    }
+    .middle{
+      justify-content: flex-start;
+      flex-basis:200px;
+      z-index:2;
+    }
+    .middle-inner{
+      justify-content: center;
+      width:260px;
+    }
+    // .top{
+    //   justify-content: flex-end;
+    //   padding-left:20px;
+    //   flex-basis:200px;
+    // }
+    
+    .mc-middle-lower{
+      display:flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      & >*{
+        padding: 0 10px;
+      }
+    }
+    .options{
+      margin-top:0px;
+      margin-left:25px;
+    }
+    .activity-title,.activity-type{
+      text-align: center;
+      max-width: 175px;
+    }
+    
+    .activity-title.mc{
+      max-width:200px;
+    }
+    .titles-group{
+      width:auto;
+      margin-right:5vw;
+    }
+    .flash-container{
+      
+    padding-top:50px;
+    
+    }
+    .quiz-container{
+      padding-top:5%;
+    }
+    .titles-group{
+      margin-bottom:5vh;
+    }
+    .quiz-container:has(.display-container){
+      flex-direction:column;
+      padding-top:0%;
+      justify-content: center;
+    }
+    .quiz-middle-lower{
+      display: flex;
+      flex-direction: row;
+    }
+    .game-container{
+      flex-direction:column;
+    }
+    .game-middle-inner{
+      display:flex;
+      flex-direction: row;
+    }
+    .game-middle-lower{
+      display:flex;
+      flex-direction: row-row;
+    }
+    .game-lower{
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .game-container{
+      justify-content: center;
+      padding-top:0;
+    }
+    .game-top{
+      flex-basis:inherit;
+      justify-content: center;
+      margin-top:20px;
+    }
+    .activity-title,.activity-type{
+      height:30px;
+    }
+    .actual-container{
+      margin-left:10px;
+      margin-top:8px;
+    }
+    .actual-text{
+     
+      width:max-content;
+    }
+    .nav-left-lower{
+      display:none;
+    }
+    .nav-left-upper{
+      display:inherit;
+    }
+    .operator-group, .activity-group{
+      display:flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .game-container{
+      // display: flex;
+      flex-direction: column;
+    }
+    .game-middle-lower{
+      flex-direction: row;
+      display: flex;
+    }
+    .nav-buttons{
+      margin-top:0;
+    }
+    .icon-container{
+      width:60px;
+      height:60px;
+    }
+    
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+  @media only screen  and (max-aspect-ratio:1.75) and (orientation:portrait) {
+    /* CSS code for tablet devices */
+  
+    .header{
+      font-size:30px;;
+      margin-bottom:50px;
+      padding-left:40px;
+      padding-right:25px;
+    }
+    .icon-container{
+      width:105px;
+      height:105px;
+      margin:10px;
+    }
+    .icon-text, .operator-text{
+      font-size:24px;
+    }
+    .bottom{
+      justify-content: space-between;
+      width:90vw;
+    }
+    .nav-button{
+      font-size:2.75em;
+      width:100px;
+      height:75px;
+      
+    }
+    .icon{
+      font-size:2.75em;
+    }
+    .game-top,.flash-upper{
+      margin-bottom:5vh;
+    }
+    .flash-text{
+      font-size:2.75rem;
+    }
+    .flash-answer-box,.flash-question-box{
+      max-width:300px;
+      max-height:250px;
+      font-size:1.4em;
+    }
+    .question{
+      min-width:250px;
+      height: 120px;
+    font-size:1.8em;
+    }
+    .mc-top{
+      padding-bottom:25px;
+    }
+    .mc-question{
+      font-size:2.8em;
+    }
+    .option{
+      max-width:130px;
+      height:95px;
+    font-size:1.8em;
+  
+    }
+  .flash-middle{
+    margin:0 100px;
+  }
+  .quiz-correctness-scores{
+    margin:  20px 0;
+    >*{
+      font-size:1.6em;
+    }
+  }
+  .quiz-question{
+    height:150px;
+    padding:2em;
+  
+  }
+  .titles-group{
+    margin-bottom:inherit;
+  }
+  .progress-container{
+    width:100%;
+    margin:0;
+  }
+  .nav-buttons{
+    margin-top:25px;
+  }
+  .test-header{
+    margin-top:50px;
+    margin-bottom:0px;
+  }
+  }
+
+  @media only screen and  (orientation:landscape) and (max-height:650px) and (min-aspect-ratio:1.75) {
+    .inner{
+      margin:0 10px;
+    }
+    .header{
+      font-size:24px;
+    }
+    // .login-container,.signup-container{
+    //   transform:scale(0.9);
+    // }
+  }
+  
+  
+
+  //  (min-width:720px)
+@media only screen  and (orientation:landscape)and (min-width:600px) and (max-aspect-ratio:1.75)   {
+    // .display-container{
+    // flex-direction: row;
+  
+  // Mobile Landscape (max-width:1000px)
+  
+    // }
+    .activity-menu-container, .operator-menu-container, .difficulty-menu-container, .game-middle-lower, .real-menu-container, .practice-menu-container{
+      // display: flex;
+      flex-direction: row;
+    }
+    .game-container{
+      flex-direction: column;
+    }
+  .header{
+    font-size:32px;
+  }
+  .icon-container{
+    width:95px;
+      height:95px;
+    margin:10px;
+  }
+  .icon-text, .operator-text{
+    font-size:24px;
+  
+  }
+  .bottom{
+    position: absolute;
+    justify-content: space-between;
+    width:90vw;
+  
+  
+  }
+  .nav-button{
+    font-size:2.75em;
+    width:100px;
+    height:75px;
+    
+  }
+  .icon{
+    font-size:3.75em;
+  }
+  .flash-upper{
+    margin-bottom:5vh;
+  }
+  .middle{
+    justify-content: flex-start;
+    // flex-basis:400px;
+  }
+  .middle-inner{
+    justify-content: center;
+  width:360px;
+  }
+  .top{
+    // padding-right:30px;
+    flex-basis:150px;
+  }
+  .flash-text{
+    font-size:2.75em;
+  }
+  
+  .flash-answer-box,.flash-question-box{
+    font-size:1.2em;
+    max-width:300px;
+    max-height:250px;
+  }
+  .mc-top{
+    flex-basis:40%;
+  }
+  .mc-middle-lower{
+    flex-basis:60%;
+  }
+  .mc-container{
+    flex-direction:row;
+  }
+  .options{
+    margin-top:0;
+  }
+  .question{
+    min-width:250px;
+  height: 180px;
+    font-size:2.8em;
+  }
+  .mc-question{
+    height:100px;
+    padding:0;
+    min-width:inherit;
+  
+  }
+  .mc-question-box{
+    // justify-content: flex-start;
+  }
+  .option{
+    max-width:150px;
+    height:100px;
+    font-size:2em;
+  }
+  .flash-middle{
+    margin: 0 100px;
+  }
+  .flash-upper{
+    max-width:400px;
+  }
+  
+  .quiz-container{
+    flex-direction:column;
+    padding-top:5%;
+    justify-content: center;
+  }
+  .quiz-middle-lower{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .score-container{
+    width:100%
+  }
+  .icon-small{
+    font-size:3em;
+  }
+  .progress-container{
+    width:100%;
+    margin:0;
+  }
+  .game-container{
+    justify-content: center;
+    padding:0;
+  }
+  .option{
+    width:120px;
+    height:80px;
+  }
+  .nav-left-lower{
+    display:none;
+  }
+  .nav-left-upper{
+    display:inherit;
+  }
+  .operator-group, .activity-group{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .game-middle-lower{
+    display: flex;
+    flex-direction: row;
+  }
+  .game-question{
+    padding:0;
+    font-size:2em;
+  }
+  .nav-buttons{
+    margin-top:0;
+  }
+  
+  }
+  
+  
+  
+  

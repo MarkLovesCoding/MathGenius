@@ -31,8 +31,6 @@ const requireAuth = (req, res, next) => {
 
 
 
-
-
 // Navigation GET Routes
 
 // Home route
@@ -41,10 +39,7 @@ router.get('/', requireAuth, (req, res) => {
   var flashData = req.flash('flashData')[0]
 
   const userData = req.session.userData || {};
-  // const sessionId = req.session.sessionId || null;
-  console.log("flashdata:", flashData)
-  console.log("userdata:", userData)
-  // console.log("sessionId:", sessionId)
+
   res.render('index', { flashData, userData });
 });
 
@@ -53,10 +48,6 @@ router.get('/tests', requireAuth, (req, res) => {
   var flashData = req.flash('flashData')[0]
 
   const userData = req.session.userData || {};
-  // const sessionId = req.session.sessionId || null;
-  console.log("flashdata:", flashData)
-  console.log("userdata:", userData)
-  // console.log("sessionId:", sessionId)
   res.render('tests', { flashData, userData });
 });
 router.get('/practice', requireAuth, (req, res) => {
@@ -64,10 +55,6 @@ router.get('/practice', requireAuth, (req, res) => {
   var flashData = req.flash('flashData')[0]
 
   const userData = req.session.userData || {};
-  // const sessionId = req.session.sessionId || null;
-  console.log("flashdata:", flashData)
-  console.log("userdata:", userData)
-  // console.log("sessionId:", sessionId)
   res.render('practice', { flashData, userData });
 });
 
@@ -112,9 +99,6 @@ function requireLogin(req, res, next) {
 
 router.get('/profile',requireLogin, (req, res) => {
 
-  // const userData = req.session.userData || {};
-
-  
   res.render('profile', {
     userData:req.session.userData
   });
@@ -130,8 +114,7 @@ router.get('/signup', (req, res) => {
     messageType = flashMessage.type;
     signupMessage = flashMessage.message;
   }
-  console.log(messageType)
-  console.log(signupMessage)
+
   res.render('signup', {
     messageType: messageType,
     signupMessage: signupMessage.message
@@ -167,14 +150,7 @@ router.post('/login', (req, res, next) => {
         return next(err);
       }
       
-      // user.session = {
-      //   expires: new Date(Date.now() + 86400000), // set session to expire in 24 hours
-      //   ip: req.ip,
-      //   userAgent: req.headers['user-agent'],
-      // };
-      // await user.save(); // save the session data to the database
-      // const sessionId = uuid.v4();
-      // req.session.sessionId = sessionId
+
 
       req.session.userData = {
         userId:user._id.toString(),
@@ -492,7 +468,6 @@ const sendEmail = async (to, subject, html) => {
 
   try {
     const response = await sendinblue.sendTransacEmail(sendSmtpEmail);
-    console.log(response);
   } catch (error) {
     console.error(error);
   }
@@ -510,8 +485,7 @@ router.get('/forgot-username', (req, res) => {
     messageType = flashMessage.type;
     passwordMessage = flashMessage.message;
   }
-  console.log(messageType)
-  console.log(passwordMessage)
+
   res.render('forgotUsername', {
     messageType: messageType,
     passwordMessage: passwordMessage
@@ -550,8 +524,6 @@ router.get('/forgot-password', (req, res) => {
     messageType = flashMessage.type;
     passwordMessage = flashMessage.message;
   }
-  console.log(messageType)
-  console.log(passwordMessage)
   res.render('forgotPassword', {
     messageType: messageType,
     passwordMessage: passwordMessage
@@ -696,8 +668,7 @@ router.post('/reset-password/:token', async (req, res) => {
 
 router.patch('/update-image', requireAuth,async (req, res) => {
   const {userId, newSrc } = req.body;
-  console.log('userId:', userId);
-  console.log('newSrc:', newSrc);
+
 
   try {
     await User.findByIdAndUpdate(userId, { imageSrc: newSrc });
@@ -712,7 +683,7 @@ router.patch('/update-image', requireAuth,async (req, res) => {
 router.get('/user-id', requireAuth,async (req, res) => {
 
   const userId = req.session.userData.userId;
-  console.log("Get user id:",userId)
+
   res.json({ userId });
 });
 
@@ -721,7 +692,7 @@ router.get('/get-avatar', requireAuth, async (req, res) => {
     const userId = req.session.userData.userId;
     const user = await User.findById(userId);
     const avatarSrc = user.imageSrc;
-    console.log("acrs:",avatarSrc)
+
     res.json({ avatarSrc });
   } catch (error) {
     console.error(`Error fetching avatar: ${error}`);
@@ -732,12 +703,10 @@ router.get('/get-avatar', requireAuth, async (req, res) => {
 router.get('/get-badges', requireAuth, async (req, res) => {
   try {
     const userId = req.session.userData.userId;
-    console.log(userId);
+
     const user = await User.findById(userId);
-    console.log("user",user)
 
     const badges = user.badges;
-    console.log("userbadgess:",badges)
     res.json({ badges });
   } catch (error) {
     console.error(`Error fetching badges: ${error}`);
@@ -746,8 +715,6 @@ router.get('/get-badges', requireAuth, async (req, res) => {
 });
 router.patch('/update-badges', requireAuth,async (req, res) => {
   const {userId, updatedBadges } = req.body;
-  console.log('userId:', userId);
-  console.log('newbadges:', updatedBadges);
 
   try {
     await User.findByIdAndUpdate(userId, { badges: updatedBadges });
