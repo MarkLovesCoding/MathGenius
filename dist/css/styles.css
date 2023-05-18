@@ -65,33 +65,51 @@ body {
   justify-content: center;
 }
 
-/* Flash Box Styles */
 .flash-box {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  background: white;
   padding: 1em;
   margin: 1em;
-  background: white;
   text-align: center;
-  cursor: pointer;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: rotateY(0deg);
+  -moz-transition: 0.6s;
+  -moz-transform-style: preserve-3d;
+  -moz-transform: rotateY(0deg);
+  -o-transition: 0.6s;
+  -o-transform-style: preserve-3d;
+  -o-transform: rotateY(0deg);
+  -ms-transition: 0.6s;
+  -ms-transform-style: preserve-3d;
+  -ms-transform: rotateY(0deg);
   transition: 0.6s;
   transform-style: preserve-3d;
   transform: rotateY(0deg);
-  border: 5px solid #BA8C63;
-  border-radius: 5px;
+  margin: 0;
 }
 
 .flash-container {
@@ -99,17 +117,30 @@ body {
 }
 
 .flash-card-container {
-  position: relative;
   width: 80%;
   max-width: 250px;
+  display: none;
   align-items: center;
   justify-content: center;
   text-align: center;
-  display: none;
   transition: all 0.5s ease;
   transform-style: preserve-3d;
-  perspective: 1000px;
-  transform: perspective(1000px);
+  position: relative;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+  -ms-transform: perspective(1000px);
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -webkit-transform: perspective(1000px);
+  -webkit-transition: 0.3s;
+  -webkit-transform-style: preserve-3d;
+  -ms-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  transform-style: preserve-3d;
 }
 
 .flash-text {
@@ -122,43 +153,58 @@ body {
   min-height: 200px;
   background: #274c43;
   color: #eae6df;
-  font-family: "pangolin", cursive;
+  font-family: "Pangolin", cursive;
   z-index: 2;
+  /* for firefox 31 */
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
   box-shadow: 14px 12px 4px -1px rgba(0, 0, 0, 0.5);
 }
 .flash-question-box::after {
   position: absolute;
+  color: #eae6df;
+  font-family: "Pangolin", cursive;
+  content: "Question";
   top: 10px;
   left: 10px;
-  content: "Question";
-  color: #eae6df;
-  font-family: "pangolin", cursive;
   font-style: italic;
   z-index: 10;
   font-size: 20px;
 }
 
 .flash-answer-box {
-  position: relative;
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
   min-height: 200px;
   background: #274c43;
   color: #eae6df;
-  font-family: "pangolin", cursive;
+  font-family: "Pangolin", cursive;
   box-shadow: 14px 12px 4px -1px rgba(0, 0, 0, 0.5);
 }
 .flash-answer-box::after {
   position: absolute;
+  color: #eae6df;
+  font-family: "Pangolin", cursive;
+  content: "Answer";
   top: 10px;
   left: 10px;
-  content: "Answer";
-  color: #eae6df;
-  font-family: "pangolin", cursive;
   font-style: italic;
   z-index: 10;
   font-size: 20px;
 }
 
+.flash-box {
+  border: 5px solid #BA8C63;
+  border-radius: 5px;
+}
+
 .flip {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
@@ -2312,8 +2358,8 @@ body {
   }
 
   .icon-container {
-    width: 60px;
-    height: 60px;
+    width: 85px;
+    height: 85px;
   }
 }
 @media only screen and (max-aspect-ratio: 1.75) and (orientation: portrait) {
