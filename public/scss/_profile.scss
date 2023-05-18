@@ -1,0 +1,181 @@
+
+
+
+// PROFILE
+// 
+// 
+// 
+// 
+
+.profile.display-container{
+    @include center-flex;
+  }
+  
+  /* profile section */
+  .profile-section {
+    @include center-flex;
+    flex-direction: column;
+  
+    padding: 20px;
+  }
+  .profile-img-container{
+    position:relative;
+  }
+  /* user section */
+  .profile-user-section {
+    @include center-flex;
+    flex-direction: column;
+  
+  }
+  
+  .profile-user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  .change-avatar{
+    position: absolute;
+    width: 20px ;
+    height: 20px;
+    color:$chalk-white;
+    bottom:0;
+    right:-20px;
+  }
+  
+  .profile-username {
+    margin-top: 10px;
+    font-size: 24px;
+    color:$chalk-white;
+  }
+  
+  /* badges section */
+  .badges {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    overflow-y: auto;
+    overflow-x:hidden;
+    width: 100%;
+    max-width: 290px;
+    max-height: calc(100vh - 30px - 125px - 110px);
+    border:2px solid transparent;
+    &:hover{
+      border:2px solid $chalk-white;
+      border-radius:10px;
+    }
+    &::-webkit-scrollbar{
+      width:10px;
+  
+    }
+    &::-webkit-scrollbar-track{
+      background-color:$chalkboard-green;
+      border-radius:25px;
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color:$chalk-white;
+      border-radius:25px;
+    }
+  }
+  .badge{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin:5px 0px;
+  }
+  .badge-img{
+    max-width:50px;
+    max-height:50px;
+    filter:grayscale(100%);
+    &.active{filter:grayscale(0%)}
+  }
+  .badge-description-level, .badge-description{
+    font-size:12px;
+    text-align:center;
+    color:$chalk-white;
+  }
+  .badge-description-level{
+    font-size:16px;
+    color:$chalk-white;
+  
+    margin-top:5px;
+    height:20px;
+    // align-items: end;
+    display: flex;
+    font-weight: 500;
+  }
+  
+  
+  
+  
+  // AVATAR MODAL
+  .avatar-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .avatar-modal-body{
+    @include center-flex;
+  }
+  .avatar-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px;
+  }
+  
+  .avatar-modal-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .avatar-modal-close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .avatar-modal-close:hover,
+  .avatar-modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .avatar-user-icons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-content: center;
+    align-items:center;
+  }
+  
+  .avatar-user-icons img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .avatar-modal-icon{
+    max-width:80px;
+    max-height:80px;
+    border-radius:40px;
+  
+  }
+  
+  
+  
+  
+  
+  
+  

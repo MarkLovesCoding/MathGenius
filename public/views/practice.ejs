@@ -224,7 +224,7 @@
                   </div>
                 </div>
               </div>
-
+<!-- 
 
               <div class="mc-quiz-container sub-container display-container" id="mc-quiz-container">
 
@@ -268,6 +268,7 @@
                 </div>
 
               </div>
+ -->
 
 
 
@@ -279,191 +280,14 @@
 
 
 
+ <%- include('partials/_multipleChoicePractice') %>
+ <%- include('partials/_flashPractice') %>
 
+ <%- include('partials/_multipleChoiceQuiz') %>
+ <%- include('partials/_popQuiz') %>
+ <%- include('partials/_highScoreChallenge') %>
 
-
-              <div class="mc-container sub-container display-container" id="mc-container">
-
-
-
-                <div class="mc-top">
-
-                  <div class="titles-group">
-                    <div class="titles-left">
-                      <h2 class="activity-title mc">Multiple Choice</h2>
-                      <h2 class="activity-type"> Practice</h2>
-                    </div>
-                    <div class="title-icon"><i class=" mc-icon icon fas fa-table-cells-large fa-large"></i>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="mc-middle-lower">
-                  <div class="mc-middle">
-                    <form id="mc-answer-form" class="question-box mc-question-box">
-                      <div id="mc-question-box" class="question mc-question">
-                        <div id="mc-first-number" class="question-number question-text"></div>
-                        <div id="mc-first-operator" class="operator question-text"></div>
-                        <div id="mc-second-number" class="question-number question-text"></div>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="mc-bottom">
-                    <div id="mc-options-container" class="options-container">
-                      <div id="mc-options" class="options"></div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="flash-container sub-container display-container" id="flash-container">
-                <div class="flash-upper">
-                  <div class="titles-group">
-                    <div class="titles-left">
-                      <h2 class="activity-title">Flash Cards</h2>
-                      <h2 class="activity-type"> Practice</h2>
-                    </div>
-                    <div class="title-icon"><i class=" flash-icon icon fas fa-bolt fa-large"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="flash-card-container middle flash-middle" id="flash-card">
-
-                  <div id="flash-question-box question" class="flash-box flash-question-box">
-                    <div id="flash-first-number" class="question-number flash-text"></div>
-                    <div id="flash-first-operator" class="operator flash-text"></div>
-                    <div id="flash-second-number" class="question-number flash-text"></div>
-
-
-
-                  </div>
-                  <div class=" flash-box flash-answer-box" id="flash-answer-box">
-                    <div class="flash-answer flash-text" id='flash-answer'></div>
-                  </div>
-
-                </div>
-              </div>
-
-
-              <div class="quiz-container sub-container display-container" id="quiz-container">
-                <div class="titles-group ">
-                  <div class="titles-left">
-                    <h2 class="activity-title quiz-activity-title">Ten Questions</h2>
-                    <h2 class="activity-type"> Pop Quiz</h2>
-                  </div>
-                  <div class="title-icon"><i class=" quiz-icon icon fas fa-arrow-up-1-9 fa-large"></i>
-                  </div>
-                </div>
-                <div class="quiz-middle-lower">
-                  <form id="quiz-answer-form" class="question-box quiz-question-box">
-                    <div id="question-box" class="question quiz-question">
-                      <div id="quiz-first-number" class="question-number question-text"></div>
-                      <div id="quiz-first-operator" class="operator question-text"></div>
-                      <div id="quiz-second-number" class="question-number question-text"></div>
-                      <div id="quiz-second-operator" class="operator question-text">=</div>
-
-                      <input type="number" min="0" id="quiz-answer-input" class="input quiz-input" placeholder="?"
-                        autocomplete="off"></input>
-                    </div>
-                    <button type="submit" id="quiz-answer-submit-btn" class="answer-submit">Check</button>
-                  </form>
-                  <div class="quiz-correctness-scores">
-                    <div class="correctness-container ">
-                      <div id="quiz-correctness" class="correctness"></div>
-                    </div>
-
-                    <div class="quiz-scores-container">
-                      <div class="quiz-curr-score-container">
-                        Current Score:<p id="quiz-curr-score"></p>
-                        <p>/</p>
-                        <p id="quiz-curr-question"></p>
-
-                      </div>
-                      <div class="quiz-last-score-container">
-                        Last Score:<p id="quiz-last-score"></p>
-
-                        <p>/</p>
-                        <p>10</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="game-container sub-container display-container" id="game-container">
-
-                <div class="top game-top">
-                  <div class="titles-group game-titles-group">
-                    <div class="titles-left">
-                      <h2 class="activity-title">High Score</h2>
-                      <h2 class="activity-type"> Challenge</h2>
-                    </div>
-                    <div class="title-icon"><i class=" game-icon icon-small icon fas fa-crown fa-large"></i>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="game-middle-inner">
-                  <div class="game-middle-lower">
-                    <div class="game-box">
-
-                      <form id="game-answer-form" class="question-box game-questiion-box">
-                        <div class="question game-question">
-                          <div id="game-first-number" class="question-number question-text"></div>
-                          <div id="game-first-operator" class="operator question-text"></div>
-                          <div id="game-second-number" class="question-number question-text"></div>
-                          <div id="game-second-operator" class="operator question-text">=</div>
-
-                          <input type="number" min="0" id="game-answer-input" class="input game-input" placeholder="?"
-                            autocomplete="off"></input>
-                        </div>
-                        <button type="submit" id="answer-submit-btn" class="answer-submit">Check</button>
-                      </form>
-
-                    </div>
-                    <div class="game-lower-landscape">
-                      <div class="game-lower">
-                        <div class="correctness-container ">
-                          <div id="game-correctness" class="correctness game-correctness"></div>
-                          <div class="actual-container hidden" id="game-actual-container">
-                            <div class="actual-text">The correct answer was:</div>
-                            <div class="actual" id="game-actual"></div>
-                          </div>
-                        </div>
-
-                        <div class="score-container">
-                          <div class="curr-score-container">
-                            <div class="score-title">Current Score:</div>
-                            <div id="game-current-score" class="score-text"> 0</div>
-                          </div>
-                          <div class="high-score-container">
-                            <div class="high-title">High Score:</div>
-                            <div id="game-current-high" class="score-text">0</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="progress-container">
-                        <div class="level-container">
-                          <div class="level-text">Level</div>
-                          <div class="level-number" id="game-level-number">0</div>
-                        </div>
-                        <div class="tracker-container" id="game-tracker-container">
-
-                          <div class="tracker" id="game-tracker"></div>
-                        </div>
-
-                        <div class="tracker-container" id="game-tracker-container-2">
-
-                          <div class="tracker" id="game-tracker-2"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+       
 
             </div>
             <!-- <script type="module" src="/js/success.js"></script> -->

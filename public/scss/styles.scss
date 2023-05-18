@@ -7,6 +7,16 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
 /* SCSS HEX */
 $kelly-green: rgba(41, 191, 18, 1);
 
@@ -48,6 +58,8 @@ $smallText:12px;
 $chalkboardFont:'pangolin',cursive;
 
 
+$size: 40vw;
+$color: $chalk-white;
 
 /* Global Styles */
 * {
@@ -116,6 +128,8 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+
 
 /* Flash Box Styles */
 .flash-box {
@@ -1760,19 +1774,19 @@ text-align:center;
 /* The Modal (background) */
 
 /* Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+// .close {
+//   color: #aaa;
+//   float: right;
+//   font-size: 28px;
+//   font-weight: bold;
+// }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
+// .close:hover,
+// .close:focus {
+//   color: black;
+//   text-decoration: none;
+//   cursor: pointer;
+// }
 
 // .signup-flash-message,.login-flash-message{
 //   margin-bottom:5px;
@@ -1819,9 +1833,7 @@ text-align:center;
 
 
 
-// Tablet - Portrait
 
-  // /* 
 
 
 
@@ -1843,445 +1855,22 @@ text-align:center;
 
 
 
-$size: 40vw;
-$color: $chalk-white;
 
-.success-svg {
-  display: block;
-  height: $size;
-  width: $size;
-  color: $chalk-white; /* SVG path use currentColor to inherit this */
-  max-width: 250px;
 
-  max-height: 250px;
-}
 
-.success-circle {
-  stroke-dasharray: 76;
-  stroke-dashoffset: 76;
-  animation: draw 1s forwards;
-}
 
-.success-tick {
-  stroke-dasharray: 18;
-  stroke-dashoffset: 18;
-  animation: draw 1s forwards 1s;
-}
 
-@keyframes draw { 
-  to { stroke-dashoffset: 0 } 
-}
 
 
 
 
-
-
-/* For styling demo, not required */
-
-.success-container {
-  background-color: $chalkboard-green;
-  position:absolute;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;
-  @include center-flex;
-  // height: 100vh;
-  z-index:100;
-  // display:none;
-  opacity: 1;
-  transition: opacity 1s ease-in-out;
-  border:$largeWoodBorder;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// PROFILE
-// 
-// 
-// 
-// 
-
-.profile.display-container{
-  @include center-flex;
-}
-
-/* profile section */
-.profile-section {
-  @include center-flex;
-  flex-direction: column;
-
-  padding: 20px;
-}
-.profile-img-container{
-  position:relative;
-}
-/* user section */
-.profile-user-section {
-  @include center-flex;
-  flex-direction: column;
-
-}
-
-.profile-user-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-}
-.change-avatar{
-  position: absolute;
-  width: 20px ;
-  height: 20px;
-  color:$chalk-white;
-  bottom:0;
-  right:-20px;
-}
-
-.profile-username {
-  margin-top: 10px;
-  font-size: 24px;
-  color:$chalk-white;
-}
-
-/* badges section */
-.badges {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  overflow-y: auto;
-  overflow-x:hidden;
-  width: 100%;
-  max-width: 290px;
-  max-height: calc(100vh - 30px - 125px - 110px);
-  border:2px solid transparent;
-  &:hover{
-    border:2px solid $chalk-white;
-    border-radius:10px;
-  }
-  &::-webkit-scrollbar{
-    width:10px;
-
-  }
-  &::-webkit-scrollbar-track{
-    background-color:$chalkboard-green;
-    border-radius:25px;
-  }
-  &::-webkit-scrollbar-thumb{
-    background-color:$chalk-white;
-    border-radius:25px;
-  }
-}
-.badge{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin:5px 0px;
-}
-.badge-img{
-  max-width:50px;
-  max-height:50px;
-  filter:grayscale(100%);
-  &.active{filter:grayscale(0%)}
-}
-.badge-description-level, .badge-description{
-  font-size:12px;
-  text-align:center;
-  color:$chalk-white;
-}
-.badge-description-level{
-  font-size:16px;
-  color:$chalk-white;
-
-  margin-top:5px;
-  height:20px;
-  // align-items: end;
-  display: flex;
-  font-weight: 500;
-}
-
-
-
-
-// AVATAR MODAL
-.avatar-modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-.avatar-modal-body{
-  @include center-flex;
-}
-.avatar-modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 300px;
-}
-
-.avatar-modal-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.avatar-modal-close {
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.avatar-modal-close:hover,
-.avatar-modal-close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.avatar-user-icons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  justify-content: center;
-  align-items:center;
-}
-
-.avatar-user-icons img {
-  width: 100%;
-  max-width: 100px;
-  height: auto;
-  cursor: pointer;
-}
-
-.avatar-modal-icon{
-  max-width:80px;
-  max-height:80px;
-  border-radius:40px;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-// BURGER
-
-.burger-container {
-  cursor:pointer;
-  width: 60px;
-  height: 60px;
-  display: flex; // make none after editing.
-background:rgba(255, 255, 255, 0);
-  position: absolute;
-  top: 5vh;
-  right: 5vw;
-  transition: all 200ms ease;
-  z-index:200;
-
-  &:hover {
-
-    .burger:not(.active) span:nth-child(1) {
-      transform: scaleX(0.8);
-    }
-    .burger:not(.active) span:nth-child(2) {
-      transform: scaleX(0.5);
-    }
-    .burger:not(.active) span:nth-child(3) {
-      transform: scaleX(0.8);
-    }
-  }
-}
-.burger {
-  width: 35px;
-  height: 30px;
-  position: relative;
-  z-index:10;
-  @include center-flex;
-  border-radius: 100%;
-  & span {
-    background-color:$chalk-white;
-    position: absolute;
-    border-radius: 2px;
-    transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
-    width: 100%;
-    height: 5px;
-    &.active{
-      background-color:$chalkboard-green;
-    }
-    &:nth-child(1) {
-      top: 0px;
-      left: 0px;
-    }
-    &:nth-child(2) {
-      top: 13px;
-      left: 0px;
-    }
-    &:nth-child(3) {
-      bottom: 0px;
-      left: 0px;
-    }
-  }
-}
-
-
-.burger span:nth-child(1) {
-  top: 0px;
-  left: 0px;
-} 
-.burger span:nth-child(2) {
-  top: 13px;
-  left: 0px;
-}
-.burger span:nth-child(3) {
-  bottom: 0px;
-  left: 0px;
-}
-
-.burger.active span:nth-child(1) {
-  transform: rotate(45deg);
-  top: 13px;
-}
-.burger.active span:nth-child(2) {
-  transform: scale(0);
-  transition-duration: 50ms;
-}
-.burger.active span:nth-child(3) {
-  top: 13px;
-  transform: rotate(-45deg);
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.expanded-menu {
-  position: absolute;
-  display:none;
-  top: calc(-3vh + 15px);
-  right: calc(-3vw + 15px);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #1b2e6000;
-  transform-origin: center;
-  overflow: hidden;
-  transition: 
-    width 0.3s ease-in-out, 
-    height 0.3s ease-in-out, 
-    border-radius 0.3s ease-in-out,
-    background-color 0.3s ease-in-out;
-  // transition:all 0.5s ease;
-  z-index: 1;
-}
-
-
-.expanded-menu.active {
-  
-  transition:all 0.5s ease;
-  width: 300px;
-  height: 600px;
-  border-radius: 10px;
-  background-color:$chalk-white;
-  display:flex;
-  position: absolute;
-    top: calc(-3vh + 15px);
-    right: calc(-3vw + 15px);
-    // border-top-right-radius: 0;
-    @include center-flex;
-
-}
-
-
-.expanded-menu.active ul {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.expanded-menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  @include center-flex;
-  flex-direction: column;
-
-  height: 100%;
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.expanded-menu li {
-  margin: 10px 0;
-  text-align: center;
-  padding:20px;
-}
-
-.expanded-menu a {
-  color: $chalkboard-green;
-  text-decoration: none;
-  font-size: 20px;
-}
 
 
 
 
 
 //////profile
-// main
+// index.ejs
 .profile-link-main{
   color:$chalk-white;
   text-decoration: none;
@@ -2295,7 +1884,7 @@ background:rgba(255, 255, 255, 0);
 }
 
 
-
+//test and practice
 .badge-modal-container{
   display: none;
   justify-content: center;
@@ -2351,4 +1940,7 @@ background:rgba(255, 255, 255, 0);
 .test-middle{
   max-height:67vh;
 }
+@import './burger.scss';
+@import './profile.scss';
+@import './success.scss';
 @import './media.scss';
