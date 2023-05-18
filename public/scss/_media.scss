@@ -419,8 +419,8 @@
     /* CSS code for tablet devices */
   
     .header{
-      font-size:30px;;
-      margin-bottom:50px;
+      font-size:24px;;
+      margin-bottom:30px;
       padding-left:40px;
       padding-right:25px;
     }
@@ -533,7 +533,10 @@
       flex-direction: column;
     }
   .header{
-    font-size:32px;
+    font-size:26px;
+  }
+  .profile-img-container{
+    font-size:30px;
   }
   .icon-container{
     width:95px;
