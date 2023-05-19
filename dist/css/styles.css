@@ -33,21 +33,6 @@ body {
   min-height: -webkit-fill-available;
 }
 
-/* Brand Title Styles */
-.brand-title {
-  position: absolute;
-  top: 5vh;
-  left: 5vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 330px;
-  font-family: "Londrina Shadow";
-  font-size: 22px;
-  color: #eae6df;
-  z-index: 20;
-}
-
 /* Game Container Styles */
 .main-container {
   position: relative;
@@ -1565,11 +1550,19 @@ body {
 .login-flash-message.error, .signup-flash-message.error, .forgot-password-flash-message.error, .forgot-username-flash-message.error {
   background-color: pink;
   color: red;
+  font-family: roboto;
+  font-size: 12px;
+  padding: 10px 20px;
+  font-weight: 800;
 }
 
 .login-flash-message.success, .signup-flash-message.success, .forgot-password-flash-message.success, .forgot-username-flash-message.success {
   background-color: #6bd881;
   color: #104b0f;
+  font-family: roboto;
+  font-size: 12px;
+  padding: 10px 20px;
+  font-weight: 800;
 }
 
 /* The Modal (background) */
@@ -1803,6 +1796,30 @@ body {
   color: #274c43;
   text-decoration: none;
   font-size: 20px;
+}
+
+/* Brand Title Styles */
+.brand-title {
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  display: flex;
+  align-items: center;
+  width: 330px;
+  font-family: "Londrina Shadow";
+  font-size: 22px;
+  color: #eae6df;
+  z-index: 20;
+  text-decoration: none;
+}
+.brand-title:visited {
+  color: #eae6df;
+}
+.brand-title:active {
+  color: #eae6df;
+}
+.brand-title:link {
+  color: #eae6df;
 }
 
 .profile.display-container {

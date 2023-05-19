@@ -1,0 +1,26 @@
+
+/* Brand Title Styles */
+.brand-title {
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    display: flex;
+    align-items: center;
+    width: 330px;
+    font-family: 'Londrina Shadow';
+    font-size: 22px;
+    color: $chalk-white;
+    z-index: 20;
+    text-decoration:none;
+    &:visited{
+        color:$chalk-white;
+    }
+    &:active{
+        color:$chalk-white;
+
+
+    }
+    &:link{
+        color:$chalk-white;
+    }
+}
