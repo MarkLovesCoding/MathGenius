@@ -53,7 +53,7 @@
     overflow-x: hidden;
     width: 100%;
     max-width: 290px;
-    max-height: calc(100vh - 30px - 125px - 110px);
+    max-height: calc(100vh - 60px - 125px - 110px);
     border: 2px solid transparent;
 
     &:hover {
@@ -75,7 +75,9 @@
         border-radius: 25px;
     }
 }
-
+.profile-lower-left{
+    
+}
 .badge {
     display: flex;
     flex-direction: column;
@@ -173,4 +175,11 @@
     max-width: 80px;
     max-height: 80px;
     border-radius: 40px;
+}
+.badges-header{
+    color:$chalk-white;
+    height: 40px;
+ display:flex;
+ align-items:end;
+ justify-content: center;
 }

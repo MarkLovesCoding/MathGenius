@@ -34,7 +34,7 @@
     }
 
     .badges {
-        margin-left: 40px;
+        // margin-left: 40px;
         grid-template-columns: repeat(5, 1fr);
         max-width: none;
     }
@@ -48,13 +48,15 @@
     .profile-user-section {
         flex-basis: 33.33%;
     }
-
+    .profile-lower-left{
+        max-height: calc(100vh - 130px);
+        margin-top: calc(3vh + 60px);
+    }
     .badges {
         margin: 20px;
         grid-template-columns: repeat(3, 1fr);
         overflow-y: auto;
-        max-height: calc(100vh - 130px);
-        margin-top: calc(3vh + 60px);
+
         max-width: fit-content;
     }
 }
@@ -71,7 +73,7 @@
     }
 
     .badges {
-        margin-left: 40px;
+        // margin-left: 40px;
         grid-template-columns: repeat(4, 1fr);
         max-width: none;
     }
@@ -205,7 +207,7 @@
 
 // Mobile Landscape (max-width:1000px)
 @media only screen and (orientation:landscape) and (min-aspect-ratio:1.75) {
- 
+
     .header {
         width: 200px;
         align-items: center;

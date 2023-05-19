@@ -4,7 +4,7 @@ const btn = document.getElementById("choose-avatar");
 const profile = document.getElementById("profile-user-avatar");
 const span = document.getElementById("avatar-modal-close");
 const userIconsContainer = document.getElementById("avatar-user-icons");
-btn.onclick = function () {
+profile.onclick = function () {
   modal.style.display = "block";
 };
 span.onclick = function () {
@@ -43,7 +43,6 @@ async function getUserId() {
 
 // Updates session and database with the new image source
 async function updateSessionAndDB(newSrc) {
-  console.log("newsrc:", newSrc);
   try {
     const userId = await getUserId();
     if (!userId) {
