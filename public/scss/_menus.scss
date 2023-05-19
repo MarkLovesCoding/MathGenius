@@ -1,0 +1,393 @@
+.operator-text {
+    font-family: $chalkboardFont;
+    font-size: $mobileIconTextSize;
+    color: $chalk-white;
+    margin-bottom: 15px;
+}
+
+
+.activity-title,
+.activity-type {
+    text-align: center;
+    height: 40px;
+    max-width: 200px;
+    font-size: 24px;
+}
+
+
+.difficulty-text {
+    font-family: $chalkboardFont;
+    font-size: $mobileHeaderTextSize;
+    padding: 5px;
+    color: $chalk-white;
+}
+
+.quiz,
+.real,
+.practice,
+.flash,
+.mc-quiz,
+.game,
+.mc {
+    &:hover {
+        &>* {
+            color: $chalkboard-green;
+        }
+    }
+
+    &.activity-selected {
+        &>* {
+            color: $chalkboard-green;
+        }
+    }
+}
+
+.quiz,
+.real {
+    &:hover {
+        background-color: $minus-blue;
+    }
+
+    &.activity-selected {
+        background-color: $minus-blue;
+        border-radius: 5px;
+    }
+}
+
+.practice {
+    &:hover {
+        background-color: $division-purple;
+    }
+
+    &.activity-selected {
+        background-color: $division-purple;
+        border-radius: 5px;
+    }
+}
+
+.flash,
+.mc-quiz {
+    &:hover {
+        background-color: $multiply-orange;
+    }
+
+    &.activity-selected {
+        background-color: $multiply-orange;
+        border-radius: 5px;
+    }
+}
+
+.game,
+.mc {
+    &:hover {
+        background-color: $plus-green;
+    }
+
+    &.activity-selected {
+        background-color: $plus-green;
+        border-radius: 5px;
+    }
+}
+
+
+.operator-menu-container,
+.difficulty-menu-container {
+    display: none;
+}
+
+.nav-button {
+    outline: none;
+    border: 0px solid rgba(157, 157, 157, 0);
+    background-color: transparent;
+    width: 100px;
+    height: 50px;
+    transition: all 0.25s cubic-bezier(.25, .8, .25, 1);
+    border-radius: 30px;
+    font-family: "Patua One";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5px;
+    font-size: 2.5em;
+    color: #97b7d7;
+    margin: 10px;
+
+    &:hover {
+        transform: scale(1.00);
+        background: -webkit-linear-gradient(225deg, hsla(306, 38%, 73%, 1) 29%, hsla(204, 49%, 70%, 1) 63%, hsla(202, 56%, 74%, 1) 81%, hsla(176, 58%, 72%, 1) 100%);
+        cursor: pointer;
+        border: 0px solid rgba(157, 157, 157, 1);
+        border-radius: 20px;
+
+        >* {
+            color: rgb(250, 250, 242);
+        }
+    }
+}
+
+.nav-left-upper {
+    display: none;
+}
+
+.nav-buttons {
+    @include center-flex;
+    flex-direction: row;
+    margin-top: 25px;
+}
+
+//   Icons
+
+.icon {
+    font-size: 3em;
+}
+
+.pen-icon {
+    color: $minus-blue;
+}
+
+.flash-icon,
+.mc-quiz-icon {
+    color: $multiply-orange;
+}
+
+.mc-icon {
+    color: $plus-green;
+}
+
+.game-icon {
+    color: $plus-green;
+}
+
+.real-icon {
+    color: $minus-blue;
+}
+
+.practice-icon {
+    color: $division-purple;
+}
+
+.add,
+.minus,
+.mult,
+.div {
+    &:hover {
+        &>* {
+            color: $chalkboard-green;
+        }
+    }
+
+    &.active-operator {
+        &>* {
+            color: $chalkboard-green;
+        }
+    }
+}
+
+
+
+.add {
+    &:hover {
+        background-color: $plus-green;
+    }
+
+    &.active-operator {
+        background-color: $plus-green;
+        border-radius: 5px;
+    }
+}
+
+.minus {
+    &:hover {
+        background-color: $minus-blue;
+    }
+
+    &.active-operator {
+        background-color: $minus-blue;
+        border-radius: 5px;
+    }
+}
+
+.mult {
+    &:hover {
+        background-color: $multiply-orange;
+    }
+
+    &.active-operator {
+        background-color: $multiply-orange;
+        border-radius: 5px;
+    }
+}
+
+.div {
+    &:hover {
+        background-color: $division-purple;
+    }
+
+    &.active-operator {
+        background-color: $division-purple;
+        border-radius: 5px;
+    }
+}
+
+.plus-icon {
+    color: $plus-green;
+}
+
+.minus-icon {
+    color: $minus-blue;
+}
+
+.times-icon {
+    color: $multiply-orange;
+}
+
+.divide-icon {
+    color: $division-purple;
+}
+
+
+.operator-choice>* {
+    pointer-events: none;
+}
+
+.activities-choice>* {
+    pointer-events: none;
+}
+
+.quiz-icon {
+    font-size: 2em;
+    color: $minus-blue;
+}
+
+.icon-container {
+    background-color: $chalkboard-green;
+    transition: all 0.6s cubic-bezier(.25, .8, .25, 1);
+    border: 2px solid rgba(100, 100, 100, 0);
+    border-radius: 100%;
+    width: 85px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+
+    &:hover {
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(.25, .8, .25, 1);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        transform: scale(1.0);
+    }
+}
+
+.icon-text {
+    font-family: $chalkboardFont;
+    font-size: $mobileIconTextSize;
+    margin-bottom: 15px;
+    color: $chalk-white;
+    text-align: center;
+}
+
+//   Difficulty
+
+.difficulty {
+    flex-direction: column;
+}
+
+#range-input {
+    --thumb-color: green;
+    -webkit-appearance: none;
+    width: 30vw;
+    min-width: 280px;
+    height: 18px;
+    margin: 30px;
+    padding: 0;
+    background-color: lightgray;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+}
+
+#range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    background-color: var(--thumb-color);
+    border: 1px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+#range-input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+#range-input::-moz-range-track {
+    background-color: lightgray;
+    height: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+#range-input::-ms-track {
+    background-color: transparent;
+    border-color: transparent;
+    color: transparent;
+    height: 5px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    border: none;
+}
+
+#range-input::-ms-fill-lower {
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+#range-input::-ms-fill-upper {
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+#range-input:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 5px rgba(63, 81, 181, 0.2);
+}
+
+#range-input:focus::-moz-range-thumb {
+    box-shadow: 0 0 0 5px rgba(63, 81, 181, 0.2);
+}
+
+#range-input:focus::-ms-thumb {
+    box-shadow: 0 0 0 5px rgba(63, 81, 181, 0.2);
+}
+
+.operator-text {
+    font-family: $chalkboardFont;
+    font-size: $mobileIconTextSize;
+    color: $chalk-white;
+    margin-bottom: 15px;
+}
+
+//   
+.activity-menu-container,
+.operator-menu-container,
+.difficulty-menu-container,
+.real-menu-container,
+.practice-menu-container {
+    flex-direction: column;
+}
