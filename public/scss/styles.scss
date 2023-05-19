@@ -11,7 +11,6 @@
 @import './flashCards.scss';
 @import './profile.scss';
 @import './success.scss';
-@import './media.scss';
 
 /* Global Styles */
 * {
@@ -263,12 +262,15 @@ body {
 .profile-link-main {
   color: $chalk-white;
   text-decoration: none;
+
   &:visited {
     color: $chalk-white
   }
+
   &:hover {
     color: $chalk-white
   }
 }
 
 @import './burger.scss';
+@import './media.scss';

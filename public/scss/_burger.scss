@@ -132,8 +132,8 @@
     background-color:$chalk-white;
     display:flex;
     position: absolute;
-      top: calc(-3vh + 15px);
-      right: calc(-3vw + 15px);
+      top: calc(-3vh + 6px);
+      right: calc(-3vw + 6px);
       // border-top-right-radius: 0;
       @include center-flex;
   
