@@ -1,6 +1,6 @@
 
-import { state } from './state.js'
-import {loadSection} from './ulils.js'
+import { state } from '../state.js'
+import {loadSection} from '../ulils.js'
 
 
 

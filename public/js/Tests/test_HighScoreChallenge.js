@@ -1,9 +1,12 @@
 
 
-import * as utilMethods from './ulils.js';
-import { state } from './state.js'
+import * as utilMethods from '../ulils.js';
+import { state } from '../state.js'
+import * as questionLogic from '../sharedQuestionLogic.js';
+import { updateBadgeStatus } from '../badges.js';
+import { animateBadge } from '../badgeEarned.js';
 
-import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from './domElements.js';
+import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTracker2, gameTrackerContainer, gameTrackerContainer2 } from '../domElements.js';
 
   ////////////////////////////////////////////////////////////
   //GAME
@@ -12,7 +15,7 @@ import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, gameActual, gameAct
     // If the answer is correct:
     if (bool) {
       // Show correct answer message and update score
-      correctnessView(true, gameCorrectness);
+      utilMethods.correctnessView(true, gameCorrectness);
       utilMethods.emphasize(gameCorrectness);
       utilMethods.visibilityTimedToggle(false, gameActualContainer, 1000);
       updateScore();
@@ -22,19 +25,19 @@ import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, gameActual, gameAct
       await utilMethods.delay(700);
       utilMethods.enableInput(gameAnswerInput);
       // Reset input and generate new question
-      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+      utilMethods.resetAnswerInput([gameAnswerInput]);
       questionLogic.newQuestion("game", state.activeOperators);
     }
     // If the answer is incorrect:
     else {
       // Show incorrect answer message and reset score/tracker
       // utilMethods.showHide([], [burgerContainer]);
-      correctnessView(false, gameCorrectness);
+      utilMethods.correctnessView(false, gameCorrectness);
       utilMethods.incorrectMotion(gameCorrectness);
       utilMethods.disableInput(gameAnswerInput);
       utilMethods.visibilityTimedToggle(true, gameActualContainer, 1000);
       await utilMethods.delay(700);
-      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+      utilMethods.resetAnswerInput([gameAnswerInput]);
       utilMethods.resetNumberToZero(gameCurrScore);
       utilMethods.resetWidth([gameTracker]);
       // Generate new question and re-enable input after a short period
@@ -72,24 +75,6 @@ import { gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, gameActual, gameAct
 
 
 
-  /**
- * Displays the correctness of the user's answer by toggling the visibility of the given element and
- * updating its styling and text content based on whether the answer was correct or incorrect.
- * @param {boolean} bool - Whether the user's answer was correct.
- * @param {HTMLElement} element - The element to display the correctness on.
- */
-  function correctnessView(bool, element) {
-    utilMethods.showHide([element], []);
-    if (bool) {
-      element.classList.add("correct-answer");
-      element.classList.remove("incorrect-answer");
-      element.textContent = "Correct";
-    } else {
-      element.classList.remove("correct-answer");
-      element.classList.add("incorrect-answer");
-      element.textContent = "Incorrect";
-    }
-  }
 
   /**
    * Updates the styling of the game tracker elements to match the given game level.

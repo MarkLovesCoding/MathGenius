@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description"
+    content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+
+  <title>Math Genius</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Roboto&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <%- include('partials/_brand') %>
+
+  <div class="login-menu-container display-container" id="login-menu-container">
+
+   
+    <div class="landing-container">
+<div class="landing-top">
+<a href="/login">Log In</a>
+<a href="/signup">Sign Up</a>
+</div>
+
+
+<form class=" play-as-guest " id="guest-login-form" action="/guest" method="POST">
+  <label for="guest"></label>
+  <button class="login-form-button guest-button  g-recaptcha"
+  data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGuest' data-action='submit' id="guest" type="submit">Play as
+    guest</button>
+</form>
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+  <!-- <script src="../js/loginAlert.js"></script> -->
+  <!-- <script src="../js/recaptcha/loginRecaptcha.js"></script> -->
+
+</body>
+
+</html>

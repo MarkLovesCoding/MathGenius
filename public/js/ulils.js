@@ -269,3 +269,24 @@ export function getStyle(el, styleProp) {
 }
 
 
+  /**
+ * Displays the correctness of the user's answer by toggling the visibility of the given element and
+ * updating its styling and text content based on whether the answer was correct or incorrect.
+ * @param {boolean} bool - Whether the user's answer was correct.
+ * @param {HTMLElement} element - The element to display the correctness on.
+ */
+  export function correctnessView(bool, element) {
+    showHide([element], []);
+    if (bool) {
+      element.classList.add("correct-answer");
+      element.classList.remove("incorrect-answer");
+      element.textContent = "Correct";
+    } else {
+      element.classList.remove("correct-answer");
+      element.classList.add("incorrect-answer");
+      element.textContent = "Incorrect";
+    }
+  }
+
+
+

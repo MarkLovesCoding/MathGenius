@@ -1,11 +1,10 @@
 
 
-import * as utilMethods from './ulils.js';
-import { flashAnswer, flashCard, flashNumOne, flashNumTwo, flashOpOne } from './domElements.js';
-import {  mcOptions } from './domElements.js';
+import * as utilMethods from '../ulils.js';
+import { mcCreateOptions } from './practice_MultipleChoice.js';
 
-import { state } from './state.js'
-import * as questionLogic from './sharedQuestionLogic.js';
+import { state } from '../state.js'
+import * as questionLogic from '../sharedQuestionLogic.js';
 window.onload = function () {  //Ensure DOM is loaded before functions
 
 
@@ -54,117 +53,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
 
-  ////////////////////////////////////////////////////////////
-  //MC
-  //
-
-  /**
-   * Checks whether the multiple-choice answer is correct or not.
-   * If the answer is correct, animate the correct element and move on to the next question.
-   * If the answer is incorrect, animate both the false element and the correct element and move on to the next question.
-   *
-   * @param {boolean} bool - true if the answer is correct, false otherwise
-   * @param {HTMLElement} correctEl - the HTML element that represents the correct answer
-   * @param {HTMLElement} falseEl - (optional) the HTML element that represents the incorrect answer
-   * @returns {void}
-   */
-  async function mcAnswerCheck(bool, correctEl, falseEl = null) {
-    if (bool) {
-      utilMethods.animateCorrect(correctEl);
-      await utilMethods.delay(250);
-      questionLogic.newQuestion("multiple-choice", state.activeOperators, mcCreateOptions);
-    } else {
-      utilMethods.animateIncorrect(falseEl);
-      utilMethods.animateCorrect(correctEl);
-      await utilMethods.delay(250);
-      questionLogic.newQuestion("multiple-choice", state.activeOperators, mcCreateOptions);
-
-    }
-  }
-
-  /**
-   * Generates the multiple-choice options for the given numbers and operator.
-   *
-   * @param {number} n1 - the first number
-   * @param {number} n2 - the second number
-   * @param {string} o1 - the operator
-   * @returns {void}
-   */
-  function mcCreateOptions(n1, n2, o1) {
-    // Create an array of four possible answer options using the given numbers and operator
-    let options = utilMethods.createOptions(n1, n2, o1)
-  
-    // Clear the mcOptions element (which contains the multiple choice answer buttons)
-    mcOptions.innerHTML = "";
-  
-    // Calculate the correct answer for the question
-    let ans = utilMethods.calculation(n1, n2, o1)
-  
-    // Loop through each answer option and create a button for it
-    options.forEach((option, index) => {
-      const optionEl = document.createElement("button");
-      optionEl.classList.add("option");
-      optionEl.textContent = option;
-      let correctOption;
-  
-      // If this answer option is equal to the correct answer, save a reference to the button as the correct option
-      if (option == ans) {
-        correctOption = optionEl;
-      }
-  
-      // Add a mousedown event listener to each button that checks if the answer is correct or not
-      optionEl.addEventListener("mousedown", function (e) {
-        let targetEl = e.target;
-        if (targetEl.textContent == ans) {
-          // If the selected answer is correct, call mcAnswerCheck with a "true" value and the target element
-          mcAnswerCheck(true, targetEl);
-        }
-        if (targetEl.textContent != ans) {
-          // If the selected answer is incorrect, call mcAnswerCheck with a "false" value, the correct option element, and the target element
-          mcAnswerCheck(false, correctOption, targetEl);
-        }
-      });
-  
-      // Add the answer option button to the mcOptions element
-      mcOptions.appendChild(optionEl);
-    });
-  }
-  
-
-  //
-  //END MC
-  ////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  function flashHandler(e) {
-    const ans = utilMethods.calculation(
-      flashNumOne.innerHTML,
-      flashNumTwo.innerHTML,
-      flashOpOne.innerHTML
-    ); // Calculate the correct answer using the flashNumOne, flashNumTwo, and flashOpOne elements
-    flashAnswer.textContent = ans; // Display the correct answer in the flashAnswer element
-    if (this.classList.contains("flip")) { // If the flashCard element has the "flip" class, generate a new question
-      questionLogic.newQuestion("flash", state.activeOperators);
-    }
-    this.classList.toggle("flip"); // Toggle the "flip" class on the flashCard element
-    e.preventDefault(); // Prevent the default behavior of the mousedown event on the flashCard element
-  }
-
-  flashCard.addEventListener("mousedown", flashHandler, false); // Add a mousedown event listener to the flashCard element that handles flipping the card and checking the answer
-
-;
 
 
   const operatorMenuForward = document.getElementById("operator-menu-forward")
@@ -184,12 +72,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   const activitiesChoices = document.querySelectorAll(".activity-choice")
   // const realChoices = document.querySelectorAll(".real-choice")
   const practiceChoices = document.querySelectorAll(".practice-choice")
-
-  // function alertChooseActivity() {
-  //   const newModal = document.createElement("div");
-  //   newModal.innerHTML = "Please Select An Activity"
-
-  // }
+  const operatorChoices = document.querySelectorAll(".operator-choice")
   // const activityAlert = document.getElementById("activity-alert-modal")
   const operatorAlert = document.getElementById("operator-alert-modal")
 
@@ -293,7 +176,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
 
 
-  const operatorChoices = document.querySelectorAll(".operator-choice")
+
 
 
 
@@ -307,17 +190,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   addEventsForOperators(operatorChoices, state)
   // addEventsForActivities(realChoices, state)
   addEventsForActivities(practiceChoices, state)
-
-  // A function to determine which activity was selected by the user
-  // function updateActivity(activitiesChoices, numChoices) {
-  //   let userSelection;
-  //   for (let i = 0; i < numChoices; i++) {
-  //     if (activitiesChoices[i].classList.contains("activity-selected")) {
-  //       userSelection = activitiesChoices[i].getAttribute("data-type")
-  //     }
-  //   }
-  //   return userSelection;
-  // }
 
   function updateOperators(operatorChoices) {
     let ops = [];
