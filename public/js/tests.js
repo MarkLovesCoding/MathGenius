@@ -51,208 +51,185 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     state.activeHighVal = (i) * 10;
   }
 
-  // Function to show the main menu
-  // function showMainMenu() {
-  //   utilMethods.loadSection("activity-menu"); // Load the activity menu section
-  //   // hideBurger(); // Hide the burger menu
-  //   resetQuizProperty(state.quizStats); // Reset the quiz stats
-  //   utilMethods.resetNumberToZero(gameLevelNumber); // Reset the game level number
-  //   utilMethods.resetWidth([gameTracker, gameTracker2]); // Reset the width of game trackers
-  // }
-
-  //
-  //
-  //END SHARED
-  ////////////////////////////////////////////////////////////
 
 
 
 
+//   ////////////////////////////////////////////////////////////
+//   //GAME
+//   //
+//   async function gameAnswerCheck(bool) {
+//     // If the answer is correct:
+//     if (bool) {
+//       // Show correct answer message and update score
+//       correctnessView(true, gameCorrectness);
+//       utilMethods.emphasize(gameCorrectness);
+//       utilMethods.visibilityTimedToggle(false, gameActualContainer, 1000);
+//       updateScore();
+//       // Update level and disable input for a short period
+//       await updateLevel();
+//       utilMethods.disableInput(gameAnswerInput);
+//       await utilMethods.delay(700);
+//       utilMethods.enableInput(gameAnswerInput);
+//       // Reset input and generate new question
+//       utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+//       questionLogic.newQuestion("game", state.activeOperators);
+//     }
+//     // If the answer is incorrect:
+//     else {
+//       // Show incorrect answer message and reset score/tracker
+//       // utilMethods.showHide([], [burgerContainer]);
+//       correctnessView(false, gameCorrectness);
+//       utilMethods.incorrectMotion(gameCorrectness);
+//       utilMethods.disableInput(gameAnswerInput);
+//       utilMethods.visibilityTimedToggle(true, gameActualContainer, 1000);
+//       await utilMethods.delay(700);
+//       utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+//       utilMethods.resetNumberToZero(gameCurrScore);
+//       utilMethods.resetWidth([gameTracker]);
+//       // Generate new question and re-enable input after a short period
+//       questionLogic.newQuestion("game", state.activeOperators);
+//       await utilMethods.delay(1500);
+//       utilMethods.enableInput(gameAnswerInput);
+//     }
+//   }
+
+//   /**
+//    * Compares the current game score to the current high score and updates the display
+//    * if necessary.
+//    */
+//   function updateScore() {
+//     let currScoreInner = parseInt(gameCurrScore.innerHTML);
+//     currScoreInner += 1;
+//     gameCurrScore.innerHTML = currScoreInner;
+//     checkHighScore();
+//   }
+
+
+//   /**
+//  * Compares the current game score to the current high score and updates the display
+//  * if necessary.
+//  */
+//   function checkHighScore() {
+//     let curr = gameCurrScore.innerHTML;
+//     if (curr > parseInt(state.high_score)) {
+//       state.high_score = curr;
+//       gameHighScore.innerHTML = curr;
+//     } else {
+//       gameHighScore.innerHTML = state.high_score;
+//     }
+//   }
 
 
 
+//   /**
+//  * Displays the correctness of the user's answer by toggling the visibility of the given element and
+//  * updating its styling and text content based on whether the answer was correct or incorrect.
+//  * @param {boolean} bool - Whether the user's answer was correct.
+//  * @param {HTMLElement} element - The element to display the correctness on.
+//  */
+//   function correctnessView(bool, element) {
+//     utilMethods.showHide([element], []);
+//     if (bool) {
+//       element.classList.add("correct-answer");
+//       element.classList.remove("incorrect-answer");
+//       element.textContent = "Correct";
+//     } else {
+//       element.classList.remove("correct-answer");
+//       element.classList.add("incorrect-answer");
+//       element.textContent = "Incorrect";
+//     }
+//   }
 
+//   /**
+//    * Updates the styling of the game tracker elements to match the given game level.
+//    * @param {number} level - The current game level.
+//    */
+//   function levelUp(level) {
+//     let newColor = `hsl( ${level * 30}, 100%, 50%)`;
+//     gameTracker.style.backgroundColor = newColor;
+//     gameTracker2.style.backgroundColor = newColor;
+//   }
 
+//   // This function calculates the progress of the game's level and adds a level to the game tracker.
+//   function addlevel() {
+//     // Calculates the width of the game tracker by subtracting the border width from the full width
+//     let fullWidth = window.getComputedStyle(gameTrackerContainer2).width;
+//     let borderWidth = window.getComputedStyle(gameTrackerContainer2).getPropertyValue("border-width");
+//     fullWidth = parseFloat(fullWidth.slice(0, -2));
+//     borderWidth = parseFloat(borderWidth.slice(0, -2));
+//     fullWidth = fullWidth - borderWidth * 2;
+//     // Increases the progress width of the game tracker by one-tenth of the full width
+//     let progressWidth = window.getComputedStyle(gameTracker2).width;
+//     progressWidth = parseFloat(progressWidth.slice(0, -2));
+//     progressWidth += fullWidth / 10;
+//     gameTracker2.style.width = progressWidth + "px";
+//   }
 
-
-
-
-
-  ////////////////////////////////////////////////////////////
-  //GAME
-  //
-  async function gameAnswerCheck(bool) {
-    // If the answer is correct:
-    if (bool) {
-      // Show correct answer message and update score
-      correctnessView(true, gameCorrectness);
-      utilMethods.emphasize(gameCorrectness);
-      utilMethods.visibilityTimedToggle(false, gameActualContainer, 1000);
-      updateScore();
-      // Update level and disable input for a short period
-      await updateLevel();
-      utilMethods.disableInput(gameAnswerInput);
-      await utilMethods.delay(700);
-      utilMethods.enableInput(gameAnswerInput);
-      // Reset input and generate new question
-      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-      questionLogic.newQuestion("game", state.activeOperators);
-    }
-    // If the answer is incorrect:
-    else {
-      // Show incorrect answer message and reset score/tracker
-      // utilMethods.showHide([], [burgerContainer]);
-      correctnessView(false, gameCorrectness);
-      utilMethods.incorrectMotion(gameCorrectness);
-      utilMethods.disableInput(gameAnswerInput);
-      utilMethods.visibilityTimedToggle(true, gameActualContainer, 1000);
-      await utilMethods.delay(700);
-      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
-      utilMethods.resetNumberToZero(gameCurrScore);
-      utilMethods.resetWidth([gameTracker]);
-      // Generate new question and re-enable input after a short period
-      questionLogic.newQuestion("game", state.activeOperators);
-      await utilMethods.delay(1500);
-      utilMethods.enableInput(gameAnswerInput);
-    }
-  }
-
-  /**
-   * Compares the current game score to the current high score and updates the display
-   * if necessary.
-   */
-  function updateScore() {
-    let currScoreInner = parseInt(gameCurrScore.innerHTML);
-    currScoreInner += 1;
-    gameCurrScore.innerHTML = currScoreInner;
-    checkHighScore();
-  }
-
-
-  /**
- * Compares the current game score to the current high score and updates the display
- * if necessary.
- */
-  function checkHighScore() {
-    let curr = gameCurrScore.innerHTML;
-    if (curr > parseInt(state.high_score)) {
-      state.high_score = curr;
-      gameHighScore.innerHTML = curr;
-    } else {
-      gameHighScore.innerHTML = state.high_score;
-    }
-  }
-
-
-
-  /**
- * Displays the correctness of the user's answer by toggling the visibility of the given element and
- * updating its styling and text content based on whether the answer was correct or incorrect.
- * @param {boolean} bool - Whether the user's answer was correct.
- * @param {HTMLElement} element - The element to display the correctness on.
- */
-  function correctnessView(bool, element) {
-    utilMethods.showHide([element], []);
-    if (bool) {
-      element.classList.add("correct-answer");
-      element.classList.remove("incorrect-answer");
-      element.textContent = "Correct";
-    } else {
-      element.classList.remove("correct-answer");
-      element.classList.add("incorrect-answer");
-      element.textContent = "Incorrect";
-    }
-  }
-
-  /**
-   * Updates the styling of the game tracker elements to match the given game level.
-   * @param {number} level - The current game level.
-   */
-  function levelUp(level) {
-    let newColor = `hsl( ${level * 30}, 100%, 50%)`;
-    gameTracker.style.backgroundColor = newColor;
-    gameTracker2.style.backgroundColor = newColor;
-  }
-
-  // This function calculates the progress of the game's level and adds a level to the game tracker.
-  function addlevel() {
-    // Calculates the width of the game tracker by subtracting the border width from the full width
-    let fullWidth = window.getComputedStyle(gameTrackerContainer2).width;
-    let borderWidth = window.getComputedStyle(gameTrackerContainer2).getPropertyValue("border-width");
-    fullWidth = parseFloat(fullWidth.slice(0, -2));
-    borderWidth = parseFloat(borderWidth.slice(0, -2));
-    fullWidth = fullWidth - borderWidth * 2;
-    // Increases the progress width of the game tracker by one-tenth of the full width
-    let progressWidth = window.getComputedStyle(gameTracker2).width;
-    progressWidth = parseFloat(progressWidth.slice(0, -2));
-    progressWidth += fullWidth / 10;
-    gameTracker2.style.width = progressWidth + "px";
-  }
-
-  // This function updates the game level based on the user's score and increases the difficulty of the game as the level progresses.
+//   // This function updates the game level based on the user's score and increases the difficulty of the game as the level progresses.
   
-  async function updateLevel() {
-    // Gets the current level number and checks if the user has made progress towards the next level or not
-    let level = parseInt(gameLevelNumber.textContent);
-    if (parseInt(gameCurrScore.textContent) % 1 == 0) {
-      updateProgress();
-    }
+//   async function updateLevel() {
+//     // Gets the current level number and checks if the user has made progress towards the next level or not
+//     let level = parseInt(gameLevelNumber.textContent);
+//     if (parseInt(gameCurrScore.textContent) % 1 == 0) {
+//       updateProgress();
+//     }
   
-    // Checks if the user has reached the next level and adds a new level to the game tracker
-    if (parseInt(gameCurrScore.textContent) % 10 == 0) {
+//     // Checks if the user has reached the next level and adds a new level to the game tracker
+//     if (parseInt(gameCurrScore.textContent) % 10 == 0) {
 
-        await updateBadgeStatus("game",state.activeDifficulty, true)
-      await animateBadge()
-      // Disables the user input and resets the width of the game tracker
-      utilMethods.disableInput(gameAnswerInput);
-      utilMethods.resetWidth([gameTracker]);
+//         await updateBadgeStatus("game",state.activeDifficulty, true)
+//       await animateBadge()
+//       // Disables the user input and resets the width of the game tracker
+//       utilMethods.disableInput(gameAnswerInput);
+//       utilMethods.resetWidth([gameTracker]);
   
-      // Adds a new level to the game tracker and updates the level number
-      addlevel();
-      level += 1;
+//       // Adds a new level to the game tracker and updates the level number
+//       addlevel();
+//       level += 1;
   
-      // Animates the level up message and waits for 1 second before re-enabling the user input
-      levelUp(level);
-      await utilMethods.delay(1000);
-      utilMethods.enableInput(gameAnswerInput);
-    }
-    // Updates the level number displayed to the user
-    gameLevelNumber.textContent = level;
-  }
+//       // Animates the level up message and waits for 1 second before re-enabling the user input
+//       levelUp(level);
+//       await utilMethods.delay(1000);
+//       utilMethods.enableInput(gameAnswerInput);
+//     }
+//     // Updates the level number displayed to the user
+//     gameLevelNumber.textContent = level;
+//   }
   
 
-  /**
-   * Updates the width of the progress bar by adding a fraction of the full width to it.
-   * If the progress bar is filled to its full width, it resets after a delay of 1 second.
-   */
-  async function updateProgress() {
-    // Get the full width of the progress bar container and subtract the border width to get the actual width
-    let fullWidth = window.getComputedStyle(gameTrackerContainer).width;
-    let borderWidth = window
-      .getComputedStyle(gameTrackerContainer)
-      .getPropertyValue("border-width");
-    fullWidth = parseFloat(fullWidth.slice(0, -2));
-    borderWidth = parseFloat(borderWidth.slice(0, -2));
-    fullWidth = fullWidth - borderWidth * 2;
+//   /**
+//    * Updates the width of the progress bar by adding a fraction of the full width to it.
+//    * If the progress bar is filled to its full width, it resets after a delay of 1 second.
+//    */
+//   async function updateProgress() {
+//     // Get the full width of the progress bar container and subtract the border width to get the actual width
+//     let fullWidth = window.getComputedStyle(gameTrackerContainer).width;
+//     let borderWidth = window
+//       .getComputedStyle(gameTrackerContainer)
+//       .getPropertyValue("border-width");
+//     fullWidth = parseFloat(fullWidth.slice(0, -2));
+//     borderWidth = parseFloat(borderWidth.slice(0, -2));
+//     fullWidth = fullWidth - borderWidth * 2;
 
-    // Get the current width of the progress bar and add a fraction of the full width to it
-    let progressWidth = window.getComputedStyle(gameTracker).width;
-    progressWidth = parseFloat(progressWidth.slice(0, -2));
-    progressWidth += fullWidth / 10;
-    gameTracker.style.width = progressWidth + "px";
+//     // Get the current width of the progress bar and add a fraction of the full width to it
+//     let progressWidth = window.getComputedStyle(gameTracker).width;
+//     progressWidth = parseFloat(progressWidth.slice(0, -2));
+//     progressWidth += fullWidth / 10;
+//     gameTracker.style.width = progressWidth + "px";
 
-    // If the progress bar is filled to its full width, reset it after a delay of 1 second
-    if (progressWidth == fullWidth) {
-      await utilMethods.delay(1000);
-      utilMethods.resetWidth([gameTracker]);
-    }
-  }
+//     // If the progress bar is filled to its full width, reset it after a delay of 1 second
+//     if (progressWidth == fullWidth) {
+//       await utilMethods.delay(1000);
+//       utilMethods.resetWidth([gameTracker]);
+//     }
+//   }
 
 
 
-  //
-  //END GAME
-  ////////////////////////////////////////////////////////////
+//   //
+//   //END GAME
+//   ////////////////////////////////////////////////////////////
 
 
 
@@ -429,7 +406,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
       // Re-enable the quizAnswerInput and reset the input fields
       utilMethods.enableInput(quizAnswerInput);
-      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+      utilMethods.resetAnswerInput([
+        // gameAnswerInput,
+         quizAnswerInput]);
 
       // Generate a new question for the quiz
       questionLogic.newQuestion("quiz", state.activeOperators);
@@ -451,7 +430,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
       // Re-enable the quizAnswerInput and reset the input fields
       utilMethods.enableInput(quizAnswerInput);
-      utilMethods.resetAnswerInput([gameAnswerInput, quizAnswerInput]);
+      utilMethods.resetAnswerInput([
+        // gameAnswerInput, 
+        quizAnswerInput]);
 
       // Generate a new question for the quiz
       questionLogic.newQuestion("quiz", state.activeOperators);
@@ -543,26 +524,26 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //EVENT HANDLERS
   //
 
-  // Adds an event listener to the gameAnswerInput element to update the user value when the input changes
-  function gameUpdateAnswerHandler(e) {
-    let userAnswer = e.target.value;
-    state.userValue = userAnswer;
-  }
+  // // Adds an event listener to the gameAnswerInput element to update the user value when the input changes
+  // function gameUpdateAnswerHandler(e) {
+  //   let userAnswer = e.target.value;
+  //   state.userValue = userAnswer;
+  // }
 
-  // Adds an event listener to the gameAnswerSubmit element to check the user's answer when the form is submitted
-  function gameCheckAnswerHandler(e) {
-    let realAns = utilMethods.calculation(
-      gameNumOne.innerHTML,
-      gameNumTwo.innerHTML,
-      gameOpOne.innerHTML
-    ); // Calculate the correct answer using the gameNumOne, gameNumTwo, and gameOpOne elements
+  // // Adds an event listener to the gameAnswerSubmit element to check the user's answer when the form is submitted
+  // function gameCheckAnswerHandler(e) {
+  //   let realAns = utilMethods.calculation(
+  //     gameNumOne.innerHTML,
+  //     gameNumTwo.innerHTML,
+  //     gameOpOne.innerHTML
+  //   ); // Calculate the correct answer using the gameNumOne, gameNumTwo, and gameOpOne elements
 
-    gameActual.innerHTML = realAns; // Display the correct answer in the gameActual element
-    gameAnswerCheck(realAns == state.userValue); // Check if the user's answer is correct using the gameAnswerCheck function
-    e.preventDefault(); // Prevent the form from submitting and refreshing the page
-  }
-  gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler); // Add an event listener to the gameAnswerInput element that updates the state with the user's answer
-  gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler); // Add an event listener to the gameAnswerSubmit element that checks the user's answer and updates the gameActual element
+  //   gameActual.innerHTML = realAns; // Display the correct answer in the gameActual element
+  //   gameAnswerCheck(realAns == state.userValue); // Check if the user's answer is correct using the gameAnswerCheck function
+  //   e.preventDefault(); // Prevent the form from submitting and refreshing the page
+  // }
+  // gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler); // Add an event listener to the gameAnswerInput element that updates the state with the user's answer
+  // gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler); // Add an event listener to the gameAnswerSubmit element that checks the user's answer and updates the gameActual element
 
   // Adds an event listener to the quizAnswerInput element to update the user value when the input changes
 

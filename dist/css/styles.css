@@ -599,7 +599,8 @@ body {
   align-items: center;
 }
 
-.mc-container, .mc-quiz-container {
+.mc-container,
+.mc-quiz-container {
   display: none;
   justify-content: center;
 }
@@ -621,11 +622,20 @@ body {
     transform: translateX(0);
   }
 }
-.operator-menu-container, .difficulty-menu-container {
+.operator-menu-container,
+.difficulty-menu-container {
   display: none;
 }
 
-.real-menu-container, .practice-menu-container, .login-menu-container, .signup-menu-container, .activity-menu-container, .middle, .top, .bottom, .forgot-password-menu-container,
+.real-menu-container,
+.practice-menu-container,
+.login-menu-container,
+.signup-menu-container,
+.activity-menu-container,
+.middle,
+.top,
+.bottom,
+.forgot-password-menu-container,
 .forgot-username-menu-container {
   display: flex;
 }
@@ -692,60 +702,61 @@ body {
   margin-bottom: 15px;
 }
 
-.quiz:hover, .real:hover {
-  background-color: #00bdff;
-}
-.quiz:hover > *, .real:hover > * {
+.quiz:hover > *,
+.real:hover > *,
+.practice:hover > *,
+.flash:hover > *,
+.mc-quiz:hover > *,
+.game:hover > *,
+.mc:hover > * {
   color: #274c43;
 }
-.quiz.activity-selected, .real.activity-selected {
+.quiz.activity-selected > *,
+.real.activity-selected > *,
+.practice.activity-selected > *,
+.flash.activity-selected > *,
+.mc-quiz.activity-selected > *,
+.game.activity-selected > *,
+.mc.activity-selected > * {
+  color: #274c43;
+}
+
+.quiz:hover,
+.real:hover {
+  background-color: #00bdff;
+}
+.quiz.activity-selected,
+.real.activity-selected {
   background-color: #00bdff;
   border-radius: 5px;
-}
-.quiz.activity-selected > *, .real.activity-selected > * {
-  color: #274c43;
 }
 
 .practice:hover {
   background-color: #e46fe4;
 }
-.practice:hover > * {
-  color: #274c43;
-}
 .practice.activity-selected {
   background-color: #e46fe4;
   border-radius: 5px;
 }
-.practice.activity-selected > * {
-  color: #274c43;
-}
 
-.flash:hover, .mc-quiz:hover {
+.flash:hover,
+.mc-quiz:hover {
   background-color: #f5ba42;
 }
-.flash:hover > *, .mc-quiz:hover > * {
-  color: #274c43;
-}
-.flash.activity-selected, .mc-quiz.activity-selected {
+.flash.activity-selected,
+.mc-quiz.activity-selected {
   background-color: #f5ba42;
   border-radius: 5px;
 }
-.flash.activity-selected > *, .mc-quiz.activity-selected > * {
-  color: #274c43;
-}
 
-.game:hover, .mc:hover {
+.game:hover,
+.mc:hover {
   background-color: #6ee06e;
 }
-.game:hover > *, .mc:hover > * {
-  color: #274c43;
-}
-.game.activity-selected, .mc.activity-selected {
+.game.activity-selected,
+.mc.activity-selected {
   background-color: #6ee06e;
   border-radius: 5px;
-}
-.game.activity-selected > *, .mc.activity-selected > * {
-  color: #274c43;
 }
 
 .middle-inner {
@@ -807,7 +818,8 @@ body {
   color: #00bdff;
 }
 
-.flash-icon, .mc-quiz-icon {
+.flash-icon,
+.mc-quiz-icon {
   color: #f5ba42;
 }
 
@@ -827,60 +839,49 @@ body {
   color: #e46fe4;
 }
 
+.add:hover > *,
+.minus:hover > *,
+.mult:hover > *,
+.div:hover > * {
+  color: #274c43;
+}
+.add.active-operator > *,
+.minus.active-operator > *,
+.mult.active-operator > *,
+.div.active-operator > * {
+  color: #274c43;
+}
+
 .add:hover {
   background-color: #6ee06e;
-}
-.add:hover > * {
-  color: #274c43;
 }
 .add.active-operator {
   background-color: #6ee06e;
   border-radius: 5px;
 }
-.add.active-operator > * {
-  color: #274c43;
-}
 
 .minus:hover {
   background-color: #00bdff;
-}
-.minus:hover > * {
-  color: #274c43;
 }
 .minus.active-operator {
   background-color: #00bdff;
   border-radius: 5px;
 }
-.minus.active-operator > * {
-  color: #274c43;
-}
 
 .mult:hover {
   background-color: #f5ba42;
-}
-.mult:hover > * {
-  color: #274c43;
 }
 .mult.active-operator {
   background-color: #f5ba42;
   border-radius: 5px;
 }
-.mult.active-operator > * {
-  color: #274c43;
-}
 
 .div:hover {
   background-color: #e46fe4;
 }
-.div:hover > * {
-  color: #274c43;
-}
 .div.active-operator {
   background-color: #e46fe4;
   border-radius: 5px;
-}
-.div.active-operator > * {
-  color: #274c43;
 }
 
 .plus-icon {
@@ -912,7 +913,7 @@ body {
 }
 
 #range-input {
-  --thumb-color:green;
+  --thumb-color: green;
   -webkit-appearance: none;
   width: 30vw;
   min-width: 280px;
@@ -1006,7 +1007,8 @@ body {
   justify-content: center;
 }
 
-.activity-title, .activity-type {
+.activity-title,
+.activity-type {
   text-align: center;
 }
 
@@ -1040,7 +1042,9 @@ body {
   color: #eae6df;
 }
 
-.header, .activity-title, .activity-type {
+.header,
+.activity-title,
+.activity-type {
   font-family: "pangolin", cursive;
   font-size: 26px;
   text-align: center;
@@ -1049,7 +1053,8 @@ body {
   color: #eae6df;
 }
 
-.activity-title, .activity-type {
+.activity-title,
+.activity-type {
   height: 40px;
   max-width: 200px;
 }
@@ -1092,7 +1097,9 @@ body {
   padding-bottom: 0;
 }
 
-.curr-score-container, .high-score-container, .game-correctness .correctness {
+.curr-score-container,
+.high-score-container,
+.game-correctness .correctness {
   margin: 0.2em;
   padding: 0;
 }
@@ -1143,7 +1150,11 @@ body {
   display: none;
 }
 
-.activity-menu-container, .operator-menu-container, .difficulty-menu-container, .real-menu-container, .practice-menu-container {
+.activity-menu-container,
+.operator-menu-container,
+.difficulty-menu-container,
+.real-menu-container,
+.practice-menu-container {
   flex-direction: column;
 }
 
@@ -1156,7 +1167,10 @@ body {
 }
 
 /* Container */
-.login-container, .signup-container, .forgot-password-container, .forget-username-container {
+.login-container,
+.signup-container,
+.forgot-password-container,
+.forget-username-container {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -1164,7 +1178,10 @@ body {
 }
 
 /* Headings */
-.login-header, .signup-header, .forgot-password-header, .forgot-username-header {
+.login-header,
+.signup-header,
+.forgot-password-header,
+.forgot-username-header {
   margin-top: 0;
   margin-bottom: 20px;
   font-size: 28px;
@@ -1176,11 +1193,17 @@ body {
 }
 
 /* Form */
-.login-form-group, .signup-form-group, .forgot-password-form-group, .forgot-username-form-group {
+.login-form-group,
+.signup-form-group,
+.forgot-password-form-group,
+.forgot-username-form-group {
   margin-bottom: 20px;
 }
 
-.signin-button-group, .play-as-guest, .forgot-password-form-button, .forgot-username-form-button {
+.signin-button-group,
+.play-as-guest,
+.forgot-password-form-button,
+.forgot-username-form-button {
   width: 100%;
 }
 
@@ -1202,9 +1225,10 @@ body {
   outline: 0;
   font-size: 14px;
   line-height: 1.5;
-  height: 40px;
+  height: 30px;
 }
-.form-input[type=text]:active, .form-input[type=text] :focus,
+.form-input[type=text]:active,
+.form-input[type=text] :focus,
 .form-input[type=password]:active,
 .form-input[type=password] :focus,
 .form-input[type=email]:active,
@@ -1213,7 +1237,10 @@ body {
   outline: 0;
 }
 
-.login-input::placeholder, .signup-input::placeholder, .forgot-password-input::placeholder, .forgot-username-input::placeholder {
+.login-input::placeholder,
+.signup-input::placeholder,
+.forgot-password-input::placeholder,
+.forgot-username-input::placeholder {
   font-size: 11px;
 }
 
@@ -1259,18 +1286,29 @@ body {
   color: #eae6df;
 }
 
-.login-form, .signup-form, .forgot-password-form, .forgot-username-form {
+.login-form,
+.signup-form,
+.forgot-password-form,
+.forgot-username-form {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.login-form-group, .signup-form-group, .forgot-password-form-group, .forgot-username-form-group, .create-account-form-group {
+.login-form-group,
+.signup-form-group,
+.forgot-password-form-group,
+.forgot-username-form-group,
+.create-account-form-group {
   width: 100%;
 }
 
-.login-form-button, .signup-form-button, .forgot-password-form-button, .forgot-username-form-button, .create-account-form-button {
+.login-form-button,
+.signup-form-button,
+.forgot-password-form-button,
+.forgot-username-form-button,
+.create-account-form-button {
   width: 100%;
   padding: 10px;
   font-family: "Roboto";
@@ -1292,7 +1330,8 @@ body {
   background-color: #6ee06e;
 }
 
-.login-blocks, .google-block {
+.login-blocks,
+.google-block {
   min-height: 140px;
   display: flex;
   align-items: center;
@@ -1407,33 +1446,49 @@ body {
   margin-bottom: 0;
 }
 
-.forgot-text-container, .forgot-links-container, .login-create-account-container, .signup-login-link-container, .forgot-password-to-login-container, .forgot-username-to-login-container, .forgot-password-username-container {
+.forgot-text-container,
+.forgot-links-container,
+.login-create-account-container,
+.signup-login-link-container,
+.forgot-password-to-login-container,
+.forgot-username-to-login-container,
+.forgot-password-username-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
 }
 
-.forgot-text-container, .forgot-links-container, .login-create-account-container {
+.forgot-text-container,
+.forgot-links-container,
+.login-create-account-container {
   margin-bottom: 5px;
 }
 
-.forgot-password-label, .forgot-username-label {
+.forgot-password-label,
+.forgot-username-label {
   color: #eae6df;
   font-size: 12px;
   font-family: roboto;
 }
 
-.forgot-password-to-login-container, .forgot-username-to-login-container, .forgot-password-username-container {
+.forgot-password-to-login-container,
+.forgot-username-to-login-container,
+.forgot-password-username-container {
   margin-top: 20px;
   justify-content: center;
 }
 
-.forgot-password-shell, .forgot-username-shell {
+.forgot-password-shell,
+.forgot-username-shell {
   width: 264px;
 }
 
-.login-create-account-text, .signup-login-link-text, .forgot-password-to-login-text, .forgot-username-to-login-text, .forgot-password-username-text {
+.login-create-account-text,
+.signup-login-link-text,
+.forgot-password-to-login-text,
+.forgot-username-to-login-text,
+.forgot-password-username-text {
   color: #eae6df;
   color: #dbd9d6;
   font-family: "roboto";
@@ -1442,7 +1497,12 @@ body {
   text-decoration: auto;
 }
 
-.forgot-text-link, .login-create-account-link, .signup-login-link, .forgot-password-to-login-link, .forgot-username-to-login-link, .forgot-password-username-link {
+.forgot-text-link,
+.login-create-account-link,
+.signup-login-link,
+.forgot-password-to-login-link,
+.forgot-username-to-login-link,
+.forgot-password-username-link {
   color: #eae6df;
   color: #dbd9d6;
   text-decoration: auto;
@@ -1450,20 +1510,49 @@ body {
   font-size: 11px;
   text-align: center;
 }
-.forgot-text-link:visited, .login-create-account-link:visited, .signup-login-link:visited, .forgot-password-to-login-link:visited, .forgot-username-to-login-link:visited, .forgot-password-username-link:visited {
+.forgot-text-link:visited,
+.login-create-account-link:visited,
+.signup-login-link:visited,
+.forgot-password-to-login-link:visited,
+.forgot-username-to-login-link:visited,
+.forgot-password-username-link:visited {
   color: #eae6df;
 }
-.forgot-text-link:link, .login-create-account-link:link, .signup-login-link:link, .forgot-password-to-login-link:link, .forgot-username-to-login-link:link, .forgot-password-username-link:link {
+.forgot-text-link:link,
+.login-create-account-link:link,
+.signup-login-link:link,
+.forgot-password-to-login-link:link,
+.forgot-username-to-login-link:link,
+.forgot-password-username-link:link {
   color: #eae6df;
 }
-.forgot-text-link:hover, .login-create-account-link:hover, .signup-login-link:hover, .forgot-password-to-login-link:hover, .forgot-username-to-login-link:hover, .forgot-password-username-link:hover {
+.forgot-text-link:hover,
+.login-create-account-link:hover,
+.signup-login-link:hover,
+.forgot-password-to-login-link:hover,
+.forgot-username-to-login-link:hover,
+.forgot-password-username-link:hover {
   color: #d0dbe7;
 }
-.forgot-text-link:active, .forgot-text-link :focus, .login-create-account-link:active, .login-create-account-link :focus, .signup-login-link:active, .signup-login-link :focus, .forgot-password-to-login-link:active, .forgot-password-to-login-link :focus, .forgot-username-to-login-link:active, .forgot-username-to-login-link :focus, .forgot-password-username-link:active, .forgot-password-username-link :focus {
+.forgot-text-link:active,
+.forgot-text-link :focus,
+.login-create-account-link:active,
+.login-create-account-link :focus,
+.signup-login-link:active,
+.signup-login-link :focus,
+.forgot-password-to-login-link:active,
+.forgot-password-to-login-link :focus,
+.forgot-username-to-login-link:active,
+.forgot-username-to-login-link :focus,
+.forgot-password-username-link:active,
+.forgot-password-username-link :focus {
   color: #a5c1dd;
 }
 
-.login-create-account-text, .login-create-account-link, .signup-login-link-text, .signup-login-link {
+.login-create-account-text,
+.login-create-account-link,
+.signup-login-link-text,
+.signup-login-link {
   font-size: 12px;
 }
 
@@ -1481,7 +1570,9 @@ body {
   width: min-content;
 }
 
-.mc-quiz-stats, .mc-question-number, .mc-num-correct {
+.mc-quiz-stats,
+.mc-question-number,
+.mc-num-correct {
   display: flex;
   color: #eae6df;
   font-size: 1em;
@@ -1492,12 +1583,14 @@ body {
   padding-top: 10px;
 }
 
-.mc-question-number, .mc-num-correct {
+.mc-question-number,
+.mc-num-correct {
   padding-top: 10px;
   flex-direction: row;
   align-items: center;
 }
-.mc-question-number > p, .mc-num-correct > p {
+.mc-question-number > p,
+.mc-num-correct > p {
   padding-right: 10px;
 }
 
@@ -1511,33 +1604,38 @@ body {
   font-family: "Roboto";
 }
 
-.create-account-container, .go-to-login {
+.create-account-container,
+.go-to-login {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.create-account-label, .have-account-label {
+.create-account-label,
+.have-account-label {
   justify-content: flex-end;
   font-size: 12px;
   font-family: "Roboto";
   color: #eae6df;
 }
 
-.create-account-link, .go-to-login-button {
+.create-account-link,
+.go-to-login-button {
   text-decoration: underline;
   justify-content: flex-start;
   color: #eae6df;
 }
 
-.new-account-button, .go-to-login-button {
+.new-account-button,
+.go-to-login-button {
   background: none;
   border: none;
   outline: none;
   margin-left: 20px;
 }
 
-.login-flash-message, .signup-flash-message {
+.login-flash-message,
+.signup-flash-message {
   width: 100%;
   height: auto;
   padding: 10px;
@@ -1547,22 +1645,30 @@ body {
   text-align: center;
 }
 
-.login-flash-message.error, .signup-flash-message.error, .forgot-password-flash-message.error, .forgot-username-flash-message.error {
+.login-flash-message.error,
+.signup-flash-message.error,
+.forgot-password-flash-message.error,
+.forgot-username-flash-message.error {
   background-color: pink;
   color: red;
   font-family: roboto;
   font-size: 12px;
   padding: 10px 20px;
   font-weight: 800;
+  margin: 5px;
 }
 
-.login-flash-message.success, .signup-flash-message.success, .forgot-password-flash-message.success, .forgot-username-flash-message.success {
+.login-flash-message.success,
+.signup-flash-message.success,
+.forgot-password-flash-message.success,
+.forgot-username-flash-message.success {
   background-color: #6bd881;
   color: #104b0f;
   font-family: roboto;
   font-size: 12px;
   padding: 10px 20px;
   font-weight: 800;
+  margin: 5px;
 }
 
 /* The Modal (background) */
@@ -1571,7 +1677,8 @@ body {
   margin-bottom: 80px;
 }
 
-.signup-top-left, .signup-bottom-right {
+.signup-top-left,
+.signup-bottom-right {
   width: 264px;
   display: flex;
   flex-direction: column;
