@@ -80,7 +80,9 @@
     display: none;
     justify-content: center;
 }
-
+.mc-container{
+    display: flex;
+}
 .choose-option {
     margin: 10px;
     height: 70px;

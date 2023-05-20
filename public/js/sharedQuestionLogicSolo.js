@@ -77,7 +77,7 @@ export function newQuestion(type, operators, options) {
 
         // If the type is "multiple-choice-quiz", load the "mc-quiz" section
         case "multiple-choice-quiz":
-            utilMethods.loadSection("mc-quiz")
+            // utilMethods.loadSection("mc-quiz")
 
             // Set the values of num1, num2, and op1 based on the multiple-choice quiz question
             num1 = mcQuizNumOne;
@@ -87,7 +87,7 @@ export function newQuestion(type, operators, options) {
 
         // If the type is "quiz", load the "quiz" section
         case "quiz":
-            utilMethods.loadSection("quiz")
+            // utilMethods.loadSection("quiz")
 
             // Set the values of num1, num2, and op1 based on the quiz question
             num1 = quizNumOne;
@@ -97,7 +97,7 @@ export function newQuestion(type, operators, options) {
 
         // If the type is "game", load the "game" section
         case "game":
-            utilMethods.loadSection("game")
+            // utilMethods.loadSection("game")
 
             // Set the values of num1, num2, and op1 based on the game question
             num1 = gameNumOne;

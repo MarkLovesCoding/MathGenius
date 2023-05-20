@@ -55,24 +55,25 @@ router.get('/practice', requireAuth, (req, res) => {
   var flashData = req.flash('flashData')[0]
 
   const userData = req.session.userData || {};
-  res.render('practice', { flashData, userData });
+  res.render('practiceSolo', { flashData, userData });
 });
 
+router.get('/flash', requireAuth, (req, res) => {
 
-router.get('/landing', (req, res) => {
+  var flashData = req.flash('flashData')[0]
 
-  const flashMessage = req.flash('flashAlert')[0]
-  var loginMessage = ''
-  var messageType = ''
-  if (flashMessage) {
-    messageType = flashMessage.type;
-    loginMessage = flashMessage.message;
-  }
-  res.render('landing', {
-    messageType: messageType,
-    loginMessage: loginMessage
-  });
+  const userData = req.session.userData || {};
+  res.render('flash', { flashData, userData });
 });
+
+router.get('/multiple-choice', requireAuth, (req, res) => {
+
+  var flashData = req.flash('flashData')[0]
+
+  const userData = req.session.userData || {};
+  res.render('multipleChoice', { flashData, userData });
+});
+
 
 router.get('/login', (req, res) => {
 

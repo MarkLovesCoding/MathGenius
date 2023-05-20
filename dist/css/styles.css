@@ -577,6 +577,10 @@
   justify-content: center;
 }
 
+.mc-container {
+  display: flex;
+}
+
 .choose-option {
   margin: 10px;
   height: 70px;
@@ -1388,13 +1392,13 @@
 }
 
 .flash-container {
-  display: none;
+  display: flex;
 }
 
 .flash-card-container {
   width: 80%;
   max-width: 250px;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
