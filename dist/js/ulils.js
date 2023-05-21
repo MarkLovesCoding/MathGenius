@@ -244,3 +244,14 @@ export function correctnessView(bool, element) {
     element.textContent = "Incorrect";
   }
 }
+
+//   
+
+export function convertStringToArray(inputString) {
+  // Remove all commas from the input string
+  const stringWithoutCommas = inputString.replace(/,/g, '');
+
+  // Create an array with each character in the modified string
+  const characterArray = stringWithoutCommas.split('');
+  return characterArray;
+}

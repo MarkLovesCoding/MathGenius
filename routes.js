@@ -48,7 +48,7 @@ router.get('/tests', requireAuth, (req, res) => {
   var flashData = req.flash('flashData')[0]
 
   const userData = req.session.userData || {};
-  res.render('tests', { flashData, userData });
+  res.render('testsSolo', { flashData, userData });
 });
 router.get('/practice', requireAuth, (req, res) => {
 
@@ -74,6 +74,27 @@ router.get('/multiple-choice', requireAuth, (req, res) => {
   res.render('multipleChoice', { flashData, userData });
 });
 
+router.get('/multiple-choice-quiz', requireAuth, (req, res) => {
+
+  var flashData = req.flash('flashData')[0]
+
+  const userData = req.session.userData || {};
+  res.render('multipleChoiceQuiz', { flashData, userData });
+});
+router.get('/pop-quiz', requireAuth, (req, res) => {
+
+  var flashData = req.flash('flashData')[0]
+
+  const userData = req.session.userData || {};
+  res.render('popQuiz', { flashData, userData });
+});
+router.get('/high-score-challenge', requireAuth, (req, res) => {
+
+  var flashData = req.flash('flashData')[0]
+
+  const userData = req.session.userData || {};
+  res.render('highScoreChallenge', { flashData, userData });
+});
 
 router.get('/login', (req, res) => {
 

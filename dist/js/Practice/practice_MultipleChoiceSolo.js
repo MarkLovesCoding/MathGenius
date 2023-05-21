@@ -77,16 +77,8 @@ export function mcCreateOptions(n1, n2, o1) {
     mcOptions.appendChild(optionEl);
   });
 }
-function convertStringToArray(inputString) {
-  // Remove all commas from the input string
-  const stringWithoutCommas = inputString.replace(/,/g, '');
-
-  // Create an array with each character in the modified string
-  const characterArray = stringWithoutCommas.split('');
-  return characterArray;
-}
 window.onload = function () {
-  let operators = convertStringToArray(sessionStorage.getItem("activeOperators"));
+  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
   state.activeOperators = operators;
   sessionStorage.setItem("activeOperators", operators);
   // sessionStorage.setItem("",operators)

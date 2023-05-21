@@ -77,12 +77,10 @@
 
 .mc-container,
 .mc-quiz-container {
-    display: none;
+    display: flex;
     justify-content: center;
 }
-.mc-container{
-    display: flex;
-}
+
 .choose-option {
     margin: 10px;
     height: 70px;

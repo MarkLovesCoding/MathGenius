@@ -290,3 +290,15 @@ export function getStyle(el, styleProp) {
 
 
 
+//   
+
+export function convertStringToArray(inputString) {
+    // Remove all commas from the input string
+    const stringWithoutCommas = inputString.replace(/,/g, '');
+  
+    // Create an array with each character in the modified string
+    const characterArray = stringWithoutCommas.split('');
+  
+    return characterArray;
+  }
+

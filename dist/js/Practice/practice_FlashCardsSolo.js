@@ -2,14 +2,6 @@ import * as utilMethods from '../ulils.js';
 import { state } from '../state.js';
 import * as questionLogic from '../sharedQuestionLogicSolo.js';
 import { flashAnswer, flashCard, flashNumOne, flashNumTwo, flashOpOne } from '../domElements.js';
-function convertStringToArray(inputString) {
-  // Remove all commas from the input string
-  const stringWithoutCommas = inputString.replace(/,/g, '');
-
-  // Create an array with each character in the modified string
-  const characterArray = stringWithoutCommas.split('');
-  return characterArray;
-}
 function flashHandler(e) {
   const ans = utilMethods.calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML); // Calculate the correct answer using the flashNumOne, flashNumTwo, and flashOpOne elements
   flashAnswer.textContent = ans; // Display the correct answer in the flashAnswer element
@@ -25,8 +17,9 @@ flashCard.addEventListener("mousedown", flashHandler, false); // Add a mousedown
 
 ;
 window.onload = function () {
-  let operators = convertStringToArray(sessionStorage.getItem("activeOperators"));
-  sessionStorage.setItem("activeOperators", operators);
+  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
+  state.activeOperators = sessionStorage.getItem("activeOperators");
+
   // sessionStorage.setItem("",operators)
   // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
   questionLogic.newQuestion('flash', operators);
