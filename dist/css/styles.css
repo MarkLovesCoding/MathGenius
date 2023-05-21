@@ -2334,6 +2334,68 @@ body {
     justify-content: center;
   }
 }
+@media only screen and (max-height: 580px) and (orientation: landscape) {
+  .divider {
+    display: none;
+  }
+
+  .login-bottom {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .login-bottom-two {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 225px;
+  }
+
+  .login-left-upper {
+    min-height: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .google-login-group {
+    margin-bottom: 0;
+  }
+
+  .play-as-guest {
+    margin-bottom: 0;
+  }
+
+  .create-account-form-group {
+    margin-bottom: 0;
+  }
+
+  .signup-landscape-bottom {
+    display: flex;
+    width: 600px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .login-form,
+.signup-form,
+.forgot-password-form {
+    justify-content: flex-end;
+  }
+
+  .login-blocks,
+.google-block {
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 @media only screen and (max-width: 330px) {
   .google-block {
     min-height: 60px;
