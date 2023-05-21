@@ -53,7 +53,8 @@
     overflow-x: hidden;
     width: 100%;
     max-width: 290px;
-    max-height: calc(100vh - 60px - 125px - 110px);
+    // max-height: calc(100vh - 60px - 125px - 110px);
+    max-height:60vh;
     border: 2px solid transparent;
 
     &:hover {

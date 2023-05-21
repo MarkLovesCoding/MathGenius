@@ -226,7 +226,13 @@ body {
   width: 240px;
   color: $chalk-white;
 }
-
+.welcome-header{
+  @include center-flex;
+  flex-direction:column;
+  >*{
+    padding:10px 0px;
+  }
+}
 .hide-from-view {
   visibility: hidden;
 }

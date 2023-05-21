@@ -218,9 +218,11 @@
         align-items: center;
         justify-content: center;
         display: flex;
-        padding-right: 25px;
     }
+    .welcome-top{
+        padding-right: 25px;
 
+    }
     .activity-menu-container,
     .operator-menu-container,
     .difficulty-menu-container,
@@ -512,7 +514,9 @@
     .header {
         font-size: 24px;
     }
-
+    .hi,.welcome-header{
+        display:none;
+    }
 }
 
 
@@ -699,5 +703,10 @@
 
     .nav-buttons {
         margin-top: 0;
+    }
+}
+@media screen and (min-width:768px) and (max-height:500px) {
+    .profile-section{
+        flex-direction:row;
     }
 }

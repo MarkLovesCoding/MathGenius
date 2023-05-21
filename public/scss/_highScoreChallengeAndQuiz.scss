@@ -38,11 +38,6 @@
   color: $chalk-white;
 }
 
-.level-text {
-  margin-right: 10px;
-  margin-bottom: 10px;
-  color: $chalk-white;
-}
 
 .actual {
   color: $chalk-white;
@@ -60,6 +55,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   transition: all 200 ease;
+  & .input{
+    margin-left:10px;
+  }
 }
 
 .correctness-container {
@@ -80,6 +78,15 @@
   }
 }
 
+.level-text, .level-number {
+
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: $chalk-white;
+}
+.level-number{
+  font-size:1.8em;
+}
 .progress-container {
   color: $chalk-white;
   width: 70%;
