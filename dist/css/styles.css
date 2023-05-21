@@ -2152,7 +2152,7 @@ body {
   font-size: 20px;
 }
 
-@media screen and (max-height: 650px) {
+@media screen and (max-height: 720px) {
   .expanded-menu.active {
     transition: all 0.5s ease;
     width: calc(100vw - 30px - 4vw);
@@ -2682,7 +2682,7 @@ body {
     margin-bottom: 0px;
   }
 }
-@media only screen and (orientation: landscape) and (max-height: 650px) and (min-aspect-ratio: 1.75) {
+@media only screen and (orientation: landscape) and (max-height: 720px) and (min-aspect-ratio: 1.75) {
   .inner {
     margin: 0 10px;
   }
