@@ -295,10 +295,11 @@ export function getStyle(el, styleProp) {
 export function convertStringToArray(inputString) {
     // Remove all commas from the input string
     const stringWithoutCommas = inputString.replace(/,/g, '');
+    console.log(stringWithoutCommas);
   
     // Create an array with each character in the modified string
     const characterArray = stringWithoutCommas.split('');
-  
+    console.log(characterArray);
     return characterArray;
   }
 

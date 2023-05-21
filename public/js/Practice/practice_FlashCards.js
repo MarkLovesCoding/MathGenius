@@ -27,7 +27,7 @@ flashCard.addEventListener("mousedown", flashHandler, false); // Add a mousedown
 window.onload = function(){
   let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"))
 
-  state.activeOperators = sessionStorage.getItem("activeOperators")
+  state.activeOperators = operators
 
   // sessionStorage.setItem("",operators)
   // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
