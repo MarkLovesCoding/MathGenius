@@ -1762,7 +1762,7 @@ body {
   font-family: "pangolin", cursive;
   position: relative;
   min-width: 100vw;
-  height: 100vh;
+  height: 100%;
   min-height: -webkit-fill-available;
 }
 
