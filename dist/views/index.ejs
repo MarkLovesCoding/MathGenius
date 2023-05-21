@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description"
+    content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Math Genius</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+
+
+
+  <!-- <div class="user-data-holder" id="user-data-holder">
+    <% if (userData) { %>
+      <span>
+        <%= userData.userId %>
+      </span>
+      <span>
+        <%= userData.name %>
+      </span>
+      <span>
+        <%= userData.imageSrc %>
+      </span>
+
+      <% } %>
+  </div> -->
+  <% if (flashData) { %>
+    <% if(flashData.flashMessage=="success" ){ %>
+      <div class="success-container" id="success">
+        <svg class="success-svg" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path class="success-circle"
+              d="M13 1C6.372583 1 1 6.372583 1 13s5.372583 12 12 12 12-5.372583 12-12S19.627417 1 13 1z" />
+            <path class="succes-tick" d="M6.5 13.5L10 17 l8.808621-8.308621" />
+          </g>
+        </svg>
+      </div>
+      <%} %>
+        <%}%>
+
+
+
+
+
+          <!-- 
+    <div id="burger-container" class="burger-container box-container">
+
+      <div class="burger open" id="burger">
+       <span></span>
+       <span></span>
+       <span></span>
+
+
+      </div>
+
+    </div> -->
+
+
+
+          <%- include('partials/_burger') %>
+
+          <%- include('partials/_brand') %>
+
+
+
+            <div id="activity-alert-modal" class="message-modal">
+              <div class="message-intro">Please Select An Activity </div>
+            </div>
+            <div id="operator-alert-modal" class="message-modal">
+              <div class="message-intro">Please Select One or More Operators </div>
+            </div>
+            <div id="quiz-modal" class="message-modal">
+              <div class="message-intro">You got <span id="amountCorrect" class="amountCorrect"></span> /10 Correct!
+                </br> That's <span id="amountCorrectPercentage" class="amountCorrect"> </span>
+              </div>
+            </div>
+            <div id="mc-quiz-modal" class="message-modal">
+              <div class="message-intro">You got <span id="mc-quiz-amountCorrect" class="amountCorrect"></span> /10
+                Correct! </br> That's <span id="mc-quiz-amountCorrectPercentage" class="amountCorrect"> </span>
+              </div>
+            </div>
+
+            <div class="main-container" id="main-container">
+
+
+
+
+
+
+
+
+
+
+
+              <div class="activity-menu-container display-container" id="activity-menu-container">
+                <div class="activity-group">
+                  <div class="top welcome-top">
+           
+                    <div class="welcome-message" id="welcome-message">
+                
+                      <% if (userData) { %>
+
+                        <% if (userData.name) { %>
+                    
+                          <a class="profile-link-main" href="/profile">
+
+                            <% if (userData.imageSrc) { %>
+                              <div class="profile-img-container">
+                                <img id="profile-user-avatar" class="profile-user-avatar" src="" alt="User Image" />
+                              <!-- <div class="profile-img-main">
+                                <img src="" alt=""> -->
+                              </div>
+                              <%}%>
+                           <span class="hi">Hi </span> <%= userData.name %>
+
+
+                          </a>
+                          <%} %>
+                            <%}%>
+
+                    </div>
+                    <div class="header welcome-header">
+                      <div>Welcome back to Math Genius.</div>
+                     <div>Have fun!</div>   
+                  </div>
+
+                  </div>
+                  <div class="middle">
+                    <div class="middle-inner">
+
+
+
+                      <div class="inner">
+                        <div class=" icon-container real activity-choice" id="new-real" data-type="real">
+                          <p></p>
+                          <i class="real-icon icon fas fa-square-check fa-large"></i>
+
+
+                        </div>
+                        <p class="icon-text">Tests</p>
+                      </div>
+
+
+
+
+
+                      <div class="inner">
+                        <div class=" icon-container practice activity-choice" id="new-practice" data-type="practice">
+                          <p></p>
+                          <i class=" practice-icon icon fas fa-calculator fa-large"></i>
+                        </div>
+                        <p class="icon-text">Practice</p>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="nav-buttons">
+                  <div class="nav-right"> <button title="nav-button-forward" class="nav-button"
+                      id="activity-menu-forward">
+
+                      <i class=" forward-arrow fas fa-arrow-right fa-lg"></i></button></div>
+                </div> -->
+                <!-- <div class="logout-container">
+                  <button title="logout-button" class="logout-btn" id="logout-btn">
+                    <div class="logout-text">Logout</div>
+                  </button>
+                </div> -->
+
+              </div>
+
+
+            </div>
+            <script type="module" src="/js/success.js"></script>
+
+            <!-- <script type="module" src="/js/index.js"></script> -->
+            <!-- <script type="module" src="/js/formInteraction.js"></script> -->
+
+
+            <script type="module" src="/js/burger.js"></script>
+            <script type="module" src="/js/frontNavigation.js"></script>
+            <script type="module" src="/js/landing-profile-load.js"></script>
+
+
+
+
+</body>
+
+</html>
