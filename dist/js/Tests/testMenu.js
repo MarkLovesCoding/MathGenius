@@ -64,6 +64,7 @@ window.onload = function () {
   operatorMenuForward.addEventListener("click", e => {
     // Update the active operators based on the user's selection
     state.activeOperators = updateOperators(operatorChoices);
+    sessionStorage.setItem("activeOperators", state.activeOperators);
 
     // Show an error message if no operators are selected, and prevent the page from reloading
     if (state.activeOperators.length == 0) {
@@ -98,9 +99,15 @@ window.onload = function () {
     // }
     // else 
     if (state.activity === "multiple-choice-quiz") {
-      questionLogic.newQuestion(state.activity, state.activeOperators, mcQuizCreateOptions);
-    } else {
-      questionLogic.newQuestion(state.activity, state.activeOperators);
+      window.location.href = "/multiple-choice-quiz";
+
+      // questionLogic.newQuestion(state.activity, state.activeOperators, mcQuizCreateOptions)
+    } else if (state.activity == "game") {
+      window.location.href = "/high-score-challenge";
+
+      // questionLogic.newQuestion(state.activity, state.activeOperators)
+    } else if (state.activity == "quiz") {
+      window.location.href = "pop-quiz";
     }
   });
 

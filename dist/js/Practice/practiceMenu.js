@@ -1,5 +1,6 @@
 import * as utilMethods from '../ulils.js';
-import { mcCreateOptions } from './practice_MultipleChoice.js';
+// import { mcCreateOptions } from './practice_MultipleChoice.js';
+
 import { state } from '../state.js';
 import * as questionLogic from '../sharedQuestionLogic.js';
 window.onload = function () {
@@ -69,7 +70,8 @@ window.onload = function () {
   operatorMenuForward.addEventListener("click", e => {
     // Update the active operators based on the user's selection
     state.activeOperators = updateOperators(operatorChoices);
-
+    sessionStorage.setItem("activeOperators", state.activeOperators);
+    // console.log(state.activeOperators)
     // Show an error message if no operators are selected, and prevent the page from reloading
     if (state.activeOperators.length == 0) {
       utilMethods.visibilityTimedToggle(true, operatorAlert, 1100);
@@ -99,9 +101,12 @@ window.onload = function () {
 
     // Generate a new question based on the chosen activity and active operators
     if (state.activity === "multiple-choice") {
-      questionLogic.newQuestion(state.activity, state.activeOperators, mcCreateOptions);
+      window.location.href = "/multiple-choice";
+
+      // questionLogic.newQuestion(state.activity, state.activeOperators, mcCreateOptions)
     } else {
-      questionLogic.newQuestion(state.activity, state.activeOperators);
+      window.location.href = "/flash";
+      // questionLogic.newQuestion(state.activity, state.activeOperators)
     }
   });
 

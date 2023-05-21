@@ -170,3 +170,13 @@ function gameCheckAnswerHandler(e) {
 
 gameAnswerInput.addEventListener("input", gameUpdateAnswerHandler); // Add an event listener to the gameAnswerInput element that updates the state with the user's answer
 gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler); // Add an event listener to the gameAnswerSubmit element that checks the user's answer and updates the gameActual element
+window.onload = function () {
+  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
+  // state.activeOperators = sessionStorage.getItem("activeOperators")
+  state.activeOperators = operators;
+
+  // sessionStorage.setItem("activeOperators",operators)
+  // sessionStorage.setItem("",operators)
+  // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
+  questionLogic.newQuestion('game', operators);
+};

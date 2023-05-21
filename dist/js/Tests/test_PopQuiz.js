@@ -137,3 +137,15 @@ function quizAnswerHandler(e) {
 
 quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler); // Add an event listener to the quizAnswerInput element that updates the state with the user's answer
 quizAnswerForm.addEventListener("submit", quizAnswerHandler); // Add an event listener to the quizAnswerForm element that checks the user's answer
+
+window.onload = function () {
+  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
+  // console.log(operators)
+  // state.activeOperators = sessionStorage.getItem("activeOperators")
+  state.activeOperators = operators;
+
+  // sessionStorage.setItem("activeOperators",operators)
+  // sessionStorage.setItem("",operators)
+  // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
+  questionLogic.newQuestion('quiz', operators);
+};

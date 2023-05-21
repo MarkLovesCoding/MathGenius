@@ -130,3 +130,12 @@ export function mcQuizCreateOptions(n1, n2, o1) {
 
 ///
 ///
+window.onload = function () {
+  console.log("Get:", sessionStorage.getItem("activeOperators"));
+  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
+  state.activeOperators = operators;
+  sessionStorage.setItem("activeOperators", operators);
+  // sessionStorage.setItem("",operators)
+  // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
+  questionLogic.newQuestion('multiple-choice-quiz', operators, mcQuizCreateOptions);
+};

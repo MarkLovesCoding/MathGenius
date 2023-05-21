@@ -77,7 +77,14 @@ export function mcCreateOptions(n1, n2, o1) {
     mcOptions.appendChild(optionEl);
   });
 }
-
+window.onload = function () {
+  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
+  state.activeOperators = operators;
+  sessionStorage.setItem("activeOperators", operators);
+  // sessionStorage.setItem("",operators)
+  // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
+  questionLogic.newQuestion('multiple-choice', operators, mcCreateOptions);
+};
 //
 //END MC
 ////////////////////////////////////////////////////////////

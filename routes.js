@@ -48,52 +48,34 @@ router.get('/tests', requireAuth, (req, res) => {
   var flashData = req.flash('flashData')[0]
 
   const userData = req.session.userData || {};
-  res.render('testsSolo', { flashData, userData });
+  res.render('tests', { flashData, userData });
 });
 router.get('/practice', requireAuth, (req, res) => {
 
   var flashData = req.flash('flashData')[0]
 
   const userData = req.session.userData || {};
-  res.render('practiceSolo', { flashData, userData });
+  res.render('practice', { flashData, userData });
 });
 
 router.get('/flash', requireAuth, (req, res) => {
-
-  var flashData = req.flash('flashData')[0]
-
-  const userData = req.session.userData || {};
-  res.render('flash', { flashData, userData });
+  res.render('flash');
 });
 
 router.get('/multiple-choice', requireAuth, (req, res) => {
-
-  var flashData = req.flash('flashData')[0]
-
-  const userData = req.session.userData || {};
-  res.render('multipleChoice', { flashData, userData });
+  res.render('multipleChoice');
 });
 
 router.get('/multiple-choice-quiz', requireAuth, (req, res) => {
-
-  var flashData = req.flash('flashData')[0]
-
-  const userData = req.session.userData || {};
-  res.render('multipleChoiceQuiz', { flashData, userData });
+  res.render('multipleChoiceQuiz');
 });
+
 router.get('/pop-quiz', requireAuth, (req, res) => {
-
-  var flashData = req.flash('flashData')[0]
-
-  const userData = req.session.userData || {};
-  res.render('popQuiz', { flashData, userData });
+  res.render('popQuiz');
 });
+
 router.get('/high-score-challenge', requireAuth, (req, res) => {
-
-  var flashData = req.flash('flashData')[0]
-
-  const userData = req.session.userData || {};
-  res.render('highScoreChallenge', { flashData, userData });
+  res.render('highScoreChallenge');
 });
 
 router.get('/login', (req, res) => {

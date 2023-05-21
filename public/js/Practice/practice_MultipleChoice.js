@@ -85,6 +85,15 @@
   }
   
 
+
+  window.onload = function(){
+    let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"))
+    state.activeOperators=operators
+    sessionStorage.setItem("activeOperators",operators)
+    // sessionStorage.setItem("",operators)
+    // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
+    questionLogic.newQuestion('multiple-choice',operators,mcCreateOptions);
+  } 
   //
   //END MC
   ////////////////////////////////////////////////////////////

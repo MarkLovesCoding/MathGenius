@@ -24,3 +24,12 @@ function flashHandler(e) {
 flashCard.addEventListener("mousedown", flashHandler, false); // Add a mousedown event listener to the flashCard element that handles flipping the card and checking the answer
 
 ;
+window.onload = function(){
+  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"))
+
+  state.activeOperators = sessionStorage.getItem("activeOperators")
+
+  // sessionStorage.setItem("",operators)
+  // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
+  questionLogic.newQuestion('flash',operators);
+} 
