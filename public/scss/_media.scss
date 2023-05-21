@@ -1,4 +1,4 @@
-@media screen and (max-height: 650px) {
+@media screen and (max-height: 690px) {
     .expanded-menu.active {
         transition: all 0.5s ease;
         width: calc(100vw - 30px - 4vw);
@@ -19,6 +19,9 @@
         margin: 5px 0;
         text-align: center;
         padding: 10px;
+    }
+    .login-welcome-message{
+        display:none;
     }
 }
 
@@ -59,6 +62,7 @@
 
         max-width: fit-content;
     }
+    
 }
 
 
@@ -191,6 +195,7 @@
         flex-direction: column;
         justify-content: center;
     }
+
 }
 
 @media only screen and (max-width:330px) {

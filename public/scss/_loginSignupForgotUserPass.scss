@@ -427,3 +427,23 @@
 .google-block {
     min-height: 125px;
 }
+.login-welcome-message{
+    font-size:22px;
+    width:400px;
+    max-width:90vw;
+    text-align:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:$chalk-white;
+    margin:15px;
+    margin-bottom:25px;
+    >*{
+        padding:8px;
+    }
+    >.l3{
+        font-size:14px;
+        text-align: left;
+    }
+}

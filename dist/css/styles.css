@@ -1050,6 +1050,27 @@
   min-height: 125px;
 }
 
+.login-welcome-message {
+  font-size: 22px;
+  width: 400px;
+  max-width: 90vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #eae6df;
+  margin: 15px;
+  margin-bottom: 25px;
+}
+.login-welcome-message > * {
+  padding: 8px;
+}
+.login-welcome-message > .l3 {
+  font-size: 14px;
+  text-align: left;
+}
+
 .game-container,
 .quiz-container {
   display: flex;
@@ -2114,7 +2135,7 @@ body {
   font-size: 20px;
 }
 
-@media screen and (max-height: 650px) {
+@media screen and (max-height: 690px) {
   .expanded-menu.active {
     transition: all 0.5s ease;
     width: calc(100vw - 30px - 4vw);
@@ -2134,6 +2155,10 @@ body {
     margin: 5px 0;
     text-align: center;
     padding: 10px;
+  }
+
+  .login-welcome-message {
+    display: none;
   }
 }
 @media screen and (min-width: 1024px) {
