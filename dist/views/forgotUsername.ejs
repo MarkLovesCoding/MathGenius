@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description"
+    content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+
+  <title>Math Genius</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Roboto&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+
+
+  <div class="forgot-username-menu-container display-container" id="forgot-username-menu-container">
+    <title class="brand-title">Math Genius</title>
+    <div class="forgot-username-container">
+
+
+
+
+
+
+
+
+      <div class="forgot-username-top">
+        <h1 class="forgot-username-header">Get Username</h1>
+        <% if(passwordMessage) { %>
+          <div class="forgot-username-flash-message <%= messageType %>" id="forgot-username-flash-message">
+            <p>
+              <%=passwordMessage %>
+            </p>
+          </div>
+
+
+          <% } %>
+      </div>
+
+
+      <div class="forgot-username-bottom">
+
+
+
+
+        <form class="forgot-username-form" id="forgot-username-form" action="/forgot-username" method="POST">
+          <div>
+
+            <label class="forgot-username-label">Send username to your email:</label>
+            <div class="input-shell forgot-username-shell">
+              <i class="input-icon fa-regular fa-envelope"></i>
+              <div class="input-seperator"></div>
+              <input class="form-input" type="email" name="email" placeholder="Email"" required>
+            </div>
+
+
+          </div>
+    
+       
+            <button id=" forgot-username-button" title="forgot-username-button" class="forgot-username-form-button g-recaptcha"
+            data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitUsername' data-action='submit'
+                type="submit">Check Username</button>
+
+        </form>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+      <div class="forgot-links-container">
+        <div class="forgot-password-username-container">
+          <p class="forgot-password-username-text"></p><a class="forgot-password-username-link"
+          href="/forgot-password">Forgot Password?</a>
+        </div>
+   
+
+
+        <div class="forgot-username-to-login-container">
+          <p class="forgot-username-to-login-text"></p><a class="forgot-username-to-login-link" href="/login">Back to
+            Log in</a>
+        </div>
+      </div>
+
+
+
+      <!-- <form class="to-login-form" id="to-login" action="/login" method="GET">
+        <div>
+          <button title="back-to-login-button" class="back-to-login-button" type="submit">Back to Log in Page</button>
+        </div>
+      </form> -->
+    </div>
+  </div>
+
+
+
+  <script src="../js/resetPasswordAlert.js"></script>
+  <script src="../js/resetPasswordAuth.js"></script>
+  <script src="../js/recaptcha/forgotUsernameRecaptcha.js"></script>
+
+</body>
+
+</html>
