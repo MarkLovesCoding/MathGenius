@@ -1751,7 +1751,6 @@ html {
   width: auto;
   height: auto;
   min-height: -webkit-fill-available;
-  overflow: hidden;
 }
 
 body {
@@ -1764,7 +1763,7 @@ body {
   font-family: "pangolin", cursive;
   position: relative;
   min-width: 100vw;
-  height: auto;
+  height: 100vh;
   min-height: -webkit-fill-available;
 }
 

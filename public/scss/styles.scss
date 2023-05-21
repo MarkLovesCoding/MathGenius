@@ -27,7 +27,7 @@ html {
   width: auto;
   height: auto;
   min-height: -webkit-fill-available;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 body {
@@ -38,7 +38,7 @@ body {
   font-family: $chalkboardFont;
   position: relative;
   min-width: 100vw;
-  height: auto;
+  height: 100vh;
   min-height: -webkit-fill-available;
 }
 
