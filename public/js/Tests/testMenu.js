@@ -1,6 +1,6 @@
 
 
-import * as utilMethods from '../ulils.js';
+import * as utilMethods from '../utils.js';
 
 import { state } from '../state.js'
 
@@ -72,7 +72,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
   const operatorAlert = document.getElementById("operator-alert-modal")
-
+  const operatorContainer = document.getElementById("operator-menu-container");
+  const activityContainer = document.getElementById("real-menu-container");
+  const difficultyContainer = document.getElementById("difficulty-menu-container");
 
 
 
@@ -88,15 +90,18 @@ window.onload = function () {  //Ensure DOM is loaded before functions
       utilMethods.visibilityTimedToggle(true, operatorAlert, 1100)
       return;
     }
+    utilMethods.changeViewRight(operatorContainer,difficultyContainer);
 
     // Load the difficulty-menu section
-    utilMethods.loadSection("difficulty-menu")
+    // utilMethods.loadSection("difficulty-menu")
   })
 
 
   for (let el of operatorTestMenuBackwards) {
     el.addEventListener("click", (e) => {
-      utilMethods.loadSection("real-menu")
+      // utilMethods.loadSection("real-menu")
+    utilMethods.changeViewLeft(activityContainer,operatorContainer);
+
     })
   }
 
@@ -110,7 +115,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   // Handle the click event on the difficultyMenuBackwards button
   for (let el of difficultyMenuBackwards) {
     el.addEventListener("click", (e) => {
-      utilMethods.loadSection("operator-menu")
+    utilMethods.changeViewLeft(operatorContainer,difficultyContainer);
+
+      // utilMethods.loadSection("operator-menu")
     })
   }
 

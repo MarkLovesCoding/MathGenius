@@ -1,5 +1,6 @@
 import { state } from './state.js';
-import { loadSection } from './ulils.js';
+// import {loadSection} from './utils.js'
+
 const linkToTests = document.getElementById('new-real');
 linkToTests.addEventListener("click", function () {
   // navigate to a different page
@@ -17,4 +18,4 @@ linkToPractice.addEventListener("click", function () {
   //    loadSection('practice-menu')
 });
 
-const userProfile = document.getAnimations;
+// const userProfile = document.getAnimations

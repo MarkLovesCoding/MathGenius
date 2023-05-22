@@ -28,17 +28,6 @@ app.use(cors());
 // Set up Helmet.js configurations
 app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
-// app.use(helmet.contentSecurityPolicy({
-//   directives: {
-//     defaultSrc: ["'self'","https://www.google.com","https://www.gstatic.com"],
-//     scriptSrc: ["'self'","https://www.google.com","https://www.gstatic.com"],
-//     styleSrc: ["'self'", 'https://fonts.googleapis.com', 'https://cdnjs.cloudflare.com'],
-//     fontSrc: ["'self'", 'https://fonts.gstatic.com', 'https://cdnjs.cloudflare.com'],
-//     imgSrc: ["'self'", 'data:', 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com', 'blob:'],
-//     connectSrc: ["'self'"],
-//     formAction:["'self'","http://localhost:4000","https://www.mathgenius.ca"]
-//   }
-// }));
 
 
 app.use(helmet.referrerPolicy({ policy: 'same-origin' }));

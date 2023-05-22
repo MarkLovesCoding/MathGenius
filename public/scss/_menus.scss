@@ -92,7 +92,8 @@
 
 .operator-menu-container,
 .difficulty-menu-container {
-    display: none;
+    display: flex;
+    position:absolute;
 }
 
 .nav-button {
@@ -389,5 +390,17 @@
 .difficulty-menu-container,
 .real-menu-container,
 .practice-menu-container {
+    transition:left 0.5s ease-in-out;
+    position:absolute;
+    top:0;
     flex-direction: column;
+}
+
+.operator-menu-container,
+.difficulty-menu-container{
+    left:100%;
+}
+.real-menu-container,
+.practice-menu-container{
+    left:0;
 }

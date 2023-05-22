@@ -1,4 +1,4 @@
-import * as utilMethods from '../ulils.js';
+import * as utilMethods from '../utils.js';
 import { state } from '../state.js';
 import * as questionLogic from '../sharedQuestionLogic.js';
 
@@ -59,6 +59,9 @@ window.onload = function () {
   // const practiceChoices = document.querySelectorAll(".practice-choice")
 
   const operatorAlert = document.getElementById("operator-alert-modal");
+  const operatorContainer = document.getElementById("operator-menu-container");
+  const activityContainer = document.getElementById("real-menu-container");
+  const difficultyContainer = document.getElementById("difficulty-menu-container");
 
   // Handle the click event on the operatorMenuForward button
   operatorMenuForward.addEventListener("click", e => {
@@ -71,20 +74,25 @@ window.onload = function () {
       utilMethods.visibilityTimedToggle(true, operatorAlert, 1100);
       return;
     }
+    utilMethods.changeViewRight(operatorContainer, difficultyContainer);
 
     // Load the difficulty-menu section
-    utilMethods.loadSection("difficulty-menu");
+    // utilMethods.loadSection("difficulty-menu")
   });
+
   for (let el of operatorTestMenuBackwards) {
     el.addEventListener("click", e => {
-      utilMethods.loadSection("real-menu");
+      // utilMethods.loadSection("real-menu")
+      utilMethods.changeViewLeft(activityContainer, operatorContainer);
     });
   }
 
   // Handle the click event on the difficultyMenuBackwards button
   for (let el of difficultyMenuBackwards) {
     el.addEventListener("click", e => {
-      utilMethods.loadSection("operator-menu");
+      utilMethods.changeViewLeft(operatorContainer, difficultyContainer);
+
+      // utilMethods.loadSection("operator-menu")
     });
   }
 

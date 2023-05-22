@@ -82,3 +82,35 @@
         transform: translateX(0);
     }
 }
+
+
+
+
+
+
+
+
+
+
+.active-section{
+    opacity:1
+}
+
+
+
+.transition-out-left{
+    left:-100%;
+    
+}
+.transition-out-right{
+    left:100%;
+}
+.reset-section-left{
+    opacity:0;
+    left:-100%;
+}
+
+.reset-section-left{
+    opacity:0;
+    left:100%;   
+}

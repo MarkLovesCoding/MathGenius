@@ -1,4 +1,4 @@
-import * as utilMethods from '../ulils.js';
+import * as utilMethods from '../utils.js';
 // import { mcCreateOptions } from './practice_MultipleChoice.js';
 
 import { state } from '../state.js';
@@ -65,6 +65,9 @@ window.onload = function () {
   const operatorChoices = document.querySelectorAll(".operator-choice");
   // const activityAlert = document.getElementById("activity-alert-modal")
   const operatorAlert = document.getElementById("operator-alert-modal");
+  const operatorContainer = document.getElementById("operator-menu-container");
+  const activityContainer = document.getElementById("practice-menu-container");
+  const difficultyContainer = document.getElementById("difficulty-menu-container");
 
   // Handle the click event on the operatorMenuForward button
   operatorMenuForward.addEventListener("click", e => {
@@ -77,20 +80,25 @@ window.onload = function () {
       utilMethods.visibilityTimedToggle(true, operatorAlert, 1100);
       return;
     }
-
+    utilMethods.changeViewRight(operatorContainer, difficultyContainer);
     // Load the difficulty-menu section
-    utilMethods.loadSection("difficulty-menu");
+    // utilMethods.loadSection("difficulty-menu")
   });
+
   for (let el of operatorPracticeMenuBackwards) {
     el.addEventListener("click", e => {
-      utilMethods.loadSection("practice-menu");
+      utilMethods.changeViewLeft(activityContainer, operatorContainer);
+
+      // utilMethods.loadSection("practice-menu")
     });
   }
 
   // Handle the click event on the difficultyMenuBackwards button
   for (let el of difficultyMenuBackwards) {
     el.addEventListener("click", e => {
-      utilMethods.loadSection("operator-menu");
+      utilMethods.changeViewLeft(operatorContainer, difficultyContainer);
+
+      // utilMethods.loadSection("operator-menu")
     });
   }
 

@@ -1,6 +1,6 @@
 import { state } from './state.js'
 
-import * as utilMethods from './ulils.js';
+import * as utilMethods from './utils.js';
 import { flashNumOne, flashNumTwo, flashOpOne } from './domElements.js';
 import { mcNumOne, mcNumTwo, mcOpOne } from './domElements.js';
 import { mcQuizNumOne, mcQuizNumTwo, mcQuizOpOne, } from './domElements.js';

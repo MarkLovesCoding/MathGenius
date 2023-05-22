@@ -43,40 +43,7 @@ router.get('/', requireAuth, (req, res) => {
   res.render('index', { flashData, userData });
 });
 
-router.get('/tests', requireAuth, (req, res) => {
 
-  var flashData = req.flash('flashData')[0]
-
-  const userData = req.session.userData || {};
-  res.render('tests', { flashData, userData });
-});
-router.get('/practice', requireAuth, (req, res) => {
-
-  var flashData = req.flash('flashData')[0]
-
-  const userData = req.session.userData || {};
-  res.render('practice', { flashData, userData });
-});
-
-router.get('/flash', requireAuth, (req, res) => {
-  res.render('flash');
-});
-
-router.get('/multiple-choice', requireAuth, (req, res) => {
-  res.render('multipleChoice');
-});
-
-router.get('/multiple-choice-quiz', requireAuth, (req, res) => {
-  res.render('multipleChoiceQuiz');
-});
-
-router.get('/pop-quiz', requireAuth, (req, res) => {
-  res.render('popQuiz');
-});
-
-router.get('/high-score-challenge', requireAuth, (req, res) => {
-  res.render('highScoreChallenge');
-});
 
 router.get('/login', (req, res) => {
 
@@ -652,22 +619,70 @@ router.post('/reset-password/:token', async (req, res) => {
   }
 });
 
-// router.patch('/update-image', (req, res) => {
-//   const { imageSrc } = req.query;
-  
-//   // Update the req.session object here
-//   req.session.imageSrc = imageSrc;
-  
-//   // Update the database here
-//   db.updateImageSrc(imageSrc)
-//     .then(() => {
-//       res.sendStatus(200);
-//     })
-//     .catch(error => {
-//       console.error('There was a problem updating the database:', error);
-//       res.sendStatus(500);
-//     });
-// });
+
+
+
+// Tests Menu
+router.get('/tests', requireAuth, (req, res) => {
+
+  var flashData = req.flash('flashData')[0]
+
+  const userData = req.session.userData || {};
+  res.render('testsMenu', { flashData, userData });
+});
+
+// Practice Menu
+router.get('/practice', requireAuth, (req, res) => {
+
+  var flashData = req.flash('flashData')[0]
+
+  const userData = req.session.userData || {};
+  res.render('practiceMenu', { flashData, userData });
+});
+
+
+
+// Games
+router.get('/flash', requireAuth, (req, res) => {
+  res.render('flash');
+});
+
+router.get('/multiple-choice', requireAuth, (req, res) => {
+  res.render('multipleChoice');
+});
+
+router.get('/multiple-choice-quiz', requireAuth, (req, res) => {
+  res.render('multipleChoiceQuiz');
+});
+
+router.get('/pop-quiz', requireAuth, (req, res) => {
+  res.render('popQuiz');
+});
+
+router.get('/high-score-challenge', requireAuth, (req, res) => {
+  res.render('highScoreChallenge');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Profile Page APIs
+
 
 
 router.patch('/update-image', requireAuth,async (req, res) => {

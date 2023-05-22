@@ -54,7 +54,7 @@ body {
   height:100%;
   @include center-flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .middle {
@@ -149,7 +149,8 @@ body {
 
 .display-container {
   background: $chalkboard-green;
-
+  top:0;
+  position: absolute;
   width: 100vw;
   height: 100vh;
   max-width: 100%;
@@ -159,6 +160,7 @@ body {
   align-items: center;
   justify-content: center;
   border: $largeWoodBorder;
+  transition:left 0.5s ease-in-out;
 }
 
 .sub-container {

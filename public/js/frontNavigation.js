@@ -1,6 +1,6 @@
 
 import { state } from './state.js'
-import {loadSection} from './ulils.js'
+// import {loadSection} from './utils.js'
 
 
 
@@ -29,4 +29,4 @@ linkToPractice.addEventListener("click",function(){
 
 
 
-const userProfile = document.getAnimations
+// const userProfile = document.getAnimations

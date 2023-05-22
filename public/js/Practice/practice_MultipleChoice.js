@@ -1,5 +1,5 @@
   
-  import * as utilMethods from '../ulils.js';
+  import * as utilMethods from '../utils.js';
   import { state } from '../state.js'
   import * as questionLogic from '../sharedQuestionLogic.js';
   import {  mcOptions } from '../domElements.js';
