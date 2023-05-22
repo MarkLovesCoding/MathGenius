@@ -444,7 +444,7 @@ const sendEmail = async (to, subject, html) => {
   }
 };
 
-const url = "http://localhost:4000"
+const url = "https://www.mathgenius.ca"
 
 
 
@@ -529,7 +529,7 @@ router.post('/forgot-password', limiter, async (req, res) => {
     user.save()
 
 
-    const html = `Almost there ${user.username}! Click this link to reset your password: <a href="http://localhost:4000/reset-password/${token}">Reset Password</a>`;
+    const html = `Almost there ${user.username}! Click this link to reset your password: <a href="https://www.mathgenius.ca/reset-password/${token}">Reset Password</a>`;
     await sendEmail(email, 'Password reset request', html);
     req.flash('flashAlert', { type: 'success', message: 'Email Sent. Please Check your inbox' });
     return res.redirect('/forgot-password');
