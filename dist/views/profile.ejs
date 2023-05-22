@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description"
+    content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Math Genius</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script type="module" src="/js/profile.js"></script>
+
+</head>
+
+<body>
+
+
+  <!-- 
+
+  <div class="user-data-holder" id="user-data-holder"><% if (userData) { %>
+    <span><%= userData.userId %></span>
+
+    <span><%= userData.name %></span>
+    <span><%= userData.imageSrc %></span>
+
+    <% 
+  
+  }
+    
+    %>
+   </div>
+ -->
+
+
+
+
+  <!-- <div id="burger-container" class="burger-container box-container">
+
+      <div class="burger open" id="burger">
+       <span></span>
+       <span></span>
+       <span></span>
+
+
+      </div>
+    </div>
+     -->
+
+
+  <%- include('partials/_burger') %>
+    <%- include('partials/_brand') %>
+
+
+
+
+
+
+
+
+
+      <div class="profile display-container" id="profile-container">
+
+
+
+
+
+        <div class="profile-section">
+          <div class="profile-upper-left">
+            <div class="profile-user-section">
+              <div class="profile-img-container">
+                <img id="profile-user-avatar" class="profile-user-avatar" src="" alt="User Image" />
+                <!-- <i aria-name="change-avatar" id="choose-avatar" class="change-avatar fas fa-pencil"></i> -->
+
+                <div id="avatar-modal" class="avatar-modal">
+                  <div class="avatar-modal-content">
+                    <div class="avatar-modal-header">
+                      <h2>Select a user icon</h2>
+                      <span id="avatar-modal-close" class="avatar-modal-close">&times;</span>
+                    </div>
+                    <div class="avatar-modal-body">
+                      <div id="avatar-user-icons" class="avatar-user-icons">
+                        <img class="avatar-modal-icon" src="../assets/bunny.png" title="Bunny" alt="Bunny">
+                        <img class="avatar-modal-icon" src="../assets/dog.png" title="Dog" alt="Dog">
+                        <img class="avatar-modal-icon" src="../assets/elephant.png" title="Elephant" alt="Elephant">
+                        <img class="avatar-modal-icon" src="../assets/bear.png" title="Bear" alt="Bear">
+                        <img class="avatar-modal-icon" src="../assets/lion.png" title="Lion" alt="Lion">
+                        <img class="avatar-modal-icon" src="../assets/cat.png" title="Cat" alt="Cat">
+                        <img class="avatar-modal-icon" src="../assets/fox.png" title="Fox" alt="Fox">
+                        <img class="avatar-modal-icon" src="../assets/mouse.png" title="Mouse" alt="Mouse">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <button id="myBtn"><img src="icon.png" alt="User Icon"></button> -->
+
+              </div>
+              <h1 class="profile-username" id="profile-username">
+                <%= userData.name %>
+              </h1>
+            </div>
+          </div>
+          <div class="profile-lower-right">
+
+            <div class="badges-header">Achievements</div>
+
+            <div class="badges">
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="mcquiz-1" data-badge-type="mcquiz" data-badge-number="1" class="badge-img"
+                  src="../assets/medal.png" alt="MCQuiz 1" />
+                <p class="badge-description-level">Easy</p>
+                <p class="badge-description">Multiple Choice Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="mcquiz-2" data-badge-type="mcquiz" data-badge-number="2" class="badge-img"
+                  src="../assets/medal.png" alt="MCQuiz 2" />
+                <p class="badge-description-level">Novice</p>
+                <p class="badge-description">Multiple Choice Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="mcquiz-3" data-badge-type="mcquiz" data-badge-number="3" class="badge-img"
+                  src="../assets/medal.png" alt="MCQuiz 3" />
+                <p class="badge-description-level">Intermediate</p>
+                <p class="badge-description">Multiple Choice Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="mcquiz-4" data-badge-type="mcquiz" data-badge-number="4" class="badge-img"
+                  src="../assets/medal.png" alt="MCQuiz 4" />
+                <p class="badge-description-level">Advanced</p>
+                <p class="badge-description">Multiple Choice Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="mcquiz-5" data-badge-type="mcquiz" data-badge-number="5" class="badge-img"
+                  src="../assets/medal.png" alt="MCQuiz 5" />
+                <p class="badge-description-level">Genius</p>
+                <p class="badge-description">Multiple Choice Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="quiz-1" data-badge-type="quiz" data-badge-number="1" class="badge-img"
+                  src="../assets/medal.png" alt="Quiz 1" />
+                <p class="badge-description-level">Easy</p>
+                <p class="badge-description">Pop Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="quiz-2" data-badge-type="quiz" data-badge-number="2" class="badge-img"
+                  src="../assets/medal.png" alt="Quiz 2" />
+                <p class="badge-description-level">Novice</p>
+                <p class="badge-description">Pop Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="quiz-3" data-badge-type="quiz" data-badge-number="3" class="badge-img"
+                  src="../assets/medal.png" alt="Quiz 3" />
+                <p class="badge-description-level">Intermediate</p>
+                <p class="badge-description">Pop Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="quiz-4" data-badge-type="quiz" data-badge-number="4" class="badge-img"
+                  src="../assets/medal.png" alt="Quiz 4" />
+                <p class="badge-description-level">Advanced</p>
+                <p class="badge-description">Pop Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10/10 score." class="badge">
+                <img id="quiz-5" data-badge-type="quiz" data-badge-number="5" class="badge-img"
+                  src="../assets/medal.png" alt="Quiz 5" />
+                <p class="badge-description-level">Genius</p>
+                <p class="badge-description">Pop Quiz </p>
+              </div>
+              <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+                <img id="game-1" data-badge-type="game" data-badge-number="1" class="badge-img"
+                  src="../assets/medal.png" alt="Challenge 1" />
+                <p class="badge-description-level">Easy</p>
+                <p class="badge-description">High Score Challenge </p>
+              </div>
+              <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+                <img id="game-2" data-badge-type="game" data-badge-number="2" class="badge-img"
+                  src="../assets/medal.png" alt="Challenge 2" />
+                <p class="badge-description-level">Novice</p>
+                <p class="badge-description">High Score Challenge </p>
+              </div>
+              <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+                <img id="game-3" data-badge-type="game" data-badge-number="3" class="badge-img"
+                  src="../assets/medal.png" alt="Challenge 3" />
+                <p class="badge-description-level">Intermediate</p>
+                <p class="badge-description">High Score Challenge </p>
+              </div>
+              <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+                <img id="game-4" data-badge-type="game" data-badge-number="4" class="badge-img"
+                  src="../assets/medal.png" alt="Challenge 4" />
+                <p class="badge-description-level">Advanced</p>
+                <p class="badge-description">High Score Challenge </p>
+              </div>
+              <div title="To unlock badge, get 10 questions in a row correct" class="badge">
+                <img id="game-5" data-badge-type="game" data-badge-number="5" class="badge-img"
+                  src="../assets/medal.png" alt="Challenge 5" />
+                <p class="badge-description-level">Genius</p>
+                <p class="badge-description">High Score Challenge </p>
+              </div>
+              <!-- more badges can be added here -->
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <!-- <script type="module" src="/js/success.js"></script> -->
+
+      <script type="module" src="/js/badges.js"></script>
+      <!-- <script type="module" src="/js/logout.js"></script> -->
+      <script type="module" src="/js/burger.js"></script>
+      <!-- <script type="module" src="/js/formInteraction.js"></script> -->
+
+
+
+</body>
+
+</html>
