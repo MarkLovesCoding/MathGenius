@@ -57,6 +57,7 @@ import {  mcQuizOptions  } from '../domElements.js';
     const numAnswered = state.mcQuizActive.mcqNumAnswered;
     mcQuestionNumber.textContent = numAnswered;
     mcQuestionsCorrect.textContent = numCorrect;
+
   }
 
   async function checkMCQAnswered() {
@@ -64,7 +65,8 @@ import {  mcQuizOptions  } from '../domElements.js';
     if (state.mcQuizActive.mcqNumAnswered == state.mcQuizActive.mcqNumQuestion) {
     
       if(state.mcQuizActive.mcqNumCorrect == 10){
-        await updateBadgeStatus("mcquiz",state.activeDifficulty, true)
+        let activeDifficulty = sessionStorage.getItem("activeDifficulty")
+        await updateBadgeStatus("mcquiz",activeDifficulty, true)
         await animateBadge()
       }
       else{

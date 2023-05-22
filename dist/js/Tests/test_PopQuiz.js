@@ -29,7 +29,7 @@ async function quizAnswerCheck(bool) {
     utilMethods.resetAnswerInput([quizAnswerInput]);
 
     // Generate a new question for the quiz
-    questionLogic.newQuestion("quiz", state.activeOperators);
+    questionLogic.newQuestion("quiz", state.activeOperators, state);
   } else {
     // Display an animation to indicate an incorrect answer
     utilMethods.incorrectMotion(quizAnswerForm);
@@ -50,7 +50,7 @@ async function quizAnswerCheck(bool) {
     utilMethods.resetAnswerInput([quizAnswerInput]);
 
     // Generate a new question for the quiz
-    questionLogic.newQuestion("quiz", state.activeOperators);
+    questionLogic.newQuestion("quiz", state.activeOperators, state);
   }
 }
 async function quizShowScore() {
@@ -117,7 +117,7 @@ async function finishQuiz(lastScoreEl, quizStats) {
   utilMethods.showHide([], [quizCorrectness]);
 
   // Generate a new question
-  questionLogic.newQuestion("quiz", state.activeOperators);
+  questionLogic.newQuestion("quiz", state.activeOperators, state);
 }
 
 //
@@ -147,5 +147,5 @@ window.onload = function () {
   // sessionStorage.setItem("activeOperators",operators)
   // sessionStorage.setItem("",operators)
   // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
-  questionLogic.newQuestion('quiz', operators);
+  questionLogic.newQuestion('quiz', operators, state);
 };

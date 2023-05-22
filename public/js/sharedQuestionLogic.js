@@ -9,25 +9,29 @@ import {  gameNumOne, gameNumTwo, gameOpOne } from './domElements.js';
 
 export function newGeneralQuestion(opEl, n1El, n2El, operators, func) {
 
+    let activeHighVal = sessionStorage.getItem("activeHighVal")
+    let activeMultiplyHighVal = sessionStorage.getItem("activeMultiplyHighVal")
+    let activeMultiplyLowVal = sessionStorage.getItem("activeMultiplyLowVal")
+
     // Get a random operator from the list of operators
     let o1 = utilMethods.randOp(operators);
 
     // Generate two random numbers between 0 and the active high value
-    let n1 = utilMethods.randomNumber(0, state.activeHighVal);
-    let n2 = utilMethods.randomNumber(0, state.activeHighVal);
+    let n1 = utilMethods.randomNumber(0, activeHighVal);
+    let n2 = utilMethods.randomNumber(0, activeHighVal);
 
 
     // If the operator is multiplication, generate two random numbers between the active multiply low and high values
     if (o1 === "x") {
-        n1 = utilMethods.randomNumber(state.activeMultiplyLowVal, state.activeMultiplyHighVal);
-        n2 = utilMethods.randomNumber(state.activeMultiplyLowVal, state.activeMultiplyHighVal);
+        n1 = utilMethods.randomNumber(activeMultiplyLowVal, activeMultiplyHighVal);
+        n2 = utilMethods.randomNumber(activeMultiplyLowVal, activeMultiplyHighVal);
     }
 
     // If the operator is division, generate two random numbers until the first is divisible by the second
     if (o1 === "÷") {
         while (n1 % n2 != 0) {
-            n1 = utilMethods.randomNumber(0, state.activeHighVal);
-            n2 = utilMethods.randomNumber(1, state.activeHighVal);
+            n1 = utilMethods.randomNumber(0, activeHighVal);
+            n2 = utilMethods.randomNumber(1, activeHighVal);
         }
     }
 

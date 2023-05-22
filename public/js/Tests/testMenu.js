@@ -45,9 +45,16 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     // Set the active multiply low and high values based on the low and high values set above
     state.activeMultiplyLowVal = lowVal;
     state.activeMultiplyHighVal = highVal;
+    sessionStorage.setItem("activeMulitplyLowVal",lowVal)
+    
+    sessionStorage.setItem("activeMultiplyHighVal",highVal)
+    sessionStorage.setItem("activeDifficulty",i)
 
     // Set the active high value based on the current active difficulty level
-    state.activeHighVal = (i) * 10;
+    let highValue = (i) * 10;
+    state.activeHighVal = highValue
+    sessionStorage.setItem("activeHighVal",highValue)
+
   }
 
 
@@ -133,6 +140,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     // }
     // else 
     if (state.activity === "multiple-choice-quiz") {
+      console.log(state.activeDifficulty)
       window.location.href = "/multiple-choice-quiz"
 
       // questionLogic.newQuestion(state.activity, state.activeOperators, mcQuizCreateOptions)

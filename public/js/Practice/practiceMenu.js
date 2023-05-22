@@ -43,10 +43,16 @@ window.onload = function () {  //Ensure DOM is loaded before functions
         lowVal = 3;
         break;
     }
-
+    sessionStorage.setItem("activeMulitplyLowVal",lowVal)
+    
+    sessionStorage.setItem("activeMultiplyHighVal",highVal)
+    sessionStorage.setItem("activeDifficulty",i)
     // Set the active multiply low and high values based on the low and high values set above
     state.activeMultiplyLowVal = lowVal;
     state.activeMultiplyHighVal = highVal;
+    let highValue = (i) * 10;
+
+    sessionStorage.setItem("activeHighVal",highValue)
 
     // Set the active high value based on the current active difficulty level
     state.activeHighVal = (i) * 10;
@@ -77,9 +83,9 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   // const activityAlert = document.getElementById("activity-alert-modal")
   const operatorAlert = document.getElementById("operator-alert-modal")
 
-  const operatorContainer = document.getElementById("operator-menu-container");
-  const activityContainer = document.getElementById("practice-menu-container");
-  const difficultyContainer = document.getElementById("difficulty-menu-container");
+    const operatorContainer = document.getElementById("operator-menu-container");
+    const activityContainer = document.getElementById("practice-menu-container");
+    const difficultyContainer = document.getElementById("difficulty-menu-container");
 
 
   // Handle the click event on the operatorMenuForward button

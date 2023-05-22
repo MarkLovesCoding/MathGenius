@@ -25,7 +25,7 @@ linkToQuiz.addEventListener("click", function () {
 const linkToMCQuiz = document.getElementById('new-mc-quiz');
 linkToMCQuiz.addEventListener("click", function () {
   state.activity = "multiple-choice-quiz";
-
+  console.log(state.activeDifficulty);
   // window.location.href = "/practice";
   changeViewRight(activityContainer, operatorContainer);
 

@@ -33,7 +33,7 @@ import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAns
         quizAnswerInput]);
 
       // Generate a new question for the quiz
-      questionLogic.newQuestion("quiz", state.activeOperators);
+      questionLogic.newQuestion("quiz", state.activeOperators,state);
 
     } else {
       // Display an animation to indicate an incorrect answer
@@ -55,7 +55,7 @@ import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAns
       utilMethods.resetAnswerInput([ quizAnswerInput]);
 
       // Generate a new question for the quiz
-      questionLogic.newQuestion("quiz", state.activeOperators);
+      questionLogic.newQuestion("quiz", state.activeOperators,state);
     }
   }
   async function quizShowScore() {
@@ -132,7 +132,7 @@ import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAns
 
 
     // Generate a new question
-    questionLogic.newQuestion("quiz", state.activeOperators);
+    questionLogic.newQuestion("quiz", state.activeOperators,state);
   }
 
   //
@@ -167,5 +167,5 @@ import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAns
     // sessionStorage.setItem("activeOperators",operators)
     // sessionStorage.setItem("",operators)
     // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
-    questionLogic.newQuestion('quiz',operators);
+    questionLogic.newQuestion('quiz',operators,state);
   } 

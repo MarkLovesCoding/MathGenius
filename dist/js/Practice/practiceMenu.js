@@ -39,10 +39,14 @@ window.onload = function () {
         lowVal = 3;
         break;
     }
-
+    sessionStorage.setItem("activeMulitplyLowVal", lowVal);
+    sessionStorage.setItem("activeMultiplyHighVal", highVal);
+    sessionStorage.setItem("activeDifficulty", i);
     // Set the active multiply low and high values based on the low and high values set above
     state.activeMultiplyLowVal = lowVal;
     state.activeMultiplyHighVal = highVal;
+    let highValue = i * 10;
+    sessionStorage.setItem("activeHighVal", highValue);
 
     // Set the active high value based on the current active difficulty level
     state.activeHighVal = i * 10;

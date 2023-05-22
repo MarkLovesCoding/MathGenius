@@ -48,7 +48,8 @@ async function checkMCQAnswered() {
   // If all questions have been answered, show score and finish quiz
   if (state.mcQuizActive.mcqNumAnswered == state.mcQuizActive.mcqNumQuestion) {
     if (state.mcQuizActive.mcqNumCorrect == 10) {
-      await updateBadgeStatus("mcquiz", state.activeDifficulty, true);
+      let activeDifficulty = sessionStorage.getItem("activeDifficulty");
+      await updateBadgeStatus("mcquiz", activeDifficulty, true);
       await animateBadge();
     } else {
       mcQuizShowScore();
