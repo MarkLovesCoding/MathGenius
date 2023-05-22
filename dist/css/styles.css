@@ -2197,7 +2197,7 @@ body {
   .expanded-menu.active {
     transition: all 0.5s ease;
     width: calc(100vw - 30px - 4vw);
-    height: calc(100vh - 30px + -15vh);
+    height: calc(100vh - 30px + -25vh);
     border-radius: 10px;
     background-color: #eae6df;
     display: flex;
