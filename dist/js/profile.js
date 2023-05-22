@@ -1,6 +1,5 @@
 import { state } from './state.js';
 const modal = document.getElementById("avatar-modal");
-const btn = document.getElementById("choose-avatar");
 const profile = document.getElementById("profile-user-avatar");
 const span = document.getElementById("avatar-modal-close");
 const userIconsContainer = document.getElementById("avatar-user-icons");
@@ -15,9 +14,32 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+async function retrieveAvatar() {
+  try {
+    const response = await fetch('/get-avatar');
+    const data = await response.json();
+    const avatarSrc = data.avatarSrc;
+    const trimmedSrc = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
+    profile.src = trimmedSrc;
+  } catch (error) {
+    console.error(error);
+  }
+}
+retrieveAvatar();
 
 // Handle user icon selection
-userIconsContainer.addEventListener("click", async function (event) {
+// userIconsContainer.addEventListener("click", async function (event) {
+//   const selectedIcon = event.target.closest("img");
+//   if (selectedIcon) {
+//     profile.setAttribute("src", selectedIcon.src);
+//     state.user.profileImage = selectedIcon.src;
+//     await updateSessionAndDB(selectedIcon.src);
+//     modal.style.display = "none";
+//   }
+// });
+
+userIconsContainer.addEventListener("click", handleUserIconClick);
+async function handleUserIconClick(event) {
   const selectedIcon = event.target.closest("img");
   if (selectedIcon) {
     profile.setAttribute("src", selectedIcon.src);
@@ -25,7 +47,7 @@ userIconsContainer.addEventListener("click", async function (event) {
     await updateSessionAndDB(selectedIcon.src);
     modal.style.display = "none";
   }
-});
+}
 
 // Retrieves the user ID
 async function getUserId() {
@@ -70,17 +92,17 @@ async function updateSessionAndDB(newSrc) {
 }
 
 // Retrieves the user's avatar
-async function retrieveAvatar() {
-  try {
-    const response = await fetch('/get-avatar');
-    const data = await response.json();
-    const avatarSrc = data.avatarSrc;
-    const trimmedSrc = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
-    profile.src = trimmedSrc;
-  } catch (error) {
-    console.error(error);
-  }
-}
+
+// async function retrieveAvatar() {
+//   try {
+//     const response = await fetch('/get-avatar');
+//     const data = await response.json();
+//     const avatarSrc = data.avatarSrc;
+//     const trimmedSrc = new URL(avatarSrc, '../').pathname;
+//     profile.src = trimmedSrc;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 // Initialize the avatar retrieval
-retrieveAvatar();
