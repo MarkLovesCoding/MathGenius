@@ -36,9 +36,13 @@ const requireAuth = (req, res, next) => {
 // Home route
 router.get('/', requireAuth, (req, res) => {
 
+  var flashData = req.flash('flashData')[0]
 
+  const userData = req.session.userData || {};
 
-  res.render('index');
+  res.render('index', { flashData, userData });
+
+  // res.render('index');
 });
 
 router.get('/privacy', (req, res) => {

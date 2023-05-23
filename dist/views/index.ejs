@@ -22,20 +22,6 @@
 
 
 
-  <!-- <div class="user-data-holder" id="user-data-holder">
-    <% if (userData) { %>
-      <span>
-        <%= userData.userId %>
-      </span>
-      <span>
-        <%= userData.name %>
-      </span>
-      <span>
-        <%= userData.imageSrc %>
-      </span>
-
-      <% } %>
-  </div> -->
   <% if (flashData) { %>
     <% if(flashData.flashMessage=="success" ){ %>
       <div class="success-container" id="success">
@@ -52,21 +38,6 @@
         <%}%>
 
 
-
-
-
-          <!-- 
-    <div id="burger-container" class="burger-container box-container">
-
-      <div class="burger open" id="burger">
-       <span></span>
-       <span></span>
-       <span></span>
-
-
-      </div>
-
-    </div> -->
 
 
 
@@ -186,6 +157,8 @@
 
 
             </div>
+          <!-- <%- include('partials/_privacy') %> -->
+
             <script type="module" src="/js/success.js"></script>
 
             <!-- <script type="module" src="/js/index.js"></script> -->

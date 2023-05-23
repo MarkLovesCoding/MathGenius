@@ -1816,9 +1816,33 @@
   color: #e46fe4;
   transform: scale(0.85);
 }
+.signup-icon:hover > * {
+  color: #274c43;
+}
 
 .login-icon {
   color: #00bdff;
+}
+.login-icon:hover > * {
+  color: #274c43;
+}
+
+.inner-signup .icon-container {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.inner-signup .icon-container:hover {
+  background-color: #e46fe4;
+}
+.inner-signup .icon-container:hover > * {
+  color: #274c43;
+}
+
+.inner-login .icon-container:hover {
+  background-color: #00bdff;
+}
+.inner-login .icon-container:hover > * {
+  color: #274c43;
 }
 
 .landing-login-form-button {

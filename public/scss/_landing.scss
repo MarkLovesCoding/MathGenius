@@ -1,39 +1,78 @@
-
-.middle-inner-landing{
+.middle-inner-landing {
     display: grid;
     grid-template-areas: "login signup"
-      "guest guest";
+        "guest guest";
     grid-template-columns: 150px 150px;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-  }
-  .inner-login{
-    grid-area:login;
-  }
-  
-  .inner-signup{
-    grid-area:signup;
-  }
-  .guest-div{
-    grid-area:guest;
-    display:flex;
+}
+
+.inner-login {
+    grid-area: login;
+}
+
+.inner-signup {
+    grid-area: signup;
+}
+
+.guest-div {
+    grid-area: guest;
+    display: flex;
     justify-content: center;
     align-items: center;
-    >*{
-      width:75%;
-  
+
+    >* {
+        width: 75%;
+
     }
-  }
-  .signup-icon{
-    color:$division-purple;
-    transform:scale(0.85)
-  }
-  .login-icon{
-    color:$minus-blue;
-  }
-  .landing-login-form-button{
-    height:40px;
-    margin-top:25px;
+}
+
+.signup-icon {
+    color: $division-purple;
+    transform: scale(0.85);
+
+    &:hover {
+        &>* {
+            color: $chalkboard-green;
+        }
+    }
+}
+
+.login-icon {
+    color: $minus-blue;
+
+    &:hover {
+        &>* {
+            color: $chalkboard-green;
+        }
+    }
+}
+.inner-signup .icon-container{
+    transition:color 0.3s ease, background-color 0.3s ease;
+}
+.inner-signup .icon-container {
+    &:hover {
+
+        background-color: $division-purple;
+
+        &>* {
+            color: $chalkboard-green;
+        }
+    }
+}
+.inner-login .icon-container {
+    &:hover {
+
+        background-color: $minus-blue;
+
+        &>* {
+            color: $chalkboard-green;
+        }
+    }
+}
+.landing-login-form-button {
+    height: 40px;
+    margin-top: 25px;
 }
