@@ -41,13 +41,13 @@ router.get('/', requireAuth, (req, res) => {
   res.render('index');
 });
 
-router.get('/privacy', requireAuth, (req, res) => {
+router.get('/privacy', (req, res) => {
 
  
 
   res.render('privacy');
 });
-router.get('/landing', requireAuth, (req, res) => {
+router.get('/landing', (req, res) => {
 
  
 
