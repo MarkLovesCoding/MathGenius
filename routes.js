@@ -23,7 +23,7 @@ const rateLimit = require("express-rate-limit");
 const requireAuth = (req, res, next) => {
   if (!req.isAuthenticated()) {
     // redirect to login page if not authenticated
-    return res.redirect('/login');
+    return res.redirect('/landing');
   }
   next();
 };
@@ -38,7 +38,7 @@ router.get('/', requireAuth, (req, res) => {
 
 
 
-  res.render('landing');
+  res.render('index');
 });
 
 router.get('/privacy', requireAuth, (req, res) => {
