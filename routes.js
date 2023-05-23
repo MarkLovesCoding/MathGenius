@@ -47,7 +47,12 @@ router.get('/privacy', requireAuth, (req, res) => {
 
   res.render('privacy');
 });
+router.get('/landing', requireAuth, (req, res) => {
 
+ 
+
+  res.render('landing');
+});
 
 router.get('/login', (req, res) => {
 
