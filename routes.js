@@ -40,9 +40,17 @@ router.get('/', requireAuth, (req, res) => {
 
   const userData = req.session.userData || {};
 
-  res.render('index', { flashData, userData });
+  res.render('landing', { flashData, userData });
 });
 
+router.get('/privacy', requireAuth, (req, res) => {
+
+  var flashData = req.flash('flashData')[0]
+
+  const userData = req.session.userData || {};
+
+  res.render('privacy', { flashData, userData });
+});
 
 
 router.get('/login', (req, res) => {

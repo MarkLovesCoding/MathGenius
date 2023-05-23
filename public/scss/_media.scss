@@ -62,7 +62,17 @@
 
         max-width: fit-content;
     }
-    
+    .avatar-user-icons{
+        grid-template-columns: repeat(4,1fr);
+    }
+    .avatar-modal-header{
+        > h2{
+            font-size:18px;
+        }
+    }
+    .avatar-modal-content{
+        max-width:400px;
+    }
 }
 
 
@@ -573,6 +583,11 @@
     .test-header {
         margin-top: 50px;
         margin-bottom: 0px;
+    }
+    .landing-choice{
+        width:90px;
+        height:90px;
+        margin:0;
     }
 }
 

@@ -4,7 +4,9 @@ const profile = document.getElementById("profile-user-avatar");
 const span = document.getElementById("avatar-modal-close");
 const userIconsContainer = document.getElementById("avatar-user-icons");
 profile.onclick = function () {
-  modal.style.display = "block";
+  modal.style.display = "flex";
+  modal.style.justifyContent = "center";
+  modal.style.alignItems = "center";
 };
 span.onclick = function () {
   modal.style.display = "none";

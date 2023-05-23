@@ -9,6 +9,9 @@
     align-items: center;
 
 }
+.signup-menu-container{
+    left:0;
+}
 
 /* Headings */
 .login-header,
@@ -127,7 +130,10 @@
     border: none;
     background-color: $minus-blue;
 }
-
+.landing-login-form-button{
+    height:40px;
+    margin-top:25px;
+}
 .create-account-form-button {
     margin-bottom: 0;
 }
