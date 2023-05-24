@@ -1,0 +1,1 @@
+function onSubmitUsername(e){document.getElementById("forgot-username-form").submit()}

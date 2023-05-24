@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description"
+    content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Math Genius</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <%- include('partials/_brand') %>
+    <div class="main-container" id="main-container">
+      <div class="activity-menu-container display-container" id="activity-menu-container">
+        <div class="activity-group">
+          <div class="top welcome-top">
+
+            <div class="header welcome-header">
+              <div>Welcome to Math Genius.</div>
+              <div>A great place to learn basic Math and play games!</div>
+            </div>
+          </div>
+          <div class="middle">
+            <div class="middle-inner-landing">
+              <div class="inner inner-login">
+                <div class=" icon-container  landing-choice" id="landing-log-in">
+                  <p></p>
+                  <i class="login-icon icon fas fa-user-graduate fa-large"></i>
+                </div>
+                <p class="icon-text">Log In</p>
+              </div>
+              <div class="inner inner-signup">
+                <div class=" icon-container  landing-choice" id="landing-signup">
+                  <p></p>
+                  <i class=" signup-icon icon fas fa-user-plus fa-large"></i>
+                </div>
+                <p class="icon-text">Sign Up
+                </p>
+              </div>
+              <div class="guest-div">
+                <form class=" play-as-guest " id="guest-login-form" action="/guest" method="POST">
+                  <label for="guest"></label>
+                  <button class="landing-login-form-button login-form-button guest-button  g-recaptcha"
+                    data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGuest'
+                    data-action='submit' id="guest" type="submit">Play as
+                    guest</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('partials/_privacy') %>
+      <script type="module" src="/js/landingNavigation.js"></script>
+</body>
+
+</html>

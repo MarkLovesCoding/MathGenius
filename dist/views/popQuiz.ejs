@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description"
+    content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Math Genius</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <%- include('partials/_burger') %>
+    <%- include('partials/_brand') %>
+      <%- include('partials/_modals') %>
+        <%- include('partials/_badgeModal') %>
+          <div class="main-container" id="main-container">
+            <%- include('partials/_popQuiz') %>
+          </div>
+          <script type="module" src="/js/Tests/testMenu.js"></script>
+          <script type="module" src="/js/badgeEarned.js"></script>
+          <script type="module" src="/js/burger.js"></script>
+          <script type="module" src="/js/Tests/test_PopQuiz.js"></script>
+</body>
+
+</html>
