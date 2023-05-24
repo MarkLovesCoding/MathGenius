@@ -112,18 +112,18 @@ window.onload = function () {
     updateDifficultyRange();
 
     // Generate a new question based on the chosen activity and active operators
-    if (state.activity === "multiple-choice") {
+    if (sessionStorage.getItem("activity") === "multiple-choice") {
       window.location.href = "/multiple-choice";
 
       // questionLogic.newQuestion(state.activity, state.activeOperators, mcCreateOptions)
-    } else {
+    } else if (sessionStorage.getItem("activity") === "flash") {
       window.location.href = "/flash";
       // questionLogic.newQuestion(state.activity, state.activeOperators)
     }
   });
 
   // A function to add event listeners for activity types (real/practice)
-  function addEventsForTypes(activitiesChoices, state) {
+  function addEventsForTypes(activitiesChoices) {
     for (let activity of activitiesChoices) {
       activity.addEventListener("click", e => {
         activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"));
@@ -137,14 +137,14 @@ window.onload = function () {
         // Determine which activity type was selected by looking at the "data-type" attribute
         activity.classList.add("activity-selected");
         // Add the "activity-selected" class to the selected activity option
-        state.type = type;
+
         // Set the state's "type" property to the selected activity type
       });
     }
   }
 
   // A function to add event listeners for specific activities (e.g., real addition, practice multiplication)
-  function addEventsForActivities(activitiesChoices, state) {
+  function addEventsForActivities(activitiesChoices) {
     for (let activity of activitiesChoices) {
       activity.addEventListener("click", e => {
         activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"));
@@ -159,7 +159,6 @@ window.onload = function () {
         activity.classList.add("activity-selected");
 
         // Add the "activity-selected" class to the selected activity option
-        state.type = type;
 
         // Set the state's "type" property to the selected activity
       });
@@ -177,10 +176,11 @@ window.onload = function () {
       operator.addEventListener("click", toggleOperators);
     }
   }
-  addEventsForTypes(activitiesChoices, state);
+  addEventsForTypes(activitiesChoices);
   addEventsForOperators(operatorChoices, state);
+
   // addEventsForActivities(realChoices, state)
-  addEventsForActivities(practiceChoices, state);
+  addEventsForActivities(practiceChoices);
   function updateOperators(operatorChoices) {
     let ops = [];
     let amount = 0;

@@ -1,46 +1,43 @@
 <div class="quiz-container sub-container display-container" id="quiz-container">
-    <div class="titles-group ">
-      <div class="titles-left">
-        <h2 class="activity-title quiz-activity-title">Ten Questions</h2>
-        <h2 class="activity-type"> Pop Quiz</h2>
-      </div>
-      <div class="title-icon"><i class=" quiz-icon icon fas fa-arrow-up-1-9 fa-large"></i>
-      </div>
+  <div class="titles-group ">
+    <div class="titles-left">
+      <h2 class="activity-title quiz-activity-title">Ten Questions</h2>
+      <h2 class="activity-type"> Pop Quiz</h2>
     </div>
-    <div class="quiz-middle-lower">
-      <form id="quiz-answer-form" class="question-box quiz-question-box">
-        <div id="question-box" class="question quiz-question">
-          <div id="quiz-first-number" class="question-number question-text"></div>
-          <div id="quiz-first-operator" class="operator question-text"></div>
-          <div id="quiz-second-number" class="question-number question-text"></div>
-          <div id="quiz-second-operator" class="operator question-text">=</div>
-
-          <input type="number" min="0" id="quiz-answer-input" class="input quiz-input" placeholder="?"
-            autocomplete="off"></input>
-        </div>
-        <button type="submit" id="quiz-answer-submit-btn" class="answer-submit">Check</button>
-      </form>
-      <div class="quiz-correctness-scores">
-        <div class="correctness-container ">
-          <div id="quiz-correctness" class="correctness"></div>
-        </div>
-
-        <div class="quiz-scores-container">
-          <div class="quiz-curr-score-container">
-            Current Score:<p id="quiz-curr-score"></p>
-            <p>/</p>
-            <p id="quiz-curr-question"></p>
-
-          </div>
-          <div class="quiz-last-score-container">
-            Last Score:<p id="quiz-last-score"></p>
-
-            <p>/</p>
-            <p>10</p>
-
-          </div>
-        </div>
-      </div>
+    <div class="title-icon"><i class=" quiz-icon icon fas fa-arrow-up-1-9 fa-large"></i>
     </div>
-
   </div>
+  <div class="quiz-middle-lower">
+    <form id="quiz-answer-form" class="question-box quiz-question-box">
+      <div id="question-box" class="question quiz-question">
+        <div id="quiz-first-number" class="question-number question-text"></div>
+        <div id="quiz-first-operator" class="operator question-text"></div>
+        <div id="quiz-second-number" class="question-number question-text"></div>
+        <div id="quiz-second-operator" class="operator question-text">=</div>
+
+        <input type="number" min="0" id="quiz-answer-input" class="input quiz-input" placeholder="?"
+          autocomplete="off"></input>
+      </div>
+      <button type="submit" id="quiz-answer-submit-btn" class="answer-submit">Check</button>
+    </form>
+    <div class="quiz-correctness-scores">
+      <div class="correctness-container ">
+        <div id="quiz-correctness" class="correctness"></div>
+      </div>
+      <div class="quiz-scores-container">
+        <div class="quiz-curr-score-container">
+          Current Score:<p id="quiz-curr-score"></p>
+          <p>/</p>
+          <p id="quiz-curr-question"></p>
+
+        </div>
+        <div class="quiz-last-score-container">
+          Last Score:<p id="quiz-last-score"></p>
+          <p>/</p>
+          <p>10</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -23,6 +23,18 @@
     .login-welcome-message{
         display:none;
     }
+    .privacy-inner-container{
+        margin-top:12vh;
+        margin-bottom:10vh;
+        
+        width:75vw;
+        height:65vh;
+        overflow-y:scroll;
+        &>span{
+          color:$chalk-white !important;
+        }
+      }
+
 }
 
 

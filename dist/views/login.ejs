@@ -16,44 +16,40 @@
   <script src="https://www.google.com/recaptcha/api.js"></script>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Roboto&family=Inconsolata&family=Londrina+Shadow&family=Patua+One&family=Pangolin&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee+Shade&family=Roboto&family=Pangolin&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-
   <%- include('partials/_brand') %>
+    <div class="main-container">
+      <div class="login-menu-container display-container" id="login-menu-container">
+        <div class="login-container">
+          <div class="login-welcome">
+            <div class="login-welcome-message">
+              <p class="l1">Welcome to Math Genius. </p>
+              <p class="l2">Play Games and Learn Math!</p>
 
-    <div class="login-menu-container display-container" id="login-menu-container">
-
-
-
-      <div class="login-container">
-        <div class="login-welcome">
-          <div class="login-welcome-message">
-            <p class="l1">Welcome to Math Genius. </p>
-            <p class="l2">Play Games and Learn Math!</p>
-
-          </div>
-          <div class="login-welcome-image"></div>
-        </div>
-
-        <div class="login-top">
-          <h1 class="login-header">Log In</h1>
-          <% if(loginMessage) { %>
-            <div class="login-flash-message <%= messageType %>" id="login-flash-message">
-              <p>
-                <%= loginMessage %>
-              </p>
-              <!-- <button class="close-login-alert" id="close-login-alert"></button> -->
             </div>
+            <div class="login-welcome-image"></div>
+          </div>
+
+          <div class="login-top">
+            <h1 class="login-header">Log In</h1>
+            <% if(loginMessage) { %>
+              <div class="login-flash-message <%= messageType %>" id="login-flash-message">
+                <p>
+                  <%= loginMessage %>
+                </p>
+                <!-- <button class="close-login-alert" id="close-login-alert"></button> -->
+              </div>
 
 
-            <% } %>
-        </div>
+              <% } %>
+          </div>
 
-        <!-- <div class="login-form-group">
+          <!-- <div class="login-form-group">
               <a href="/auth/google" class="btn btn-google">
                 <span class="material-icons">person</span>
                 Login with Google
@@ -63,147 +59,107 @@
               <a href="/signup">Don't have an account? Sign up now!</a>
             </div> -->
 
-        <!-- <div class="guest">
+          <!-- <div class="guest">
                 <a href="/guest">Play as a guest.</a>
               </div>
              -->
 
-        <div class="login-bottom">
-          <div class="login-left-upper">
-            <form class="login-form" id="login-form" action="/login" method="post">
-              <div class="login-blocks">
-                <div class="login-form-group">
-                  <!-- <label class="input-label" for="username">Username or Email:</label> -->
-                  <!-- <input class="form-input" type="text" id="username" name="username" placeholder="Email or Username"
+          <div class="login-bottom">
+            <div class="login-left-upper">
+              <form class="login-form" id="login-form" action="/login" method="post">
+                <div class="login-blocks">
+                  <div class="login-form-group">
+                    <!-- <label class="input-label" for="username">Username or Email:</label> -->
+                    <!-- <input class="form-input" type="text" id="username" name="username" placeholder="Email or Username"
             required> -->
-                  <div class="input-shell">
-                    <i class="input-icon fa-solid fa-user-large"></i>
-                    <div class="input-seperator"></div>
-                    <input class="form-input" type="text" id="username" name="username" placeholder="Username" required>
+                    <div class="input-shell">
+                      <i class="input-icon fa-solid fa-user-large"></i>
+                      <div class="input-seperator"></div>
+                      <input class="form-input" type="text" id="username" name="username" placeholder="Username"
+                        required>
+                    </div>
+                    <a class='forgot-text-link login-forgot-username' href="/forgot-username">Forgot Username?</a>
+
+
+
                   </div>
-                  <a class='forgot-text-link login-forgot-username' href="/forgot-username">Forgot Username?</a>
+                  <div class="login-form-group password-group">
 
 
+                    <div class="input-shell">
+                      <i class="input-icon fa-solid fa-key"></i>
+                      <div class="input-seperator"></div>
+                      <input class="form-input" type="password" id="password" name="password" placeholder="Password"
+                        required>
+                    </div>
+                    <a class='forgot-text-link login-forgot-password' href="/forgot-password">Forgot Password?</a>
 
-                </div>
-                <div class="login-form-group password-group">
 
-
-                  <div class="input-shell">
-                    <i class="input-icon fa-solid fa-key"></i>
-                    <div class="input-seperator"></div>
-                    <input class="form-input" type="password" id="password" name="password" placeholder="Password"
-                      required>
                   </div>
-                  <a class='forgot-text-link login-forgot-password' href="/forgot-password">Forgot Password?</a>
-
-
                 </div>
-              </div>
-              <!-- <div class="forgot-text-container">
+                <!-- <div class="forgot-text-container">
   
           </div> -->
 
-              <div class="signin-button-group">
-                <button title="login-button" type="submit" class="login-form-button g-recaptcha"
-                  data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmit'
-                  data-action='submit'>Sign
-                  In</button>
+                <div class="signin-button-group">
+                  <button title="login-button" type="submit" class="login-form-button g-recaptcha"
+                    data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmit'
+                    data-action='submit'>Sign
+                    In</button>
+                </div>
+              </form>
+
+
+            </div>
+
+            <div class="divider">
+              <div class="line"></div><span class="or">or</span>
+              <div class="line"></div>
+            </div>
+
+            <div class="login-bottom-two">
+              <div class="google-block">
+                <form class="login-form-group google-login-group" id="google-login-form" action="/auth/google"
+                  method="GET">
+
+
+                  <button class="btn btn-primary login-form-button google-button  g-recaptcha"
+                    data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGoogle'
+                    data-action='submit' id="google" type="submit">
+
+
+                    Sign in with Google
+                  </button>
+                </form>
               </div>
-            </form>
 
 
-          </div>
-
-          <div class="divider">
-            <div class="line"></div><span class="or">or</span>
-            <div class="line"></div>
-          </div>
-
-          <div class="login-bottom-two">
-            <div class="google-block">
-              <form class="login-form-group google-login-group" id="google-login-form" action="/auth/google"
-                method="GET">
 
 
-                <button class="btn btn-primary login-form-button google-button  g-recaptcha"
-                  data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGoogle'
-                  data-action='submit' id="google" type="submit">
+              <div class="login-create-account-container">
+                <p class="login-create-account-text">Don't have an account?</p><a
+                  class='login-create-account-link login-create-account' href="/signup">Create Account</a>
+              </div>
 
 
-                  Sign in with Google
-                </button>
+
+              <form class=" play-as-guest " id="guest-login-form" action="/guest" method="POST">
+                <label for="guest"></label>
+                <button class="login-form-button guest-button  g-recaptcha"
+                  data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGuest'
+                  data-action='submit' id="guest" type="submit">Play as
+                  guest</button>
               </form>
             </div>
-
-
-
-
-            <div class="login-create-account-container">
-              <p class="login-create-account-text">Don't have an account?</p><a
-                class='login-create-account-link login-create-account' href="/signup">Create Account</a>
-            </div>
-
-
-
-            <form class=" play-as-guest " id="guest-login-form" action="/guest" method="POST">
-              <label for="guest"></label>
-              <button class="login-form-button guest-button  g-recaptcha"
-                data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGuest'
-                data-action='submit' id="guest" type="submit">Play as
-                guest</button>
-            </form>
           </div>
+
         </div>
-
       </div>
-     
-
-      <!-- </div> -->
-
-
+      <%- include('partials/_privacy') %>
     </div>
-
-    <%- include('partials/_privacy') %>
-
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-    <!-- <script src="../js/axios_.js"></script> -->
-    <!-- <script>
-  var loginAlert = document.getElementById("login-flash-message");
-
-
-// When the user clicks the button, open the modal 
-
-// When the user clicks on <span> (x), close the modal
-  function closeAlert() {
-    
-    loginAlert.style.display = 'none';
-  }
-
-  var closeButton = document.getElementById('close-login-alert');
-  closeButton.addEventListener('click', closeAlert);
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (loginAlert.target == loginAlert) {
-    modal.style.display = "none";
-  }
-}
-</script> -->
     <script src="../js/loginAlert.js"></script>
     <script src="../js/recaptcha/loginRecaptcha.js"></script>
-    <!-- <script>
-    function onSubmit(token) {
-      document.getElementById("login-form").submit();
-    }
-    function onSubmitGoogle(token) {
-      document.getElementById("google-login-form").submit();
-    }
-    function onSubmitGuest(token) {
-      document.getElementById("guest-login-form").submit();
-    }
-  </script> -->
+
 </body>
 
 </html>

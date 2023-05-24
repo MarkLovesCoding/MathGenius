@@ -4,8 +4,8 @@ import { state } from './state.js';
 const linkToTests = document.getElementById('new-real');
 linkToTests.addEventListener("click", function () {
   // navigate to a different page
-
-  state.type = "real";
+  sessionStorage.setItem("type", "real");
+  // state.type = "real"
   window.location.href = "/tests";
 
   //    loadSection('real-menu')
@@ -13,7 +13,9 @@ linkToTests.addEventListener("click", function () {
 
 const linkToPractice = document.getElementById('new-practice');
 linkToPractice.addEventListener("click", function () {
-  state.type = "practice";
+  sessionStorage.setItem("type", "practice");
+
+  // state.type = "practice"
   window.location.href = "/practice";
   //    loadSection('practice-menu')
 });

@@ -111,16 +111,17 @@ window.onload = function () {
     //   newQuestion(state.activity, state.activeOperators, mcCreateOptions)
     // }
     // else 
-    if (state.activity === "multiple-choice-quiz") {
-      console.log(state.activeDifficulty);
+    if (sessionStorage.getItem("activity") === "multiple-choice-quiz") {
+      // if (state.activity === "multiple-choice-quiz") {
+
       window.location.href = "/multiple-choice-quiz";
 
       // questionLogic.newQuestion(state.activity, state.activeOperators, mcQuizCreateOptions)
-    } else if (state.activity == "game") {
+    } else if (sessionStorage.getItem("activity") === "game") {
       window.location.href = "/high-score-challenge";
 
       // questionLogic.newQuestion(state.activity, state.activeOperators)
-    } else if (state.activity == "quiz") {
+    } else if (sessionStorage.getItem("activity") === "quiz") {
       window.location.href = "pop-quiz";
     }
   });
@@ -140,7 +141,7 @@ window.onload = function () {
         // Determine which activity type was selected by looking at the "data-type" attribute
         activity.classList.add("activity-selected");
         // Add the "activity-selected" class to the selected activity option
-        state.type = type;
+
         // Set the state's "type" property to the selected activity type
       });
     }
@@ -162,7 +163,6 @@ window.onload = function () {
         activity.classList.add("activity-selected");
 
         // Add the "activity-selected" class to the selected activity option
-        state.type = type;
 
         // Set the state's "type" property to the selected activity
       });

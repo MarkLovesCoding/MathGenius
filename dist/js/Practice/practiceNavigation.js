@@ -6,7 +6,7 @@ const activityContainer = document.getElementById("practice-menu-container");
 const linkToFlash = document.getElementById('new-flash');
 linkToFlash.addEventListener("click", function () {
   // navigate to a different page
-
+  sessionStorage.setItem("activity", "flash");
   state.activity = "flash";
   // window.location.href = "/tests";
   changeViewRight(activityContainer, operatorContainer);
@@ -15,6 +15,7 @@ linkToFlash.addEventListener("click", function () {
 
 const linkToMC = document.getElementById('new-mc');
 linkToMC.addEventListener("click", function () {
+  sessionStorage.setItem("activity", "multiple-choice");
   state.activity = "multiple-choice";
   changeViewRight(activityContainer, operatorContainer);
   // window.location.href = "/practice";

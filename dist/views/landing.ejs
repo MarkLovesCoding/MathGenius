@@ -18,41 +18,8 @@
 </head>
 
 <body>
-
-
-
-
-
-
-
-
-
-
-
-
-
   <%- include('partials/_brand') %>
-
-
-
-
-
-
-
-
-
     <div class="main-container" id="main-container">
-
-
-
-
-
-
-
-
-
-
-
       <div class="activity-menu-container display-container" id="activity-menu-container">
         <div class="activity-group">
           <div class="top welcome-top">
@@ -61,37 +28,24 @@
               <div>Welcome to Math Genius.</div>
               <div>A great place to learn basic Math and play games!</div>
             </div>
-
           </div>
           <div class="middle">
             <div class="middle-inner-landing">
-
-
-
               <div class="inner inner-login">
                 <div class=" icon-container  landing-choice" id="landing-log-in">
                   <p></p>
                   <i class="login-icon icon fas fa-user-graduate fa-large"></i>
-
-
                 </div>
                 <p class="icon-text">Log In</p>
               </div>
-
-
-
-
-
               <div class="inner inner-signup">
                 <div class=" icon-container  landing-choice" id="landing-signup">
                   <p></p>
                   <i class=" signup-icon icon fas fa-user-plus fa-large"></i>
                 </div>
                 <p class="icon-text">Sign Up
-
                 </p>
               </div>
-
               <div class="guest-div">
                 <form class=" play-as-guest " id="guest-login-form" action="/guest" method="POST">
                   <label for="guest"></label>
@@ -101,35 +55,13 @@
                     guest</button>
                 </form>
               </div>
-              <!-- <div class="inner">
-                        <div class=" icon-container  landing-choice" id="landing-guest" >
-                          <p></p>
-                          <i class=" guest-icon icon fas fa-user-clock fa-large"></i>
-                        </div>
-                        <p class="icon-text">Play As Guest
-                          
-                        </p>
-                      </div> -->
-
             </div>
           </div>
         </div>
-
-
       </div>
-
-
     </div>
-  <%- include('partials/_privacy') %>
-
-    <script type="module" src="/js/landingNavigation.js"></script>
-
-
-
-
-
-
-
+    <%- include('partials/_privacy') %>
+      <script type="module" src="/js/landingNavigation.js"></script>
 </body>
 
 </html>

@@ -3,9 +3,6 @@
 
 
 
-
-import { state } from './state.js';
-
 const modal = document.getElementById("avatar-modal");
 const profile = document.getElementById("profile-user-avatar");
 const span = document.getElementById("avatar-modal-close");
@@ -57,7 +54,6 @@ async function handleUserIconClick(event) {
   const selectedIcon = event.target.closest("img");
   if (selectedIcon) {
     profile.setAttribute("src", selectedIcon.src);
-    state.user.profileImage = selectedIcon.src;
     await updateSessionAndDB(selectedIcon.src);
     modal.style.display = "none";
   }

@@ -19,37 +19,16 @@
 </head>
 
 <body>
-
-
-
-
-
   <%- include('partials/_burger') %>
-  <%- include('partials/_brand') %>
-
-  <%- include('partials/_modals') %>
-
-
-    <%- include('partials/_badgeModal') %>
-
-
-    <div class="main-container" id="main-container">
-
-
-      <%- include('partials/_multipleChoiceQuiz') %>
-
-
-    </div>
-
-
-    <!-- <script type="module" src="/js/Tests/testMenu.js"></script> -->
-    <script type="module" src="/js/badgeEarned.js"></script>
-    <script type="module" src="/js/burger.js"></script>
-
-
-    <script type="module" src="/js/Tests/test_MultipleChoiceQuiz.js"></script>
-
-
+    <%- include('partials/_brand') %>
+      <%- include('partials/_modals') %>
+        <%- include('partials/_badgeModal') %>
+          <div class="main-container" id="main-container">
+            <%- include('partials/_multipleChoiceQuiz') %>
+          </div>
+          <script type="module" src="/js/badgeEarned.js"></script>
+          <script type="module" src="/js/burger.js"></script>
+          <script type="module" src="/js/Tests/test_MultipleChoiceQuiz.js"></script>
 </body>
 
 </html>

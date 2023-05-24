@@ -19,41 +19,20 @@
 </head>
 
 <body>
-
-
-
-
-
   <%- include('partials/_burger') %>
-  <%- include('partials/_brand') %>
+    <%- include('partials/_brand') %>
+      <%- include('partials/_modals') %>
+        <%- include('partials/_badgeModal') %>
+          <div class="main-container" id="main-container">
+            <%- include('partials/_activityMenuTests') %>
+              <%- include('partials/_operatorMenuTests') %>
+                <%- include('partials/_difficultyMenu') %>
+          </div>
 
-  <%- include('partials/_modals') %>
-
-
-    <%- include('partials/_badgeModal') %>
-
-
-    <div class="main-container" id="main-container">
-      <%- include('partials/_activityMenuTests') %>
-
-
-
- 
-      <%- include('partials/_operatorMenuTests') %>
-
-
-
-      <%- include('partials/_difficultyMenu') %>
-
-
-
-    </div>
-
-
-    <script type="module" src="/js/Tests/testMenu.js"></script>
-    <script type="module" src="/js/Tests/testsNavigation.js"></script>
-    <script type="module" src="/js/badgeEarned.js"></script>
-    <script type="module" src="/js/burger.js"></script>
+          <script type="module" src="/js/Tests/testMenu.js"></script>
+          <script type="module" src="/js/Tests/testsNavigation.js"></script>
+          <script type="module" src="/js/badgeEarned.js"></script>
+          <script type="module" src="/js/burger.js"></script>
 
 
 
