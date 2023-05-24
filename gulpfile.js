@@ -4,6 +4,8 @@ const babel = require('gulp-babel');
 const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
 const clean = require('gulp-clean')
+const uglify = require('gulp-uglify');
+const cleanCSS = require('gulp-clean-css');
 const nodemon = require('gulp-nodemon')
 const ejs = require('gulp-ejs')
 require('dotenv').config();
@@ -25,6 +27,18 @@ function compileSass() {
 
 gulp.task('sass', compileSass);
 
+
+// Minify CSS
+function minifyCss() {
+  return gulp.src('dist/css/*.css')
+    .pipe(cleanCSS())
+    .pipe(gulp.dest('dist/css'));
+}
+
+gulp.task('minify-css', minifyCss);
+
+
+
 // Transpile JS with Babel
 function transpileJs() {
   return gulp.src('public/js/**/*.js')
@@ -34,6 +48,17 @@ function transpileJs() {
 }
 
 gulp.task('babel', transpileJs);
+
+// Minify JS
+function minifyJs() {
+  return gulp.src('dist/js/**/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/js'));
+}
+
+gulp.task('minify-js', minifyJs);
+
+
 
 // Transpile JS for build
 function transpileBuildJs() {
@@ -61,27 +86,9 @@ function copyAssets() {
 
 gulp.task('copy-assets', copyAssets);
 
-// Start browser-sync server
-// function startServer() {
-//   browserSync.init({
-//     port: 4000,
-//     server: { 
-//       baseDir: './dist',
-//     },
-//   });
-  
-//   gulp.watch('public/scss/**/*.scss', compileSass);
-//   gulp.watch('public/js/**/*.js', transpileJs);
-//   gulp.watch('public/views/**/*.ejs', gulp.series('copy-ejs', browserSync.reload));
-// }
 
 function devServer() {
-  // nodemon({
-  //   script: 'server.js', // Enter the name of your server script file
-  //   ext: 'js ejs html css', // The file types to watch for changes
-  //   ignore: ['node_modules/**'], // Directories to ignore when watching for changes
-  //   env: { 'NODE_ENV': 'development' } // Set the environment variable to development
-  // });
+
   gulp.watch('public/scss/**/*.scss', compileSass);
   gulp.watch('public/js/**/*.js', transpileJs);
   gulp.watch('public/views/**/*.ejs', gulp.series('copy-ejs', browserSync.reload));
@@ -122,21 +129,9 @@ function nodemonTask(cb) {
 ))
 
 
-
-
-
-  // function startDevServer() {
-  //   nodemon({
-  //     script: 'server.js',
-  //     watch: 'server.js' // watch the server file for changes
-  //   });
-  //   devServer();
-  // }
-// ));
-
 gulp.task('build-project', buildProject);
 
-gulp.task('build', gulp.series('clean', 'sass', 'babel-build', 'copy-ejs', 'copy-assets', 'build-project'));
+gulp.task('build', gulp.series('clean', 'sass', 'babel-build', 'copy-ejs', 'copy-assets', 'build-project','minify-css', 'minify-js'));
 
 gulp.task('clean', function () {
   return gulp.src('dist/*')
