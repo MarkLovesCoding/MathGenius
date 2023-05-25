@@ -11,9 +11,8 @@
   <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
   <link rel="stylesheet" href="/css/styles.css">
 
-  <link
-  href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Pangolin&family=roboto&display=swap"
-  rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Pangolin&family=roboto&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -59,13 +58,13 @@
                           <% if (userData.name) { %>
                             <a class="profile-link-main" href="/profile">
                               <% if (userData.imageSrc) { %>
-                                <div class="profile-img-container">
-                                  <img id="profile-user-avatar" class="profile-user-avatar" src="../assets/temp.png" width="80" height="80"
-                                    alt="User Image" />
-                                </div>
-                                <%}%>
-                                  <span class="hi">Hi </span>
-                                  <%= userData.name %>
+                              <div class="profile-img-container">
+                                <img id="profile-user-avatar" class="profile-user-avatar" src="../assets/bear.png"
+                                  width="80" height="80" alt="User Image" />
+                              </div>
+                              <%}%>
+                              <span class="hi">Hi </span>
+                              <%= userData.name %>
                             </a>
                             <%} %>
                               <%}%>

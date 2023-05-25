@@ -1,20 +1,23 @@
 
 
-const profile = document.getElementById("profile-user-avatar");
 
 
 // Retrieves the user's avatar
-async function retrieveAvatar() {
+async function retrieveAvatar(element) {
   try {
     const response = await fetch('/get-avatar');
     const data = await response.json();
     const avatarSrc = data.avatarSrc;
     const trimmedSrc = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
-    profile.src = trimmedSrc;
+    element.src = trimmedSrc;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
 
 // Initialize the avatar retrieval
-retrieveAvatar();
+window.addEventListener('DOMContentLoaded',function(){
+const profile = document.getElementById("profile-user-avatar");
+  
+  retrieveAvatar(profile)
+})

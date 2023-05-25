@@ -393,6 +393,7 @@ router.get(
       name: profileName,
       session: {},
       badges: loadUser.badges,
+      imageSrc:loadUser.imageSrc || "../assets/temp.png"
     }
     // req.session.sessionId = sessionId
 
@@ -724,7 +725,7 @@ router.get('/get-avatar', requireAuth, async (req, res) => {
     const userId = req.session.userData.userId;
     const user = await User.findById(userId);
     const avatarSrc = user.imageSrc;
-
+    console.log("imgsrc:", user.imageSrc)
     res.json({ avatarSrc });
   } catch (error) {
     console.error(`Error fetching avatar: ${error}`);
