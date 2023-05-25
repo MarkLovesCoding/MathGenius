@@ -3,6 +3,7 @@
     var success = document.getElementById('success')
 
     // Fade out the overlay after 1 second
+    if (success){
     setTimeout(function() {
         success.style.opacity = "0";
       }, 1000);
@@ -12,3 +13,4 @@
         success.style.display = "none";
         success.style.zIndex = "0";
       }, 2000);
+    }
