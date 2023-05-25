@@ -89,6 +89,6 @@ async function initializeBadgeAppearance() {
   const badgesFromDb = await retrieveBadges();
   updateBadgeAppearance(badgeImgs, badgesFromDb);
 }
-
+window.addEventListener("DOMContentLoaded",initializeBadgeAppearance)
 // Call the initialization function
-initializeBadgeAppearance();
+// initializeBadgeAppearance();

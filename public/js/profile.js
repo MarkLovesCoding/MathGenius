@@ -24,19 +24,27 @@ window.onclick = function (event) {
   }
 };
 
-async function retrieveAvatar() {
+
+async function retrieveAvatar(element) {
+
   try {
     const response = await fetch('/get-avatar');
     const data = await response.json();
     const avatarSrc = data.avatarSrc;
     const trimmedSrc = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
-    profile.src = trimmedSrc;
+
+      element.src = trimmedSrc;
+
   } catch (error) {
     console.error(error);
   }
 }
-retrieveAvatar();
-
+// retrieveAvatar(profile);
+window.addEventListener('DOMContentLoaded',function(){
+// let profile = document.getElementById("profile-user-avatar");
+  
+  retrieveAvatar(profile)
+})
 // Handle user icon selection
 // userIconsContainer.addEventListener("click", async function (event) {
 //   const selectedIcon = event.target.closest("img");
