@@ -1,1 +1,0 @@
-function onSubmitSignup(t){document.getElementById("signup-form").submit()}function onSubmitGuest(t){document.getElementById("guest-login-form").submit()}

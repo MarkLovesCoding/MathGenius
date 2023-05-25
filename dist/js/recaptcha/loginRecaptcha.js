@@ -1,1 +1,0 @@
-function onSubmit(t){document.getElementById("login-form").submit()}function onSubmitGoogle(t){document.getElementById("google-login-form").submit()}function onSubmitGuest(t){document.getElementById("guest-login-form").submit()}

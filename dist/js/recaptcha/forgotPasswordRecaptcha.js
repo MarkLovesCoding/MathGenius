@@ -1,1 +1,0 @@
-function onSubmitPassword(o){document.getElementById("forgot-password-form").submit()}
