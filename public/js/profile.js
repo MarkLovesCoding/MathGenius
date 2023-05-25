@@ -39,22 +39,11 @@ async function retrieveAvatar(element) {
     console.error(error);
   }
 }
-// retrieveAvatar(profile);
 window.addEventListener('DOMContentLoaded',function(){
-// let profile = document.getElementById("profile-user-avatar");
   
   retrieveAvatar(profile)
 })
-// Handle user icon selection
-// userIconsContainer.addEventListener("click", async function (event) {
-//   const selectedIcon = event.target.closest("img");
-//   if (selectedIcon) {
-//     profile.setAttribute("src", selectedIcon.src);
-//     state.user.profileImage = selectedIcon.src;
-//     await updateSessionAndDB(selectedIcon.src);
-//     modal.style.display = "none";
-//   }
-// });
+
 
 userIconsContainer.addEventListener("click", handleUserIconClick);
 
