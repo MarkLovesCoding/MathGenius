@@ -49,8 +49,10 @@ function passportConfig(passport) {
 
   // Configure Google strategy
   passport.use(new GoogleStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
+    clientID: "1005807464121-k2r2f22oiemmc5o16936b3so662i02vm.apps.googleusercontent.com",
+    // clientID: process.env.CLIENT_ID,
+    clientSecret:"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",
+    // clientSecret: process.env.CLIENT_SECRET,
     callbackURL: '/auth/google/callback'
   }, async (accessToken, refreshToken, profile, done) => {
     try {
