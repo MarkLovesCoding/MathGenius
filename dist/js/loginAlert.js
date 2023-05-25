@@ -1,0 +1,1 @@
+var loginAlert=document.getElementById("login-flash-message");function closeAlert(){loginAlert.style.display="none"}var closeButton=document.getElementById("close-login-alert");closeButton&&closeButton.addEventListener("click",closeAlert),window.onclick=function(e){e.target!==loginAlert&&(loginAlert.style.display="none")};

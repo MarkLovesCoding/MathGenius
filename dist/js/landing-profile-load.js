@@ -1,0 +1,1 @@
+const profile=document.getElementById("profile-user-avatar");async function retrieveAvatar(){try{var a=(await(await fetch("/get-avatar")).json()).avatarSrc.replace(/https?:\/\/[^\/]+/,"../");profile.src=a}catch(a){console.error(a)}}retrieveAvatar();

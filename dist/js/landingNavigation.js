@@ -1,0 +1,1 @@
+const login=document.getElementById("landing-log-in"),signup=(login.addEventListener("click",function(){window.location.href="/login"}),document.getElementById("landing-signup")),guest=(signup.addEventListener("click",function(){window.location.href="/signup"}),document.getElementById("landing-guest"));guest.addEventListener("click",function(){window.location.href="/guest"});
