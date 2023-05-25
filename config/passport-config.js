@@ -51,7 +51,8 @@ function passportConfig(passport) {
   passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'https://www.mathgenius.ca/auth/google/callback'
+    callbackURL: 'https://mathgenius.ca/auth/google/callback'
+    // callbackURL: 'localhost:4000/auth/google/callback'
   }, async (accessToken, refreshToken, profile, done) => {
     try {
       // Find the user with the provided Google ID

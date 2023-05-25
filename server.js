@@ -30,7 +30,7 @@ app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
 
 
-app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
+// app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 app.disable('x-powered-by');
 
 
