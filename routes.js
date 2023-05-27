@@ -677,7 +677,9 @@ router.get('/high-score-challenge', requireAuth, (req, res) => {
   res.render('highScoreChallenge');
 });
 
-
+router.get('/times-tables', requireAuth, (req, res) => {
+  res.render('timesTables');
+});
 
 
 

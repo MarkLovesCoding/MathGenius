@@ -1,0 +1,298 @@
+$timesTableSize:40px;
+
+
+.main{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
+      
+  }
+  .lesson {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    width:300px;
+    
+  }
+  .times-table-bottom{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  }
+  
+  .number-container {
+    display: flex;  justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position:relative;
+  /*   border:2px solid black; */
+    
+  }
+  
+  .number {
+    outline:0;
+    margin:0;
+    z-index: 1;
+    border-radius:20px;
+    color: $chalk-white;
+    
+    width: $timesTableSize;
+    height: $timesTableSize;
+    // background-color: #f0f0f0;
+  /*   border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 150ms ease-out;
+  }
+  
+  
+  .number.active,
+  .number:hover {
+    z-index: 1;
+    border-radius:20px;
+    color: $chalkboard-green;
+    background-color: $wood;
+    // text-decoration:underline;
+    font-weight:800;
+    transition:all 150ms ease-out;
+  }
+  
+  .times-table {  overflow: hidden;
+  
+    height: auto;
+    width: $timesTableSize * 12;
+    background-color: $chalkboard-green;
+    color: $chalk-white;
+  /*   padding: 10px; */
+    // font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+    // transition: opacity 0.4s ease, height 0.4s ease;
+    opacity: 1;
+  }
+  
+  
+  .times-table table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .times-table th,
+  .times-table td {
+    // border: 1px solid $largeWoodBorder;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  
+  
+  
+  
+  
+//   .slider-portrait {
+//     position: absolute;
+//     display:block;
+//     left: 0;
+//     top: 0;
+//     // right: 0;
+//     height: 40px;
+//     width:40px;
+//     background-color: #4effbb;
+//     z-index: 0;
+//     opacity: 0;
+//     transition: transform 150ms ease-out, opacity 150ms ease-out;
+//   }
+  
+//   .number-container:hover .slider-portrait {
+//     opacity: 1;
+//   }
+  
+//   .number:nth-child(2):hover ~ .slider-portrait {
+//     transform: translateX(100%);
+//   }
+  
+//   .number:nth-child(3):hover ~ .slider-portrait {
+//     transform: translateX(200%);
+//   }
+  
+//   .number:nth-child(4):hover ~ .slider-portrait {
+//     transform: translateX(300%);
+//   }
+  
+//   .number:nth-child(5):hover ~ .slider-portrait {
+//     transform: translateX(400%);
+//   }
+  
+//   .number:nth-child(6):hover ~ .slider-portrait {
+//     transform: translateX(500%);
+//   }
+  
+//   .number:nth-child(7):hover ~ .slider-portrait {
+//     transform: translateX(600%);
+//   }
+  
+//   .number:nth-child(8):hover ~ .slider-portrait {
+//     transform: translateX(700%);
+//   }
+  
+//   .number:nth-child(9):hover ~ .slider-portrait {
+//     transform: translateX(800%);
+//   }
+  
+//   .number:nth-child(10):hover ~ .slider-portrait {
+//     transform: translateX(900%);
+//   }
+  
+//   .number:nth-child(11):hover ~ .slider-portrait {
+//     transform: translateX(1000%);
+//   }
+//   .number:nth-child(12):hover ~ .slider-portrait {
+//     transform: translateX(1100%);
+//   }
+  
+  
+//   .slider-landscape {
+//     display:none;
+//   }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  @media screen and (orientation: landscape) {
+    .lesson {
+      flex-direction: column;
+      justify-content: center;
+      align-items:start;
+      height:482px;
+    }
+    .times-table-header{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .number-container {
+      flex-direction: column;
+       justify-content: center;
+      align-items:center;
+    height: 100%;
+      position:relative;
+    }
+  
+    .number {
+  
+        width: 40px;
+    height: 40px;
+    }
+  
+    .times-table {
+  
+    // height: 100%;
+      
+      margin-top: 0;
+  /*     margin-left: 20px; */
+      height: 482px;
+      width: 300px;
+      max-height: 100%;
+      overflow: hidden;
+     // transition: opacity 0.4s ease, width 0.4s ease;
+    opacity: 1;
+  }
+  
+  .times-table-bottom{
+    // display:flex;
+    position:relative;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:flex-start;
+  }
+    
+    tr{
+      
+     height:40px;
+      width:200px;
+  
+    }
+    
+//     .slider-portrait {
+//     display:none;
+//   }
+    
+//   .slider-landscape {
+//     display:block;
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     // right: 0;
+//     height: 40px;
+//     width:40px;
+//     background-color: #4effbb;
+//     z-index: -1;
+//     opacity: 0;
+//     transition: all 150ms ease-out;
+//   }
+  
+//   .number-container:hover .slider-landscape {
+//     opacity: 1;
+//   }
+  
+//   .number:nth-child(2):hover ~ .slider-landscape {
+//     transform: translateY(100%);
+//   }
+  
+//   .number:nth-child(3):hover ~ .slider-landscape {
+//     transform: translateY(200%);
+//   }
+  
+//   .number:nth-child(4):hover ~ .slider-landscape {
+//     transform: translateY(300%);
+//   }
+  
+//   .number:nth-child(5):hover ~ .slider-landscape {
+//     transform: translateY(400%);
+//   }
+  
+//   .number:nth-child(6):hover ~ .slider-landscape {
+//     transform: translateY(500%);
+//   }
+  
+//   .number:nth-child(7):hover ~ .slider-landscape {
+//     transform: translateY(600%);
+//   }
+  
+//   .number:nth-child(8):hover ~ .slider-landscape {
+//     transform: translateY(700%);
+//   }
+  
+//   .number:nth-child(9):hover ~ .slider-landscape {
+//     transform: translateY(800%);
+//   }
+  
+//   .number:nth-child(10):hover ~ .slider-landscape {
+//     transform: translateY(900%);
+//   }
+  
+//   .number:nth-child(11):hover ~ .slider-landscape {
+//     transform: translateY(1000%);
+//   }
+//   .number:nth-child(12):hover ~ .slider-landscape {
+//     transform: translateY(1100%);
+//   }
+  
+    
+  }
+  
+  
