@@ -28,7 +28,7 @@
 .flash,
 .mc-quiz,
 .game,
-.mc {
+.mc,.times-tables,.learning {
     &:hover {
         &>* {
             color: $chalkboard-green;
@@ -78,7 +78,8 @@
 }
 
 .game,
-.mc {
+.mc,
+.times-tables,.learning {
     &:hover {
         background-color: $plus-green;
     }
@@ -152,7 +153,7 @@
     color: $multiply-orange;
 }
 
-.mc-icon {
+.mc-icon,.times-tables-icon,.learning-icon  {
     color: $plus-green;
 }
 
@@ -231,7 +232,7 @@
     }
 }
 
-.plus-icon {
+.plus-icon{
     color: $plus-green;
 }
 
@@ -386,6 +387,7 @@
 
 //   
 .activity-menu-container,
+.learning-menu-container,
 .operator-menu-container,
 .difficulty-menu-container,
 .real-menu-container,

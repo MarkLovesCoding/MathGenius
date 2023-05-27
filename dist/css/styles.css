@@ -147,7 +147,7 @@
 .flash:hover > *,
 .mc-quiz:hover > *,
 .game:hover > *,
-.mc:hover > * {
+.mc:hover > *, .times-tables:hover > *, .learning:hover > * {
   color: #274c43;
 }
 .quiz.activity-selected > *,
@@ -156,7 +156,7 @@
 .flash.activity-selected > *,
 .mc-quiz.activity-selected > *,
 .game.activity-selected > *,
-.mc.activity-selected > * {
+.mc.activity-selected > *, .times-tables.activity-selected > *, .learning.activity-selected > * {
   color: #274c43;
 }
 
@@ -189,11 +189,13 @@
 }
 
 .game:hover,
-.mc:hover {
+.mc:hover,
+.times-tables:hover, .learning:hover {
   background-color: #6ee06e;
 }
 .game.activity-selected,
-.mc.activity-selected {
+.mc.activity-selected,
+.times-tables.activity-selected, .learning.activity-selected {
   background-color: #6ee06e;
   border-radius: 5px;
 }
@@ -258,7 +260,7 @@
   color: #f5ba42;
 }
 
-.mc-icon {
+.mc-icon, .times-tables-icon, .learning-icon {
   color: #6ee06e;
 }
 
@@ -469,6 +471,7 @@
 }
 
 .activity-menu-container,
+.learning-menu-container,
 .operator-menu-container,
 .difficulty-menu-container,
 .real-menu-container,
@@ -3174,6 +3177,7 @@ body {
 
 .times-table th,
 .times-table td {
+  padding: 8px;
   text-align: center;
   height: 40px;
 }
@@ -3228,6 +3232,7 @@ tr:hover {
 
   .times-table th, .times-table td {
     height: 30px;
+    padding: 2px;
   }
 }
 @media screen and (orientation: landscape) and (max-height: 415px) {

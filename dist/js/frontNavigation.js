@@ -20,4 +20,13 @@ linkToPractice.addEventListener("click", function () {
   //    loadSection('practice-menu')
 });
 
+const linkToLearning = document.getElementById('new-learning');
+linkToLearning.addEventListener("click", function () {
+  sessionStorage.setItem("type", "learning");
+
+  // state.type = "practice"
+  window.location.href = "/learning";
+  //    loadSection('practice-menu')
+});
+
 // const userProfile = document.getAnimations

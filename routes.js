@@ -683,6 +683,10 @@ router.get('/times-tables', requireAuth, (req, res) => {
 
 
 
+router.get('/learning', requireAuth, (req, res) => {
+  res.render('learningMenu');
+});
+
 
 
 
