@@ -3085,6 +3085,12 @@ body {
     flex-direction: row;
   }
 }
+.rotate-please {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
 .main {
   display: flex;
   align-items: center;
@@ -3112,9 +3118,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   z-index: 1;
   position: relative;
   /*   border:2px solid black; */
+  width: 80px;
 }
 
 .number {
@@ -3123,6 +3131,7 @@ body {
   z-index: 1;
   border-radius: 20px;
   color: #eae6df;
+  font-size: 0.9rem;
   width: 40px;
   height: 40px;
   /*   border: 1px solid black; */
@@ -3143,16 +3152,19 @@ body {
   transition: all 150ms ease-out;
 }
 
+.times-table-header {
+  color: #eae6df;
+  padding-bottom: 20px;
+}
+
 .times-table {
   overflow: hidden;
-  height: auto;
-  width: 480px;
+  max-width: 90vw;
   background-color: #274c43;
   color: #eae6df;
   /*   padding: 10px; */
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.2;
-  opacity: 1;
 }
 
 .times-table table {
@@ -3162,57 +3174,68 @@ body {
 
 .times-table th,
 .times-table td {
-  padding: 8px;
   text-align: center;
+  height: 40px;
 }
 
-@media screen and (orientation: landscape) {
-  .lesson {
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    height: 482px;
-  }
+.times-table th {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: relative;
+  width: 80px;
+}
 
+.times-table td {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-weight: 800;
+}
+
+tr:hover {
+  background-color: #eae6df;
+  color: #274c43;
+}
+
+.times-table-bottom {
+  position: relative;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@media screen and (max-height: 650px) {
   .times-table-header {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 0.75em;
+    padding-bottom: 5px;
   }
 
   .number-container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    position: relative;
-  }
-
-  .number {
-    width: 40px;
-    height: 40px;
+    width: 30px;
   }
 
   .times-table {
-    margin-top: 0;
-    /*     margin-left: 20px; */
-    height: 482px;
-    width: 300px;
-    max-height: 100%;
-    overflow: hidden;
-    opacity: 1;
+    line-height: 0.8;
+    font-size: 13px;
+  }
+  .times-tabletr {
+    height: 25px;
   }
 
-  .times-table-bottom {
-    position: relative;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
+  .number {
+    width: 30px;
+    height: 30px;
   }
 
-  tr {
-    height: 40px;
-    width: 200px;
+  .times-table th, .times-table td {
+    height: 30px;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 415px) {
+  .lesson {
+    display: none;
+  }
+
+  .rotate-please {
+    display: flex;
   }
 }

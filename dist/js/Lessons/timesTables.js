@@ -55,7 +55,7 @@ function generateTimesTable(number) {
   var table = "<table>";
   for (var i = 1; i <= 12; i++) {
     table += "<tr>";
-    table += "<th>" + number + " × " + i + "</th>";
+    table += "<th>" + number + " × " + i + " = " + "</th>";
     table += "<td>" + number * i + "</td>";
     table += "</tr>";
   }
