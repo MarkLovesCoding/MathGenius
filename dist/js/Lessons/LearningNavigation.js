@@ -1,1 +1,0 @@
-const linkToTT=document.getElementById("new-times-tables");linkToTT.addEventListener("click",function(){window.location.href="/times-tables"});

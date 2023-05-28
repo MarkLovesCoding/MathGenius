@@ -60,22 +60,29 @@ document.querySelectorAll('#expanded-menu li a, #close-menu').forEach(el => {
 
 const testNav = document.getElementById('test-nav')
 const practiceNav = document.getElementById('practice-nav')
-import { state } from './state.js'
+const learningNav = document.getElementById('learning-nav')
+// import { state } from './state.js'
 
 
 testNav.addEventListener("click", function () {
-  state.type = "real"
+  // state.type = "real"
   window.location.href = "/tests";
 
-  utilMethods.loadSection('real-menu')
+  // utilMethods.loadSection('real-menu')
 
 
 
 })
 practiceNav.addEventListener("click", function () {
-  state.type = "practice"
+  // state.type = "practice"
   window.location.href = "/practice";
-  utilMethods.loadSection('practice-menu')
+  // utilMethods.loadSection('practice-menu')
 
 })
 
+learningNav.addEventListener("click", function () {
+  // state.type = "learning"
+  window.location.href = "/learning";
+  // utilMethods.loadSection('learning-menu')
+
+})

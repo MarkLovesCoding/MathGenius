@@ -23,7 +23,7 @@ const rateLimit = require("express-rate-limit");
 const requireAuth = (req, res, next) => {
   if (!req.isAuthenticated()) {
     // redirect to login page if not authenticated
-    return res.redirect('/landing');
+    return res.render('landing')
   }
   next();
 };
@@ -429,7 +429,7 @@ router.get('/logout', function (req, res) {
       if (err) {
         console.log(err);
       }
-      res.redirect('/landing');
+      res.redirect('/');
     });
   });
 });
@@ -674,22 +674,30 @@ router.get('/pop-quiz', requireAuth, (req, res) => {
 });
 
 router.get('/high-score-challenge', requireAuth, (req, res) => {
+  const referrer = req.headers.referer;
+  console.log('Referrer:', referrer);
   res.render('highScoreChallenge');
 });
 
-router.get('/times-tables', requireAuth, (req, res) => {
-  res.render('timesTables');
-});
-
+// router.get('/times-table', requireAuth, (req, res) => {
+//   const referrer = req.headers.referer;
+//   console.log('Referrer:', referrer);
+//   res.render('timesTable');
+// });
 
 
 router.get('/learning', requireAuth, (req, res) => {
+
   res.render('learningMenu');
 });
 
 
 
 
+router.get('/learning/times-table', requireAuth, (req, res) => {
+
+  res.render('learningTimes');
+});
 
 
 

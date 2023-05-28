@@ -30,7 +30,7 @@ app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
 
 
-// app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
+app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 app.disable('x-powered-by');
 
 
@@ -47,9 +47,11 @@ app.use(flash())
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
+
+
 passportConfig(passport);
-
-
 app.use('/', routes);
 
 // serve static files from the public directory
