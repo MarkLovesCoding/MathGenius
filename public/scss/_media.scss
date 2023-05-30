@@ -957,3 +957,17 @@
 //     min-width:100vw;
 // }
 }
+@media screen and (orientation:landscape) and (max-width:580px) {
+
+    .hi,.welcome-header{
+        display:none;
+        // font-size:18px;
+    }
+    }
+    @media screen and (orientation:portrait) and (max-height:450px) {
+    
+        .hi,.welcome-header{
+            display:none;
+            // font-size:18px;
+        }
+        }
