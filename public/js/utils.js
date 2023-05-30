@@ -305,8 +305,13 @@ export function convertStringToArray(inputString) {
   export function changeViewLeft(element1,element2){
     element1.style.left = 0;
     element2.style.left = "100%";
+    element1.style.opacity = 1;
+    element2.style.opacity = 0;
+
   }
   export function changeViewRight(element1,element2){
     element1.style.left = "-100%";
     element2.style.left = 0;
+    element1.style.opacity = 0;
+    element2.style.opacity = 1;
   }

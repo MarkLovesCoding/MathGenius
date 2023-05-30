@@ -157,11 +157,19 @@
   font-size: 24px;
 }
 
+.difficulty-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .difficulty-text {
   font-family: "pangolin", cursive;
   font-size: 26px;
   padding: 5px;
   color: #eae6df;
+  text-align: center;
 }
 
 .quiz:hover > *,
@@ -499,7 +507,7 @@
 .difficulty-menu-container,
 .real-menu-container,
 .practice-menu-container {
-  transition: left 0.3s cubic-bezier(0.47, 0.24, 0.86, 0.99);
+  transition: left 0.3s cubic-bezier(0.47, 0.24, 0.86, 0.99), opacity 0.3s cubic-bezier(0.47, 0.24, 0.86, 0.99);
   position: absolute;
   top: 0;
   flex-direction: column;
@@ -555,15 +563,17 @@
 .message-modal {
   visibility: hidden;
   z-index: 10;
-  background-color: #eae6df;
+  background-color: #274c43;
   padding: 50px;
   border-radius: 10px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  border: 5px solid purple;
+  border: 5px solid #eae6df;
   font-family: "pangolin", cursive;
+  color: #eae6df;
+  font-size: 0.6em;
 }
 
 .mc-container {
@@ -668,6 +678,8 @@
   background-color: #29bf12;
   color: #191919;
   font-family: "pangolin", cursive;
+  border-radius: 25px;
+  padding: 8px;
 }
 
 .incorrect-answer {
@@ -2098,7 +2110,7 @@ body {
 }
 
 .correctness {
-  padding: 0.2em;
+  padding: 0.4em;
 }
 
 .icon-small {
@@ -2334,41 +2346,6 @@ body {
     color: #eae6df !important;
   }
 }
-@media screen and (orientation: portrait) and (max-height: 570px) {
-  .welcome-header-index {
-    display: none;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .profile-section {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .user {
-    flex-basis: 20%;
-  }
-
-  .badges {
-    grid-template-columns: repeat(5, 1fr);
-    max-width: none;
-  }
-}
-@media screen and (min-width: 768px) {
-  .profile-section {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .profile-user-section {
-    flex-basis: 20%;
-  }
-
-  .badges {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: none;
-  }
-}
 @media only screen and (max-width: 330px) {
   .google-block {
     min-height: 60px;
@@ -2423,7 +2400,7 @@ body {
   .icon-container {
     width: 85px;
     height: 85px;
-    margin: 0 5px;
+    margin: 5px;
   }
 
   .icon-text,
@@ -2437,9 +2414,9 @@ body {
   }
 
   .nav-button {
-    font-size: 2.75em;
-    width: 100px;
-    height: 75px;
+    font-size: 2em;
+    width: 60px;
+    height: 50px;
   }
 
   .icon {
@@ -2477,8 +2454,8 @@ body {
   }
 
   .option {
-    max-width: 130px;
-    height: 95px;
+    max-width: 18vmax;
+    height: 12vmax;
     font-size: 1.8em;
   }
 
@@ -2490,12 +2467,12 @@ body {
     margin: 20px 0;
   }
   .quiz-correctness-scores > * {
-    font-size: 1.6em;
+    font-size: 1em;
   }
 
   .quiz-question {
     height: 150px;
-    padding: 2em;
+    padding: 0.8em;
   }
 
   .titles-group {
@@ -2520,6 +2497,108 @@ body {
     width: 90px;
     height: 90px;
     margin: 0;
+  }
+
+  .header-text, .activity-title, .activity-type {
+    font-size: 22px;
+    padding-bottom: 20px;
+  }
+
+  #range-input {
+    margin: 30px 0;
+    min-width: 80vw;
+  }
+
+  .mc-middle-lower {
+    max-width: inherit;
+    max-height: inherit;
+  }
+
+  .mc-top {
+    padding-bottom: initial;
+  }
+}
+@media screen and (orientation: portrait) and (max-height: 570px) {
+  .welcome-header-index {
+    display: none;
+  }
+
+  .mc-question {
+    font-size: 2em;
+  }
+
+  .question {
+    height: auto;
+    font-size: 1.6em;
+  }
+
+  .operator-menu-container, .mc-quiz-container {
+    justify-content: flex-end;
+    padding-bottom: 20px;
+  }
+
+  .game-top,
+.flash-upper {
+    margin-bottom: 0vh;
+  }
+
+  .activity-title, .activity-group {
+    font-size: 22px;
+    padding-bottom: 0px;
+  }
+
+  .high-title, .score-title {
+    line-height: normal;
+  }
+
+  .score-text, .level-number {
+    font-size: 1.1em;
+  }
+
+  .progress-container {
+    padding: 3px 10px 0 10px;
+  }
+
+  .level-container > * {
+    font-size: 1.1em;
+  }
+
+  .score-container {
+    margin-top: 0;
+  }
+
+  .game-question {
+    padding: 4px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .profile-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user {
+    flex-basis: 20%;
+  }
+
+  .badges {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .profile-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-user-section {
+    flex-basis: 20%;
+  }
+
+  .badges {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: none;
   }
 }
 @media only screen and (max-width: 580px) and (orientation: landscape) {
@@ -2563,6 +2642,44 @@ body {
 
   .create-account-form-button {
     margin-top: 0;
+  }
+
+  .game-top,
+.flash-upper {
+    margin-bottom: 0vh;
+  }
+
+  .activity-title, .activity-group {
+    font-size: 22px;
+    padding-bottom: 0px;
+  }
+
+  .high-title, .score-title {
+    line-height: normal;
+  }
+
+  .score-text, .level-number {
+    font-size: 1.1em;
+  }
+
+  .progress-container {
+    padding: 3px 10px 0 10px;
+  }
+
+  .level-container > * {
+    font-size: 1.1em;
+  }
+
+  .score-container {
+    margin-top: 0;
+  }
+
+  .game-question {
+    padding: 4px;
+  }
+
+  .game-lower {
+    max-width: 40vw;
   }
 }
 @media only screen and (max-width: 900px) and (orientation: landscape) {
@@ -2625,6 +2742,42 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .score-container {
+    margin-top: 0;
+  }
+
+  .high-title, .score-title {
+    line-height: normal;
+  }
+
+  .score-text, .level-number {
+    font-size: 1.1em;
+  }
+
+  .progress-container {
+    padding: 3px 10px 0 10px;
+  }
+
+  .level-container > * {
+    font-size: 1.1em;
+  }
+
+  .score-container {
+    margin-top: 0;
+  }
+
+  .game-question {
+    padding: 4px;
+  }
+
+  .game-lower {
+    max-width: 40vw;
+  }
+
+  .question-box {
+    flex-direction: column;
   }
 }
 @media only screen and (max-height: 580px) and (orientation: landscape) {

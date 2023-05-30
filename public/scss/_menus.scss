@@ -36,13 +36,19 @@
     max-width: 200px;
     font-size: 24px;
 }
-
+.difficulty-middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 .difficulty-text {
     font-family: $chalkboardFont;
     font-size: $mobileHeaderTextSize;
     padding: 5px;
     color: $chalk-white;
+    text-align:center;
 }
 
 .quiz,
@@ -415,7 +421,7 @@
 .difficulty-menu-container,
 .real-menu-container,
 .practice-menu-container {
-    transition:left 0.3s cubic-bezier(0.47, 0.24, 0.86, 0.99);;
+    transition:left 0.3s cubic-bezier(0.47, 0.24, 0.86, 0.99), opacity 0.3s cubic-bezier(0.47, 0.24, 0.86, 0.99);
     position:absolute;
     top:0;
     flex-direction: column;
