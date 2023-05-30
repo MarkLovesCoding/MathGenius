@@ -10,8 +10,8 @@
     display: flex; // make none after editing.
   background:rgba(255, 255, 255, 0);
     position: absolute;
-    top: 5vh;
-    right: 5vw;
+    top: 3vh;
+    right: 3vw;
     transition: all 200ms ease;
     z-index:200;
   
@@ -134,8 +134,8 @@
     background-color:$chalk-white;
     display:flex;
     position: absolute;
-      top: calc(-3vh + 6px);
-      right: calc(-3vw + 6px);
+      top: calc(-2vh + 6px);
+      right:calc(-1vh + 6px);
       // border-top-right-radius: 0;
       @include center-flex;
   
@@ -162,13 +162,20 @@
   .expanded-menu li {
     margin: 10px 0;
     text-align: center;
+      transition:background-color 0.15s ease;
     padding:20px;
-  }
+    border-radius:50px;
+    &:hover{
+      background-color:white;
+
+
+      padding: 20px 20px;
+  }}
   
   .expanded-menu a {
     color: $chalkboard-green;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
   }
   
   

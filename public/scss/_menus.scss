@@ -1,3 +1,26 @@
+.icons-middle {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .inner {
+    background: $chalkboard-green;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 0 15px;
+  }
+  
+  .icons-middle-inner {
+
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+  }
 .operator-text {
     font-family: $chalkboardFont;
     font-size: $mobileIconTextSize;
@@ -141,7 +164,7 @@
 //   Icons
 
 .icon {
-    font-size: 3em;
+    font-size: 2.5em;
 }
 
 .pen-icon {

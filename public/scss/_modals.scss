@@ -1,0 +1,15 @@
+
+.message-modal {
+    visibility: hidden;
+    z-index: 10;
+    background-color: $chalk-white;
+    padding: 50px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 5px solid purple;
+    font-family: $chalkboardFont;
+  }
+  

@@ -33,7 +33,7 @@
         <%}%>
           <%- include('partials/_burger') %>
             <%- include('partials/_brand') %>
-              <div id="activity-alert-modal" class="message-modal">
+              <!-- <div id="activity-alert-modal" class="message-modal">
                 <div class="message-intro">Please Select An Activity </div>
               </div>
               <div id="operator-alert-modal" class="message-modal">
@@ -48,7 +48,12 @@
                 <div class="message-intro">You got <span id="mc-quiz-amountCorrect" class="amountCorrect"></span> /10
                   Correct! </br> That's <span id="mc-quiz-amountCorrectPercentage" class="amountCorrect"> </span>
                 </div>
-              </div>
+              </div> -->
+
+
+
+      <%- include('partials/_modals') %>
+
               <div class="main-container" id="main-container">
                 <div class="activity-menu-container display-container" id="activity-menu-container">
                   <div class="activity-group">
@@ -69,13 +74,13 @@
                             <%} %>
                               <%}%>
                       </div>
-                      <div class="header welcome-header">
+                      <div class="header-text welcome-header-index">
                         <div>Welcome back to Math Genius.</div>
                         <div>Have fun!</div>
                       </div>
                     </div>
-                    <div class="middle">
-                      <div class="middle-inner">
+                    <div class="icons-middle">
+                      <div class="icons-middle-inner">
                         <div class="inner">
                           <div class=" icon-container real activity-choice" id="new-real" data-type="real">
                             <p></p>
