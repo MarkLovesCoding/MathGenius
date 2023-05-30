@@ -1,5 +1,5 @@
 $timesTableNumberSize: 40px;
-$timesTableColumnWidth: 80px;
+$timesTableColumnWidth: 105px;
 
 .rotate-please{
   display:none;
@@ -135,7 +135,8 @@ $timesTableColumnWidth: 80px;
   border-bottom-right-radius: 20px;
   // font-size: 1rem;
   font-weight:800;
-  // width: 40px;
+   width: 80px;
+   text-align: inherit;
   ;
 }
 
