@@ -3,7 +3,7 @@ var isLandscape;
 
 window.addEventListener("resize", function () {
   isLandscape = window.matchMedia("(orientation: landscape)").matches;
-  console.log(isLandscape);
+  // console.log(isLandscape);
 });
 
 window.addEventListener("DOMContentLoaded", function () {
@@ -12,7 +12,6 @@ window.addEventListener("DOMContentLoaded", function () {
   var activeNumber =  document.querySelector('.number[data-number="1"]');
   
 
-    console.log("IS LANDSCAPE")
       numbers.forEach(function (number) {
     number.addEventListener("mouseenter", function () {
       
