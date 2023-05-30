@@ -809,3 +809,16 @@
         flex-direction:row;
     }
 }
+@media only screen and (orientation:landscape) {
+
+
+.activity-menu-container,
+.operator-menu-container,
+.difficulty-menu-container,
+.game-middle-lower,
+.real-menu-container,
+.practice-menu-container {
+    // display: flex;
+    flex-direction: row;
+}
+}
