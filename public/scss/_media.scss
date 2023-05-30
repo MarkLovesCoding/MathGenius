@@ -644,7 +644,7 @@
 
     .icons-middle {
         justify-content: flex-start;
-        flex-basis: 200px;
+        // flex-basis: 200px;
         z-index: 2;
     }
 
@@ -880,9 +880,6 @@
         // width: 360px;
     }
 
-    .top {
-        flex-basis: 150px;
-    }
 
     .flash-text {
         font-size: 2.75em;
