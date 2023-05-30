@@ -44,20 +44,6 @@
       }
 
 }
-@media screen and (orientation:landscape) and (max-width:580px) {
-
-.hi,.welcome-header{
-    display:none;
-    // font-size:18px;
-}
-}
-@media screen and (orientation:portrait) and (max-height:450px) {
-
-    .hi,.welcome-header{
-        display:none;
-        // font-size:18px;
-    }
-    }
 @media screen and (max-width:330px) {
 
     .google-block {
@@ -967,11 +953,7 @@
     // display: flex;
     flex-direction: row;
 }
-html{
-    position:absolute;
-    top:0;
-    left:0;
-    min-width:100vw;
-    min-height:100%;
-}
+// body{
+//     min-width:100vw;
+// }
 }
