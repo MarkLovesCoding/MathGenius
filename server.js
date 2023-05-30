@@ -10,6 +10,7 @@ const passportConfig = require('./config/passport-config');
 const flash = require('connect-flash')
 // const db = require('./db/db');
 // const MongoStore = require('connect-mongo')(session);
+require('dotenv').config({ path: '../environmental/mg/.env' });
 
 const helmet = require('helmet')
 const app = express();

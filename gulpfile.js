@@ -8,8 +8,9 @@ const uglify = require('gulp-uglify');
 const cleanCSS = require('gulp-clean-css');
 const nodemon = require('gulp-nodemon')
 const ejs = require('gulp-ejs')
-require('dotenv').config();
+// require('dotenv').config();
 
+require('dotenv').config({ path: '../environmental/mg/.env' });
 
 
 gulp.task('clean', function () {

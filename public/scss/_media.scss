@@ -1036,6 +1036,10 @@
         display: none;
         // font-size:18px;
     }
+    .inner{
+        width:5em;
+        height:5em;
+    }
 }
 
 @media screen and (orientation:portrait) and (max-height:450px) {

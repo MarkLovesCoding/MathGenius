@@ -1,1 +1,3 @@
-function onSubmitUsername(e){document.getElementById("forgot-username-form").submit()}
+function onSubmitUsername(token) {
+  document.getElementById("forgot-username-form").submit();
+}

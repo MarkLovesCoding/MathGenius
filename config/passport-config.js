@@ -1,7 +1,8 @@
 
 
 const passport = require('passport');
-require('dotenv').config();
+require('dotenv').config({ path: '../environmental/mg/.env' });
+
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User'); // assuming you have a user model defined in a separate file
