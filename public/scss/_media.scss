@@ -1,4 +1,4 @@
-@media screen and (max-height: 720px) {
+@media all and (max-height: 720px) {
     .expanded-menu.active {
         transition: all 0.5s ease;
         width: calc(100vw - 30px - 4vw);
@@ -44,7 +44,7 @@
       }
 
 }
-@media only screen and (max-width:330px) {
+@media screen and (max-width:330px) {
 
     .google-block {
         min-height: 60px;
@@ -93,7 +93,7 @@
 
 
 
-@media only screen and (max-aspect-ratio:1.75) and (orientation:portrait) {
+@media  screen and (max-aspect-ratio:1.75) and (orientation:portrait) {
     /* CSS code for tablet devices */
 
     .header {
@@ -306,7 +306,7 @@
 
 
 
-@media only screen and (max-width:580px) and (orientation:landscape) {
+@media  screen and (max-width:580px) and (orientation:landscape) {
 
     .login-top,
     .signup-header {
@@ -383,7 +383,7 @@
 }
 
 
-@media only screen and (max-width:900px) and (orientation:landscape) {
+@media  screen and (max-width:900px) and (orientation:landscape) {
 
     .divider {
         display: none;
@@ -478,7 +478,7 @@
 }
 
 
-@media only screen and (max-height:580px) and (orientation:landscape) {
+@media  screen and (max-height:580px) and (orientation:landscape) {
 
     .divider {
         display: none;
@@ -550,7 +550,7 @@
 
 
 // Mobile Landscape (max-width:1000px)
-@media only screen and (orientation:landscape) and (min-aspect-ratio:1.75) {
+@media  screen and (orientation:landscape) and (min-aspect-ratio:1.75) {
 
     .header {
         width: 200px;
@@ -736,7 +736,7 @@
 
 
 
-@media only screen and (orientation:landscape) and (max-height:720px) and (min-aspect-ratio:1.75) {
+@media  screen and (orientation:landscape) and (max-height:720px) and (min-aspect-ratio:1.75) {
     .inner {
         margin: 0 10px;
     }
@@ -752,7 +752,7 @@
 
 
 //  (min-width:720px)
-@media only screen and (orientation:landscape)and (min-width:600px) and (max-aspect-ratio:1.75) {
+@media  screen and (orientation:landscape)and (min-width:600px) and (max-aspect-ratio:1.75) {
 
     .activity-menu-container,
     .operator-menu-container,
@@ -941,7 +941,7 @@
         flex-direction:row;
     }
 }
-@media only screen and (orientation:landscape) {
+@media  screen and (orientation:landscape) {
 
 
 .activity-menu-container,
@@ -952,5 +952,8 @@
 .practice-menu-container {
     // display: flex;
     flex-direction: row;
+}
+body{
+    min-width:100vw;
 }
 }
