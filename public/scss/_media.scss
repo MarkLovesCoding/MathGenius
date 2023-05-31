@@ -975,7 +975,7 @@
         display: none;
     }
 
-    .nav-left-upper {
+    .nav-left-upper {   
         display: inherit;
     }
 
@@ -1020,14 +1020,17 @@
     .game-middle-lower,
     .real-menu-container,
     .practice-menu-container {
-        // display: flex;
-        flex-direction: row;
+        display: flex;
+        flex-direction: row !important;
     }
     .nav-left-lower{
     display: none;}
     // body{
     //     min-width:100vw;
     // }
+    .mc-middle-lower{
+        flex-direction: row;
+    }
 }
 
 @media screen and (orientation:landscape) and (max-width:580px) {
