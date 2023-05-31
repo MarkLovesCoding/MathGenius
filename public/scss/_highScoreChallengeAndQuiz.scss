@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.question {
+.question-field{
   @include center-flex;
   font-family: $chalkboardFont;
   font-size: 2em;
