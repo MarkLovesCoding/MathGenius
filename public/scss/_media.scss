@@ -140,7 +140,7 @@
         font-size: 2em;
         width: 60px;
         height: 50px;
-
+  
     }
 
     .icon {
@@ -213,6 +213,8 @@
 
     .nav-buttons {
         margin-top: 25px;
+        min-width: 40vw;
+        justify-content: space-between;
     }
 
     .test-header {
@@ -980,7 +982,7 @@
     .operator-group,
     .activity-group {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
     }
 
@@ -998,7 +1000,7 @@
         margin-top: 0;
     }
 }
-@media screen and (orientation:landscape)and (min-width:500px) and (max-aspect-ratio:1.75) {
+@media screen and (orientation:landscape) and (max-aspect-ratio:1.75) {
     .nav-left-upper{
         display: inherit;
     }
