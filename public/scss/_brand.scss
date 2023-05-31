@@ -9,18 +9,25 @@
     font-family: 'Londrina Shadow';
     font-size: 22px;
     color: $chalk-white;
+    color: lightblue;
+
     z-index: 20;
     text-decoration: none;
 
     &:visited {
         color: $chalk-white;
+        color: lightblue;
     }
 
     &:active {
         color: $chalk-white;
+        color: lightblue;
+
     }
 
     &:link {
         color: $chalk-white;
+        color: lightblue;
+
     }
 }
