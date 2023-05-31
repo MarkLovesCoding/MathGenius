@@ -13,7 +13,8 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    margin: 0 12px;
+    // margin: 0 12px;
+    min-width:7em;
   }
   .inner-operator{
     display: flex;
@@ -40,7 +41,7 @@
     text-align: center;
     height: 40px;
     max-width: 200px;
-    font-size: 24px;
+    font-size: $mobileHeaderTextSize;
 }
 .difficulty-middle{
     display: flex;
@@ -148,7 +149,7 @@
     padding: 5px;
     font-size: 2.5em;
     color: #97b7d7;
-    margin: 10px;
+    margin: 5px;
 
     &:hover {
         transform: scale(1.00);
@@ -170,7 +171,7 @@
 .nav-buttons {
     @include center-flex;
     flex-direction: row;
-    margin-top: 25px;
+    // margin-top: 25px;
 }
 
 //   Icons

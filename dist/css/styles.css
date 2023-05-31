@@ -135,7 +135,7 @@
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  margin: 0 12px;
+  min-width: 7em;
 }
 
 .inner-operator {
@@ -152,7 +152,7 @@
 
 .operator-text {
   font-family: "pangolin", cursive;
-  font-size: 18px;
+  font-size: 14px;
   color: #eae6df;
   margin-bottom: 15px;
 }
@@ -162,7 +162,7 @@
   text-align: center;
   height: 40px;
   max-width: 200px;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .difficulty-middle {
@@ -174,7 +174,7 @@
 
 .difficulty-text {
   font-family: "pangolin", cursive;
-  font-size: 20px;
+  font-size: 16px;
   padding: 5px;
   color: #eae6df;
   text-align: center;
@@ -261,7 +261,7 @@
   padding: 5px;
   font-size: 2.5em;
   color: #97b7d7;
-  margin: 10px;
+  margin: 5px;
 }
 .nav-button:hover {
   transform: scale(1);
@@ -283,7 +283,6 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin-top: 25px;
 }
 
 .icon {
@@ -413,7 +412,7 @@
 
 .icon-text {
   font-family: "pangolin", cursive;
-  font-size: 18px;
+  font-size: 14px;
   margin-bottom: 15px;
   color: #eae6df;
   text-align: center;
@@ -505,7 +504,7 @@
 
 .operator-text {
   font-family: "pangolin", cursive;
-  font-size: 18px;
+  font-size: 14px;
   color: #eae6df;
   margin-bottom: 15px;
 }
@@ -2255,7 +2254,7 @@ body {
 .activity-title,
 .activity-type {
   font-family: "pangolin", cursive;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
   height: auto;
   width: auto;
@@ -2449,6 +2448,8 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
   height: 100%;
   opacity: 0;
   transform: translateY(-20px);
@@ -2459,11 +2460,21 @@ body {
   text-align: center;
   transition: background-color 0.15s ease;
   padding: 20px;
-  border-radius: 50px;
+  border-radius: 5px;
+  position: relative;
 }
 .expanded-menu li:hover {
   background-color: white;
   padding: 20px 20px;
+}
+.expanded-menu li::after {
+  content: "";
+  position: absolute;
+  background-color: #274c43;
+  left: 9px;
+  top: 15px;
+  height: 28px;
+  width: 1px;
 }
 
 .expanded-menu a {
@@ -2490,18 +2501,24 @@ body {
 
   .expanded-menu li {
     margin: 5px 0;
-    text-align: center;
-    padding: 5px;
+    text-align: left;
+    padding: 5px 20px;
   }
   .expanded-menu li:hover {
     background-color: white;
-    padding: 5px;
+    padding: 5px 20px;
+  }
+  .expanded-menu li::after {
+    left: 12px;
+    top: 5px;
+    height: 18px;
+    width: 1px;
   }
 
   .expanded-menu a {
     color: #274c43;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .login-welcome-message {
@@ -2578,7 +2595,7 @@ body {
 
   .icon-text,
 .operator-text {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .bottom {
@@ -3022,6 +3039,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .landing-login-guest-button {
+    margin-top: 5px;
   }
 }
 @media screen and (orientation: landscape) and (min-aspect-ratio: 1.75) {

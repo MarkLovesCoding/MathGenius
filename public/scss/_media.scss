@@ -17,14 +17,20 @@
 
     .expanded-menu li {
         margin: 5px 0;
-        text-align: center;
-        padding: 5px;
+        text-align: left;
+        padding: 5px 20px;
 
         &:hover {
             background-color: white;
 
 
-            padding: 5px;
+            padding: 5px 20px;
+        }
+        &::after{
+            left:12px;
+            top:5px;
+            height:18px;
+            width:1px;
         }
     }
 
@@ -32,7 +38,7 @@
     .expanded-menu a {
         color: $chalkboard-green;
         text-decoration: none;
-        font-size: 15px;
+        font-size: 14px;
     }
 
 
@@ -128,7 +134,7 @@
 
     .icon-text,
     .operator-text {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .bottom {
@@ -603,7 +609,9 @@
         flex-direction: column;
         justify-content: center;
     }
-
+    .landing-login-guest-button{
+        margin-top:5px;
+    }
 }
 
 

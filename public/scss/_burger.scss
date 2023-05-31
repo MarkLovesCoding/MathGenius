@@ -153,7 +153,8 @@
     padding: 0;
     @include center-flex;
     flex-direction: column;
-  
+    flex-wrap: wrap;
+    align-items:flex-start;
     height: 100%;
     opacity: 0;
     transform: translateY(-20px);
@@ -164,13 +165,25 @@
     text-align: center;
       transition:background-color 0.15s ease;
     padding:20px;
-    border-radius:50px;
+    border-radius:5px;
+    position: relative;
     &:hover{
       background-color:white;
 
 
       padding: 20px 20px;
-  }}
+  }
+  &::after{
+    content:"";
+    position:absolute;
+  
+    background-color: $chalkboard-green;
+    left: 9px;
+    top: 15px;
+    height: 28px;
+    width: 1px;
+  }  
+}
   
   .expanded-menu a {
     color: $chalkboard-green;
