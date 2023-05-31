@@ -6,28 +6,22 @@
     display: flex;
     align-items: center;
     width: 330px;
-    font-family: 'Londrina Shadow';
+    font-family: 'Monomaniac One';
     font-size: 22px;
     color: $chalk-white;
-    color: #fffbbc;
-
+    color: #f3e6c2;
     z-index: 20;
     text-decoration: none;
 
     &:visited {
-        color: $chalk-white;
-        color: #fffbbc;
+        color: #f3e6c2;
     }
 
     &:active {
-        color: $chalk-white;
-        color: #fffbbc;
-
+        color: #f3e6c2;
     }
 
     &:link {
-        color: $chalk-white;
-        color: #fffbbc;
-
+        color: #f3e6c2;
     }
 }
