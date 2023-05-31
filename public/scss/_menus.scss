@@ -435,8 +435,10 @@
 .operator-menu-container,
 .difficulty-menu-container{
     left:100%;
+    opacity:0;
 }
 .real-menu-container,
 .practice-menu-container{
     left:0;
+    opacity: 1;
 }
