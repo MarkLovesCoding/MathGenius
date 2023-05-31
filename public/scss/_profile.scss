@@ -128,6 +128,7 @@
 
 .avatar-modal-body {
     @include center-flex;
+    overflow-y:scroll;
 }
 
 .avatar-modal-content {
@@ -170,15 +171,15 @@
 
 .avatar-user-icons img {
     width: 100%;
-    max-width: 100px;
-    height: auto;
+    // max-width: 100px;
+    // height: auto;
     cursor: pointer;
 }
 
 .avatar-modal-icon {
-    max-width: 80px;
-    max-height: 80px;
-    border-radius: 40px;
+    width: 6em;
+    max-height: 6em;
+    border-radius: 3em;
 }
 .badges-header{
     color:$chalk-white;
