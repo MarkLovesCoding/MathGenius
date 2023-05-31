@@ -7,8 +7,9 @@
   .inner {
     background: $chalkboard-green;
     display: flex;
-    // width:7em;
+    // min-width:8em;
     // height:7em;
+    // aspect-ratio: 1/1;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
@@ -24,7 +25,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    min-height:14em;
+    // min-height:14em;
   }
 .operator-text {
     font-family: $chalkboardFont;
@@ -175,7 +176,7 @@
 //   Icons
 
 .icon {
-    font-size: 2.5em;
+    font-size: 2em;
 }
 
 .pen-icon {
@@ -308,7 +309,7 @@
     justify-content: center;
     flex-direction: column;
     padding: 8px;
-    margin: 8px;
+    margin: 4px;
 
     &:hover {
         cursor: pointer;
