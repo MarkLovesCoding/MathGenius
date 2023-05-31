@@ -1047,6 +1047,12 @@
     .mc-middle-lower{
         flex-direction: row;
     }
+    .operator-group,
+    .activity-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 }
 
 @media screen and (orientation:landscape) and (max-width:580px) {
