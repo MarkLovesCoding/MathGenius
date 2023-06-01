@@ -149,7 +149,11 @@
   width: 100%;
 
 }
-
+.game-box{
+  background-color:rgba(255,255,255,0.1);
+  display:flex;
+  padding:5px;
+}
 
 .game-question {
   padding: 1em;
@@ -166,11 +170,12 @@
 .correctness-container {
   @include center-flex;
   flex-direction: row;
-
+  margin-top:5px;
 }
 
 .game-correctness {
   max-width: 100px;
+  justify-content: center;
 }
 
 .game-container {
