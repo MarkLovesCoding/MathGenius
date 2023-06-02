@@ -64,7 +64,7 @@
 .flash,
 .mc-quiz,
 .game,
-.mc,.times-tables,.learning {
+.mc,.fractions,.times-tables,.learning {
     &:hover {
         &>* {
             color: $chalkboard-green;
@@ -102,7 +102,7 @@
 }
 
 .flash,
-.mc-quiz {
+.mc-quiz,.fractions {
     &:hover {
         background-color: $multiply-orange;
     }
@@ -185,7 +185,7 @@
 }
 
 .flash-icon,
-.mc-quiz-icon {
+.mc-quiz-icon,.fractions-icon {
     color: $multiply-orange;
 }
 

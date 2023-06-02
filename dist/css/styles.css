@@ -183,7 +183,7 @@
 .flash:hover > *,
 .mc-quiz:hover > *,
 .game:hover > *,
-.mc:hover > *, .times-tables:hover > *, .learning:hover > * {
+.mc:hover > *, .fractions:hover > *, .times-tables:hover > *, .learning:hover > * {
   color: #274c43;
 }
 .quiz.activity-selected > *,
@@ -192,7 +192,7 @@
 .flash.activity-selected > *,
 .mc-quiz.activity-selected > *,
 .game.activity-selected > *,
-.mc.activity-selected > *, .times-tables.activity-selected > *, .learning.activity-selected > * {
+.mc.activity-selected > *, .fractions.activity-selected > *, .times-tables.activity-selected > *, .learning.activity-selected > * {
   color: #274c43;
 }
 
@@ -215,11 +215,11 @@
 }
 
 .flash:hover,
-.mc-quiz:hover {
+.mc-quiz:hover, .fractions:hover {
   background-color: #f5ba42;
 }
 .flash.activity-selected,
-.mc-quiz.activity-selected {
+.mc-quiz.activity-selected, .fractions.activity-selected {
   background-color: #f5ba42;
   border-radius: 5px;
 }
@@ -291,7 +291,7 @@
 }
 
 .flash-icon,
-.mc-quiz-icon {
+.mc-quiz-icon, .fractions-icon {
   color: #f5ba42;
 }
 
@@ -2122,6 +2122,43 @@ tr:hover {
     display: flex;
   }
 }
+.fraction-carousel-container {
+  overflow: hidden;
+}
+
+.fraction-carousel {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fraction-lesson {
+  flex: 0 0 100%;
+  /*   padding: 20px; */
+}
+
+.fraction-lesson h2 {
+  font-size: 24px;
+  color: #eae6df;
+}
+
+.fraction-lesson p {
+  font-size: 16px;
+  color: #eae6df;
+}
+
+/* Mobile-first CSS */
+@media screen and (min-width: 768px) {
+  .fraction-carousel {
+    width: calc(100% * 4);
+  }
+}
+.previous-btn,
+.next-btn {
+  margin: 10px;
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
 /* Global Styles */
 * {
   padding: 0;

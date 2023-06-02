@@ -700,6 +700,10 @@ router.get('/learning/times-table', requireAuth, (req, res) => {
 });
 
 
+router.get('/learning/fractions', requireAuth, (req, res) => {
+
+  res.render('learningFractions');
+});
 
 
 

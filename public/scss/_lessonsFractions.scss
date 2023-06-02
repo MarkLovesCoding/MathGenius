@@ -1,0 +1,40 @@
+.fraction-carousel-container {
+    overflow: hidden;
+  }
+  
+  .fraction-carousel {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .fraction-lesson {
+    flex: 0 0 100%;
+  /*   padding: 20px; */
+  }
+  
+  .fraction-lesson h2 {
+    font-size: 24px;
+    color:$chalk-white;
+  }
+  
+  .fraction-lesson p {
+    font-size: 16px;
+    color:$chalk-white;
+
+  }
+  
+  /* Mobile-first CSS */
+  @media screen and (min-width: 768px) {
+    .fraction-carousel {
+      width: calc(100% * 4);
+    }
+  }
+  
+  .previous-btn,
+  .next-btn {
+    margin: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+  
+  

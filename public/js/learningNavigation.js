@@ -7,4 +7,11 @@ linkToTT.addEventListener("click",function(){
 
 
 })
+const linkToFractions = document.getElementById('new-fractions')
+linkToFractions.addEventListener("click",function(){
+    console.log(window.location)
+    window.location.href = "/learning/fractions";
+
+
+})
     
