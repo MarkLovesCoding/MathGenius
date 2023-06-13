@@ -22,3 +22,4 @@ nextBtn.addEventListener('click', () => {
     showLesson(currentPosition);
   }
 });
+

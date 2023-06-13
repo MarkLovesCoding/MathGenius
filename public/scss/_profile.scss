@@ -133,26 +133,33 @@
 }
 
 .avatar-modal-content {
-    background-color: #fefefe;
+    background-color: $chalk-white;
     // margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 300px;
+    border-radius: 10px;
 }
 
 .avatar-modal-header {
     display: flex;
     justify-content: space-between;
     >h2{
-        font-size:24px;
+        font-size:22px;
+        color:$chalkboard-green;
     }
 }
 
 .avatar-modal-close {
-    color: #aaa;
-    font-size: 28px;
+    color: $chalkboard-green;
+    font-size: 40px;
     font-weight: bold;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
 }
 
 .avatar-modal-close:hover,
