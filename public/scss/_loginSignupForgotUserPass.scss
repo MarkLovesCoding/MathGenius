@@ -294,9 +294,9 @@
     font-size: $smallText;
     font-family: roboto;
 }
-.reset-password-shell{
-    margin-top:5px;
-    margin-bottom:20px;
+.reset-password-shell:first-of-type{
+    margin-top:3px;
+    margin-bottom:15px;
 }
 .forgot-password-to-login-container,
 .forgot-username-to-login-container,
@@ -315,7 +315,8 @@
 .signup-login-link-text,
 .forgot-password-to-login-text,
 .forgot-username-to-login-text,
-.forgot-password-username-text {
+.forgot-password-username-text,
+.reset-password-to-login-text {
     color: $chalk-white;
     color: #dbd9d6;
     font-family: 'roboto';
@@ -329,7 +330,8 @@
 .signup-login-link,
 .forgot-password-to-login-link,
 .forgot-username-to-login-link,
-.forgot-password-username-link {
+.forgot-password-username-link,
+.reset-password-to-login-link {
     color: $chalk-white;
     color: #dbd9d6;
 
