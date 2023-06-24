@@ -174,7 +174,28 @@ router.post('/signup', async function (req, res, next) {
     return res.redirect('/signup')
   }
 
-  const user = new User({ username, email, password, authType: 'local', session: {}, badges: {} });
+  const user = new User({ username, email, password, authType: 'local', session: {}, badges: { 
+    "game":{
+    1:false,
+    2:false,
+    3:false,
+    4:false,
+    5:false,
+  },
+  "quiz":{
+    1:false,
+    2:false,
+    3:false,
+    4:false,
+    5:false,
+  },
+  "mcquiz":{
+    1:false,
+    2:false,
+    3:false,
+    4:false,
+    5:false,
+  }} });
   try {
     await user.save();
     req.login(user, function (err) {
@@ -191,29 +212,7 @@ router.post('/signup', async function (req, res, next) {
         userId:user._id.toString(),
         name: user.username,
         session: {},
-        badges: {
-          "game":{
-            1:false,
-            2:false,
-            3:false,
-            4:false,
-            5:false,
-          },
-          "quiz":{
-            1:false,
-            2:false,
-            3:false,
-            4:false,
-            5:false,
-          },
-          "mcquiz":{
-            1:false,
-            2:false,
-            3:false,
-            4:false,
-            5:false,
-          }
-        },
+  
         imageSrc:user.imageSrc
 
       }

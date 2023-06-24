@@ -58,31 +58,35 @@ document.querySelectorAll('#expanded-menu li a, #close-menu').forEach(el => {
 
 
 
-const testNav = document.getElementById('test-nav')
-const practiceNav = document.getElementById('practice-nav')
-const learningNav = document.getElementById('learning-nav')
-// import { state } from './state.js'
+const testNav = document.getElementById('test-nav').parentElement
+const practiceNav = document.getElementById('practice-nav').parentElement
+const learningNav = document.getElementById('learning-nav').parentElement
+const profileNav = document.getElementById('profile-nav').parentElement
+const homeNav = document.getElementById('home-nav').parentElement
+const logoutNav = document.getElementById('logout-nav').parentElement
 
 
 testNav.addEventListener("click", function () {
-  // state.type = "real"
   window.location.href = "/tests";
-
-  // utilMethods.loadSection('real-menu')
-
-
-
 })
-practiceNav.addEventListener("click", function () {
-  // state.type = "practice"
-  window.location.href = "/practice";
-  // utilMethods.loadSection('practice-menu')
 
+practiceNav.addEventListener("click", function () {
+  window.location.href = "/practice";
 })
 
 learningNav.addEventListener("click", function () {
-  // state.type = "learning"
   window.location.href = "/learning";
-  // utilMethods.loadSection('learning-menu')
+})
+
+profileNav.addEventListener("click", function () {
+  window.location.href = "/profile";
+})
+
+homeNav.addEventListener("click", function () {
+  window.location.href = "/";
+})
+
+logoutNav.addEventListener("click", function () {
+  window.location.href = "/logout";
 
 })
