@@ -41,12 +41,13 @@
 .signin-button-group,
 .play-as-guest,
 .forgot-password-form-button,
-.forgot-username-form-button,
-.reset-password-form-button {
+.forgot-username-form-button {
     width: 100%;
 }
 
-
+.reset-password-button-container{
+    width:100%;
+}
 
 .login-input::placeholder,
 .signup-input::placeholder,
@@ -294,9 +295,9 @@
     font-size: $smallText;
     font-family: roboto;
 }
-.reset-password-shell:first-of-type{
-    margin-top:3px;
-    margin-bottom:15px;
+.reset-password-shell{
+    margin-top:0px;
+    margin-bottom:5px;
 }
 .forgot-password-to-login-container,
 .forgot-username-to-login-container,
