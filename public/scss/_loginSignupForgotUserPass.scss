@@ -2,7 +2,8 @@
 .login-container,
 .signup-container,
 .forgot-password-container,
-.forget-username-container {
+.forget-username-container,
+.reset-password-container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -17,7 +18,8 @@
 .login-header,
 .signup-header,
 .forgot-password-header,
-.forgot-username-header {
+.forgot-username-header,
+.reset-password-header{
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 28px;
@@ -39,7 +41,8 @@
 .signin-button-group,
 .play-as-guest,
 .forgot-password-form-button,
-.forgot-username-form-button {
+.forgot-username-form-button,
+.reset-password-button {
     width: 100%;
 }
 
@@ -99,7 +102,8 @@
 .login-form,
 .signup-form,
 .forgot-password-form,
-.forgot-username-form {
+.forgot-username-form,
+.reset-password-form{
     @include center-flex;
     flex-direction: column;
 
@@ -117,7 +121,8 @@
 .signup-form-button,
 .forgot-password-form-button,
 .forgot-username-form-button,
-.create-account-form-button {
+.create-account-form-button ,
+.reset-password-button{
     width: 100%;
     padding: 10px;
     font-family: 'Roboto';
@@ -236,7 +241,7 @@
 }
 
 
-.reset-password-form-button {
+.reset-password-flash-message {
     &:invalid {
         border: 2px solid red;
         background-color: #F8D7DA;
