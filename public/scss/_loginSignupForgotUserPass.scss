@@ -122,7 +122,7 @@
 .forgot-password-form-button,
 .forgot-username-form-button,
 .create-account-form-button ,
-.reset-password-button{
+.reset-password-form-button{
     width: 100%;
     padding: 10px;
     font-family: 'Roboto';
@@ -241,27 +241,27 @@
 }
 
 
-.reset-password-flash-message {
-    &:invalid {
-        border: 2px solid red;
-        background-color: #F8D7DA;
-        color: #721C24;
-        padding: 0.5em;
-        margin: 1em 0;
-        border-radius: 0.25em;
-        font-size: 0.8em;
-    }
+// .reset-password-flash-message {
+//     &:invalid {
+//         border: 2px solid red;
+//         background-color: #F8D7DA;
+//         color: #721C24;
+//         padding: 0.5em;
+//         margin: 1em 0;
+//         border-radius: 0.25em;
+//         font-size: 0.8em;
+//     }
 
-    &:valid {
-        border: 2px solid green;
-        background-color: #D4EDDA;
-        color: #155724;
-        padding: 0.5em;
-        margin: 1em 0;
-        border-radius: 0.25em;
-        font-size: 0.8em;
-    }
-}
+//     &:valid {
+//         border: 2px solid green;
+//         background-color: #D4EDDA;
+//         color: #155724;
+//         padding: 0.5em;
+//         margin: 1em 0;
+//         border-radius: 0.25em;
+//         font-size: 0.8em;
+//     }
+// }
 
 .password-group {
     margin-bottom: 0;
@@ -273,7 +273,8 @@
 .signup-login-link-container,
 .forgot-password-to-login-container,
 .forgot-username-to-login-container,
-.forgot-password-username-container {
+.forgot-password-username-container,
+.reset-to-password-container{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -287,15 +288,20 @@
 }
 
 .forgot-password-label,
-.forgot-username-label {
+.forgot-username-label,
+.reset-password-label {
     color: $chalk-white;
     font-size: $smallText;
     font-family: roboto;
 }
-
+.reset-password-shell{
+    margin-top:5px;
+    margin-bottom:20px;
+}
 .forgot-password-to-login-container,
 .forgot-username-to-login-container,
-.forgot-password-username-container {
+.forgot-password-username-container,
+.reset-to-password-container {
     margin-top: 20px;
     justify-content: center;
 }
