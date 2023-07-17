@@ -1,13 +1,7 @@
 
 
 import * as utilMethods from '../utils.js';
-
 import { state } from '../state.js'
-
-import * as questionLogic from '../sharedQuestionLogic.js';
-
-// Might be a better way to organize this/
-import {mcQuizCreateOptions} from './test_MultipleChoiceQuiz.js'
 
 
 window.onload = function () {  //Ensure DOM is loaded before functions
@@ -45,39 +39,29 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     // Set the active multiply low and high values based on the low and high values set above
     state.activeMultiplyLowVal = lowVal;
     state.activeMultiplyHighVal = highVal;
-    sessionStorage.setItem("activeMulitplyLowVal",lowVal)
-    
-    sessionStorage.setItem("activeMultiplyHighVal",highVal)
-    sessionStorage.setItem("activeDifficulty",i)
+    sessionStorage.setItem("activeMulitplyLowVal", lowVal)
+
+    sessionStorage.setItem("activeMultiplyHighVal", highVal)
+    sessionStorage.setItem("activeDifficulty", i)
 
     // Set the active high value based on the current active difficulty level
     let highValue = (i) * 10;
     state.activeHighVal = highValue
-    sessionStorage.setItem("activeHighVal",highValue)
+    sessionStorage.setItem("activeHighVal", highValue)
 
   }
 
 
-
-
   const operatorMenuForward = document.getElementById("operator-menu-forward")
-
   const operatorTestMenuBackwarUpper = document.getElementById("operator-test-menu-backward-upper")
   const operatorTestMenuBackwardLower = document.getElementById("operator-test-menu-backward-lower")
-  
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward")
   const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower")
-
   const operatorTestMenuBackwards = [operatorTestMenuBackwarUpper, operatorTestMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
-  // const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower]
-
   const activitiesChoices = document.querySelectorAll(".activity-choice")
   const realChoices = document.querySelectorAll(".real-choice")
-  // const practiceChoices = document.querySelectorAll(".practice-choice")
-
-
   const operatorAlert = document.getElementById("operator-alert-modal")
   const operatorContainer = document.getElementById("operator-menu-container");
   const activityContainer = document.getElementById("real-menu-container");
@@ -90,41 +74,29 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
     // Update the active operators based on the user's selection
     state.activeOperators = updateOperators(operatorChoices)
-    sessionStorage.setItem("activeOperators",state.activeOperators)
+    sessionStorage.setItem("activeOperators", state.activeOperators)
 
     // Show an error message if no operators are selected, and prevent the page from reloading
     if (state.activeOperators.length == 0) {
       utilMethods.visibilityTimedToggle(true, operatorAlert, 1100)
       return;
     }
-    utilMethods.changeViewRight(operatorContainer,difficultyContainer);
-
-    // Load the difficulty-menu section
-    // utilMethods.loadSection("difficulty-menu")
+    utilMethods.changeViewRight(operatorContainer, difficultyContainer);
   })
 
 
   for (let el of operatorTestMenuBackwards) {
     el.addEventListener("click", (e) => {
-      // utilMethods.loadSection("real-menu")
-    utilMethods.changeViewLeft(activityContainer,operatorContainer);
+      utilMethods.changeViewLeft(activityContainer, operatorContainer);
 
     })
   }
 
 
-
-
-
-
-
-
   // Handle the click event on the difficultyMenuBackwards button
   for (let el of difficultyMenuBackwards) {
     el.addEventListener("click", (e) => {
-    utilMethods.changeViewLeft(operatorContainer,difficultyContainer);
-
-      // utilMethods.loadSection("operator-menu")
+      utilMethods.changeViewLeft(operatorContainer, difficultyContainer);
     })
   }
 
@@ -135,26 +107,17 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     updateDifficultyRange()
 
     // Generate a new question based on the chosen activity and active operators
-    // if (state.activity === "multiple-choice") {
-    //   newQuestion(state.activity, state.activeOperators, mcCreateOptions)
-    // }
-    // else 
     if (sessionStorage.getItem("activity") === "multiple-choice-quiz") {
-
-    // if (state.activity === "multiple-choice-quiz") {
-
       window.location.href = "/multiple-choice-quiz"
 
-      // questionLogic.newQuestion(state.activity, state.activeOperators, mcQuizCreateOptions)
     }
-    else if(sessionStorage.getItem("activity") === "game"){
+    else if (sessionStorage.getItem("activity") === "game") {
       window.location.href = "/high-score-challenge"
 
-      // questionLogic.newQuestion(state.activity, state.activeOperators)
     }
-    else if (sessionStorage.getItem("activity") === "quiz"){
+    else if (sessionStorage.getItem("activity") === "quiz") {
       window.location.href = "pop-quiz"
-      
+
     }
   })
 
@@ -176,7 +139,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
         activity.classList.add("activity-selected")
         // Add the "activity-selected" class to the selected activity option
 
-        // Set the state's "type" property to the selected activity type
       })
     }
   }
@@ -198,9 +160,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
         activity.classList.add("activity-selected")
 
         // Add the "activity-selected" class to the selected activity option
-        
 
-        // Set the state's "type" property to the selected activity
       })
     }
   }
@@ -224,18 +184,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   addEventsForTypes(activitiesChoices, state)
   addEventsForOperators(operatorChoices, state)
   addEventsForActivities(realChoices, state)
-  // addEventsForActivities(practiceChoices, state)
-
-  // A function to determine which activity was selected by the user
-  // function updateActivity(activitiesChoices, numChoices) {
-  //   let userSelection;
-  //   for (let i = 0; i < numChoices; i++) {
-  //     if (activitiesChoices[i].classList.contains("activity-selected")) {
-  //       userSelection = activitiesChoices[i].getAttribute("data-type")
-  //     }
-  //   }
-  //   return userSelection;
-  // }
 
   function updateOperators(operatorChoices) {
     let ops = [];
@@ -273,13 +221,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     // Return the array of active operators
     return ops;
   }
-
-
-
-
-
-
-
 
 
 

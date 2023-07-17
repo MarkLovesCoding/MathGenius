@@ -1,42 +1,28 @@
+// Get references to the necessary elements
+const linkToTests = document.getElementById('new-real');
+const linkToPractice = document.getElementById('new-practice');
+const linkToLearning = document.getElementById('new-learning');
 
-import { state } from './state.js'
-// import {loadSection} from './utils.js'
-
-
-
+// Add event listener for linkToTests
+linkToTests.addEventListener("click", function () {
+  sessionStorage.setItem("type", "real");
   
+  // Redirect to "/tests" page
+  window.location.href = "/tests";
+});
 
-const linkToTests = document.getElementById('new-real')
-linkToTests.addEventListener("click",function(){
-    // navigate to a different page
-    sessionStorage.setItem("type","real")
-    // state.type = "real"
-    window.location.href = "/tests";
-    
-//    loadSection('real-menu')
-})
+// Add event listener for linkToPractice
+linkToPractice.addEventListener("click", function () {
+  sessionStorage.setItem("type", "practice");
+  
+  // Redirect to "/practice" page
+  window.location.href = "/practice";
+});
 
-
-
-const linkToPractice = document.getElementById('new-practice')
-linkToPractice.addEventListener("click",function(){
-    sessionStorage.setItem("type","practice")
-
-    // state.type = "practice"
-    window.location.href = "/practice";
-//    loadSection('practice-menu')
-
-})
-
-
-const linkToLearning = document.getElementById('new-learning')
-linkToLearning.addEventListener("click",function(){
-    sessionStorage.setItem("type","learning")
-
-    // state.type = "practice"
-    window.location.href = "/learning";
-//    loadSection('practice-menu')
-
-})
-
-// const userProfile = document.getAnimations
+// Add event listener for linkToLearning
+linkToLearning.addEventListener("click", function () {
+  sessionStorage.setItem("type", "learning");
+  
+  // Redirect to "/learning" page
+  window.location.href = "/learning";
+});

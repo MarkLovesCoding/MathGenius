@@ -1,17 +1,15 @@
+// Get references to the necessary elements
+const linkToTT = document.getElementById('new-times-tables');
+const linkToFractions = document.getElementById('new-fractions');
 
+// Add event listener for linkToTT
+linkToTT.addEventListener("click", function () {
+  // Redirect to "/learning/times-table" page
+  window.location.href = "/learning/times-table";
+});
 
-const linkToTT = document.getElementById('new-times-tables')
-linkToTT.addEventListener("click",function(){
-    console.log(window.location)
-    window.location.href = "/learning/times-table";
-
-
-})
-const linkToFractions = document.getElementById('new-fractions')
-linkToFractions.addEventListener("click",function(){
-    console.log(window.location)
-    window.location.href = "/learning/fractions";
-
-
-})
-    
+// Add event listener for linkToFractions
+linkToFractions.addEventListener("click", function () {
+  // Redirect to "/learning/fractions" page
+  window.location.href = "/learning/fractions";
+});

@@ -47,14 +47,6 @@ export const mcNumOne = document.getElementById("mc-first-number");
 export const mcNumTwo = document.getElementById("mc-second-number");
 export const mcOpOne = document.getElementById("mc-first-operator");
 
-
-
-
-
-
-
-
-
 export const flashContainer = document.getElementById("flash-container");
 export const flashCard = document.getElementById("flash-card");
 export const newFlash = document.getElementById("new-flash");
@@ -62,9 +54,6 @@ export const flashAnswer = document.getElementById("flash-answer");
 export const flashNumOne = document.getElementById("flash-first-number");
 export const flashNumTwo = document.getElementById("flash-second-number");
 export const flashOpOne = document.getElementById("flash-first-operator");
-
-
-
 
 export const newMCQuiz = document.getElementById("new-mc-quiz");
 export const mcQuizOptions = document.getElementById("mc-quiz-options");

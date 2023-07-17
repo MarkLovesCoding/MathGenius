@@ -1,31 +1,22 @@
+// Get references to the necessary elements
+const login = document.getElementById('landing-log-in');
+const signup = document.getElementById('landing-signup');
+const guest = document.getElementById('landing-guest');
 
+// Add event listener for login
+login.addEventListener("click", function () {
+  // Redirect to "/login" page
+  window.location.href = "/login";
+});
 
+// Add event listener for signup
+signup.addEventListener("click", function () {
+  // Redirect to "/signup" page
+  window.location.href = "/signup";
+});
 
-
-  
-
-const login = document.getElementById('landing-log-in')
-login.addEventListener("click",function(){
-    // navigate to a different page
-    
-
-    window.location.href = "/login";
-
-
-})
-
-const signup = document.getElementById('landing-signup')
-signup.addEventListener("click",function(){
-
-    window.location.href = "/signup";
-
-
-
-})
-const guest = document.getElementById('landing-guest')
-guest.addEventListener("click",function(){
-
-    window.location.href = "/guest";
-
-
-})
+// Add event listener for guest
+guest.addEventListener("click", function () {
+  // Redirect to "/guest" page
+  window.location.href = "/guest";
+});

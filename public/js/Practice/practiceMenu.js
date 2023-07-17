@@ -4,7 +4,6 @@ import * as utilMethods from '../utils.js';
 // import { mcCreateOptions } from './practice_MultipleChoice.js';
 
 import { state } from '../state.js'
-import * as questionLogic from '../sharedQuestionLogic.js';
 window.onload = function () {  //Ensure DOM is loaded before functions
 
 
@@ -14,8 +13,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //
 
 
-
-  
   // Function to update the difficulty range based on the current active difficulty level
   function updateDifficultyRange() {
     let i = state.activeDifficulty, highVal, lowVal;
@@ -43,16 +40,16 @@ window.onload = function () {  //Ensure DOM is loaded before functions
         lowVal = 3;
         break;
     }
-    sessionStorage.setItem("activeMulitplyLowVal",lowVal)
-    
-    sessionStorage.setItem("activeMultiplyHighVal",highVal)
-    sessionStorage.setItem("activeDifficulty",i)
+    sessionStorage.setItem("activeMulitplyLowVal", lowVal)
+
+    sessionStorage.setItem("activeMultiplyHighVal", highVal)
+    sessionStorage.setItem("activeDifficulty", i)
     // Set the active multiply low and high values based on the low and high values set above
     state.activeMultiplyLowVal = lowVal;
     state.activeMultiplyHighVal = highVal;
     let highValue = (i) * 10;
 
-    sessionStorage.setItem("activeHighVal",highValue)
+    sessionStorage.setItem("activeHighVal", highValue)
 
     // Set the active high value based on the current active difficulty level
     state.activeHighVal = (i) * 10;
@@ -60,10 +57,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
 
-
-
   const operatorMenuForward = document.getElementById("operator-menu-forward")
-
   const operatorPracticeMenuBackwarUpper = document.getElementById("operator-practice-menu-backward-upper")
   const operatorPracticeMenuBackwardLower = document.getElementById("operator-practice-menu-backward-lower")
   const operatorPracticeMenuBackwards = [operatorPracticeMenuBackwarUpper, operatorPracticeMenuBackwardLower];
@@ -72,20 +66,15 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower")
 
-  // const operatorMenuBackwards = [operatorMenuBackwarUpper, operatorMenuBackwardLower];
   const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
-  // const practiceMenuBackwards = [practiceMenuBackwardUpper, practiceMenuBackwardLower]
-  // const realMenuBackwards = [realMenuBackwardUpper, realMenuBackwardLower]
   const activitiesChoices = document.querySelectorAll(".activity-choice")
-  // const realChoices = document.querySelectorAll(".real-choice")
   const practiceChoices = document.querySelectorAll(".practice-choice")
   const operatorChoices = document.querySelectorAll(".operator-choice")
-  // const activityAlert = document.getElementById("activity-alert-modal")
   const operatorAlert = document.getElementById("operator-alert-modal")
 
-    const operatorContainer = document.getElementById("operator-menu-container");
-    const activityContainer = document.getElementById("practice-menu-container");
-    const difficultyContainer = document.getElementById("difficulty-menu-container");
+  const operatorContainer = document.getElementById("operator-menu-container");
+  const activityContainer = document.getElementById("practice-menu-container");
+  const difficultyContainer = document.getElementById("difficulty-menu-container");
 
 
   // Handle the click event on the operatorMenuForward button
@@ -93,22 +82,19 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
     // Update the active operators based on the user's selection
     state.activeOperators = updateOperators(operatorChoices)
-    sessionStorage.setItem("activeOperators",state.activeOperators)
-    // console.log(state.activeOperators)
+    sessionStorage.setItem("activeOperators", state.activeOperators)
     // Show an error message if no operators are selected, and prevent the page from reloading
     if (state.activeOperators.length == 0) {
       utilMethods.visibilityTimedToggle(true, operatorAlert, 1100)
       return;
     }
-    utilMethods.changeViewRight(operatorContainer,difficultyContainer);
+    utilMethods.changeViewRight(operatorContainer, difficultyContainer);
     // Load the difficulty-menu section
     // utilMethods.loadSection("difficulty-menu")
   })
   for (let el of operatorPracticeMenuBackwards) {
     el.addEventListener("click", (e) => {
-    utilMethods.changeViewLeft(activityContainer,operatorContainer);
-
-      // utilMethods.loadSection("practice-menu")
+      utilMethods.changeViewLeft(activityContainer, operatorContainer);
     })
   }
 
@@ -116,9 +102,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   // Handle the click event on the difficultyMenuBackwards button
   for (let el of difficultyMenuBackwards) {
     el.addEventListener("click", (e) => {
-    utilMethods.changeViewLeft(operatorContainer,difficultyContainer);
-
-      // utilMethods.loadSection("operator-menu")
+      utilMethods.changeViewLeft(operatorContainer, difficultyContainer);
     })
   }
 
@@ -131,13 +115,10 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     // Generate a new question based on the chosen activity and active operators
     if (sessionStorage.getItem("activity") === "multiple-choice") {
       window.location.href = "/multiple-choice"
-
-      // questionLogic.newQuestion(state.activity, state.activeOperators, mcCreateOptions)
     }
 
-    else if (sessionStorage.getItem("activity") ==="flash") {
+    else if (sessionStorage.getItem("activity") === "flash") {
       window.location.href = "/flash"
-      // questionLogic.newQuestion(state.activity, state.activeOperators)
     }
   })
 
@@ -159,7 +140,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
         activity.classList.add("activity-selected")
         // Add the "activity-selected" class to the selected activity option
 
-        // Set the state's "type" property to the selected activity type
+
       })
     }
   }
@@ -182,7 +163,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
         // Add the "activity-selected" class to the selected activity option
 
-        // Set the state's "type" property to the selected activity
       })
     }
   }
@@ -191,10 +171,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   function toggleOperators(e) {
     e.target.classList.toggle("active-operator");
   }
-
-
-
-
 
 
   // A function to add event listeners for operators (+, -, x, ÷)
@@ -206,7 +182,7 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   addEventsForTypes(activitiesChoices)
   addEventsForOperators(operatorChoices, state)
 
-  // addEventsForActivities(realChoices, state)
+
   addEventsForActivities(practiceChoices)
 
   function updateOperators(operatorChoices) {
@@ -246,9 +222,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     return ops;
   }
 
-
-
-
   // Initialize variables for the range input, range value, and level text elements
   var rangeInput = document.getElementById("range-input");
   var rangeValue = document.getElementById("range-value");
@@ -270,8 +243,5 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     // Update the level text with the name of the selected difficulty level
     levelText.textContent = state.difficultyLevels[selectedDifficulty].name;
   });
-
-
-
 
 } //close window.onload function

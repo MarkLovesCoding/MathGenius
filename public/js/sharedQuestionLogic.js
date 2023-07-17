@@ -5,7 +5,7 @@ import { flashNumOne, flashNumTwo, flashOpOne } from './domElements.js';
 import { mcNumOne, mcNumTwo, mcOpOne } from './domElements.js';
 import { mcQuizNumOne, mcQuizNumTwo, mcQuizOpOne, } from './domElements.js';
 import { quizNumOne, quizNumTwo, quizOpOne } from './domElements.js';
-import {  gameNumOne, gameNumTwo, gameOpOne } from './domElements.js';
+import { gameNumOne, gameNumTwo, gameOpOne } from './domElements.js';
 
 export function newGeneralQuestion(opEl, n1El, n2El, operators, func) {
 
@@ -61,9 +61,8 @@ export function newQuestion(type, operators, options) {
     switch (type) {
         // If the type is "flash", load the "flash" section
         case "flash":
-            // utilMethods.loadSection("flash")
 
-            // Set the values of num1, num2, and op1 based on the flash question
+            // Set the values 
             num1 = flashNumOne;
             num2 = flashNumTwo;
             op1 = flashOpOne;
@@ -71,9 +70,8 @@ export function newQuestion(type, operators, options) {
 
         // If the type is "multiple-choice", load the "mc" section
         case "multiple-choice":
-            // utilMethods.loadSection("mc")
 
-            // Set the values of num1, num2, and op1 based on the multiple-choice question
+            // Set the values 
             num1 = mcNumOne;
             num2 = mcNumTwo;
             op1 = mcOpOne;
@@ -81,9 +79,8 @@ export function newQuestion(type, operators, options) {
 
         // If the type is "multiple-choice-quiz", load the "mc-quiz" section
         case "multiple-choice-quiz":
-            // utilMethods.loadSection("mc-quiz")
 
-            // Set the values of num1, num2, and op1 based on the multiple-choice quiz question
+            // Set the values 
             num1 = mcQuizNumOne;
             num2 = mcQuizNumTwo;
             op1 = mcQuizOpOne;
@@ -91,9 +88,8 @@ export function newQuestion(type, operators, options) {
 
         // If the type is "quiz", load the "quiz" section
         case "quiz":
-            // utilMethods.loadSection("quiz")
 
-            // Set the values of num1, num2, and op1 based on the quiz question
+            // Set the values 
             num1 = quizNumOne;
             num2 = quizNumTwo;
             op1 = quizOpOne;
@@ -101,9 +97,8 @@ export function newQuestion(type, operators, options) {
 
         // If the type is "game", load the "game" section
         case "game":
-            // utilMethods.loadSection("game")
 
-            // Set the values of num1, num2, and op1 based on the game question
+            // Set the values 
             num1 = gameNumOne;
             num2 = gameNumTwo;
             op1 = gameOpOne;

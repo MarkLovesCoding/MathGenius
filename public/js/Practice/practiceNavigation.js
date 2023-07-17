@@ -1,34 +1,32 @@
+// Import the state object from '../state.js'
+import { state } from '../state.js';
+// Import the changeViewRight function from '../utils.js'
+import { changeViewRight } from '../utils.js';
 
-import { state } from '../state.js'
-// import {loadSection} from '../ulils.js'
-import {changeViewRight} from '../utils.js'
-
-
+// Get references to the necessary elements
 const operatorContainer = document.getElementById("operator-menu-container");
 const activityContainer = document.getElementById("practice-menu-container");
+
+// Get references to the necessary links
+const linkToFlash = document.getElementById('new-flash');
+const linkToMC = document.getElementById('new-mc');
+
+// Add event listener for linkToFlash
+linkToFlash.addEventListener("click", function () {
+  // Set "activity" value in sessionStorage and state
+  sessionStorage.setItem("activity", "flash");
+  state.activity = "flash";
   
+  // Call the changeViewRight function to change the view
+  changeViewRight(activityContainer, operatorContainer);
+});
 
-const linkToFlash = document.getElementById('new-flash')
-linkToFlash.addEventListener("click",function(){
-    // navigate to a different page
-    sessionStorage.setItem("activity","flash")
-    
-    state.activity = "flash"
-    // window.location.href = "/tests";
-   changeViewRight(activityContainer,operatorContainer)
-    // utilMethods.loadSection('operator-menu')
-})
-
-
-
-const linkToMC = document.getElementById('new-mc')
-linkToMC.addEventListener("click",function(){
-    sessionStorage.setItem("activity","multiple-choice")
-    state.activity = "multiple-choice"
-    changeViewRight(activityContainer,operatorContainer)
-    // window.location.href = "/practice";
-    // utilMethods.loadSection('practice-menu')
-    // utilMethods.loadSection('operator-menu')
-
-
-})
+// Add event listener for linkToMC
+linkToMC.addEventListener("click", function () {
+  // Set "activity" value in sessionStorage and state
+  sessionStorage.setItem("activity", "multiple-choice");
+  state.activity = "multiple-choice";
+  
+  // Call the changeViewRight function to change the view
+  changeViewRight(activityContainer, operatorContainer);
+});

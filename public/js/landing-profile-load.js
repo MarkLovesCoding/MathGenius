@@ -1,7 +1,4 @@
 
-
-
-
 // Retrieves the user's avatar
 async function retrieveAvatar(element) {
   try {
@@ -16,8 +13,8 @@ async function retrieveAvatar(element) {
 }
 
 // Initialize the avatar retrieval
-window.addEventListener('DOMContentLoaded',function(){
-const profile = document.getElementById("profile-user-avatar");
-  
+window.addEventListener('DOMContentLoaded', function () {
+  const profile = document.getElementById("profile-user-avatar");
+
   retrieveAvatar(profile)
 })
