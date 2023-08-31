@@ -108,8 +108,10 @@ async function checkQuizStatus(quizStats, currScoreContainerEl, lastScoreContain
   if (quizStats.numAnswered >= quizStats.numQuestions) {
     // If this is the last question, show the quiz score modal and update the last score container element
     if (quizStats.numCorrect == 10) {
+  
+      const activeDifficulty = await sessionStorage.getItem('activeDifficulty')
 
-      await updateBadgeStatus("quiz", state.activeDifficulty, true)
+      await updateBadgeStatus("quiz", activeDifficulty, true)
       await animateBadge()
     }
     else {
@@ -129,7 +131,6 @@ async function finishQuiz(lastScoreEl, quizStats) {
   lastScoreEl.innerHTML = quizStats.numCorrect;
   resetQuizProperty(quizStats);
   utilMethods.showHide([], [quizCorrectness]);
-
 
   // Generate a new question
   questionLogic.newQuestion("quiz", state.activeOperators, state);
