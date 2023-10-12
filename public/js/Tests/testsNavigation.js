@@ -35,11 +35,3 @@ linkToMCQuiz.addEventListener("click", function () {
   changeViewRight(activityContainer, operatorContainer);
 });
 // Add event listener for linkToMCQuiz
-const linkToDiffAdd = document.getElementById('add');
-linkToDiffAdd.addEventListener("click", function () {
-  // Set "activity" value in sessionStorage
-  sessionStorage.setItem("operator", "addition");
-  
-  // Call the changeViewRight function to change the view
-  changeViewRight(operatorContainer, difficultyContainer);
-});

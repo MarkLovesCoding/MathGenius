@@ -53,13 +53,13 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
   const operatorMenuForward = document.getElementById("operator-menu-forward")
-  const operatorTestMenuBackwarUpper = document.getElementById("operator-test-menu-backward-upper")
+  // const operatorTestMenuBackwarUpper = document.getElementById("operator-test-menu-backward-upper")
   const operatorTestMenuBackwardLower = document.getElementById("operator-test-menu-backward-lower")
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward")
-  const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
+  // const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower")
-  const operatorTestMenuBackwards = [operatorTestMenuBackwarUpper, operatorTestMenuBackwardLower];
-  const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower]
+  const operatorTestMenuBackwards = [ operatorTestMenuBackwardLower];
+  const difficultyMenuBackwards = [ difficultyMenuBackwardLower]
   const activitiesChoices = document.querySelectorAll(".activity-choice")
   const realChoices = document.querySelectorAll(".real-choice")
   const operatorAlert = document.getElementById("operator-alert-modal")

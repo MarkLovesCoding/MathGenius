@@ -51,13 +51,13 @@ window.onload = function () {
     state.activeHighVal = i * 10;
   }
   const operatorMenuForward = document.getElementById("operator-menu-forward");
-  const operatorPracticeMenuBackwarUpper = document.getElementById("operator-practice-menu-backward-upper");
+  // const operatorPracticeMenuBackwarUpper = document.getElementById("operator-practice-menu-backward-upper")
   const operatorPracticeMenuBackwardLower = document.getElementById("operator-practice-menu-backward-lower");
-  const operatorPracticeMenuBackwards = [operatorPracticeMenuBackwarUpper, operatorPracticeMenuBackwardLower];
+  const operatorPracticeMenuBackwards = [operatorPracticeMenuBackwardLower];
   const difficultyMenuForward = document.getElementById("difficulty-menu-forward");
-  const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper");
+  // const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
   const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower");
-  const difficultyMenuBackwards = [difficultyMenuBackwardUpper, difficultyMenuBackwardLower];
+  const difficultyMenuBackwards = [difficultyMenuBackwardLower];
   const activitiesChoices = document.querySelectorAll(".activity-choice");
   const practiceChoices = document.querySelectorAll(".practice-choice");
   const operatorChoices = document.querySelectorAll(".operator-choice");

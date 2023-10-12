@@ -244,8 +244,8 @@
 
 .nav-button {
   outline: none;
-  border: 0px solid rgba(157, 157, 157, 0);
-  background-color: transparent;
+  border: 2px solid #eae6df;
+  background-color: #274c43;
   width: 100px;
   height: 50px;
   transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -256,19 +256,19 @@
   justify-content: center;
   text-align: center;
   padding: 5px;
-  font-size: 2em;
-  color: #97b7d7;
-  margin: 5px;
+  font-size: 1.6em;
+  color: #eae6df;
+  margin: 25px;
 }
 .nav-button:hover {
   transform: scale(1);
-  background: -webkit-linear-gradient(225deg, #d4a0cf 29%, #8dbad8 63%, #98c7e2 81%, #8ee1db 100%);
+  background: #eae6df;
   cursor: pointer;
-  border: 0px solid #9d9d9d;
-  border-radius: 20px;
+  border: 2px solid #eae6df;
+  border-radius: 30px;
 }
 .nav-button:hover > * {
-  color: #fafaf2;
+  color: #274c43;
 }
 
 .nav-left-upper {
@@ -2698,7 +2698,7 @@ body {
   .expanded-menu a {
     color: #274c43;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .login-welcome-message {
@@ -2784,9 +2784,7 @@ body {
   }
 
   .nav-button {
-    font-size: 2em;
-    width: 60px;
-    height: 50px;
+    font-size: 1.6em;
   }
 
   .game-top,
@@ -3453,9 +3451,7 @@ body {
   }
 
   .nav-button {
-    font-size: 2.75em;
-    width: 100px;
-    height: 75px;
+    font-size: 1.6em;
   }
 
   .flash-upper {
@@ -3579,7 +3575,7 @@ body {
   }
 
   .nav-buttons {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 }
 @media screen and (min-width: 768px) and (max-height: 500px) {
