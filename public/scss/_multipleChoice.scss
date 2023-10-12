@@ -55,18 +55,18 @@
 }
 
 .option {
-    background-color: $chalkboard-green;
-    color: $chalk-white;
+    background-color: $chalk-white;
+    color: $chalkboard-green;
     font-family: $chalkboardFont;
-    padding: 20px 40px;
-    margin: 15px;
+    padding: 18px 38px;
+    margin: 14px;
     cursor: pointer;
     border-radius: 2px;
     font-size: 18px;
     width: 70vw;
     max-width: 100px;
     z-index: 120;
-    border: 2px $plus-green solid;
+    border: 2px $chalkboard-green solid;
     font-size: 1.2em;
     font-weight: 600;
     box-shadow: $cardShadow;
@@ -108,4 +108,8 @@
 
 .choose-container {
     grid-area: choices;
+}
+.mc-question-box{
+    background:rgba(244,244,244,0.15);
+    padding:1em;
 }

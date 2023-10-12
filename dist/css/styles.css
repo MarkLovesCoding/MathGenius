@@ -256,7 +256,7 @@
   justify-content: center;
   text-align: center;
   padding: 5px;
-  font-size: 2.5em;
+  font-size: 2em;
   color: #97b7d7;
   margin: 5px;
 }
@@ -649,18 +649,18 @@
 }
 
 .option {
-  background-color: #274c43;
-  color: #eae6df;
+  background-color: #eae6df;
+  color: #274c43;
   font-family: "pangolin", cursive;
-  padding: 20px 40px;
-  margin: 15px;
+  padding: 18px 38px;
+  margin: 14px;
   cursor: pointer;
   border-radius: 2px;
   font-size: 18px;
   width: 70vw;
   max-width: 100px;
   z-index: 120;
-  border: 2px #6ee06e solid;
+  border: 2px #274c43 solid;
   font-size: 1.2em;
   font-weight: 600;
   box-shadow: 3px 4px 5px -1px rgba(0, 0, 0, 0.5);
@@ -702,6 +702,11 @@
 
 .choose-container {
   grid-area: choices;
+}
+
+.mc-question-box {
+  background: rgba(244, 244, 244, 0.15);
+  padding: 1em;
 }
 
 /* Container */
@@ -2848,7 +2853,7 @@ body {
   .nav-buttons {
     margin-top: 25px;
     min-width: 40vw;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .test-header {
@@ -3237,7 +3242,7 @@ body {
 .difficulty-menu-container,
 .real-menu-container,
 .practice-menu-container {
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .bottom {
@@ -3358,10 +3363,6 @@ body {
   }
 
   .nav-left-lower {
-    display: none;
-  }
-
-  .nav-left-upper {
     display: inherit;
   }
 
@@ -3382,7 +3383,7 @@ body {
   }
 
   .nav-buttons {
-    margin-top: 0;
+    margin-top: 20px;
   }
 
   .icon-container {
@@ -3425,7 +3426,7 @@ body {
 .game-middle-lower,
 .real-menu-container,
 .practice-menu-container {
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .game-container {
@@ -3557,10 +3558,6 @@ body {
   }
 
   .nav-left-lower {
-    display: none;
-  }
-
-  .nav-left-upper {
     display: inherit;
   }
 
@@ -3582,12 +3579,7 @@ body {
   }
 
   .nav-buttons {
-    margin-top: 0;
-  }
-}
-@media screen and (orientation: landscape) and (max-aspect-ratio: 1.75) {
-  .nav-left-upper {
-    display: inherit;
+    margin-top: 10px;
   }
 }
 @media screen and (min-width: 768px) and (max-height: 500px) {
@@ -3603,11 +3595,11 @@ body {
 .real-menu-container,
 .practice-menu-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .nav-left-lower {
-    display: none;
+    display: inherit;
   }
 
   .mc-middle-lower {

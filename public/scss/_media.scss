@@ -220,7 +220,7 @@
     .nav-buttons {
         margin-top: 25px;
         min-width: 40vw;
-        justify-content: space-between;
+        justify-content: center;
     }
 
     .test-header {
@@ -638,7 +638,7 @@
     .difficulty-menu-container,
     .real-menu-container,
     .practice-menu-container {
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .bottom {
@@ -764,12 +764,12 @@
     }
 
     .nav-left-lower {
-        display: none;
-    }
-
-    .nav-left-upper {
         display: inherit;
     }
+
+    // .nav-left-upper {
+    //     display: inherit;
+    // }
 
     .operator-group,
     .activity-group {
@@ -789,7 +789,7 @@
     }
 
     .nav-buttons {
-        margin-top: 0;
+        margin-top: 20px;
     }
 
     .icon-container {
@@ -844,7 +844,7 @@
     .real-menu-container,
     .practice-menu-container {
         // display: flex;
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .game-container {
@@ -988,12 +988,12 @@
     }
 
     .nav-left-lower {
-        display: none;
-    }
-
-    .nav-left-upper {   
         display: inherit;
     }
+
+    // .nav-left-upper {   
+    //     display: inherit;
+    // }
 
     .operator-group,
     .activity-group {
@@ -1013,13 +1013,13 @@
     }
 
     .nav-buttons {
-        margin-top: 0;
+        margin-top: 10px;
     }
 }
 @media screen and (orientation:landscape) and (max-aspect-ratio:1.75) {
-    .nav-left-upper{
-        display: inherit;
-    }
+    // .nav-left-upper{
+    //     display: inherit;
+    // }
 }
 @media screen and (min-width:768px) and (max-height:500px) {
     .profile-section {
@@ -1037,10 +1037,10 @@
     .real-menu-container,
     .practice-menu-container {
         display: flex;
-        flex-direction: row ;
+        flex-direction: column ;
     }
     .nav-left-lower{
-    display: none;}
+    display: inherit;}
     // body{
     //     min-width:100vw;
     // }
