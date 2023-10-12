@@ -78,20 +78,20 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
   // Handle the click event on the operatorMenuForward button
-  operatorMenuForward.addEventListener("click", (e) => {
+  // operatorMenuForward.addEventListener("click", (e) => {
 
-    // Update the active operators based on the user's selection
-    state.activeOperators = updateOperators(operatorChoices)
-    sessionStorage.setItem("activeOperators", state.activeOperators)
-    // Show an error message if no operators are selected, and prevent the page from reloading
-    if (state.activeOperators.length == 0) {
-      utilMethods.visibilityTimedToggle(true, operatorAlert, 1100)
-      return;
-    }
-    utilMethods.changeViewRight(operatorContainer, difficultyContainer);
-    // Load the difficulty-menu section
-    // utilMethods.loadSection("difficulty-menu")
-  })
+  //   // Update the active operators based on the user's selection
+  //   state.activeOperators = updateOperators(operatorChoices)
+  //   sessionStorage.setItem("activeOperators", state.activeOperators)
+  //   // Show an error message if no operators are selected, and prevent the page from reloading
+  //   if (state.activeOperators.length == 0) {
+  //     utilMethods.visibilityTimedToggle(true, operatorAlert, 1100)
+  //     return;
+  //   }
+  //   utilMethods.changeViewRight(operatorContainer, difficultyContainer);
+  //   // Load the difficulty-menu section
+  //   // utilMethods.loadSection("difficulty-menu")
+  // })
   for (let el of operatorPracticeMenuBackwards) {
     el.addEventListener("click", (e) => {
       utilMethods.changeViewLeft(activityContainer, operatorContainer);
@@ -167,16 +167,33 @@ window.onload = function () {  //Ensure DOM is loaded before functions
     }
   }
 
-  // A function to toggle the "active-operator" class when an operator is clicked
-  function toggleOperators(e) {
-    e.target.classList.toggle("active-operator");
-  }
 
 
   // A function to add event listeners for operators (+, -, x, ÷)
+
   function addEventsForOperators(operatorsChoices) {
     for (let operator of operatorsChoices) {
-      operator.addEventListener("click", toggleOperators)
+      // operator.addEventListener("click", toggleOperators)
+      
+      operator.addEventListener("click", (e) => {
+        operatorsChoices.forEach(operator => operator.classList.remove("active-operator"))
+        // Remove the "activity-selected" class from all activity options
+        let type;
+        if (e.target.getAttribute("data-sub")) {
+          type = e.target.getAttribute("data-sub")
+        }
+        else {
+          type = e.target.parentNode.getAttribute("data-sub")
+        }
+        // Determine which activity was selected by looking at the "data-type" attribute
+        operator.classList.add("active-operator")
+        state.activeOperators = updateOperators(operatorChoices)
+        sessionStorage.setItem("activeOperators", state.activeOperators)
+        utilMethods.changeViewRight(operatorContainer, difficultyContainer);
+        // Add the "activity-selected" class to the selected activity option
+
+      })
+
     }
   }
   addEventsForTypes(activitiesChoices)
