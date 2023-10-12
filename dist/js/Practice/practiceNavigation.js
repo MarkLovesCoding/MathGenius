@@ -1,7 +1,7 @@
 // Import the state object from '../state.js'
 import { state } from '../state.js';
 // Import the changeViewRight function from '../utils.js'
-import { changeViewRight } from '../utils.js';
+import { changeViewRight, updateActivitySelected } from '../utils.js';
 
 // Get references to the necessary elements
 const operatorContainer = document.getElementById("operator-menu-container");
@@ -16,6 +16,7 @@ linkToFlash.addEventListener("click", function () {
   // Set "activity" value in sessionStorage and state
   sessionStorage.setItem("activity", "flash");
   state.activity = "flash";
+  updateActivitySelected("flash");
 
   // Call the changeViewRight function to change the view
   changeViewRight(activityContainer, operatorContainer);
@@ -26,7 +27,7 @@ linkToMC.addEventListener("click", function () {
   // Set "activity" value in sessionStorage and state
   sessionStorage.setItem("activity", "multiple-choice");
   state.activity = "multiple-choice";
-
+  updateActivitySelected("multiple-choice");
   // Call the changeViewRight function to change the view
   changeViewRight(activityContainer, operatorContainer);
 });

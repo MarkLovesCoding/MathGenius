@@ -361,3 +361,20 @@ export function convertStringToArray(inputString) {
     element2.style.opacity = 1;
   }
   
+
+  export function updateActivitySelected(type){
+   const activityOp = document.getElementById("selected-activity-op")
+   const activityDiff = document.getElementById("selected-activity-diff")
+   activityOp.innerHTML = type
+   activityDiff.innerHTML = type
+  }
+  export function updateOperatorSelected(op){
+    const operator = document.getElementById("selected-operator-diff")
+    operator.innerHTML = op
+   }
+   export function updateGeneralSelected(op,diff){
+    const difficulty = document.getElementById("selected-difficulty-general")
+    const operator = document.getElementById("selected-operator-general")
+    difficulty.innerHTML = diff
+    operator.innerHTML = op
+   }

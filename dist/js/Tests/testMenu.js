@@ -162,6 +162,7 @@ window.onload = function () {
         operator.classList.add("active-operator");
         state.activeOperators = updateOperators(operatorChoices);
         sessionStorage.setItem("activeOperators", state.activeOperators);
+        utilMethods.updateOperatorSelected(state.activeOperators);
         utilMethods.changeViewRight(operatorContainer, difficultyContainer);
         // Add the "activity-selected" class to the selected activity option
       });

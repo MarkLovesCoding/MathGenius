@@ -191,6 +191,8 @@ window.onload = function () {
   // state.activeOperators = sessionStorage.getItem("activeOperators")
   state.activeOperators = operators
 
+  let difficulty = sessionStorage.getItem("activeDifficulty")
+  utilMethods.updateGeneralSelected(operators,difficulty)
   // sessionStorage.setItem("activeOperators",operators)
   // sessionStorage.setItem("",operators)
   // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)

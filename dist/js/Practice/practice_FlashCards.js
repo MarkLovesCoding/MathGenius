@@ -22,6 +22,8 @@ flashCard.addEventListener("mousedown", flashHandler, false);
 // Window onload event handler
 window.onload = function () {
   let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
+  let difficulty = sessionStorage.getItem("activeDifficulty");
+  utilMethods.updateGeneralSelected(operators, difficulty);
   state.activeOperators = operators;
   questionLogic.newQuestion('flash', operators);
 };

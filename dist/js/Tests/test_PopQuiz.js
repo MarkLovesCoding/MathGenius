@@ -142,5 +142,7 @@ quizAnswerForm.addEventListener("submit", quizAnswerHandler); // Add an event li
 window.onload = function () {
   let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
   state.activeOperators = operators;
+  let difficulty = sessionStorage.getItem("activeDifficulty");
+  utilMethods.updateGeneralSelected(operators, difficulty);
   questionLogic.newQuestion('quiz', operators, state);
 };
