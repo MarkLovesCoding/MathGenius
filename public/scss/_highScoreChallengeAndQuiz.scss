@@ -156,7 +156,7 @@
 }
 
 .game-question {
-  padding: 1em;
+  padding: 3vmin;
 }
 
 .game-titles-group {
@@ -286,9 +286,10 @@
   display: block;
   padding: 0.8em;
   border: none;
-  border-radius: 8px;
+  border-radius: 25px;
   text-rendering: optimizeLegibility;
-  font: 400 16px $chalkboardFont;
+  font-size: 16px; 
+  color:$chalkboard-green;
   background-color: $wood;
   color: $chalk-white;
   box-shadow: $cardShadow;

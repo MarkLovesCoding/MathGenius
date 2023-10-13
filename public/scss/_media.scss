@@ -170,23 +170,23 @@
     }
 
     .question {
-        min-width: 250px;
+        min-width: 200px;
         height: 120px;
         font-size: 1.8em;
     }
 
-    .mc-top {
-        padding-bottom: 25px;
-    }
+    // .mc-top {
+    //     padding-bottom: 25px;
+    // }
 
     .mc-question {
-        font-size: 2.8em;
+        font-size: 2em;
     }
 
     .option {
-        max-width: 18vmax;
-        height: 12vmax;
-        font-size: 1.8em;
+        max-width: 16vmax;
+        height: 10vmax;
+        font-size: 1.6em;
 
     }
 
@@ -209,7 +209,7 @@
     }
 
     .titles-group {
-        margin-bottom: inherit;
+        margin-bottom: 20px;
     }
 
     .progress-container {
@@ -234,10 +234,11 @@
         margin: 0;
     }
 
+    // .activity-type
     .header-text,
-    .activity-title,
-    .activity-type {
-        font-size: 22px;
+    .activity-title
+     {
+        font-size: 20px;
         padding-bottom: 20px;
     }
 
@@ -310,9 +311,7 @@
         margin-top: 0;
     }
 
-    .game-question {
-        padding: 4px;
-    }
+
 }
 
 @media screen and (min-width: 1024px) {
@@ -428,9 +427,9 @@
         margin-top: 0;
     }
 
-    .game-question {
-        padding: 4px;
-    }
+    // .game-question {
+    //     padding: 4px;
+    // }
 
     .game-lower {
         max-width: 40vw;
@@ -530,9 +529,9 @@
         margin-top: 0;
     }
 
-    .game-question {
-        padding: 4px;
-    }
+    // .game-question {
+    //     padding: 4px;
+    // }
 
     .game-lower {
         max-width: 40vw;
@@ -635,12 +634,13 @@
 
     .activity-menu-container,
     .operator-menu-container,
-    .difficulty-menu-container,
     .real-menu-container,
     .practice-menu-container {
         flex-direction: column;
     }
-
+    .difficulty-menu-container{
+        flex-direction:row;
+    }
     .bottom {
         position: absolute;
         width: 94vw;
@@ -672,6 +672,7 @@
 
         &>* {
             padding: 0 10px;
+            margin:0 30px;
         }
     }
 
@@ -683,16 +684,17 @@
     .activity-title,
     .activity-type {
         text-align: center;
-        max-width: 175px;
+        max-width: 250px;
     }
 
     .activity-title.mc {
-        max-width: 200px;
+        max-width: 250px;
     }
 
     .titles-group {
         width: auto;
-        margin-right: 5vw;
+      
+        // margin-right: 5vw;
     }
 
     .flash-container {
@@ -704,7 +706,7 @@
     }
 
     .titles-group {
-        margin-bottom: 5vh;
+        // margin-bottom: 5vh;
     }
 
     .quiz-container:has(.display-container) {
@@ -719,7 +721,7 @@
     }
 
     .game-container {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .game-middle-inner {
@@ -745,7 +747,7 @@
     .game-top {
         flex-basis: inherit;
         justify-content: center;
-        margin-top: 20px;
+        margin-right: 40px;
     }
 
     .activity-title,
@@ -778,10 +780,10 @@
         align-items: center;
     }
 
-    .game-container {
-        // display: flex;
-        flex-direction: column;
-    }
+    // .game-container {
+    //     // display: flex;
+    //     flex-direction: column;
+    // }
 
     .game-middle-lower {
         flex-direction: row;
@@ -839,14 +841,16 @@
 
     .activity-menu-container,
     .operator-menu-container,
-    .difficulty-menu-container,
+    // .difficulty-menu-container,
     .game-middle-lower,
     .real-menu-container,
     .practice-menu-container {
         // display: flex;
         flex-direction: column;
     }
-
+    .difficulty-menu-container{
+        flex-direction:row;
+    }
     .game-container {
         flex-direction: column;
     }
@@ -912,11 +916,14 @@
     }
 
     .mc-top {
-        flex-basis: 40%;
+        flex-basis: 25%;
     }
 
     .mc-middle-lower {
-        flex-basis: 60%;
+        flex-basis: 50%;
+        &>*{
+            margin:0 20px;
+        }
     }
 
     .mc-container {
@@ -934,7 +941,7 @@
     }
 
     .mc-question {
-        height: 100px;
+        // height: 100px;
         padding: 0;
         min-width: inherit;
     }
@@ -968,9 +975,9 @@
         width: 100%
     }
 
-    .icon-small {
-        font-size: 3em;
-    }
+    // .icon-small {
+    //     font-size: 3em;
+    // }
 
     .progress-container {
         width: 100%;
@@ -1008,7 +1015,7 @@
     }
 
     .game-question {
-        padding: 0;
+        // padding: 0;
         font-size: 2em;
     }
 
@@ -1032,20 +1039,27 @@
 
     .activity-menu-container,
     .operator-menu-container,
-    .difficulty-menu-container,
     .game-middle-lower,
     .real-menu-container,
     .practice-menu-container {
         display: flex;
         flex-direction: column ;
     }
+    .difficulty-menu-container{
+        flex-direction: row;
+    }
+
     .nav-left-lower{
     display: inherit;}
     // body{
     //     min-width:100vw;
     // }
     .mc-middle-lower{
+        // flex-direction: row;
+        display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
     .operator-group,
     .activity-group {

@@ -22,6 +22,7 @@
 .mc-top {
     @include center-flex;
     width: 100%;
+    margin-bottom:20px;
 }
 
 .mc-question-number,
@@ -32,6 +33,7 @@
     &>p {
         padding-right: 10px;
     }
+    justify-content: center;
 }
 
 .options-container {
@@ -51,19 +53,19 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 .option {
     background-color: $chalk-white;
     color: $chalkboard-green;
     font-family: $chalkboardFont;
-    padding: 18px 38px;
-    margin: 14px;
+    padding: 16px 26px;
+    margin: 10px;
     cursor: pointer;
     border-radius: 2px;
     font-size: 18px;
-    width: 70vw;
+    width: 60vw;
     max-width: 100px;
     z-index: 120;
     border: 2px $chalkboard-green solid;
@@ -111,5 +113,5 @@
 }
 .mc-question-box{
     background:rgba(244,244,244,0.15);
-    padding:1em;
+    padding:0.5em;
 }

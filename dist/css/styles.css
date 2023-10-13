@@ -614,6 +614,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .mc-question-number,
@@ -621,6 +622,7 @@
   padding-top: 10px;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 .mc-question-number > p,
 .mc-num-correct > p {
@@ -645,19 +647,19 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 25px;
+  margin-top: 5px;
 }
 
 .option {
   background-color: #eae6df;
   color: #274c43;
   font-family: "pangolin", cursive;
-  padding: 18px 38px;
-  margin: 14px;
+  padding: 16px 26px;
+  margin: 10px;
   cursor: pointer;
   border-radius: 2px;
   font-size: 18px;
-  width: 70vw;
+  width: 60vw;
   max-width: 100px;
   z-index: 120;
   border: 2px #274c43 solid;
@@ -706,7 +708,7 @@
 
 .mc-question-box {
   background: rgba(244, 244, 244, 0.15);
-  padding: 1em;
+  padding: 0.5em;
 }
 
 /* Container */
@@ -1357,7 +1359,7 @@
 }
 
 .game-question {
-  padding: 1em;
+  padding: 3vmin;
 }
 
 .game-titles-group {
@@ -1479,9 +1481,10 @@
   display: block;
   padding: 0.8em;
   border: none;
-  border-radius: 8px;
+  border-radius: 25px;
   text-rendering: optimizeLegibility;
-  font: 400 16px "pangolin", cursive;
+  font-size: 16px;
+  color: #274c43;
   background-color: #BA8C63;
   color: #eae6df;
   box-shadow: 3px 4px 5px -1px rgba(0, 0, 0, 0.5);
@@ -2421,25 +2424,27 @@ body {
 }
 
 .titles-group {
-  width: 90%;
-  display: grid;
-  grid-template-areas: "4fr 1fr";
-  grid-gap: 25px;
+  width: 100%;
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .header-text,
 .activity-title,
 .activity-type {
   font-family: "pangolin", cursive;
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
   height: auto;
   width: auto;
   color: #eae6df;
   padding: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .welcome-header, .welcome-header-index {
@@ -2458,7 +2463,7 @@ body {
 }
 
 .correctness {
-  padding: 0.4em;
+  padding: 5px 15px;
 }
 
 .icon-small {
@@ -2494,6 +2499,69 @@ body {
   color: #eae6df;
 }
 .profile-link-main:hover {
+  color: #eae6df;
+}
+
+.activity-title-container, .activity-title-container-menu {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 70px;
+  width: 250px;
+}
+
+.activity-title-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 200px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.activity-title-container-menu {
+  width: 180px;
+}
+
+.selections-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.selected-operator-container, .selected-difficulty-container, .selected-operator-container-menu, .selected-difficulty-container-menu {
+  background: #f3e6aa;
+  color: #274c43;
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+
+.selected-activity-container, .selected-activity-container-menu {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.selected-activity-container-menu {
+  width: 250px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.selected-so-far {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  flex-direction: column;
+}
+
+.selected-activity, .selected-activity-menu {
   color: #eae6df;
 }
 
@@ -2804,23 +2872,19 @@ body {
   }
 
   .question {
-    min-width: 250px;
+    min-width: 200px;
     height: 120px;
     font-size: 1.8em;
   }
 
-  .mc-top {
-    padding-bottom: 25px;
-  }
-
   .mc-question {
-    font-size: 2.8em;
+    font-size: 2em;
   }
 
   .option {
-    max-width: 18vmax;
-    height: 12vmax;
-    font-size: 1.8em;
+    max-width: 16vmax;
+    height: 10vmax;
+    font-size: 1.6em;
   }
 
   .flash-middle {
@@ -2840,7 +2904,7 @@ body {
   }
 
   .titles-group {
-    margin-bottom: inherit;
+    margin-bottom: 20px;
   }
 
   .progress-container {
@@ -2866,9 +2930,8 @@ body {
   }
 
   .header-text,
-.activity-title,
-.activity-type {
-    font-size: 22px;
+.activity-title {
+    font-size: 20px;
     padding-bottom: 20px;
   }
 
@@ -2937,10 +3000,6 @@ body {
 
   .score-container {
     margin-top: 0;
-  }
-
-  .game-question {
-    padding: 4px;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -3049,10 +3108,6 @@ body {
     margin-top: 0;
   }
 
-  .game-question {
-    padding: 4px;
-  }
-
   .game-lower {
     max-width: 40vw;
   }
@@ -3145,10 +3200,6 @@ body {
     margin-top: 0;
   }
 
-  .game-question {
-    padding: 4px;
-  }
-
   .game-lower {
     max-width: 40vw;
   }
@@ -3237,10 +3288,13 @@ body {
 
   .activity-menu-container,
 .operator-menu-container,
-.difficulty-menu-container,
 .real-menu-container,
 .practice-menu-container {
     flex-direction: column;
+  }
+
+  .difficulty-menu-container {
+    flex-direction: row;
   }
 
   .bottom {
@@ -3271,6 +3325,7 @@ body {
   }
   .mc-middle-lower > * {
     padding: 0 10px;
+    margin: 0 30px;
   }
 
   .options {
@@ -3281,16 +3336,15 @@ body {
   .activity-title,
 .activity-type {
     text-align: center;
-    max-width: 175px;
+    max-width: 250px;
   }
 
   .activity-title.mc {
-    max-width: 200px;
+    max-width: 250px;
   }
 
   .titles-group {
     width: auto;
-    margin-right: 5vw;
   }
 
   .flash-container {
@@ -3299,10 +3353,6 @@ body {
 
   .quiz-container {
     padding-top: 5%;
-  }
-
-  .titles-group {
-    margin-bottom: 5vh;
   }
 
   .quiz-container:has(.display-container) {
@@ -3317,7 +3367,7 @@ body {
   }
 
   .game-container {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .game-middle-inner {
@@ -3343,7 +3393,7 @@ body {
   .game-top {
     flex-basis: inherit;
     justify-content: center;
-    margin-top: 20px;
+    margin-right: 40px;
   }
 
   .activity-title,
@@ -3369,10 +3419,6 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-  }
-
-  .game-container {
-    flex-direction: column;
   }
 
   .game-middle-lower {
@@ -3420,11 +3466,14 @@ body {
 @media screen and (orientation: landscape) and (min-width: 600px) and (max-aspect-ratio: 1.75) {
   .activity-menu-container,
 .operator-menu-container,
-.difficulty-menu-container,
 .game-middle-lower,
 .real-menu-container,
 .practice-menu-container {
     flex-direction: column;
+  }
+
+  .difficulty-menu-container {
+    flex-direction: row;
   }
 
   .game-container {
@@ -3478,11 +3527,14 @@ body {
   }
 
   .mc-top {
-    flex-basis: 40%;
+    flex-basis: 25%;
   }
 
   .mc-middle-lower {
-    flex-basis: 60%;
+    flex-basis: 50%;
+  }
+  .mc-middle-lower > * {
+    margin: 0 20px;
   }
 
   .mc-container {
@@ -3500,7 +3552,6 @@ body {
   }
 
   .mc-question {
-    height: 100px;
     padding: 0;
     min-width: inherit;
   }
@@ -3532,10 +3583,6 @@ body {
 
   .score-container {
     width: 100%;
-  }
-
-  .icon-small {
-    font-size: 3em;
   }
 
   .progress-container {
@@ -3570,7 +3617,6 @@ body {
   }
 
   .game-question {
-    padding: 0;
     font-size: 2em;
   }
 
@@ -3586,7 +3632,6 @@ body {
 @media screen and (orientation: landscape) {
   .activity-menu-container,
 .operator-menu-container,
-.difficulty-menu-container,
 .game-middle-lower,
 .real-menu-container,
 .practice-menu-container {
@@ -3594,12 +3639,19 @@ body {
     flex-direction: column;
   }
 
+  .difficulty-menu-container {
+    flex-direction: row;
+  }
+
   .nav-left-lower {
     display: inherit;
   }
 
   .mc-middle-lower {
+    display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
   .operator-group,

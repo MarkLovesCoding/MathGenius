@@ -332,19 +332,137 @@ export function changeViewRight(element1, element2) {
   element1.style.opacity = 0;
   element2.style.opacity = 1;
 }
+function createActivityTextandIcon(type) {
+  let activityText, activityIconClass;
+  switch (type) {
+    case "multiple-choice-quiz":
+      activityText = "Mulitple Choice Quiz";
+      activityIconClass = "mc-quiz-icon icon fas fa-list-ol fa-large";
+      break;
+    case "quiz":
+      activityText = "Pop Quiz";
+      activityIconClass = "pen-icon icon fas fa-arrow-up-1-9 fa-large";
+      break;
+    case "game":
+      activityText = "High Score Challenge";
+      activityIconClass = "game-icon icon fas fa-crown fa-large";
+      break;
+    case "flash":
+      activityText = "Flash Cards";
+      activityIconClass = "flash-icon icon fas fa-bolt fa-large";
+      break;
+    case "multiple-choice":
+      activityText = "Mulitple Choice Practice";
+      activityIconClass = "mc-icon icon fas fa-table-cells-large fa-large";
+      break;
+    default:
+      activityIconClass = " a ";
+      activityText = type;
+      break;
+  }
+  return [activityText, activityIconClass];
+}
+function createOperatorTextandIcon(op) {
+  let operatorText, operatorColor;
+  switch (op[0]) {
+    case "+":
+      operatorText = "Addition";
+      // operatorIconClass = "plus-icon icon fas fa-plus fa-large";
+      operatorColor = "#6ee06e";
+      break;
+    case "-":
+      operatorText = "Subtraction";
+      // operatorIconClass = "minus-icon icon fas fa-minus fa-large";
+      operatorColor = "#00bdff";
+      break;
+    case "x":
+      operatorText = "Multiplication";
+      // operatorIconClass = "times-icon icon fas fa-times fa-large";
+      operatorColor = "#f5ba42";
+      break;
+    case "÷":
+      operatorText = "Division";
+      // operatorIconClass = "divide-icon icon fas fa-divide fa-large";
+      operatorColor = "#e46fe4";
+      break;
+    default:
+      // operatorIconClass = "  ";
+      operatorText = "You Can Do It!";
+      operatorColor = "#f3e6aa";
+      break;
+  }
+  return [operatorText, operatorColor];
+}
+function createDifficultyText(diff) {
+  let difficultyText, difficultyColor;
+  switch (diff) {
+    case "1":
+      difficultyText = "Easy";
+      difficultyColor = "green";
+      break;
+    case "2":
+      difficultyText = "Novice";
+      difficultyColor = "yellow";
+      break;
+    case "3":
+      difficultyText = "Intermediate";
+      difficultyColor = "orange";
+      break;
+    case "4":
+      difficultyText = "Advanced";
+      difficultyColor = "red";
+      break;
+    case "5":
+      difficultyText = "Genius!";
+      difficultyColor = "purple";
+      break;
+    default:
+      difficultyText = "Good Luck!";
+      difficultyColor = "#f3e6aa";
+      break;
+  }
+  return [difficultyText, difficultyColor];
+}
 export function updateActivitySelected(type) {
-  const activityOp = document.getElementById("selected-activity-op");
-  const activityDiff = document.getElementById("selected-activity-diff");
-  activityOp.innerHTML = type;
-  activityDiff.innerHTML = type;
+  const activityElOp = document.getElementById("selected-activity-menu-op");
+  const activityElDiff = document.getElementById("selected-activity-menu-diff");
+  const iconElementOp = document.getElementById("selected-activity-icon-op");
+  const iconElementDiff = document.getElementById("selected-activity-icon-diff");
+  const [activityText, activityIconClass] = createActivityTextandIcon(type);
+  const activityClasses = activityIconClass.split(" ");
+  iconElementOp.classList = "";
+  iconElementDiff.classList = "";
+  for (let c of activityClasses) {
+    iconElementOp.classList.add(c);
+    iconElementDiff.classList.add(c);
+  }
+  activityElOp.innerHTML = activityText;
+  activityElDiff.innerHTML = activityText;
 }
 export function updateOperatorSelected(op) {
-  const operator = document.getElementById("selected-operator-diff");
-  operator.innerHTML = op;
+  const operator = document.getElementById("selected-operator-menu");
+  const [operatorText, operatorColor] = createOperatorTextandIcon(op[0]);
+  // const iconElement = document.getElementById("selected-operator-icon");
+  // let iconClasses = operatorIconClass.split(" ");
+
+  // iconElement.classList = ""
+
+  // for (let c of iconClasses) {
+  //   iconElement.classList.add(c)
+  // }
+  const operatorContainer = document.getElementById("selected-operator-container-menu");
+  operatorContainer.style.border = "3px solid " + operatorColor;
+  operator.textContent = operatorText;
 }
 export function updateGeneralSelected(op, diff) {
   const difficulty = document.getElementById("selected-difficulty-general");
-  const operator = document.getElementById("selected-operator-general");
-  difficulty.innerHTML = diff;
-  operator.innerHTML = op;
+  const difficultyContainer = document.getElementById("selected-difficulty-container-general");
+  const operator = document.getElementById("selected-operator-text-general");
+  const operatorContainer = document.getElementById("selected-operator-container-general");
+  const [operatorText, operatorColor] = createOperatorTextandIcon(op[0]);
+  const [diffText, diffColor] = createDifficultyText(diff);
+  operatorContainer.style.border = "3px solid " + operatorColor;
+  difficultyContainer.style.border = "3px solid " + diffColor;
+  difficulty.textContent = diffText;
+  operator.textContent = operatorText;
 }
