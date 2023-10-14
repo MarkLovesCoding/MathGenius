@@ -263,7 +263,9 @@
     .welcome-header-index {
         display: none;
     }
-
+    .selected-so-far{
+        margin-bottom:0px;
+    }
     .mc-question {
         font-size: 2em;
     }
@@ -353,7 +355,9 @@
 
 
 @media screen and (max-width:580px) and (orientation:landscape) {
-
+    .selected-so-far{
+        margin-bottom:0px;
+    }
     .login-top,
     .signup-header {
         height: 3ch;
@@ -547,7 +551,9 @@
 
 
 @media screen and (max-height:580px) and (orientation:landscape) {
-
+    .selected-so-far{
+        margin-bottom:0px;
+    }
     .divider {
         display: none;
     }
