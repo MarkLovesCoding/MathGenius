@@ -117,7 +117,9 @@
 
 @media screen and (max-aspect-ratio:1.75) and (orientation:portrait) {
     /* CSS code for tablet devices */
-
+    .selected-so-far{
+        margin-bottom:0px;
+    }
     .header {
         font-size: 24px;
         ;
@@ -127,8 +129,8 @@
     }
 
     .icon-container {
-        width: 85px;
-        height: 85px;
+        width: 60px;
+        height: 60px;
         margin: 5px;
     }
 
