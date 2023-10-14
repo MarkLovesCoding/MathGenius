@@ -707,8 +707,9 @@
 }
 
 .mc-question-box {
-  background: rgba(244, 244, 244, 0.15);
+  background: rgba(255, 255, 255, 0.1);
   padding: 0.5em;
+  border: 7px dashed #ffffffb5;
 }
 
 /* Container */
@@ -1206,7 +1207,7 @@
   align-items: center;
   justify-content: center;
   font-family: "pangolin", cursive;
-  font-size: 2em;
+  font-size: 2.2em;
   color: #eae6df;
   text-align: center;
   max-width: 100%;
@@ -1468,7 +1469,7 @@
   min-width: 4ch;
   border-radius: 20px;
   background: #274c43;
-  border: 3px dashed #eae6df;
+  border: 7px dashed #eae6df;
 }
 .input:active {
   outline: none;
@@ -1486,7 +1487,7 @@
   font-size: 16px;
   color: #274c43;
   background-color: #BA8C63;
-  color: #eae6df;
+  color: #274c43;
   box-shadow: 3px 4px 5px -1px rgba(0, 0, 0, 0.5);
   transform: translate(0px, 0px);
   transition: 100ms transform ease, 50ms box-shadow ease;
@@ -2548,7 +2549,7 @@ body {
 
 .selected-activity-container-menu {
   width: 250px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   padding: 10px;
   border-radius: 30px;
 }
@@ -2932,7 +2933,6 @@ body {
   .header-text,
 .activity-title {
     font-size: 20px;
-    padding-bottom: 20px;
   }
 
   #range-input {
