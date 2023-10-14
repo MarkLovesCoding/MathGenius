@@ -189,8 +189,8 @@ window.onload = function () {  //Ensure DOM is loaded before functions
         operator.classList.add("active-operator")
         state.activeOperators = updateOperators(operatorChoices)
         sessionStorage.setItem("activeOperators", state.activeOperators)
-        const activitySelected = sessionStorage.getItem("activity")
-        utilMethods.updateActivitySelected(activitySelected)
+        // const activitySelected = sessionStorage.getItem("activity")
+        // utilMethods.updateActivitySelected(activitySelected)
         utilMethods.updateOperatorSelected(state.activeOperators)
         utilMethods.changeViewRight(operatorContainer, difficultyContainer);
         // Add the "activity-selected" class to the selected activity option
