@@ -189,8 +189,16 @@ window.onload = function () {  //Ensure DOM is loaded before functions
         operator.classList.add("active-operator")
         state.activeOperators = updateOperators(operatorChoices)
          sessionStorage.setItem("activeOperators", state.activeOperators)
-         utilMethods.updateOperatorSelected(state.activeOperators)
-        utilMethods.changeViewRight(operatorContainer, difficultyContainer);
+        let activity =  sessionStorage.getItem("activity")
+        utilMethods.updateOperatorSelected(state.activeOperators)
+         if(activity =="game"){
+          sessionStorage.setItem("activeDifficulty", "1")
+          window.location.href = "/high-score-challenge"
+         }
+         else{
+           utilMethods.changeViewRight(operatorContainer, difficultyContainer);
+
+         }
         // Add the "activity-selected" class to the selected activity option
 
       })
