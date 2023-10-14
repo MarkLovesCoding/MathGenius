@@ -162,6 +162,10 @@ body {
     display: flex;
     align-items: center;
   }
+  .activity-title,.icon-small {
+    padding:0 10px;
+
+  }
   .welcome-header, .welcome-header-index{
     @include center-flex;
     flex-direction:column;
@@ -220,7 +224,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
     height:70px;
-    width:250px;
+    width:275px;
   }
   .activity-title-container{
     background-color: rgba(255,255,255,0.1);
