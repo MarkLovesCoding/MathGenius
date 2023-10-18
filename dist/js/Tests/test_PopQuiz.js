@@ -9,6 +9,7 @@ import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAns
 //QUIZ
 //
 async function quizAnswerCheck(bool) {
+  let operator = sessionStorage.getItem("activeOperators");
   if (bool) {
     // Emphasize the quizAnswerForm to indicate a correct answer
     utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
@@ -29,7 +30,7 @@ async function quizAnswerCheck(bool) {
     utilMethods.resetAnswerInput([quizAnswerInput]);
 
     // Generate a new question for the quiz
-    questionLogic.newQuestion("quiz", state.activeOperators, state);
+    questionLogic.newQuestion("quiz", operator, state);
   } else {
     // Display an animation to indicate an incorrect answer
     utilMethods.incorrectMotion(quizAnswerForm);
@@ -50,7 +51,7 @@ async function quizAnswerCheck(bool) {
     utilMethods.resetAnswerInput([quizAnswerInput]);
 
     // Generate a new question for the quiz
-    questionLogic.newQuestion("quiz", state.activeOperators, state);
+    questionLogic.newQuestion("quiz", operator, state);
   }
 }
 async function quizShowScore() {
@@ -116,9 +117,9 @@ async function finishQuiz(lastScoreEl, quizStats) {
   lastScoreEl.innerHTML = quizStats.numCorrect;
   resetQuizProperty(quizStats);
   utilMethods.showHide([], [quizCorrectness]);
-
+  let operator = sessionStorage.getItem("activeOperators");
   // Generate a new question
-  questionLogic.newQuestion("quiz", state.activeOperators, state);
+  questionLogic.newQuestion("quiz", operator);
 }
 
 //
@@ -140,9 +141,8 @@ quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler); // Add an ev
 quizAnswerForm.addEventListener("submit", quizAnswerHandler); // Add an event listener to the quizAnswerForm element that checks the user's answer
 
 window.onload = function () {
-  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
-  state.activeOperators = operators;
+  let operator = sessionStorage.getItem("activeOperators");
   let difficulty = sessionStorage.getItem("activeDifficulty");
-  utilMethods.updateGeneralSelected(operators, difficulty);
-  questionLogic.newQuestion('quiz', operators, state);
+  utilMethods.updateGeneralSelected(operator, difficulty);
+  questionLogic.newQuestion('quiz', operator);
 };

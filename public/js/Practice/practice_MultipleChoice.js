@@ -20,15 +20,16 @@ import { mcOptions } from '../domElements.js';
  * @returns {void}
  */
 async function mcAnswerCheck(bool, correctEl, falseEl = null) {
+  const operator = sessionStorage.getItem("activeOperators")
   if (bool) {
     utilMethods.animateCorrect(correctEl);
     await utilMethods.delay(250);
-    questionLogic.newQuestion("multiple-choice", state.activeOperators, mcCreateOptions);
+    questionLogic.newQuestion("multiple-choice", operator, mcCreateOptions);
   } else {
     utilMethods.animateIncorrect(falseEl);
     utilMethods.animateCorrect(correctEl);
     await utilMethods.delay(250);
-    questionLogic.newQuestion("multiple-choice", state.activeOperators, mcCreateOptions);
+    questionLogic.newQuestion("multiple-choice", operator, mcCreateOptions);
 
   }
 }
@@ -84,15 +85,13 @@ export function mcCreateOptions(n1, n2, o1) {
 
 
 window.onload = function () {
-  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"))
-  state.activeOperators = operators
-  sessionStorage.setItem("activeOperators", operators)
+  let operator = sessionStorage.getItem("activeOperators")
 
   let difficulty = sessionStorage.getItem("activeDifficulty")
-  utilMethods.updateGeneralSelected(operators,difficulty)
+  utilMethods.updateGeneralSelected(operator,difficulty)
   // sessionStorage.setItem("",operators)
   // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
-  questionLogic.newQuestion('multiple-choice', operators, mcCreateOptions);
+  questionLogic.newQuestion('multiple-choice', operator, mcCreateOptions);
 }
   //
   //END MC

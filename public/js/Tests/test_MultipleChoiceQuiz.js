@@ -77,6 +77,7 @@ async function checkMCQAnswered() {
 
 async function mcQuizAnswerCheck(bool, correctEl, falseEl = null) {
   // Check if the answer is correct or not
+  const operator = sessionStorage.getItem("activeOperators")
   if (bool) {
     // If the answer is correct:
     // Increment the number of correct answers and answered questions
@@ -95,7 +96,7 @@ async function mcQuizAnswerCheck(bool, correctEl, falseEl = null) {
     // Wait for a short delay before updating the quiz page and generating a new question
     await utilMethods.delay(150);
     updateMCQuizPage()
-    questionLogic.newQuestion("multiple-choice-quiz", state.activeOperators, mcQuizCreateOptions);
+    questionLogic.newQuestion("multiple-choice-quiz", operator, mcQuizCreateOptions);
   } else {
     // If the answer is incorrect:
     // Increment the number of failed attempts
@@ -107,7 +108,7 @@ async function mcQuizAnswerCheck(bool, correctEl, falseEl = null) {
     // Wait for a short delay before updating the quiz page and generating a new question
     await utilMethods.delay(150);
     updateMCQuizPage()
-    questionLogic.newQuestion("multiple-choice-quiz", state.activeOperators, mcQuizCreateOptions);
+    questionLogic.newQuestion("multiple-choice-quiz",operator, mcQuizCreateOptions);
   }
 }
 
@@ -153,14 +154,14 @@ export function mcQuizCreateOptions(n1, n2, o1) {
 ///
 ///
 window.onload = function () {
-  console.log("Get:", sessionStorage.getItem("activeOperators"))
-  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"))
-  state.activeOperators = operators
-  sessionStorage.setItem("activeOperators", operators)
+
+  let operator = sessionStorage.getItem("activeOperators")
+
+ 
   
   let difficulty = sessionStorage.getItem("activeDifficulty")
-  utilMethods.updateGeneralSelected(operators,difficulty)
+  utilMethods.updateGeneralSelected(operator,difficulty)
   // sessionStorage.setItem("",operators)
   // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
-  questionLogic.newQuestion('multiple-choice-quiz', operators, mcQuizCreateOptions);
+  questionLogic.newQuestion('multiple-choice-quiz', operator, mcQuizCreateOptions);
 } 

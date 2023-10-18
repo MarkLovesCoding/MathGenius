@@ -10,7 +10,7 @@ function flashHandler(e) {
   flashAnswer.textContent = ans; // Display the correct answer in the flashAnswer element
   if (this.classList.contains("flip")) {
     // If the flashCard element has the "flip" class, generate a new question
-    questionLogic.newQuestion("flash", state.activeOperators);
+    questionLogic.newQuestion("flash", sessionStorage.getItem("activeOperators"));
   }
   this.classList.toggle("flip"); // Toggle the "flip" class on the flashCard element
   e.preventDefault(); // Prevent the default behavior of the mousedown event on the flashCard element
@@ -21,9 +21,8 @@ flashCard.addEventListener("mousedown", flashHandler, false);
 
 // Window onload event handler
 window.onload = function () {
-  let operators = utilMethods.convertStringToArray(sessionStorage.getItem("activeOperators"));
+  let operator = sessionStorage.getItem("activeOperators");
   let difficulty = sessionStorage.getItem("activeDifficulty");
-  utilMethods.updateGeneralSelected(operators, difficulty);
-  state.activeOperators = operators;
-  questionLogic.newQuestion('flash', operators);
+  utilMethods.updateGeneralSelected(operator, difficulty);
+  questionLogic.newQuestion('flash', operator);
 };

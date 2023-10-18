@@ -50,16 +50,16 @@ export function calculation(n1, n2, o1) {
 // Function to generate a random number within a range
 export function randomNumber(min, max) {
   let span = max - min;
-  let rand = Math.floor(Math.random() * span) + min;
-  return rand;
+  let r = Number(Math.floor(Math.random() * span)) + Number(min);
+  return r;
 }
 
 // Function to select a random operator from an array
-export function randOp(arr = operators) {
-  let l = arr.length;
-  let r = Math.floor(Math.random() * l);
-  return arr[r];
-}
+// export function randOp(arr = operators) {
+//   let l = arr.length;
+//   let r = Math.floor(Math.random() * l);
+//   return arr[r];
+// }
 
 // Function to shuffle the elements in an array
 export function shuffle(array) {
@@ -139,8 +139,9 @@ export function enableInput(element) {
 }
 
 // Function to reset a number element to zero
-export function resetNumberToZero(element) {
-  element.textContent = 0;
+export function resetNumber(element, level) {
+  const resetToNumber = (level - 1) * 10;
+  element.textContent = resetToNumber;
 }
 
 // Function to reset the width of elements in an array
@@ -364,7 +365,7 @@ function createActivityTextandIcon(type) {
 }
 function createOperatorTextandIcon(op) {
   let operatorText, operatorColor;
-  switch (op[0]) {
+  switch (op) {
     case "+":
       operatorText = "Addition";
       // operatorIconClass = "plus-icon icon fas fa-plus fa-large";
@@ -393,7 +394,7 @@ function createOperatorTextandIcon(op) {
   }
   return [operatorText, operatorColor];
 }
-function createDifficultyText(diff) {
+export function createDifficultyText(diff) {
   let difficultyText, difficultyColor;
   switch (diff) {
     case "1":
@@ -441,7 +442,7 @@ export function updateActivitySelected(type) {
 }
 export function updateOperatorSelected(op) {
   const operator = document.getElementById("selected-operator-menu");
-  const [operatorText, operatorColor] = createOperatorTextandIcon(op[0]);
+  const [operatorText, operatorColor] = createOperatorTextandIcon(op);
   // const iconElement = document.getElementById("selected-operator-icon");
   // let iconClasses = operatorIconClass.split(" ");
 
@@ -459,10 +460,133 @@ export function updateGeneralSelected(op, diff) {
   const difficultyContainer = document.getElementById("selected-difficulty-container-general");
   const operator = document.getElementById("selected-operator-text-general");
   const operatorContainer = document.getElementById("selected-operator-container-general");
-  const [operatorText, operatorColor] = createOperatorTextandIcon(op[0]);
+  const [operatorText, operatorColor] = createOperatorTextandIcon(op);
   const [diffText, diffColor] = createDifficultyText(diff);
   operatorContainer.style.border = "3px solid " + operatorColor;
   difficultyContainer.style.border = "3px solid " + diffColor;
   difficulty.textContent = diffText;
   operator.textContent = operatorText;
+}
+export async function updateLevelVisuals(level) {
+  const [difficultyText, difficultyColor] = createDifficultyText(String(level));
+  const difficulty = document.getElementById("selected-difficulty-general");
+  const difficultyContainer = document.getElementById("selected-difficulty-container-general");
+  difficultyContainer.style.border = "3px solid " + difficultyColor;
+  difficulty.textContent = difficultyText;
+}
+function setHighLowVals(difficulty, operator) {
+  let highVal, lowVal;
+  if (operator == "x") {
+    switch (Number(difficulty)) {
+      case 1:
+        highVal = 5;
+        lowVal = 0;
+        break;
+      case 2:
+        highVal = 6;
+        lowVal = 2;
+        break;
+      case 3:
+        highVal = 8;
+        lowVal = 3;
+        break;
+      case 4:
+        highVal = 10;
+        lowVal = 3;
+        break;
+      case 5:
+        highVal = 12;
+        lowVal = 4;
+        break;
+    }
+  } else if (operator == "+") {
+    switch (Number(difficulty)) {
+      case 1:
+        highVal = 5;
+        lowVal = 0;
+        break;
+      case 2:
+        highVal = 10;
+        lowVal = 0;
+        break;
+      case 3:
+        highVal = 20;
+        lowVal = 0;
+        break;
+      case 4:
+        highVal = 32;
+        lowVal = 0;
+        break;
+      case 5:
+        highVal = 50;
+        lowVal = 0;
+        break;
+    }
+  } else if (operator == "-") {
+    switch (Number(difficulty)) {
+      case 1:
+        highVal = 9;
+        lowVal = 0;
+        break;
+      case 2:
+        highVal = 20;
+        lowVal = 0;
+        break;
+      case 3:
+        highVal = 40;
+        lowVal = 0;
+        break;
+      case 4:
+        highVal = 70;
+        lowVal = 0;
+        break;
+      case 5:
+        highVal = 100;
+        lowVal = 0;
+        break;
+    }
+  } else {
+    switch (Number(difficulty)) {
+      case 1:
+        highVal = 1;
+        lowVal = 0;
+        break;
+      case 2:
+        highVal = 3;
+        lowVal = 1;
+        break;
+      case 3:
+        highVal = 4;
+        lowVal = 2;
+        break;
+      case 4:
+        highVal = 9;
+        lowVal = 3;
+        break;
+      case 5:
+        highVal = 12;
+        lowVal = 3;
+        break;
+    }
+  }
+  const vals = [highVal, lowVal];
+  return vals;
+}
+export function updateDifficultyRange(operator) {
+  // let  highVal, lowVal;
+  let difficulty = sessionStorage.getItem("activeDifficulty");
+
+  // Set the high and low values based on the current active difficulty level
+  const [highVal, lowVal] = setHighLowVals(difficulty, operator);
+
+  // Set the active multiply low and high values based on the low and high values set above
+  // state.activeMultiplyLowVal = lowVal;
+  // state.activeMultiplyHighVal = highVal;
+  sessionStorage.setItem("activeHighVal", highVal);
+  sessionStorage.setItem("activeLowVal", lowVal);
+  // sessionStorage.setItem("activeDifficulty", i)
+
+  // Set the active high value based on the current active difficulty level
+  // let highValue = (i) * 10;
+  // state.activeHighVal = highValue
 }

@@ -1231,7 +1231,7 @@
 }
 
 .score-text {
-  font-size: 1.8em;
+  font-size: 1.6em;
   color: #eae6df;
 }
 
@@ -1355,7 +1355,6 @@
 
 .game-box {
   background-color: rgba(255, 255, 255, 0.1);
-  display: flex;
   padding: 5px;
 }
 
@@ -1485,8 +1484,9 @@
   border-radius: 25px;
   text-rendering: optimizeLegibility;
   font-size: 16px;
+  font-family: "Pangolin";
   color: #274c43;
-  background-color: #BA8C63;
+  background-color: #f3e4be;
   color: #274c43;
   box-shadow: 3px 4px 5px -1px rgba(0, 0, 0, 0.5);
   transform: translate(0px, 0px);
@@ -1495,6 +1495,38 @@
 }
 
 .answer-submit:active {
+  box-shadow: 0px 0px 1px black;
+  transform: translate(2px, 2px);
+}
+
+.badge-tracker-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.badge-tracker-container > .badge {
+  width: 15vw;
+}
+.badge-tracker-container > .badge > * {
+  font-size: 12px;
+}
+
+.start-over {
+  padding: 5px;
+}
+
+.hsc-start-over {
+  border: 3px solid #51addd;
+  padding: 4.5px 10px;
+  border-radius: 20px;
+  color: #274c43;
+  background-color: #f3e4be;
+  cursor: pointer;
+  box-shadow: 3px 4px 5px -1px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 200ms ease;
+}
+.hsc-start-over:active {
   box-shadow: 0px 0px 1px black;
   transform: translate(2px, 2px);
 }
@@ -2534,7 +2566,7 @@ body {
 }
 
 .selected-operator-container, .selected-difficulty-container, .selected-operator-container-menu, .selected-difficulty-container-menu {
-  background: #f3e6aa;
+  background: #f3e6c2;
   color: #274c43;
   border-radius: 20px;
   padding: 5px 15px;
@@ -3124,10 +3156,6 @@ body {
   .score-container {
     margin-top: 0;
   }
-
-  .game-lower {
-    max-width: 40vw;
-  }
 }
 @media screen and (max-width: 900px) and (orientation: landscape) {
   .divider {
@@ -3215,10 +3243,6 @@ body {
 
   .score-container {
     margin-top: 0;
-  }
-
-  .game-lower {
-    max-width: 40vw;
   }
 
   .question-box {
