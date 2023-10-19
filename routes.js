@@ -175,29 +175,103 @@ router.post('/signup', async function (req, res, next) {
   }
 
   const user = new User({
-    username, email, password, authType: 'local', session: {}, badges: {
-      "game": {
-        1: false,
-        2: false,
-        3: false,
-        4: false,
-        5: false,
+          dateCreated:Date.now(),
+    username, email, password, authType: 'local', session: {}, dateCreated: Date.now(),
+    badges: {
+      "addition": {
+        "game": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        },
+        "quiz": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        },
+        "mcquiz": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        }
       },
-      "quiz": {
-        1: false,
-        2: false,
-        3: false,
-        4: false,
-        5: false,
+      "subtraction": {
+        "game": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        },
+        "quiz": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        },
+        "mcquiz": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        }
       },
-      "mcquiz": {
-        1: false,
-        2: false,
-        3: false,
-        4: false,
-        5: false,
-      }
-    }
+      "multiplication": {
+        "game": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        },
+        "quiz": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        },
+        "mcquiz": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        }
+      },
+      "division": {
+        "game": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        },
+        "quiz": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        },
+        "mcquiz": {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        }
+      },
+
+    },
   });
   try {
     await user.save();
@@ -292,6 +366,7 @@ router.post('/guest', (req, res, next) => {
         username: username,
         email: guestEmail,
         authType: 'guest',
+        dateCreated: Date.now(),
         badges: {
           "addition": {
             "game": {

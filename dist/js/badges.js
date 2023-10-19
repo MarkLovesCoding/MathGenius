@@ -27,34 +27,116 @@ async function retrieveBadges() {
   }
 }
 
+function getHighestBadge(badges) {
+  let bestBadges = [];
+  for (let op in badges) {
+    console.log("op", op);
+    for (let type in badges[op]) {
+      console.log("type", type);
+      let typeMax = 0;
+      for (let diff in badges[op][type]) {
+        console.log("diff", diff);
+        console.log(badges[op][type][diff]);
+        if (badges[op][type][diff] == true) {
+          typeMax = Math.max(typeMax, diff);
+        }
+      }
+      bestBadges.push([op, type, typeMax]);
+    }
+  }
+  return bestBadges;
+}
+function convertNumberToLevel(number) {
+  let level;
+  switch (number) {
+    case 1:
+      level = "Easy";
+      break;
+    case 2:
+      level = "Novice";
+      break;
+    case 3:
+      level = "Intermediate";
+      break;
+    case 4:
+      level = "Advanced";
+      break;
+    case 5:
+      level = "Genius!";
+      break;
+    default:
+      level = "-";
+      break;
+  }
+  return level;
+}
 // Updates the appearance of badges based on the profile
 function updateBadgeAppearance(elements, profile) {
-  for (let element of elements) {
-    // TO DO
-    //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
-    // use profile objest to find highest accomplished badge?
-    const profileCopy = {
-      ...profile
-    };
-    for (let o in profileCopy) {
-      for (let t in o) {
-        for (let d in t) console.log(d);
+  const bestBadges = getHighestBadge(profile);
+  const badgeDescriptionLevels = document.getElementsByClassName("badge-description-level");
+
+  // for (let element of elements) {
+  //   // TO DO
+  //   //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
+  //   // use profile objest to find highest accomplished badge?
+  //   element.classList.add("active");
+
+  //   // let operator = element.getAttribute("data-badge-operator")
+  //   let type = element.getAttribute("data-badge-type");
+  //   let operator = element.getAttribute("data-badge-operator");
+
+  //   if (profile[operator][type][diff]) {
+  //   } else {
+  //     element.classList.remove("active");
+  //   }
+  // }
+  for (let best of bestBadges) {
+    if (best[2] !== 0) {
+      for (let element of elements) {
+        // TO DO
+        //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
+        // use profile objest to find highest accomplished badge?
+
+        // let operator = element.getAttribute("data-badge-operator")
+        let type = element.getAttribute("data-badge-type");
+        let operator = element.getAttribute("data-badge-operator");
+        let level = element.nextElementSibling;
+        console.log(level);
+        if (best[1] == type && best[0] == operator) {
+          element.classList.add("active");
+          level.textContent = convertNumberToLevel(Number(best[2]));
+          // level.textContent == convertNumberToLevel(Number(best[2]))
+        }
       }
-    }
-    let type = element.getAttribute("data-badge-type");
-    let diff = element.getAttribute("data-badge-number");
-    if (profile[type][diff]) {} else {
-      element.classList.remove("active");
     }
   }
 }
 
+function reformatOperator(operator) {
+  let reformattedOperator;
+  switch (operator) {
+    case "+":
+      reformattedOperator = "addition";
+      break;
+    case "-":
+      reformattedOperator = "subtraction";
+      break;
+    case "x":
+      reformattedOperator = "multiplication";
+      break;
+    default:
+      reformattedOperator = "division";
+      break;
+  }
+  return reformattedOperator;
+}
 // Updates badge status based on type, difficulty, and trueness. Implemented within game client script.
 export async function updateBadgeStatus(type, difficulty, operator, bool) {
+  const reformattedOperator = reformatOperator(operator);
   try {
     const badgesFromDb = await retrieveBadges();
     if (bool) {
-      badgesFromDb[operator][type][difficulty] = true;
+      badgesFromDb[reformattedOperator][type][difficulty] = true;
       await updateSessionAndDB(badgesFromDb);
     }
   } catch (error) {
@@ -82,6 +164,7 @@ async function updateSessionAndDB(updatedBadges) {
     });
     if (response.ok) {
       console.log('Badges updated successfully!');
+      console.log(updatedBadges);
     } else {
       console.error('Error updating badges!');
     }

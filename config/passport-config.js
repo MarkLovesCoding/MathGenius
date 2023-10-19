@@ -67,27 +67,99 @@ function passportConfig(passport) {
           authType: 'google',
           session: {},
           badges: {
-            "game": {
-              1: false,
-              2: false,
-              3: false,
-              4: false,
-              5: false,
+            "addition": {
+              "game": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              },
+              "quiz": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              },
+              "mcquiz": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              }
             },
-            "quiz": {
-              1: false,
-              2: false,
-              3: false,
-              4: false,
-              5: false,
+            "subtraction": {
+              "game": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              },
+              "quiz": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              },
+              "mcquiz": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              }
             },
-            "mcquiz": {
-              1: false,
-              2: false,
-              3: false,
-              4: false,
-              5: false,
-            }
+            "multiplication": {
+              "game": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              },
+              "quiz": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              },
+              "mcquiz": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              }
+            },
+            "division": {
+              "game": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              },
+              "quiz": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              },
+              "mcquiz": {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+              }
+            },
+  
           },
         });
         console.log(newUser);
