@@ -60,8 +60,9 @@ async function checkMCQAnswered() {
   if (state.mcQuizActive.mcqNumAnswered == state.mcQuizActive.mcqNumQuestion) {
 
     if (state.mcQuizActive.mcqNumCorrect == 10) {
-      let activeDifficulty = sessionStorage.getItem("activeDifficulty")
-      await updateBadgeStatus("mcquiz", activeDifficulty, true)
+      const activeDifficulty = sessionStorage.getItem("activeDifficulty")
+      const activeOperator = sessionStorage.getItem("activeOperators")
+      await updateBadgeStatus("mcquiz", activeDifficulty, activeOperator, true)
       await animateBadge()
     }
     else {

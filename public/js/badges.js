@@ -32,11 +32,20 @@ async function retrieveBadges() {
 // Updates the appearance of badges based on the profile
 function updateBadgeAppearance(elements, profile) {
   for (let element of elements) {
+    // TO DO
+    //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
+    // use profile objest to find highest accomplished badge?
+    const profileCopy = {...profile}
+    for(let o in profileCopy){
+      for(let t in o){
+        for(let d in t)
+        console.log(d)
+      }
+    }
     let type = element.getAttribute("data-badge-type");
     let diff = element.getAttribute("data-badge-number");
 
-    if (profile[type][diff]) {
-      element.classList.add("active");
+    if (profile[type][diff]) {  
     } else {
       element.classList.remove("active");
     }
@@ -44,16 +53,15 @@ function updateBadgeAppearance(elements, profile) {
 }
 
 // Updates badge status based on type, difficulty, and trueness. Implemented within game client script.
-export async function updateBadgeStatus(type, difficulty, bool) {
+export async function updateBadgeStatus(type, difficulty, operator,bool) {
   try {
     const badgesFromDb = await retrieveBadges();
     if (bool) {
-      badgesFromDb[type][difficulty] = true;
+      badgesFromDb[operator][type][difficulty] = true;
       await updateSessionAndDB(badgesFromDb);
     }
   } catch (error) {
     console.error(error);
-    // Handle the error appropriately
   }
 }
 

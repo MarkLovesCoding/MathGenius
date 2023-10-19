@@ -88,13 +88,13 @@
         margin-top: calc(3vh + 60px);
     }
 
-    .badges {
-        margin: 20px;
-        grid-template-columns: repeat(3, 1fr);
-        overflow-y: auto;
+    // .badges {
+    //     margin: 20px;
+    //     grid-template-columns: repeat(3, 1fr);
+    //     overflow-y: auto;
 
-        max-width: fit-content;
-    }
+    //     max-width: fit-content;
+    // }
 
     .avatar-user-icons {
         grid-template-columns: repeat(4, 1fr);
@@ -323,33 +323,36 @@
         flex-direction: column;
         align-items: center;
     }
-
+    .badges{
+        max-width:700px;
+    }
     .user {
         flex-basis: 20%;
     }
 
-    .badges {
-        // margin-left: 40px;
-        grid-template-columns: repeat(5, 1fr);
-        max-width: none;
-    }
+    // .badges {
+    //     // margin-left: 40px;
+    //     grid-template-columns: repeat(5, 1fr);
+    //     max-width: none;
+    // }
 }
 
 @media screen and (min-width: 768px) {
     .profile-section {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
     }
 
     .profile-user-section {
         flex-basis: 20%;
+        margin-right:5px;
     }
 
-    .badges {
-        // margin-left: 40px;
-        grid-template-columns: repeat(4, 1fr);
-        max-width: none;
-    }
+    // .badges {
+    //     // margin-left: 40px;
+    //     grid-template-columns: repeat(4, 1fr);
+    //     max-width: none;
+    // }
 }
 
 

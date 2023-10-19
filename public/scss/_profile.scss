@@ -1,5 +1,3 @@
-
-
 .profile.display-container {
     @include center-flex;
 }
@@ -13,7 +11,7 @@
 
 .profile-img-container {
     position: relative;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 /* user section */
@@ -26,7 +24,7 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    z-index:25;
+    z-index: 25;
 }
 
 .change-avatar {
@@ -47,17 +45,23 @@
 /* badges section */
 .badges {
     margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    padding-top:20px;
+    // display: grid;
+    // grid-template-columns: repeat(2, 2fr);
+    // grid-gap: 10px;
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
-    max-width: 290px;
+    width: 70vw;
     // max-height: calc(100vh - 60px - 125px - 110px);
-    max-height:60vh;
+    max-height: 65vh;
     border: 2px solid transparent;
 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width:310px;
+    // flex-wrap: wrap;
     &:hover {
         border: 2px solid $chalk-white;
         border-radius: 10px;
@@ -77,21 +81,46 @@
         border-radius: 25px;
     }
 }
-.profile-lower-left{
-    
+
+// @media screen and (orientation: landscape) and (min-width:700px){
+
+//  .badges {
+//     display: grid;
+//     grid-template-columns: repeat(4, 1fr);
+//     grid-template-rows: repeat(4, 1fr);
+//   }
+
+// }
+@media screen and (min-width: 850px) {
+
+    .badges {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        place-items: center;
+
+    }
+
+
 }
+
+.profile-lower-left {}
+
 .badge {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin: 5px 0px;
+    margin: 15px 0px;
+    height: 100px;
+    width: 85px;
 }
 
 .badge-img {
     max-width: 50px;
     max-height: 50px;
     filter: grayscale(100%);
+
     &.active {
         filter: grayscale(0%)
     }
@@ -112,7 +141,10 @@
     display: flex;
     font-weight: 500;
 }
-
+.badge-description{
+    margin-top:3px;
+    width:8ch;
+}
 
 // AVATAR MODAL
 .avatar-modal {
@@ -129,7 +161,7 @@
 
 .avatar-modal-body {
     @include center-flex;
-    overflow-y:scroll;
+    overflow-y: scroll;
 }
 
 .avatar-modal-content {
@@ -145,9 +177,10 @@
 .avatar-modal-header {
     display: flex;
     justify-content: space-between;
-    >h2{
-        font-size:22px;
-        color:$chalkboard-green;
+
+    >h2 {
+        font-size: 22px;
+        color: $chalkboard-green;
     }
 }
 
@@ -189,10 +222,74 @@
     max-height: 6em;
     border-radius: 3em;
 }
-.badges-header{
-    color:$chalk-white;
-    height: 40px;
- display:flex;
- align-items:end;
- justify-content: center;
+
+.badges-header {
+    color: $chalk-white;
+    height: 50px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    font-size:1.5em;
+}
+
+.badge-container-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    // flex: 50%;
+    // max-width:30vw;
+
+}
+
+.badge-addition-row,
+.badge-subtraction-row,
+.badge-multiplication-row,
+.badge-division-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    // margin: 20px 0;
+    max-height:62px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    &>* {
+        padding: 20px;
+        color: $chalk-white;
+        text-decoration: underline;
+    }
+}
+
+.badges-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 0 15px 15px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.badges-addition,
+.badge-addition-row {
+    background: rgb(110 224 110 / 20%);
+}
+
+
+.badges-subtraction,
+.badge-subtraction-row {
+    background: rgb(0 189 255 / 20%);
+}
+
+.badges-multiplication,
+.badge-multiplication-row {
+    background: rgb(245 186 66 / 20%);
+}
+
+.badges-division,
+.badge-division-row {
+    background: rgb(228 111 228 / 20%);
 }

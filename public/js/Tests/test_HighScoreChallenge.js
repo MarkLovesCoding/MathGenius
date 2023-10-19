@@ -124,10 +124,11 @@ async function updateLevel() {
 
   // Checks if the user has reached the next level and adds a new level to the game tracker
   if (parseInt(gameCurrScore.textContent) % 10 == 0) {
-    let currDifficulty = Number(sessionStorage.getItem("activeDifficulty"));
-    await updateBadgeStatus("game", currDifficulty, true)
+    const currDifficulty = Number(sessionStorage.getItem("activeDifficulty"));
+    const activeOperator = Number(sessionStorage.getItem("activeOperators"));
+    await updateBadgeStatus("game", currDifficulty, activeOperator, true)
 
-    let nextDifficulty = currDifficulty == 5 ? 5: currDifficulty += 1 
+    const nextDifficulty = currDifficulty == 5 ? 5: currDifficulty += 1 
     await utilMethods.updateLevelVisuals(currDifficulty)
     sessionStorage.setItem("activeDifficulty",nextDifficulty)
     

@@ -47,13 +47,13 @@ router.get('/', requireAuth, (req, res) => {
 
 router.get('/privacy', (req, res) => {
 
- 
+
 
   res.render('privacy');
 });
 router.get('/landing', (req, res) => {
 
- 
+
 
   res.render('landing');
 });
@@ -81,10 +81,10 @@ function requireLogin(req, res, next) {
   }
 }
 
-router.get('/profile',requireLogin, (req, res) => {
+router.get('/profile', requireLogin, (req, res) => {
 
   res.render('profile', {
-    userData:req.session.userData
+    userData: req.session.userData
   });
 });
 
@@ -133,16 +133,16 @@ router.post('/login', (req, res, next) => {
         console.log(" error logging in")
         return next(err);
       }
-      
+
 
 
       req.session.userData = {
-        userId:user._id.toString(),
+        userId: user._id.toString(),
 
         name: user.username,
-        session:{},
+        session: {},
         badges: user.badges,
-        imageSrc:user.imageSrc
+        imageSrc: user.imageSrc
       }
       req.flash('flashData', {
         welcomeMessage: 'Successful Login',
@@ -150,7 +150,7 @@ router.post('/login', (req, res, next) => {
         //
       })
 
- 
+
       // req.session.sessionId = sessionId
 
       return res.redirect('/')
@@ -174,28 +174,31 @@ router.post('/signup', async function (req, res, next) {
     return res.redirect('/signup')
   }
 
-  const user = new User({ username, email, password, authType: 'local', session: {}, badges: { 
-    "game":{
-    1:false,
-    2:false,
-    3:false,
-    4:false,
-    5:false,
-  },
-  "quiz":{
-    1:false,
-    2:false,
-    3:false,
-    4:false,
-    5:false,
-  },
-  "mcquiz":{
-    1:false,
-    2:false,
-    3:false,
-    4:false,
-    5:false,
-  }} });
+  const user = new User({
+    username, email, password, authType: 'local', session: {}, badges: {
+      "game": {
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+      },
+      "quiz": {
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+      },
+      "mcquiz": {
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+      }
+    }
+  });
   try {
     await user.save();
     req.login(user, function (err) {
@@ -209,11 +212,11 @@ router.post('/signup', async function (req, res, next) {
       })
 
       req.session.userData = {
-        userId:user._id.toString(),
+        userId: user._id.toString(),
         name: user.username,
         session: {},
-  
-        imageSrc:user.imageSrc
+
+        imageSrc: user.imageSrc
 
       }
       // req.session.sessionId = sessionId
@@ -285,32 +288,104 @@ router.post('/guest', (req, res, next) => {
       // If not, create a new user and save it to the database
 
       user = new User({
-        
+
         username: username,
         email: guestEmail,
         authType: 'guest',
         badges: {
-          "game":{
-            1:false,
-            2:false,
-            3:false,
-            4:false,
-            5:false,
+          "addition": {
+            "game": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            },
+            "quiz": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            },
+            "mcquiz": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            }
           },
-          "quiz":{
-            1:false,
-            2:false,
-            3:false,
-            4:false,
-            5:false,
+          "subtraction": {
+            "game": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            },
+            "quiz": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            },
+            "mcquiz": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            }
           },
-          "mcquiz":{
-            1:false,
-            2:false,
-            3:false,
-            4:false,
-            5:false,
-          }
+          "multiplication": {
+            "game": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            },
+            "quiz": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            },
+            "mcquiz": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            }
+          },
+          "division": {
+            "game": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            },
+            "quiz": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            },
+            "mcquiz": {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
+              5: false,
+            }
+          },
+
         },
         guest: true,
         // imgSrc:"http://localhost:4000/assets/mouse.png"
@@ -320,7 +395,7 @@ router.post('/guest', (req, res, next) => {
       // user.token = token;
 
       await user.save();
-  
+
 
       req.login(user, (err) => {
         if (err) {
@@ -334,12 +409,12 @@ router.post('/guest', (req, res, next) => {
 
         // req.session.sessionId = sessionId
         req.session.userData = {
-        userId:user._id.toString(),
+          userId: user._id.toString(),
 
           name: user.username,
-          session: {lastLogin:new Date()},
-          
-          imageSrc:"../assets/cat.png"
+          session: { lastLogin: new Date() },
+
+          imageSrc: "../assets/cat.png"
 
         }
 
@@ -388,11 +463,11 @@ router.get(
     })
 
     req.session.userData = {
-      userId:loadUser._id.toString(),
+      userId: loadUser._id.toString(),
       name: profileName,
       session: {},
       badges: loadUser.badges,
-      imageSrc:loadUser.imageSrc || "../assets/temp.png"
+      imageSrc: loadUser.imageSrc || "../assets/temp.png"
     }
     // req.session.sessionId = sessionId
 
@@ -716,8 +791,8 @@ router.get('/learning/fractions', requireAuth, (req, res) => {
 
 
 
-router.patch('/update-image', requireAuth,async (req, res) => {
-  const {userId, newSrc } = req.body;
+router.patch('/update-image', requireAuth, async (req, res) => {
+  const { userId, newSrc } = req.body;
 
 
   try {
@@ -730,7 +805,7 @@ router.patch('/update-image', requireAuth,async (req, res) => {
   }
 });
 
-router.get('/user-id', requireAuth,async (req, res) => {
+router.get('/user-id', requireAuth, async (req, res) => {
 
   const userId = req.session.userData.userId;
 
@@ -763,8 +838,8 @@ router.get('/get-badges', requireAuth, async (req, res) => {
     res.status(500).send('Error fetching badges');
   }
 });
-router.patch('/update-badges', requireAuth,async (req, res) => {
-  const {userId, updatedBadges } = req.body;
+router.patch('/update-badges', requireAuth, async (req, res) => {
+  const { userId, updatedBadges } = req.body;
 
   try {
     await User.findByIdAndUpdate(userId, { badges: updatedBadges });
