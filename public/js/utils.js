@@ -535,7 +535,7 @@ function setHighLowVals(difficulty, operator) {
   operator = String(operator).trim()
   console.log("sethighVal op:",operator)
   if (operator == "x") {
-
+ 
     switch (Number(difficulty)) {
       case 1:
         highVal = 5;
@@ -651,7 +651,7 @@ function setHighLowVals(difficulty, operator) {
 export function updateDifficultyRange(operator) {
   // let  highVal, lowVal;
   let difficulty = sessionStorage.getItem("activeDifficulty");
-  let activeOperator = sessionStorage.getItem("activeOperators");
+  let activeOperator = String(sessionStorage.getItem("activeOperators"));
 
   // Set the high and low values based on the current active difficulty level
   const [highVal, lowVal] = setHighLowVals(difficulty, activeOperator)
