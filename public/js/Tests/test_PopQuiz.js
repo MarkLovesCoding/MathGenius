@@ -113,8 +113,8 @@ async function checkQuizStatus(quizStats, currScoreContainerEl, lastScoreContain
       const activeDifficulty = await sessionStorage.getItem('activeDifficulty')
       const activeOperator = Number(sessionStorage.getItem("activeOperators"));
 
-      await updateBadgeStatus("quiz", activeDifficulty, activeOperator, true)
       await animateBadge()
+      await updateBadgeStatus("quiz", activeDifficulty, activeOperator, true)
     }
     else {
       quizShowScore();

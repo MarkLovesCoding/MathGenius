@@ -23,12 +23,12 @@ async function gameAnswerCheck(bool) {
     utilMethods.visibilityTimedToggle(false, gameActualContainer, 1000);
     updateScore();
     // Update level and disable input for a short period
-    await updateLevel();
     utilMethods.disableInput(gameAnswerInput);
-    await utilMethods.delay(700);
+    await updateLevel();
+    await utilMethods.delay(300);
+    utilMethods.resetAnswerInput([gameAnswerInput]);
     utilMethods.enableInput(gameAnswerInput);
     // Reset input and generate new question
-    utilMethods.resetAnswerInput([gameAnswerInput]);
     questionLogic.newQuestion("game", operator);
   }
   // If the answer is incorrect:
@@ -45,7 +45,7 @@ async function gameAnswerCheck(bool) {
     utilMethods.resetWidth([gameTracker]);
     // Generate new question and re-enable input after a short period
     questionLogic.newQuestion("game", operator);
-    await utilMethods.delay(700);
+    await utilMethods.delay(500);
     utilMethods.enableInput(gameAnswerInput);
   }
 }
@@ -124,16 +124,18 @@ async function updateLevel() {
 
   // Checks if the user has reached the next level and adds a new level to the game tracker
   if (parseInt(gameCurrScore.textContent) % 10 == 0) {
-    const currDifficulty = Number(sessionStorage.getItem("activeDifficulty"));
-    const activeOperator = Number(sessionStorage.getItem("activeOperators"));
+    let currDifficulty = Number(sessionStorage.getItem("activeDifficulty"));
+    const activeOperator = sessionStorage.getItem("activeOperators")
+    console.log("activeOP:",activeOperator);
     await updateBadgeStatus("game", currDifficulty, activeOperator, true)
 
-    const nextDifficulty = currDifficulty == 5 ? 5: currDifficulty += 1 
-    await utilMethods.updateLevelVisuals(currDifficulty)
+    let nextDifficulty = currDifficulty == 5 ? 5: currDifficulty + 1 
+    await utilMethods.updateLevelVisuals(nextDifficulty)
     sessionStorage.setItem("activeDifficulty",nextDifficulty)
+    utilMethods.updateDifficultyRange()
     
     await animateBadge()
-    await utilMethods.delay(1000);
+    await utilMethods.delay(500);
 
 
     // Disables the user input and resets the width of the game tracker
@@ -146,8 +148,10 @@ async function updateLevel() {
 
     // Animates the level up message and waits for 1 second before re-enabling the user input
     levelUp(level);
-    await utilMethods.delay(1000);
-    utilMethods.enableInput(gameAnswerInput);
+    // questionLogic.newQuestion('game', activeOperator);
+    // await utilMethods.delay(200);
+    // utilMethods.enableInput(gameAnswerInput);
+
   }
   // Updates the level number displayed to the user
   gameLevelNumber.textContent = level;
@@ -228,10 +232,12 @@ async function resetGameSettings(){
   await utilMethods.delay(500);
   utilMethods.resetAnswerInput([gameAnswerInput]);
   utilMethods.resetNumber(gameCurrScore,1);
+  utilMethods.resetLevelNumber(gameLevelNumber);
   utilMethods.resetWidth([gameTracker]);
   sessionStorage.setItem("activeDifficulty",1)
  
   utilMethods.updateLevelVisuals(1)
+  utilMethods.updateDifficultyRange()
   // Generate new question and re-enable input after a short period
   questionLogic.newQuestion("game", sessionStorage.getItem("activeOperators"));
   await utilMethods.delay(1200);
@@ -259,15 +265,17 @@ window.onload = function () {
 
 
   let difficulty = sessionStorage.getItem("activeDifficulty")
-  console.log(difficulty)
+  // console.log(difficulty)
   // utilMethods.updateDifficultyRange(operator)
-  console.log(operator)
-
+  // console.log(operator)
+  
   utilMethods.updateGeneralSelected(operator,difficulty)
   // sessionStorage.setItem("activeOperators",operators)
   // sessionStorage.setItem("",operators)
   utilMethods.resetNumber(gameCurrScore,difficulty);
-  questionLogic.newQuestion('game', operator);
+  resetGameSettings()
+
+  // questionLogic.newQuestion('game', operator);
 } 
 
 

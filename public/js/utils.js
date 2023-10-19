@@ -154,6 +154,10 @@ export function resetNumber(element, level) {
   const resetToNumber = (level - 1) * 10
   element.textContent = resetToNumber;
 }
+export function resetLevelNumber(element) {
+  
+  element.textContent = 1;
+}
 
 // Function to reset the width of elements in an array
 export function resetWidth(elementsArr) {
@@ -527,8 +531,9 @@ export async function updateLevelVisuals(level) {
   difficulty.textContent = difficultyText
 }
 function setHighLowVals(difficulty, operator) {
-  let highVal, lowVal
-
+  let highVal, lowVal;
+  operator = String(operator).trim()
+  console.log("sethighVal op:",operator)
   if (operator == "x") {
 
     switch (Number(difficulty)) {
@@ -646,9 +651,10 @@ function setHighLowVals(difficulty, operator) {
 export function updateDifficultyRange(operator) {
   // let  highVal, lowVal;
   let difficulty = sessionStorage.getItem("activeDifficulty");
+  let activeOperator = sessionStorage.getItem("activeOperators");
 
   // Set the high and low values based on the current active difficulty level
-  const [highVal, lowVal] = setHighLowVals(difficulty, operator)
+  const [highVal, lowVal] = setHighLowVals(difficulty, activeOperator)
 
   // Set the active multiply low and high values based on the low and high values set above
   // state.activeMultiplyLowVal = lowVal;
