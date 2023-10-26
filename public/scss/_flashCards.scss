@@ -84,7 +84,7 @@
 .flash-question-box {
     position: relative;
     min-height: 200px;
-    background: $chalkboard-green;
+    background: #3d5e56;
     color: $chalk-white;
     font-family: 'Pangolin', cursive;
     z-index: 2;
@@ -113,14 +113,14 @@
     -ms-transform: rotateY(-180deg);
     transform: rotateY(-180deg);
     min-height: 200px;
-    background: $chalkboard-green;
-    color: $chalk-white;
+    background: $chalk-white;
+    color: $chalkboard-green;
     font-family: 'Pangolin', cursive;
     box-shadow: $shadowLarge;
 
     &::after {
         position: absolute;
-        color: $chalk-white;
+        color: $chalkboard-green;
         font-family: 'Pangolin', cursive;
         content: "Answer";
         top: 10px;
