@@ -9,7 +9,7 @@ const nextButton = document.querySelector('.fraction-next-btn');
 let currentIndex = 0;
 let currMaxHeight = 0;
 const maxIndex = carouselItems.length - 1;
-const itemWidth = carouselContainer.offsetWidth;
+const itemWidth = carouselContainer.getBoundingClientRect().width;
 
 // Add event listeners for previous and next buttons
 previousButton.addEventListener('click', showPreviousItem);
