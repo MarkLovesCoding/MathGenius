@@ -671,3 +671,30 @@ export function updateDifficultyRange(operator) {
 
 
 }
+
+
+
+export function reformatOperator(operator) {
+  console.log("reformatting this operator", operator)
+  let reformattedOperator;
+  switch (String(operator).trim()) {
+    case "+":
+      reformattedOperator = "addition";
+      break;
+    case "-":
+      reformattedOperator = "subtraction";
+      break;
+    case "x":
+      reformattedOperator = "multiplication";
+      break;
+    case "÷":
+      reformattedOperator = "division";
+      break;
+    default:
+      reformattedOperator = operator;
+      console.log("not reformatted")
+      break;
+  }
+  console.log("ReformattedOp",reformattedOperator)
+  return reformattedOperator
+}

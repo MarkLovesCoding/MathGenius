@@ -1,1 +1,28 @@
-import*as utilMethods from"../utils.js";import{state}from"../state.js";import*as questionLogic from"../sharedQuestionLogic.js";import{flashAnswer,flashCard,flashNumOne,flashNumTwo,flashOpOne}from"../domElements.js";function flashHandler(e){var s=utilMethods.calculation(flashNumOne.innerHTML,flashNumTwo.innerHTML,flashOpOne.innerHTML);flashAnswer.textContent=s,this.classList.contains("flip")&&questionLogic.newQuestion("flash",sessionStorage.getItem("activeOperators")),this.classList.toggle("flip"),e.preventDefault()}flashCard.addEventListener("mousedown",flashHandler,!1),window.onload=function(){var e=sessionStorage.getItem("activeOperators"),s=sessionStorage.getItem("activeDifficulty");utilMethods.updateGeneralSelected(e,s),questionLogic.newQuestion("flash",e)};
+// Import the necessary modules
+import * as utilMethods from '../utils.js';
+import { state } from '../state.js';
+import * as questionLogic from '../sharedQuestionLogic.js';
+import { flashAnswer, flashCard, flashNumOne, flashNumTwo, flashOpOne } from '../domElements.js';
+
+// Function to handle the flashCard mousedown event
+function flashHandler(e) {
+  const ans = utilMethods.calculation(flashNumOne.innerHTML, flashNumTwo.innerHTML, flashOpOne.innerHTML); // Calculate the correct answer using the flashNumOne, flashNumTwo, and flashOpOne elements
+  flashAnswer.textContent = ans; // Display the correct answer in the flashAnswer element
+  if (this.classList.contains("flip")) {
+    // If the flashCard element has the "flip" class, generate a new question
+    questionLogic.newQuestion("flash", sessionStorage.getItem("activeOperators"));
+  }
+  this.classList.toggle("flip"); // Toggle the "flip" class on the flashCard element
+  e.preventDefault(); // Prevent the default behavior of the mousedown event on the flashCard element
+}
+
+// Add mousedown event listener to the flashCard element
+flashCard.addEventListener("mousedown", flashHandler, false);
+
+// Window onload event handler
+window.onload = function () {
+  let operator = sessionStorage.getItem("activeOperators");
+  let difficulty = sessionStorage.getItem("activeDifficulty");
+  utilMethods.updateGeneralSelected(operator, difficulty);
+  questionLogic.newQuestion('flash', operator);
+};

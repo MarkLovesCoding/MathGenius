@@ -3,7 +3,7 @@
 import * as utilMethods from '../utils.js';
 import { state } from '../state.js'
 import * as questionLogic from '../sharedQuestionLogic.js';
-import { updateBadgeStatus } from '../badges.js';
+import { updateBadgeStatus, retrieveBadges,getHighestBadge } from '../badges.js';
 import { animateBadge } from '../badgeEarned.js';
 
 import {  gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, gameActual, gameActualContainer,  gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTrackerContainer, gameTrackerContainer2 } from '../domElements.js';
@@ -15,6 +15,8 @@ async function gameAnswerCheck(bool) {
   // If the answer is correct:
   const level = sessionStorage.getItem("activeDifficulty")
   const operator = sessionStorage.getItem("activeOperators")
+  
+  // TO DO remove below line update diff range
   utilMethods.updateDifficultyRange(operator)
   if (bool) {
     // Show correct answer message and update score
@@ -114,6 +116,26 @@ function levelUp(level) {
 
 //   difficulty.textContent = difficultyText
 // }
+async function checkBadgeStatus(badges,operator,difficulty){
+  // console.log("running Badge status check",badges[operator]['game'][difficulty] )
+  const reformattedOperator = utilMethods.reformatOperator(operator)
+  console.log("BADGESTATUS--->",badges[reformattedOperator]['game'][difficulty])
+  if(badges[reformattedOperator]["game"][difficulty] === false) return true;
+  else return false;
+}
+// async function loadBadges() {
+//   try {
+//     const response = await fetch('/get-badges');
+//     const data = await response.json();
+//     const badges = await data.badges;
+//     console.dir(data.badges)
+//     sessionStorage.setItem('badges',badges)
+
+//   } catch (error) {
+//     console.error(error);
+//     // Handle the error appropriately
+//   }
+// }
 
 async function updateLevel() {
   // Gets the current level number and checks if the user has made progress towards the next level or not
@@ -126,16 +148,28 @@ async function updateLevel() {
   if (parseInt(gameCurrScore.textContent) % 10 == 0) {
     let currDifficulty = Number(sessionStorage.getItem("activeDifficulty"));
     const activeOperator = sessionStorage.getItem("activeOperators")
-    console.log("activeOP:",activeOperator);
-    await updateBadgeStatus("game", currDifficulty, activeOperator, true)
+    const badgesFromDb = await retrieveBadges()
+
+    // const activeBadges = sessionStorage.getItem("badges")
+    // console.log("activeBadges",activeBadges['addition'])
+    // await updateBadgeStatus("game", currDifficulty, activeOperator, true)
 
     let nextDifficulty = currDifficulty == 5 ? 5: currDifficulty + 1 
     await utilMethods.updateLevelVisuals(nextDifficulty)
     sessionStorage.setItem("activeDifficulty",nextDifficulty)
     utilMethods.updateDifficultyRange()
+    if(await checkBadgeStatus(badgesFromDb,utilMethods.reformatOperator(activeOperator),currDifficulty)) {
+      animateBadge()
+      await utilMethods.delay(200);
+      const badgeImgs = document.getElementsByClassName("badge-img");
+      // const badgesFromDb = await retrieveBadges()
+      await updateBadgeStatus('game',currDifficulty,activeOperator,true)
+      const badgesFromDbUpdated = await retrieveBadges()
+
+      updateChallengeBadgeAppearance(badgeImgs,badgesFromDbUpdated,activeOperator)
+    }
     
-    await animateBadge()
-    await utilMethods.delay(500);
+    await utilMethods.delay(300);
 
 
     // Disables the user input and resets the width of the game tracker
@@ -254,12 +288,58 @@ gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler); // Add an e
 
 
 
+function updateChallengeBadgeAppearance(elements, badges,operator) {
+  const reformattedOperator = utilMethods.reformatOperator(operator)
+  const bestBadges = getHighestBadge(badges)
+  console.log("bestBadges",bestBadges)
+  // for (let element of elements) {
+  //   // TO DO
+  //   //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
+  //   // use profile objest to find highest accomplished badge?
+  //   element.classList.add("active");
+
+  //   // let operator = element.getAttribute("data-badge-operator")
+  //   let type = element.getAttribute("data-badge-type");
+  //   let operator = element.getAttribute("data-badge-operator");
+
+  //   if (profile[operator][type][diff]) {
+  //   } else {
+  //     element.classList.remove("active");
+  //   }
+  // }
+  for (let best of bestBadges) {
+    if (best[2] !== 0 && best[0]==reformattedOperator && best[1]=='game') {
+      const highestLevel = best[2];
+      for(let element of elements){
+
+    
+        // TO DO
+        //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
+        // use profile objest to find highest accomplished badge?
+
+
+        // let operator = element.getAttribute("data-badge-operator")
+        let type = element.getAttribute("data-badge-type");
+        let difficulty = element.getAttribute("data-badge-number");
+        if(difficulty <= highestLevel){
+          element.classList.add("active")
+
+        }
+        // console.log("badgeop",operator)
+        
+        
+      }
+
+      
+    }
+  }
+}
 
 
 
 
 
-window.onload = function () {
+window.onload = async function () {
   let operator = sessionStorage.getItem("activeOperators")
   // state.activeOperators = sessionStorage.getItem("activeOperators")
 
@@ -268,11 +348,20 @@ window.onload = function () {
   // console.log(difficulty)
   // utilMethods.updateDifficultyRange(operator)
   // console.log(operator)
+  const badgeImgs = document.getElementsByClassName("badge-img");
+  const badgesFromDb = await retrieveBadges()
+
+  updateChallengeBadgeAppearance(badgeImgs,badgesFromDb,operator)
   
   utilMethods.updateGeneralSelected(operator,difficulty)
   // sessionStorage.setItem("activeOperators",operators)
   // sessionStorage.setItem("",operators)
   utilMethods.resetNumber(gameCurrScore,difficulty);
+
+  
+  // sessionStorage.setItem("badges",badgesFromDb)
+
+
   resetGameSettings()
 
   // questionLogic.newQuestion('game', operator);

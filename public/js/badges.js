@@ -1,4 +1,5 @@
 
+import {reformatOperator} from './utils.js';
 
 const badgeImgs = document.getElementsByClassName("badge-img");
 
@@ -17,18 +18,20 @@ async function getUserId() {
 }
 
 // Retrieves badges from the server
-async function retrieveBadges() {
+export async function retrieveBadges() {
   try {
     const response = await fetch('/get-badges');
     const data = await response.json();
     const badges = data.badges;
+
+
     return badges;
   } catch (error) {
     console.error(error);
     // Handle the error appropriately
   }
 }
-function getHighestBadge(badges) {
+export function getHighestBadge(badges) {
   let bestBadges = []
 
   for (let op in badges) {
@@ -76,7 +79,7 @@ function convertNumberToLevel(number) {
   return level
 }
 // Updates the appearance of badges based on the profile
-function updateBadgeAppearance(elements, profile) {
+export function updateBadgeAppearance(elements, profile) {
   const bestBadges = getHighestBadge(profile)
 
   // for (let element of elements) {
@@ -121,25 +124,25 @@ function updateBadgeAppearance(elements, profile) {
     }
   }
 }
-function reformatOperator(operator) {
-  let reformattedOperator;
-  switch (String(operator).trim()) {
-    case "+":
-      reformattedOperator = "addition";
-      break;
-    case "-":
-      reformattedOperator = "subtraction";
-      break;
-    case "x":
-      reformattedOperator = "multiplication";
-      break;
-    default:
-      reformattedOperator = "division";
-      break;
-  }
-  console.log("ReformattedOp",reformattedOperator)
-  return reformattedOperator
-}
+// function reformatOperator(operator) {
+//   let reformattedOperator;
+//   switch (String(operator).trim()) {
+//     case "+":
+//       reformattedOperator = "addition";
+//       break;
+//     case "-":
+//       reformattedOperator = "subtraction";
+//       break;
+//     case "x":
+//       reformattedOperator = "multiplication";
+//       break;
+//     default:
+//       reformattedOperator = "division";
+//       break;
+//   }
+//   console.log("ReformattedOp",reformattedOperator)
+//   return reformattedOperator
+// }
 // Updates badge status based on type, difficulty, and trueness. Implemented within game client script.
 export async function updateBadgeStatus(type, difficulty, operator, bool) {
   console.log(operator)
