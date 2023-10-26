@@ -340,9 +340,9 @@ window.onload = async function () {
   const badgeImgs = document.getElementsByClassName("badge-img");
   const badgesFromDb = await retrieveBadges()
 
+  await utilMethods.updateGeneralSelected(operator,difficulty)
   updateChallengeBadgeAppearance(badgeImgs,badgesFromDb,operator)
   
-  utilMethods.updateGeneralSelected(operator,difficulty)
   // sessionStorage.setItem("activeOperators",operators)
   // sessionStorage.setItem("",operators)
   utilMethods.resetNumber(gameCurrScore,difficulty);
