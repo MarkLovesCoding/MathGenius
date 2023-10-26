@@ -260,7 +260,7 @@ async function resetGameSettings(){
   sessionStorage.setItem("activeDifficulty",1)
  
   utilMethods.updateLevelVisuals(1)
-  utilMethods.updateDifficultyRange(operator)
+  utilMethods.updateDifficultyRange()
   // Generate new question and re-enable input after a short period
   questionLogic.newQuestion("game", operator);
   await utilMethods.delay(1200);
@@ -340,7 +340,7 @@ window.onload = async function () {
   const badgeImgs = document.getElementsByClassName("badge-img");
   const badgesFromDb = await retrieveBadges()
 
-  await utilMethods.updateGeneralSelected(operator,difficulty)
+  utilMethods.updateGeneralSelected(operator,difficulty)
   updateChallengeBadgeAppearance(badgeImgs,badgesFromDb,operator)
   
   // sessionStorage.setItem("activeOperators",operators)
