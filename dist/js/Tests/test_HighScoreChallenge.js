@@ -37,8 +37,8 @@ async function gameAnswerCheck(bool) {
     utilMethods.correctnessView(false, gameCorrectness);
     utilMethods.incorrectMotion(gameCorrectness);
     utilMethods.disableInput(gameAnswerInput);
-    await utilMethods.delay(700);
-    utilMethods.visibilityTimedToggle(true, gameActualContainer, 700);
+    await utilMethods.delay(200);
+    utilMethods.visibilityTimedToggle(true, gameActualContainer, 4000);
     utilMethods.resetAnswerInput([gameAnswerInput]);
     utilMethods.resetNumber(gameCurrScore, level);
     utilMethods.resetWidth([gameTracker]);
@@ -112,23 +112,8 @@ function levelUp(level) {
 async function checkBadgeStatus(badges, operator, difficulty) {
   // console.log("running Badge status check",badges[operator]['game'][difficulty] )
   const reformattedOperator = utilMethods.reformatOperator(operator);
-  console.log("BADGESTATUS--->", badges[reformattedOperator]['game'][difficulty]);
   if (badges[reformattedOperator]["game"][difficulty] === false) return true;else return false;
 }
-// async function loadBadges() {
-//   try {
-//     const response = await fetch('/get-badges');
-//     const data = await response.json();
-//     const badges = await data.badges;
-//     console.dir(data.badges)
-//     sessionStorage.setItem('badges',badges)
-
-//   } catch (error) {
-//     console.error(error);
-//     // Handle the error appropriately
-//   }
-// }
-
 async function updateLevel() {
   // Gets the current level number and checks if the user has made progress towards the next level or not
   let level = parseInt(gameLevelNumber.textContent);
