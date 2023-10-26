@@ -49,7 +49,7 @@ const homeNav = document.getElementById('home-nav').parentElement;
 const logoutNav = document.getElementById('logout-nav').parentElement;
 
 testNav.addEventListener("click", function () {
-  window.location.href = "/tests";
+  window.location.href = "/challenges";
 });
 
 practiceNav.addEventListener("click", function () {

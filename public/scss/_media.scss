@@ -787,7 +787,7 @@
     .operator-group,
     .activity-group {
         display: flex;
-        flex-direction: row;
+        // flex-direction: row;
         align-items: center;
     }
 
@@ -818,7 +818,7 @@
 @media screen and (orientation: landscape) and (min-aspect-ratio: 1.75 / 1) and (max-height:400px){
 
     .operator-group, .activity-group {
-        flex-direction: row;
+        // flex-direction: row;
         &>.header-top{
             padding-right:25px;
         }
@@ -882,7 +882,7 @@
 
     .icon-text,
     .operator-text {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .bottom {
@@ -1075,7 +1075,7 @@
     .operator-group,
     .activity-group {
         display: flex;
-        flex-direction: row;
+        // flex-direction: row;
         align-items: center;
     }
 }

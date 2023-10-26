@@ -786,7 +786,7 @@ router.post('/reset-password/:token', async (req, res) => {
 
 
 // Tests Menu
-router.get('/tests', requireAuth, (req, res) => {
+router.get('/challenges', requireAuth, (req, res) => {
 
   var flashData = req.flash('flashData')[0]
 

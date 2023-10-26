@@ -8,7 +8,7 @@ linkToTests.addEventListener("click", function () {
   sessionStorage.setItem("type", "real");
   
   // Redirect to "/tests" page
-  window.location.href = "/tests";
+  window.location.href = "/challenges";
 });
 
 // Add event listener for linkToPractice
