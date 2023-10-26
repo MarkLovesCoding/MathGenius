@@ -261,7 +261,7 @@ async function resetGameSettings(){
  
   utilMethods.updateLevelVisuals(1)
   utilMethods.updateDifficultyRange(operator)
-  await utilMethods.updateGeneralSelected(operator,difficulty)
+  utilMethods.updateGeneralSelected(operator,difficulty)
 
   // Generate new question and re-enable input after a short period
   questionLogic.newQuestion("game", operator);
