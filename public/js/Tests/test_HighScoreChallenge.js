@@ -249,6 +249,7 @@ function gameOverWin(){
 async function resetGameSettings(){
   // utilMethods.correctnessView(false, gameCorrectness);
   // utilMethods.incorrectMotion(gameCorrectness);
+  const operator = sessionStorage.getItem("activeOperators")
   utilMethods.disableInput(gameAnswerInput);
   // utilMethods.visibilityTimedToggle(true, gameActualContainer, 1000);
   await utilMethods.delay(500);
@@ -259,9 +260,9 @@ async function resetGameSettings(){
   sessionStorage.setItem("activeDifficulty",1)
  
   utilMethods.updateLevelVisuals(1)
-  utilMethods.updateDifficultyRange()
+  utilMethods.updateDifficultyRange(operator)
   // Generate new question and re-enable input after a short period
-  questionLogic.newQuestion("game", sessionStorage.getItem("activeOperators"));
+  questionLogic.newQuestion("game", operator);
   await utilMethods.delay(1200);
   utilMethods.enableInput(gameAnswerInput);
 
