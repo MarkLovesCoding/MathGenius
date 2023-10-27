@@ -7,7 +7,6 @@ import { updateBadgeStatus, retrieveBadges,getHighestBadge } from '../badges.js'
 import { animateBadge } from '../badgeEarned.js';
 
 import {  gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, gameActual, gameActualContainer,  gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTrackerContainer, gameTrackerContainer2 } from '../domElements.js';
-import { active } from 'browser-sync';
 
 ////////////////////////////////////////////////////////////
 //GAME
