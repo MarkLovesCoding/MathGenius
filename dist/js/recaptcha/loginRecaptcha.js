@@ -1,9 +1,1 @@
-function onSubmit(token) {
-  document.getElementById("login-form").submit();
-}
-function onSubmitGoogle(token) {
-  document.getElementById("google-login-form").submit();
-}
-function onSubmitGuest(token) {
-  document.getElementById("guest-login-form").submit();
-}
+function onSubmit(t){document.getElementById("login-form").submit()}function onSubmitGoogle(t){document.getElementById("google-login-form").submit()}function onSubmitGuest(t){document.getElementById("guest-login-form").submit()}

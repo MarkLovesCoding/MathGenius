@@ -1,3 +1,1 @@
-function onSubmitPassword(token) {
-  document.getElementById("forgot-password-form").submit();
-}
+function onSubmitPassword(o){document.getElementById("forgot-password-form").submit()}
