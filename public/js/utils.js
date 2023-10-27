@@ -437,7 +437,7 @@ function createOperatorTextandIcon(op) {
 
 export function createDifficultyText(diff) {
   let difficultyText, difficultyColor
-  switch (diff) {
+  switch (String(diff)) {
     case "1":
       difficultyText = "Easy";
       difficultyColor = "green";
@@ -512,6 +512,7 @@ export function updateGeneralSelected(op, diff) {
   const operatorContainer = document.getElementById("selected-operator-container-general")
   const [operatorText, operatorColor] = createOperatorTextandIcon(op)
   const [diffText, diffColor] = createDifficultyText(diff)
+  console.log("dt",diffText)
 
   operatorContainer.style.border = "3px solid " + operatorColor
   difficultyContainer.style.border = "3px solid " + diffColor
