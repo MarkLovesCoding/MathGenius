@@ -259,7 +259,7 @@ async function resetGameSettings(){
   utilMethods.resetWidth([gameTracker]);
   sessionStorage.setItem("activeDifficulty",1)
  
-  utilMethods.updateLevelVisuals("1")
+  await utilMethods.updateLevelVisuals("1")
   utilMethods.updateDifficultyRange()
   // Generate new question and re-enable input after a short period
   questionLogic.newQuestion("game", operator);
