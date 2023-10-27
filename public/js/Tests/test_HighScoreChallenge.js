@@ -7,6 +7,7 @@ import { updateBadgeStatus, retrieveBadges,getHighestBadge } from '../badges.js'
 import { animateBadge } from '../badgeEarned.js';
 
 import {  gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, gameActual, gameActualContainer,  gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTrackerContainer, gameTrackerContainer2 } from '../domElements.js';
+import { active } from 'browser-sync';
 
 ////////////////////////////////////////////////////////////
 //GAME
@@ -144,6 +145,7 @@ async function updateLevel() {
 
     let nextDifficulty = currDifficulty == 5 ? 5: currDifficulty + 1 
     await utilMethods.updateLevelVisuals(nextDifficulty)
+    utilMethods.updateGeneralSelected(activeOperator,nextDifficulty)
     sessionStorage.setItem("activeDifficulty",nextDifficulty)
     utilMethods.updateDifficultyRange()
     if(await checkBadgeStatus(badgesFromDb,utilMethods.reformatOperator(activeOperator),currDifficulty)) {
