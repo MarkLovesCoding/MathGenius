@@ -259,11 +259,11 @@ async function resetGameSettings(){
   utilMethods.resetWidth([gameTracker]);
   sessionStorage.setItem("activeDifficulty",1)
  
-  utilMethods.updateLevelVisuals(1)
+  utilMethods.updateLevelVisuals("1")
   utilMethods.updateDifficultyRange()
   // Generate new question and re-enable input after a short period
   questionLogic.newQuestion("game", operator);
-  await utilMethods.delay(1200);
+  await utilMethods.delay(500);
   utilMethods.enableInput(gameAnswerInput);
 
 
@@ -349,7 +349,7 @@ window.onload = async function () {
 
   
   // sessionStorage.setItem("badges",badgesFromDb)
-
+  
    utilMethods.updateGeneralSelected(operator,difficulty)
 
   resetGameSettings()
