@@ -250,20 +250,22 @@ async function resetGameSettings(){
   // utilMethods.correctnessView(false, gameCorrectness);
   // utilMethods.incorrectMotion(gameCorrectness);
   const operator = sessionStorage.getItem("activeOperators")
+  const difficulty = sessionStorage.getItem("activeDifficulty")
   utilMethods.disableInput(gameAnswerInput);
   // utilMethods.visibilityTimedToggle(true, gameActualContainer, 1000);
-  await utilMethods.delay(500);
+  await utilMethods.delay(250);
   utilMethods.resetAnswerInput([gameAnswerInput]);
   utilMethods.resetNumber(gameCurrScore,1);
   utilMethods.resetLevelNumber(gameLevelNumber);
   utilMethods.resetWidth([gameTracker]);
   sessionStorage.setItem("activeDifficulty",1)
+  await utilMethods.updateLevelVisuals(1)
+  utilMethods.updateGeneralSelected(operator,1)
  
-  await utilMethods.updateLevelVisuals("1")
   utilMethods.updateDifficultyRange()
   // Generate new question and re-enable input after a short period
   questionLogic.newQuestion("game", operator);
-  await utilMethods.delay(500);
+  await utilMethods.delay(250);
   utilMethods.enableInput(gameAnswerInput);
 
 
@@ -350,7 +352,6 @@ window.onload = async function () {
   
   // sessionStorage.setItem("badges",badgesFromDb)
   
-   utilMethods.updateGeneralSelected(operator,difficulty)
 
   resetGameSettings()
 
