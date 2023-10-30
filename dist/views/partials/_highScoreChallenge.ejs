@@ -40,7 +40,7 @@
             <input type="number" min="0" id="game-answer-input" class="input game-input" placeholder="?"
               autocomplete="off"></input>
           </div>
-          <button type="submit" id="answer-submit-btn" class="answer-submit">Check</button>
+          <button type="submit" id="answer-submit-btn" class="answer-submit"><i class="icon-calculator fa-solid fa-calculator"></i></button>
         </form>
       </div>
       <div class="game-lower-landscape">
@@ -52,10 +52,7 @@
               <div class="actual" id="game-actual"></div>
             </div>
           </div>
-          <div class="level-container">
-            <div class="level-text">Level</div>
-            <div class="level-number" id="game-level-number">1</div>
-          </div>
+       
           <div class="score-container">
             <div class="curr-score-container">
               <div class="score-title">Current Score:</div>
@@ -68,36 +65,39 @@
           </div>
         </div>
         <div class="progress-container">
-          
+          <div class="level-container">
+            <div class="level-text">Level</div>
+            <div class="level-number" id="game-level-number">1</div>
+          </div>
           <div class="tracker-container" id="game-tracker-container">
             <div class="tracker" id="game-tracker"></div>
           </div>
-          <div class="badge-tracker-container" id="game-tracker-container-2">
+          <div class="badge-tracker-container-challenge" id="game-tracker-container-2">
             <!-- <div class="tracker" id="game-tracker-2"></div> -->
-            <div class="badge badge-1">
+            <div class="badge-challenge badge-1">
               <img id="game-1" data-badge-type="game" data-badge-number="1" class="badge-img" width="30" height="30"
               src="../assets/medal.png" alt="Challenge 1" />
-              <p class="badge-description-level">Easy</p>
+              <p class="badge-description-level-challenge">Easy</p>
             </div>
-            <div class="badge badge-2">
+            <div class="badge-challenge badge-2">
               <img id="game-2" data-badge-type="game" data-badge-number="2" class="badge-img" width="30" height="30"
               src="../assets/medal.png" alt="Challenge 2" />
-              <p class="badge-description-level">Novice</p>
+              <p class="badge-description-level-challenge">Novice</p>
             </div>
-            <div class="badge badge-3">
+            <div class="badge-challenge badge-3">
               <img id="game-3" data-badge-type="game" data-badge-number="3" class="badge-img" width="30" height="30"
               src="../assets/medal.png" alt="Challenge 3" />
-              <p class="badge-description-level">Intermediate</p>
+              <p class="badge-description-level-challenge">Intermediate</p>
             </div>
-            <div class="badge badge-4">
+            <div class="badge-challenge badge-4">
               <img id="game-4" data-badge-type="game" data-badge-number="4" class="badge-img" width="30" height="30"
               src="../assets/medal.png" alt="Challenge 4" />
-              <p class="badge-description-level">Advanced</p>
+              <p class="badge-description-level-challenge">Advanced</p>
             </div>
-            <div class="badge badge-5">
+            <div class="badge-challenge badge-5">
               <img id="game-5" data-badge-type="game" data-badge-number="5" class="badge-img" width="30" height="30"
               src="../assets/medal.png" alt="Challenge 5" />
-              <p class="badge-description-level">Genius!</p>
+              <p class="badge-description-level-challenge">Genius!</p>
             </div>
           </div>
         </div>

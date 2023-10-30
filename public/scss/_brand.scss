@@ -1,8 +1,8 @@
 /* Brand Title Styles */
 .brand-title {
     position: absolute;
-    top: 5vh;
-    left: 5vw;
+    top: 3vmax;
+    left: 3vmax;
     display: flex;
     align-items: center;
     width: auto;
@@ -27,4 +27,24 @@
 }
 .brand-image{
     margin-left:20px;
+    // width:150px;
 }
+.logo-img{
+    // width:30px
+}
+// @media screen and (max-height:850px) {
+// .brand-title {
+// top:2vh;
+// }
+//     .brand-image{
+//         margin-left:15px;
+//         width:150px;
+//     }
+//     .logo-img{
+//         width:30px
+//     }
+
+//     .burger-container{
+//         top:1vh;
+//     }
+// }
