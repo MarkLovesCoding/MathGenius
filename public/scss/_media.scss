@@ -1106,7 +1106,7 @@
 
 @media screen and (max-height:850px) {
     .brand-title {
-    top:2.5vh;
+    top:2.5vmax;
     }
         .brand-image{
             margin-left:15px;
@@ -1120,4 +1120,12 @@
             top:1vh;
             right:2vw
         }
+    }
+    @media screen and (orientation:portrait)  {
+        .profile-section{
+            position:absolute;
+            top:10vh;
+        }
+
+
     }
