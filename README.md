@@ -148,6 +148,8 @@ I'd like to provide credit to the online educational community that paved the wa
 [scss-url]: https://sass-lang.com/documentation/syntax/
 [javascript-shield]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
 [javascript-url]: https://javascript.com
+[typescript-shield]: https://img.shields.io/badge/typescript-%23323330.svg?style=for-the-badge&logo=typescript&logoColor=3178C6
+[typescript-url]: https://typescript.com
 [PassportJS-shield]: https://img.shields.io/badge/passport.js-563D7C?style=for-the-badge&logo=passport&logoColor=white
 [Passport-url]: https://passportjs.com 
 [Node-shield]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
