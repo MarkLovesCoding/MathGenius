@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "set NODE_ENV=development && gulp",
-    "build": "set NODE_ENV=production && gulp"
+    "build": "set NODE_ENV=production && gulp",
+    "tsc": "tsc --watch"
   },
   "keywords": [],
   "author": "",
@@ -51,8 +52,10 @@
     "gulp-nodemon": "^2.5.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglify": "^3.0.2",
     "morgan": "^1.10.0",
-    "sass": "^1.37.0"
+    "sass": "^1.37.0",
+    "typescript": "^5.2.2"
   }
 }

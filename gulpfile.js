@@ -7,11 +7,18 @@ const clean = require('gulp-clean')
 const uglify = require('gulp-uglify');
 const cleanCSS = require('gulp-clean-css');
 const nodemon = require('gulp-nodemon')
-const ejs = require('gulp-ejs')
+// const ejs = require('gulp-ejs')
+const ts = require('gulp-typescript')
+const tsProject = ts.createProject('tsconfig.json')
+
 // require('dotenv').config();
 
 require('dotenv').config({ path: '../environmental/mg/.env' });
-
+gulp.task('compile-ts',function(){
+  return tsProject.src()
+    .pipe(tsProject())
+    .js.pipe(gulp.dest('dest'))
+})
 
 gulp.task('clean', function () {
   return gulp.src('dist/*')
@@ -105,7 +112,7 @@ function buildProject() {
 // Development tasks
 let isDev = process.env.NODE_ENV.trim() == 'development';
 
-gulp.task('dev', gulp.series('clean', 'sass', 'babel', 'copy-ejs', 'copy-assets',
+gulp.task('dev', gulp.series('clean', 'sass','compile-ts', 'babel', 'copy-ejs', 'copy-assets',
 
 function nodemonTask(cb) {
   let started = false;
@@ -132,7 +139,7 @@ function nodemonTask(cb) {
 
 gulp.task('build-project', buildProject);
 
-gulp.task('build', gulp.series('clean', 'sass', 'babel-build', 'copy-ejs', 'copy-assets', 'build-project','minify-css', 'minify-js'));
+gulp.task('build', gulp.series('clean', 'sass', 'compile-ts','babel-build', 'copy-ejs', 'copy-assets', 'build-project','minify-css', 'minify-js'));
 
 gulp.task('clean', function () {
   return gulp.src('dist/*')
