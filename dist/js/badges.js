@@ -1,1 +1,157 @@
-var __awaiter=this&&this.__awaiter||function(e,i,d,s){return new(d=d||Promise)(function(r,t){function a(e){try{n(s.next(e))}catch(e){t(e)}}function o(e){try{n(s.throw(e))}catch(e){t(e)}}function n(e){var t;e.done?r(e.value):((t=e.value)instanceof d?t:new d(function(e){e(t)})).then(a,o)}n((s=s.apply(e,i||[])).next())})};import{reformatOperator,convertNumberToLevel}from"./utils.js";const badgeImgs=Array.from(document.getElementsByClassName("badge-img"));function getUserId(){return __awaiter(this,void 0,void 0,function*(){try{return(yield(yield fetch("/user-id")).json()).userId}catch(e){throw console.error(e),e}})}function retrieveBadges(){return __awaiter(this,void 0,void 0,function*(){try{var e=(yield(yield fetch("/get-badges")).json()).badges;return console.log("bages",e),e}catch(e){return console.error(e),{}}})}function getHighestBadge(t){var r,a=[];for(r in t)for(var o in t[r]){let e=0;for(var n in t[r][o]){var i=Number(n);1==t[r][o][n]&&(e=Math.max(e,i))}a.push([r,o,String(e)])}return a}function updateBadgeAppearance(e,t){var r,t=getHighestBadge(t);console.log(t);for(r of t)if(0<Number(r[2]))for(var a of e){var o=a.getAttribute("data-badge-type"),n=a.getAttribute("data-badge-operator"),i=a.nextElementSibling;r[1]==o&&r[0]==n&&null!==n&&null!==o&&(console.log("best[1]",r[1],"best[0]",r[0],"type",o,"op",n),a.classList.add("active"),i)&&(i.textContent=convertNumberToLevel(Number(r[2])))}}function updateBadgeStatus(r,a,o,n){return __awaiter(this,void 0,void 0,function*(){var e=reformatOperator(o);try{var t=yield retrieveBadges();console.log("badges from DB",t),n&&(console.log("type:",r),t[e][r][a]=!0,yield updateSessionAndDB(t))}catch(e){console.error(e)}})}function updateSessionAndDB(t){return __awaiter(this,void 0,void 0,function*(){try{var e=yield getUserId();e?(yield fetch("/update-badges",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({userId:e,updatedBadges:t})})).ok?(console.log("Badges updated successfully!"),console.log(t)):console.error("Error updating badges!"):console.error("Failed to retrieve user ID")}catch(e){console.error("There was a problem with the fetch operation:",e)}})}function initializeBadgeAppearance(){return __awaiter(this,void 0,void 0,function*(){var e=yield retrieveBadges();updateBadgeAppearance(badgeImgs,e)})}window.addEventListener("DOMContentLoaded",initializeBadgeAppearance);export{retrieveBadges,getHighestBadge,updateBadgeAppearance,updateBadgeStatus};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+import { reformatOperator, convertNumberToLevel } from './utils.js';
+const badgeImgs = Array.from(document.getElementsByClassName("badge-img"));
+// Retrieves the user ID
+function getUserId() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield fetch('/user-id');
+            const data = yield response.json();
+            const userId = data.userId;
+            // do something with the user ID
+            return userId;
+        }
+        catch (error) {
+            console.error(error);
+            throw error;
+        }
+    });
+}
+// Retrieves badges from the server
+export function retrieveBadges() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield fetch('/get-badges');
+            const data = yield response.json();
+            const badges = data.badges;
+            console.log("bages", badges);
+            return badges;
+        }
+        catch (error) {
+            console.error(error);
+            // Handle the error appropriately
+            return {};
+        }
+    });
+}
+export function getHighestBadge(badges) {
+    let bestBadges = [];
+    for (let op in badges) {
+        for (let type in badges[op]) {
+            let typeMax = 0;
+            for (let diff in badges[op][type]) {
+                let numberDiff = Number(diff);
+                if (badges[op][type][diff] == true) {
+                    typeMax = Math.max(typeMax, numberDiff);
+                }
+            }
+            bestBadges.push([op, type, String(typeMax)]);
+        }
+    }
+    return bestBadges;
+}
+// Updates the appearance of badges based on the profile
+export function updateBadgeAppearance(elements, profile) {
+    const bestBadges = getHighestBadge(profile);
+    // for (let element of elements) {
+    //   // TO DO
+    //   //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
+    //   // use profile objest to find highest accomplished badge?
+    //   element.classList.add("active");
+    //   // let operator = element.getAttribute("data-badge-operator")
+    //   let type = element.getAttribute("data-badge-type");
+    //   let operator = element.getAttribute("data-badge-operator");
+    //   if (profile[operator][type][diff]) {
+    //   } else {
+    //     element.classList.remove("active");
+    //   }
+    // }
+    console.log(bestBadges);
+    for (let best of bestBadges) {
+        if (Number(best[2]) > 0) {
+            for (let element of elements) {
+                // TO DO
+                //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
+                // use profile objest to find highest accomplished badge?
+                // let operator = element.getAttribute("data-badge-operator")
+                let type = element.getAttribute("data-badge-type");
+                let operator = element.getAttribute("data-badge-operator");
+                // console.log("badgeop",operator)
+                let level = element.nextElementSibling;
+                // console.log(level)
+                if (best[1] == type && best[0] == operator && operator !== null && type !== null) {
+                    console.log("best[1]", best[1], "best[0]", best[0], "type", type, "op", operator);
+                    element.classList.add("active");
+                    if (level)
+                        level.textContent = convertNumberToLevel(Number(best[2]));
+                    // level.textContent == convertNumberToLevel(Number(best[2]))
+                }
+            }
+        }
+    }
+}
+// Updates badge status based on type, difficulty, and trueness. Implemented within game client script.
+export function updateBadgeStatus(type, difficulty, operator, bool) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const reformattedOperator = reformatOperator(operator);
+        try {
+            const badgesFromDb = yield retrieveBadges();
+            console.log('badges from DB', badgesFromDb);
+            if (bool) {
+                console.log("type:", type);
+                badgesFromDb[reformattedOperator][type][difficulty] = true;
+                yield updateSessionAndDB(badgesFromDb);
+            }
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}
+// Updates session and database with the updated badges
+function updateSessionAndDB(updatedBadges) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const userId = yield getUserId();
+            if (!userId) {
+                console.error('Failed to retrieve user ID');
+                return;
+            }
+            const response = yield fetch(`/update-badges`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userId, updatedBadges })
+            });
+            if (response.ok) {
+                console.log('Badges updated successfully!');
+                console.log(updatedBadges);
+            }
+            else {
+                console.error('Error updating badges!');
+            }
+        }
+        catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    });
+}
+// Initialize the badge appearance
+function initializeBadgeAppearance() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const badgesFromDb = yield retrieveBadges();
+        updateBadgeAppearance(badgeImgs, badgesFromDb);
+    });
+}
+window.addEventListener("DOMContentLoaded", initializeBadgeAppearance);
+// Call the initialization function
+// initializeBadgeAppearance();

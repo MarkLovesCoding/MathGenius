@@ -1,1 +1,109 @@
-import*as utilMethods from"./utils.js";import{flashElements}from"./domElements.js";import{mcElements}from"./domElements.js";import{mcQuizElements}from"./domElements.js";import{quizElements}from"./domElements.js";import{gameElements}from"./domElements.js";const{numOne:flashNumOne,numTwo:flashNumTwo,opOne:flashOpOne}=flashElements,{numOne:mcNumOne,numTwo:mcNumTwo,opOne:mcOpOne}=mcElements,{numOne:mcQuizNumOne,numTwo:mcQuizNumTwo,opOne:mcQuizOpOne}=mcQuizElements,{numOne:gameNumOne,numTwo:gameNumTwo,opOne:gameOpOne}=gameElements,{numOne:quizNumOne,numTwo:quizNumTwo,opOne:quizOpOne}=quizElements;function newGeneralQuestion(e,m,n,u,t){var o=sessionStorage.getItem("activeHighVal"),s=sessionStorage.getItem("activeLowVal"),i=Number(o),a=Number(s),o=u;let l=utilMethods.randomNumber(0,i),O=utilMethods.randomNumber(0,i);if("x"===o&&(l=utilMethods.randomNumber(a,i),O=utilMethods.randomNumber(a,i)),"÷"===o)for(var r=new Set([0,1,2,3,4,5,6,7,8,9,10,11,12]);!r.has(l/O);)l=utilMethods.randomNumber(a,12*i),O=utilMethods.randomNumber(a,i);"-"===o&&O>l&&(s=l,l=O,O=s),m&&(m.textContent=String(l)),n&&(n.textContent=String(O)),e&&(e.textContent=o),t&&t(l,O,o)}function newQuestion(e,m,n){let u,t,o;switch(e){case"flash":u=flashNumOne,t=flashNumTwo,o=flashOpOne;break;case"multiple-choice":u=mcNumOne,t=mcNumTwo,o=mcOpOne;break;case"multiple-choice-quiz":u=mcQuizNumOne,t=mcQuizNumTwo,o=mcQuizOpOne;break;case"quiz":u=quizNumOne,t=quizNumTwo,o=quizOpOne;break;case"game":u=gameNumOne,t=gameNumTwo,o=gameOpOne;break;default:u=quizNumOne,t=quizNumTwo,o=quizOpOne,console.log("Type not identified. Please Fix")}newGeneralQuestion(o,u,t,m,n)}export{newGeneralQuestion,newQuestion};
+import * as utilMethods from './utils.js';
+import { flashElements } from './domElements.js';
+import { mcElements } from './domElements.js';
+import { mcQuizElements } from './domElements.js';
+import { quizElements } from './domElements.js';
+import { gameElements } from './domElements.js';
+const { numOne: flashNumOne, numTwo: flashNumTwo, opOne: flashOpOne } = flashElements;
+const { numOne: mcNumOne, numTwo: mcNumTwo, opOne: mcOpOne } = mcElements;
+const { numOne: mcQuizNumOne, numTwo: mcQuizNumTwo, opOne: mcQuizOpOne } = mcQuizElements;
+const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElements;
+const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElements;
+export function newGeneralQuestion(opEl, n1El, n2El, operator, func) {
+    let activeHighVal = sessionStorage.getItem("activeHighVal");
+    let activeLowVal = sessionStorage.getItem("activeLowVal");
+    let activeHighValNumber = Number(activeHighVal);
+    let activeLowValNumber = Number(activeLowVal);
+    // Get a random operator from the list of operators
+    let o1 = operator;
+    // Generate two random numbers between 0 and the active high value
+    let n1 = utilMethods.randomNumber(0, activeHighValNumber);
+    let n2 = utilMethods.randomNumber(0, activeHighValNumber);
+    // If the operator is multiplication, generate two random numbers between the active multiply low and high values
+    if (o1 === "x") {
+        n1 = utilMethods.randomNumber(activeLowValNumber, activeHighValNumber);
+        n2 = utilMethods.randomNumber(activeLowValNumber, activeHighValNumber);
+    }
+    // If the operator is division, generate two random numbers until the first is divisible by the second
+    if (o1 === "÷") {
+        const nums = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+        while (!nums.has(n1 / n2)) {
+            n1 = utilMethods.randomNumber(activeLowValNumber, activeHighValNumber * 12);
+            n2 = utilMethods.randomNumber(activeLowValNumber, activeHighValNumber);
+            //    if(nums.has(n1 / n2)){break}
+            //    else{continue}
+        }
+    }
+    // If the operator is subtraction and the second number is greater than the first, swap them
+    if (o1 === "-") {
+        if (n2 > n1) {
+            let t = n1;
+            n1 = n2;
+            n2 = t;
+        }
+    }
+    // Set the text content of the HTML elements to the generated numbers and operator
+    if (n1El)
+        n1El.textContent = String(n1);
+    if (n2El)
+        n2El.textContent = String(n2);
+    if (opEl)
+        opEl.textContent = o1;
+    // If a function was passed in as an argument, call it with the generated numbers and operator as arguments
+    if (func) {
+        func(n1, n2, o1);
+    }
+}
+// Function to generate a new question based on the specified type
+export function newQuestion(type, operator, options) {
+    let num1, num2, op1;
+    // Load the appropriate section based on the question type
+    switch (type) {
+        // If the type is "flash", load the "flash" section
+        case "flash":
+            // Set the values 
+            num1 = flashNumOne;
+            num2 = flashNumTwo;
+            op1 = flashOpOne;
+            break;
+        // If the type is "multiple-choice", load the "mc" section
+        case "multiple-choice":
+            // Set the values 
+            num1 = mcNumOne;
+            num2 = mcNumTwo;
+            op1 = mcOpOne;
+            break;
+        // If the type is "multiple-choice-quiz", load the "mc-quiz" section
+        case "multiple-choice-quiz":
+            // Set the values 
+            num1 = mcQuizNumOne;
+            num2 = mcQuizNumTwo;
+            op1 = mcQuizOpOne;
+            break;
+        // If the type is "quiz", load the "quiz" section
+        case "quiz":
+            // Set the values 
+            num1 = quizNumOne;
+            num2 = quizNumTwo;
+            op1 = quizOpOne;
+            break;
+        // If the type is "game", load the "game" section
+        case "game":
+            // Set the values 
+            num1 = gameNumOne;
+            num2 = gameNumTwo;
+            op1 = gameOpOne;
+            break;
+        // If the type is not recognized, default to quiz type
+        default:
+            num1 = quizNumOne;
+            num2 = quizNumTwo;
+            op1 = quizOpOne;
+            console.log("Type not identified. Please Fix");
+            break;
+    }
+    // Update the burger menu
+    // burgerUpdate();
+    // Generate a new question based on the values of num1, num2, and op1
+    newGeneralQuestion(op1, num1, num2, operator, options);
+}
