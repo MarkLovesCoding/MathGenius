@@ -17,7 +17,7 @@ require('dotenv').config({ path: '../environmental/mg/.env' });
 gulp.task('compile-ts',function(){
   return tsProject.src()
     .pipe(tsProject())
-    .js.pipe(gulp.dest('dest'))
+    .js.pipe(gulp.dest('dist/js'))
 })
 
 gulp.task('clean', function () {

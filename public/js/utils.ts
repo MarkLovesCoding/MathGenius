@@ -61,7 +61,9 @@ export function percentage(n1: number, n2: number): number {
  * @param o1 - The operator ('+', '-', 'x', '÷').
  * @returns The result of the calculation.
  */
-export function calculation(n1: number, n2: number, o1: string): number {
+export function calculation(n1: number|string, n2: number|string, o1: string): number {
+  n1 = Number(n1)
+  n2 = Number(n2)
   let ans: number;
   switch (o1) {
     case '+':
@@ -639,6 +641,34 @@ export function createDifficultyText(diff:string):string[] {
 
   return [difficultyText, difficultyColor]
 }
+
+export function convertNumberToLevel(num:number):string {
+  let level:string;
+  switch (num) {
+    case 1:
+      level = "Easy";
+      break;
+    case 2:
+      level = "Novice";
+      break;
+    case 3:
+      level = "Intermediate";
+      break;
+    case 4:
+      level = "Advanced";
+      break;
+    case 5:
+      level = "Genius!";
+      break;
+    default:
+      level = "-";
+      break;
+  }
+
+
+  return level
+}
+
 
 /**
  * Updates the selected activity in the user interface based on the provided activity type.

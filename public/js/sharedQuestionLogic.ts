@@ -1,33 +1,41 @@
-import { state } from './state.js'
+
 
 import * as utilMethods from './utils.js';
-import { flashNumOne, flashNumTwo, flashOpOne } from './domElements.js';
-import { mcNumOne, mcNumTwo, mcOpOne } from './domElements.js';
-import { mcQuizNumOne, mcQuizNumTwo, mcQuizOpOne, } from './domElements.js';
-import { quizNumOne, quizNumTwo, quizOpOne } from './domElements.js';
-import { gameNumOne, gameNumTwo, gameOpOne } from './domElements.js';
+import { flashElements } from './domElements.js';
+import { mcElements} from './domElements.js';
+import { mcQuizElements } from './domElements.js';
+import { quizElements } from './domElements.js';
+import { gameElements } from './domElements.js';
 
-export function newGeneralQuestion(opEl, n1El, n2El, operator, func) {
 
-    let activeHighVal = sessionStorage.getItem("activeHighVal")
-    let activeLowVal = sessionStorage.getItem("activeLowVal")
-    let activeMultiplyHighVal = sessionStorage.getItem("activeMultiplyHighVal")
-    let activeMultiplyLowVal = sessionStorage.getItem("activeMultiplyLowVal")
 
+const { numOne: flashNumOne, numTwo: flashNumTwo, opOne: flashOpOne } =flashElements;
+const { numOne: mcNumOne, numTwo: mcNumTwo, opOne: mcOpOne } = mcElements;
+const { numOne: mcQuizNumOne, numTwo: mcQuizNumTwo, opOne: mcQuizOpOne } = mcQuizElements;
+const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElements;
+const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElements;
+
+export function newGeneralQuestion(opEl:HTMLElement|null, n1El:HTMLElement|null, n2El:HTMLElement|null, operator:string, func?:(arg1:number,arg2:number,arg3:string)=>void):void {
+
+    let activeHighVal:string|null = sessionStorage.getItem("activeHighVal")
+    let activeLowVal:string|null = sessionStorage.getItem("activeLowVal")
+
+    let activeHighValNumber:number = Number(activeHighVal)
+    let activeLowValNumber:number = Number(activeLowVal)
     // Get a random operator from the list of operators
-    let o1 =operator;
+    let o1:string =operator;
     
     // Generate two random numbers between 0 and the active high value
-    let n1 = utilMethods.randomNumber(0, activeHighVal);
-    let n2 = utilMethods.randomNumber(0, activeHighVal);
+    let n1:number = utilMethods.randomNumber(0, activeHighValNumber);
+    let n2:number = utilMethods.randomNumber(0, activeHighValNumber);
 
 
     // If the operator is multiplication, generate two random numbers between the active multiply low and high values
     if (o1 === "x") {
     
 
-        n1 = utilMethods.randomNumber(activeLowVal, activeHighVal);
-        n2 = utilMethods.randomNumber(activeLowVal, activeHighVal);
+        n1 = utilMethods.randomNumber(activeLowValNumber, activeHighValNumber);
+        n2 = utilMethods.randomNumber(activeLowValNumber, activeHighValNumber);
 
 
     }
@@ -37,8 +45,8 @@ export function newGeneralQuestion(opEl, n1El, n2El, operator, func) {
         const nums = new Set([0,1,2,3,4,5,6,7,8,9,10,11,12])
 
         while ( !nums.has(n1 / n2)) {
-            n1 = utilMethods.randomNumber(Number(activeLowVal), activeHighVal*12);
-            n2 = utilMethods.randomNumber(Number(activeLowVal), activeHighVal);
+            n1 = utilMethods.randomNumber(activeLowValNumber, activeHighValNumber*12);
+            n2 = utilMethods.randomNumber(activeLowValNumber, activeHighValNumber);
         //    if(nums.has(n1 / n2)){break}
         //    else{continue}
         }
@@ -54,18 +62,19 @@ export function newGeneralQuestion(opEl, n1El, n2El, operator, func) {
     }
 
     // Set the text content of the HTML elements to the generated numbers and operator
-    n1El.textContent = n1;
-    n2El.textContent = n2;
-    opEl.textContent = o1;
+    if(n1El)n1El.textContent = String(n1);
+    if(n2El)n2El.textContent = String(n2);
+    if(opEl) opEl.textContent = o1;
+    
 
     // If a function was passed in as an argument, call it with the generated numbers and operator as arguments
-    if ((typeof func == "function")){   func(n1, n2, o1);}
+    if (func){   func(n1, n2, o1);}
  
 }
 
 // Function to generate a new question based on the specified type
-export function newQuestion(type, operator, options) {
-    let num1, num2, op1;
+export function newQuestion(type:string, operator:string, options?:(n1:number,n2:number,o1:string)=>void):void {
+    let num1:HTMLElement|null, num2:HTMLElement|null, op1:HTMLElement|null;
 
     // Load the appropriate section based on the question type
     switch (type) {
@@ -114,8 +123,12 @@ export function newQuestion(type, operator, options) {
             op1 = gameOpOne;
             break;
 
-        // If the type is not recognized, do nothing
+        // If the type is not recognized, default to quiz type
         default:
+            num1 = quizNumOne;
+            num2 = quizNumTwo;
+            op1 = quizOpOne;
+            console.log("Type not identified. Please Fix")
             break;
     }
 

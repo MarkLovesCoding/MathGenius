@@ -5,8 +5,9 @@ import { state } from '../state.js'
 import * as questionLogic from '../sharedQuestionLogic.js';
 import { updateBadgeStatus } from '../badges.js';
 import { animateBadge } from '../badgeEarned.js';
-import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizNumOne, quizNumTwo, quizOpOne } from '../domElements.js';
+import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizElements } from '../domElements.js';
 
+const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElements;
 
 ////////////////////////////////////////////////////////////
 //QUIZ

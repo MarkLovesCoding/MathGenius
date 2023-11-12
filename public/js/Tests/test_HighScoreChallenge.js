@@ -6,7 +6,10 @@ import * as questionLogic from '../sharedQuestionLogic.js';
 import { updateBadgeStatus, retrieveBadges,getHighestBadge } from '../badges.js';
 import { animateBadge } from '../badgeEarned.js';
 
-import {  gameCorrectness, gameNumOne, gameNumTwo, gameOpOne, gameActual, gameActualContainer,  gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTrackerContainer, gameTrackerContainer2 } from '../domElements.js';
+import {  gameCorrectness, gameElements, gameActual, gameActualContainer,  gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTrackerContainer, gameTrackerContainer2 } from '../domElements.js';
+
+
+const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElements;
 
 ////////////////////////////////////////////////////////////
 //GAME

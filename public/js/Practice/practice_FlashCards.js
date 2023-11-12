@@ -2,7 +2,8 @@
 import * as utilMethods from '../utils.js';
 import { state } from '../state.js';
 import * as questionLogic from '../sharedQuestionLogic.js';
-import { flashAnswer, flashCard, flashNumOne, flashNumTwo, flashOpOne } from '../domElements.js';
+import { flashAnswer, flashCard, flashElements } from '../domElements.js';
+const { numOne: flashNumOne, numTwo: flashNumTwo, opOne: flashOpOne } =flashElements;
 
 // Function to handle the flashCard mousedown event
 function flashHandler(e) {
