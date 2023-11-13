@@ -51,6 +51,7 @@ An application for Grades 1-4 students to learn and practice Math.
 * [![HTML][html-shield]][html-url]
 * [![SCSS][scss-shield]][SCSS-url]
 * [![Javascript][javascript-shield]][javascript-url]
+* [![Typescript][typescript-shield]][typescript-url]
 * [![NodeJS][Node-shield]][javascript-url]
 * [![ExpressJS][Express-shield]][Express-url]
 * [![MongoDB][MongoDB-shield]][MongoDB-url]
@@ -146,10 +147,10 @@ I'd like to provide credit to the online educational community that paved the wa
 [html-url]: https://html.com/
 [scss-shield]: https://img.shields.io/badge/SCSS-FF2D50?style=for-the-badge&logo=sass&logoColor=white
 [scss-url]: https://sass-lang.com/documentation/syntax/
-[javascript-shield]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
+[javascript-shield]: https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
 [javascript-url]: https://javascript.com
-[typescript-shield]: https://img.shields.io/badge/typescript-%23323330.svg?style=for-the-badge&logo=typescript&logoColor=3178C6
-[typescript-url]: https://typescript.com
+[typescript-shield]:https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white 
+[typescript-url]: https://typescriptlang.org
 [PassportJS-shield]: https://img.shields.io/badge/passport.js-563D7C?style=for-the-badge&logo=passport&logoColor=white
 [Passport-url]: https://passportjs.com 
 [Node-shield]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
