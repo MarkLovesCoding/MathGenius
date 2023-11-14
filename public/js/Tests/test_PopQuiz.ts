@@ -22,64 +22,64 @@ interface QuizStats {
 
 
 async function quizAnswerCheck(bool: boolean): Promise<void> {
-  let operator:string|null = sessionStorage.getItem("activeOperators")
+  let operator: string | null = sessionStorage.getItem("activeOperators")
   if (bool) {
     // Emphasize the quizAnswerForm to indicate a correct answer
-    if (quizAnswerForm) utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
+    utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
 
     // Update the view to show that the answer is correct
-    if (quizCorrectness) utilMethods.correctnessView(true, quizCorrectness);
-    if (quizAnswerInput) utilMethods.disableInput(quizAnswerInput);
+    utilMethods.correctnessView(true, quizCorrectness);
+    utilMethods.disableInput(quizAnswerInput);
 
     // Add the boolean value 'true' to the quizStats object to indicate a correct answer
     addToQuizProperty(bool, state.quizStats);
 
     // Check the quiz status, update the scores accordingly, and delay 700ms
-   
+
     checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
     await utilMethods.delay(700);
- 
-     
+
+
 
     // Re-enable the quizAnswerInput and reset the input fields
-    
-      utilMethods.enableInput(quizAnswerInput);
-      utilMethods.resetAnswerInput([
-        quizAnswerInput]);
-    
+
+    utilMethods.enableInput(quizAnswerInput);
+    utilMethods.resetAnswerInput([
+      quizAnswerInput]);
+
 
 
     // Generate a new question for the quiz
-    if(operator){
+    if (operator) {
       questionLogic.newQuestion("quiz", operator);
     } else console.log("operator value not retrieved from sessionStorage")
 
   } else {
     // Display an animation to indicate an incorrect answer
-     utilMethods.incorrectMotion(quizAnswerForm);
+    utilMethods.incorrectMotion(quizAnswerForm);
 
     // Update the view to show that the answer is incorrect
     utilMethods.correctnessView(false, quizCorrectness);
-     utilMethods.disableInput(quizAnswerInput);
+    utilMethods.disableInput(quizAnswerInput);
 
     // Add the boolean value 'false' to the quizStats object to indicate an incorrect answer
     addToQuizProperty(bool, state.quizStats);
 
     // Check the quiz status, update the scores accordingly and delay 700ms
-     // Check the quiz status, update the scores accordingly, and delay 700ms
-     
-      checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
+    // Check the quiz status, update the scores accordingly, and delay 700ms
+
+    checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
     await utilMethods.delay(700);
-   
+
     // Re-enable the quizAnswerInput and reset the input fields
-  
-      utilMethods.enableInput(quizAnswerInput);
-      utilMethods.resetAnswerInput([quizAnswerInput]);
-    
+
+    utilMethods.enableInput(quizAnswerInput);
+    utilMethods.resetAnswerInput([quizAnswerInput]);
+
     // Generate a new question for the quiz
-    if(operator){
-   questionLogic.newQuestion("quiz", operator);
-  } else console.log("operator value not retrieved from sessionStorage")
+    if (operator) {
+      questionLogic.newQuestion("quiz", operator);
+    } else console.log("operator value not retrieved from sessionStorage")
 
   }
 }
@@ -125,9 +125,9 @@ function addToQuizProperty(bool: boolean, quizStats: QuizStats) {
   }
   // Update the scores displayed on the quiz interface
 
-    updateQuizScores(quizCurrScore, quizCurrQuestion, quizStats);
+  updateQuizScores(quizCurrScore, quizCurrQuestion, quizStats);
 
-  
+
 }
 
 async function checkQuizStatus(quizStats: QuizStats, currScoreContainerEl: HTMLDivElement, lastScoreContainerEl: HTMLDivElement, lastScoreEl: HTMLElement) {
@@ -163,12 +163,12 @@ async function finishQuiz(lastScoreEl: HTMLElement, quizStats: QuizStats) {
   // Update the last score element and reset the quiz statistics object
   lastScoreEl.innerHTML = quizStats.numCorrect.toString();
   resetQuizProperty(quizStats)
-  if (quizCorrectness) utilMethods.showHide([], [quizCorrectness]);
+  utilMethods.showHide([], [quizCorrectness]);
 
 
-  let operator:string | null = sessionStorage.getItem("activeOperators")
+  let operator: string | null = sessionStorage.getItem("activeOperators")
   // Generate a new question
-  if (operator){ questionLogic.newQuestion("quiz", operator)}
+  if (operator) { questionLogic.newQuestion("quiz", operator) }
   else {
     console.log("No operator retrieved from Session Storage")
   }
@@ -188,17 +188,17 @@ function quizUpdateAnswerHandler(e: Event): void {
 }
 
 
-function quizAnswerHandler(e:Event):void {
-  if (quizNumOne && quizNumTwo && quizOpOne) {
-    let realAns = utilMethods.calculation(
-      quizNumOne.innerHTML,
-      quizNumTwo.innerHTML,
-      quizOpOne.innerHTML
-    ); // Calculate the correct answer using the quizNumOne, quizNumTwo, and quizOpOne elements
+function quizAnswerHandler(e: Event): void {
+  // if (quizNumOne && quizNumTwo && quizOpOne) {
+  let realAns = utilMethods.calculation(
+    quizNumOne.innerHTML,
+    quizNumTwo.innerHTML,
+    quizOpOne.innerHTML
+  ); // Calculate the correct answer using the quizNumOne, quizNumTwo, and quizOpOne elements
 
-    quizAnswerCheck(realAns == state.userValue); // Check if the user's answer is correct using the quizAnswerCheck function
-    e.preventDefault(); // Prevent the form from submitting and refreshing the page
-  }
+  quizAnswerCheck(realAns == state.userValue); // Check if the user's answer is correct using the quizAnswerCheck function
+  e.preventDefault(); // Prevent the form from submitting and refreshing the page
+
 
 
 }
@@ -215,9 +215,9 @@ window.onload = function () {
 
 
   let difficulty = sessionStorage.getItem("activeDifficulty")
-if(operator && difficulty){
-  utilMethods.updateGeneralSelected(operator, difficulty)
-  questionLogic.newQuestion('quiz', operator);
-}
-  
+  if (operator && difficulty) {
+    utilMethods.updateGeneralSelected(operator, difficulty)
+    questionLogic.newQuestion('quiz', operator);
+  }
+
 } 
