@@ -27,9 +27,9 @@ async function mcAnswerCheck(bool, correctEl, falseEl = null) {
     questionLogic.newQuestion("multiple-choice", operator, mcCreateOptions);
   } else {
     utilMethods.animateIncorrect(falseEl);
-    utilMethods.animateCorrect(correctEl);
+    // utilMethods.animateCorrect(correctEl);
     await utilMethods.delay(250);
-    questionLogic.newQuestion("multiple-choice", operator, mcCreateOptions);
+    // questionLogic.newQuestion("multiple-choice", operator, mcCreateOptions);
 
   }
 }
@@ -42,45 +42,45 @@ async function mcAnswerCheck(bool, correctEl, falseEl = null) {
  * @param {string} o1 - the operator
  * @returns {void}
  */
-export function mcCreateOptions(n1, n2, o1) {
-  // Create an array of four possible answer options using the given numbers and operator
-  let options = utilMethods.createOptions(n1, n2, o1)
+  export function mcCreateOptions(n1, n2, o1) {
+    // Create an array of four possible answer options using the given numbers and operator
+    let options = utilMethods.createOptions(n1, n2, o1)
 
-  // Clear the mcOptions element (which contains the multiple choice answer buttons)
-  mcOptions.innerHTML = "";
+    // Clear the mcOptions element (which contains the multiple choice answer buttons)
+    mcOptions.innerHTML = "";
 
-  // Calculate the correct answer for the question
-  let ans = utilMethods.calculation(n1, n2, o1)
+    // Calculate the correct answer for the question
+    let ans = utilMethods.calculation(n1, n2, o1)
 
-  // Loop through each answer option and create a button for it
-  options.forEach((option, index) => {
-    const optionEl = document.createElement("button");
-    optionEl.classList.add("option");
-    optionEl.textContent = option;
-    let correctOption;
+    // Loop through each answer option and create a button for it
+    options.forEach((option, index) => {
+      const optionEl = document.createElement("button");
+      optionEl.classList.add("option");
+      optionEl.textContent = option;
+      let correctOption;
 
-    // If this answer option is equal to the correct answer, save a reference to the button as the correct option
-    if (option == ans) {
-      correctOption = optionEl;
-    }
-
-    // Add a mousedown event listener to each button that checks if the answer is correct or not
-    optionEl.addEventListener("mousedown", function (e) {
-      let targetEl = e.target;
-      if (targetEl.textContent == ans) {
-        // If the selected answer is correct, call mcAnswerCheck with a "true" value and the target element
-        mcAnswerCheck(true, targetEl);
+      // If this answer option is equal to the correct answer, save a reference to the button as the correct option
+      if (option == ans) {
+        correctOption = optionEl;
       }
-      if (targetEl.textContent != ans) {
-        // If the selected answer is incorrect, call mcAnswerCheck with a "false" value, the correct option element, and the target element
-        mcAnswerCheck(false, correctOption, targetEl);
-      }
+
+      // Add a mousedown event listener to each button that checks if the answer is correct or not
+      optionEl.addEventListener("mousedown", function (e) {
+        let targetEl = e.target;
+        if (targetEl.textContent == ans) {
+          // If the selected answer is correct, call mcAnswerCheck with a "true" value and the target element
+          mcAnswerCheck(true, targetEl);
+        }
+        if (targetEl.textContent != ans) {
+          // If the selected answer is incorrect, call mcAnswerCheck with a "false" value, the correct option element, and the target element
+          mcAnswerCheck(false, correctOption, targetEl);
+        }
+      });
+
+      // Add the answer option button to the mcOptions element
+      mcOptions.appendChild(optionEl);
     });
-
-    // Add the answer option button to the mcOptions element
-    mcOptions.appendChild(optionEl);
-  });
-}
+  }
 
 
 

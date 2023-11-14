@@ -106,11 +106,11 @@ async function mcQuizAnswerCheck(bool, correctEl, falseEl = null) {
     // Check if all questions are answered and show the score if true. Animate elements based on correctness
     checkMCQAnswered()
     utilMethods.animateIncorrect(falseEl);
-    utilMethods.animateCorrect(correctEl);
+    // utilMethods.animateCorrect(correctEl);
     // Wait for a short delay before updating the quiz page and generating a new question
     await utilMethods.delay(150);
     updateMCQuizPage()
-    questionLogic.newQuestion("multiple-choice-quiz",operator, mcQuizCreateOptions);
+    // questionLogic.newQuestion("multiple-choice-quiz",operator, mcQuizCreateOptions);
   }
 }
 
@@ -144,6 +144,7 @@ export function mcQuizCreateOptions(n1, n2, o1) {
         mcQuizAnswerCheck(true, targetEl);
       }
       if (targetEl.textContent != ans) {
+
         // If the answer is incorrect, call mcQuizAnswerCheck with false as the first argument, the button element with the correct answer as the second argument, and the current button element as the third argument
         mcQuizAnswerCheck(false, correctOption, targetEl);
       }
