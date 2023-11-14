@@ -51,9 +51,7 @@
           let numberDiff = Number(diff)
           if (badges[op][type][diff] == true) {
             typeMax = Math.max(typeMax, numberDiff)
-             
           }
-
         }
 
         bestBadges.push([op, type, String(typeMax)])

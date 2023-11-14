@@ -1,75 +1,75 @@
 
 
-export const mainContainer: HTMLElement | null = document.getElementById("main-container");
+export const mainContainer = document.getElementById("main-container")  as HTMLElement;
 
-export const diffButtons: NodeListOf<Element> = document.querySelectorAll(".diff-button");
+export const diffButtons = document.querySelectorAll(".diff-button")  as NodeListOf<Element>
 
-export const subjects: NodeListOf<Element> = document.querySelectorAll(".subject");
+export const subjects = document.querySelectorAll(".subject") as NodeListOf<Element>
 
-export const burger: HTMLElement | null = document.getElementById("burger");
-export const burgerContainer: HTMLElement | null = document.getElementById("burger-container");
+export const burger = document.getElementById("burger")  as HTMLElement;
+export const burgerContainer = document.getElementById("burger-container")  as HTMLElement;
 
-export const newGame: HTMLElement | null = document.getElementById("new-game");
- const gameNumOne: HTMLElement | null = document.getElementById("game-first-number");
- const gameNumTwo: HTMLElement | null = document.getElementById("game-second-number");
- const gameOpOne: HTMLElement | null = document.getElementById("game-first-operator");
-export const gameAnswerInput: HTMLElement | null = document.getElementById("game-answer-input");
-export const gameAnswerSubmit: HTMLElement | null = document.getElementById("game-answer-form");
-export const gameCorrectness: HTMLElement | null = document.getElementById("game-correctness");
-export const gameActual: HTMLElement | null = document.getElementById("game-actual");
-export const gameActualContainer: HTMLElement | null = document.getElementById("game-actual-container");
-export const gameCurrScore: HTMLElement | null = document.getElementById("game-current-score");
-export const gameHighScore: HTMLElement | null = document.getElementById("game-current-high");
-export const gameLevelNumber: HTMLElement | null = document.getElementById("game-level-number");
-export const gameTracker: HTMLElement | null = document.getElementById("game-tracker");
-export const gameTracker2: HTMLElement | null = document.getElementById("game-tracker-2");
-export const gameTrackerContainer: HTMLElement | null = document.getElementById("game-tracker-container");
-export const gameTrackerContainer2: HTMLElement | null = document.getElementById("game-tracker-container-2");
+export const newGame = document.getElementById("new-game")  as HTMLElement;
+const gameNumOne = document.getElementById("game-first-number")  as HTMLElement;
+const gameNumTwo = document.getElementById("game-second-number")  as HTMLElement;
+const gameOpOne = document.getElementById("game-first-operator")  as HTMLElement;
+export const gameAnswerInput = document.getElementById("game-answer-input")  as HTMLElement;
+export const gameAnswerSubmit = document.getElementById("game-answer-form")  as HTMLElement;
+export const gameCorrectness = document.getElementById("game-correctness")  as HTMLElement;
+export const gameActual = document.getElementById("game-actual")  as HTMLElement;
+export const gameActualContainer = document.getElementById("game-actual-container")  as HTMLElement;
+export const gameCurrScore = document.getElementById("game-current-score")  as HTMLElement;
+export const gameHighScore = document.getElementById("game-current-high")  as HTMLElement;
+export const gameLevelNumber = document.getElementById("game-level-number")  as HTMLElement;
+export const gameTracker = document.getElementById("game-tracker")  as HTMLElement;
+export const gameTracker2 = document.getElementById("game-tracker-2")  as HTMLElement;
+export const gameTrackerContainer = document.getElementById("game-tracker-container")  as HTMLElement;
+export const gameTrackerContainer2 = document.getElementById("game-tracker-container-2")  as HTMLElement;
 
-export const difficulty: HTMLElement | null = document.getElementById("selected-difficulty-general");
-export const difficultyContainer: HTMLElement | null = document.getElementById("selected-difficulty-container-general");
+export const difficulty = document.getElementById("selected-difficulty-general")  as HTMLElement;
+export const difficultyContainer = document.getElementById("selected-difficulty-container-general")  as HTMLElement;
 
-export const quizAnswerForm: HTMLElement | null = document.getElementById("quiz-answer-form");
-export const newQuiz: HTMLElement | null = document.getElementById("new-quiz");
- const quizNumOne: HTMLElement | null = document.getElementById("quiz-first-number");
- const quizNumTwo: HTMLElement | null = document.getElementById("quiz-second-number");
- const quizOpOne: HTMLElement | null = document.getElementById("quiz-first-operator");
-export const quizAnswerInput: HTMLElement | null = document.getElementById("quiz-answer-input");
-export const quizCorrectness: HTMLElement | null = document.getElementById("quiz-correctness");
-export const quizAmountCorrect: HTMLElement | null = document.getElementById("amountCorrect");
-export const quizAmountCorrectPercentage: HTMLElement | null = document.getElementById("amountCorrectPercentage");
-export const quizCurrScore: HTMLElement | null = document.getElementById("quiz-curr-score");
-export const quizCurrQuestion: HTMLElement | null = document.getElementById("quiz-curr-question");
-export const quizCurrScoreContainer: HTMLElement | null = document.querySelector(".quiz-curr-score-container");
-export const quizLastScoreContainer: HTMLElement | null = document.querySelector(".quiz-last-score-container");
-export const quizLastScore: HTMLElement | null = document.getElementById("quiz-last-score");
-export const quizModal: HTMLElement | null = document.getElementById("quiz-modal");
+export const quizAnswerForm = document.getElementById("quiz-answer-form") as HTMLElement;
+export const newQuiz = document.getElementById("new-quiz") as HTMLElement;
+const quizNumOne = document.getElementById("quiz-first-number") as HTMLElement;
+const quizNumTwo = document.getElementById("quiz-second-number") as HTMLElement;
+const quizOpOne = document.getElementById("quiz-first-operator") as HTMLElement;
+export const quizAnswerInput = document.getElementById("quiz-answer-input") as HTMLInputElement
+export const quizCorrectness = document.getElementById("quiz-correctness") as HTMLElement;
+export const quizAmountCorrect = document.getElementById("amountCorrect") as HTMLElement;
+export const quizAmountCorrectPercentage = document.getElementById("amountCorrectPercentage") as HTMLElement;
+export const quizCurrScore = document.getElementById("quiz-curr-score") as HTMLElement;
+export const quizCurrQuestion = document.getElementById("quiz-curr-question") as HTMLElement;
+export const quizCurrScoreContainer = document.querySelector(".quiz-curr-score-container") as HTMLDivElement;
+export const quizLastScoreContainer = document.querySelector(".quiz-last-score-container") as HTMLDivElement;
+export const quizLastScore = document.getElementById("quiz-last-score") as HTMLElement;
+export const quizModal = document.getElementById("quiz-modal") as HTMLElement;
 
-export const newMC: HTMLElement | null = document.getElementById("new-mc");
-export const mcOptions: HTMLElement | null = document.getElementById("mc-options");
- const mcNumOne: HTMLElement | null = document.getElementById("mc-first-number");
- const mcNumTwo: HTMLElement | null = document.getElementById("mc-second-number");
- const mcOpOne: HTMLElement | null = document.getElementById("mc-first-operator");
+export const newMC = document.getElementById("new-mc")  as HTMLElement
+export const mcOptions = document.getElementById("mc-options") as HTMLElement
+const mcNumOne = document.getElementById("mc-first-number") as HTMLElement
+const mcNumTwo = document.getElementById("mc-second-number") as HTMLElement
+const mcOpOne = document.getElementById("mc-first-operator") as HTMLElement
 
-export const flashContainer: HTMLElement | null = document.getElementById("flash-container");
-export const flashCard: HTMLElement | null = document.getElementById("flash-card");
-export const newFlash: HTMLElement | null = document.getElementById("new-flash");
-export const flashAnswer: HTMLElement | null = document.getElementById("flash-answer");
- const flashNumOne: HTMLElement | null = document.getElementById("flash-first-number");
- const flashNumTwo: HTMLElement | null = document.getElementById("flash-second-number");
- const flashOpOne: HTMLElement | null = document.getElementById("flash-first-operator");
+export const flashContainer = document.getElementById("flash-container")  as HTMLElement;
+export const flashCard = document.getElementById("flash-card")  as HTMLElement;
+export const newFlash = document.getElementById("new-flash")  as HTMLElement;
+export const flashAnswer = document.getElementById("flash-answer")  as HTMLElement;
+const flashNumOne = document.getElementById("flash-first-number")  as HTMLElement;
+const flashNumTwo = document.getElementById("flash-second-number")  as HTMLElement;
+const flashOpOne = document.getElementById("flash-first-operator")  as HTMLElement;
 
-export const newMCQuiz: HTMLElement | null = document.getElementById("new-mc-quiz");
-export const mcQuizOptions: HTMLElement | null = document.getElementById("mc-quiz-options");
- const mcQuizNumOne: HTMLElement | null = document.getElementById("mc-quiz-first-number");
- const mcQuizNumTwo: HTMLElement | null = document.getElementById("mc-quiz-second-number");
- const mcQuizOpOne: HTMLElement | null = document.getElementById("mc-quiz-first-operator");
+export const newMCQuiz = document.getElementById("new-mc-quiz")  as HTMLElement;
+export const mcQuizOptions = document.getElementById("mc-quiz-options")  as HTMLElement;
+const mcQuizNumOne = document.getElementById("mc-quiz-first-number")  as HTMLElement;
+const mcQuizNumTwo = document.getElementById("mc-quiz-second-number")  as HTMLElement;
+const mcQuizOpOne = document.getElementById("mc-quiz-first-operator")  as HTMLElement;
 
 
 interface QuestionElements {
-    numOne:HTMLElement|null,
-    numTwo:HTMLElement|null,
-    opOne:HTMLElement|null
+    numOne: HTMLElement ,
+    numTwo: HTMLElement ,
+    opOne: HTMLElement 
 }
 
 

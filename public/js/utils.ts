@@ -708,7 +708,7 @@ export function updateActivitySelected(type: string): void {
  */
 export function updateOperatorSelected(op: string): void {
   const operator: HTMLElement | null = document.getElementById("selected-operator-menu");
-  const [operatorText, operatorColor, operatorIconClass] = createOperatorTextAndIcon(op);
+  const [operatorText, operatorColor] = createOperatorTextAndIcon(op);
 
   const operatorContainer: HTMLElement | null = document.getElementById("selected-operator-container-menu");
   if (operatorContainer) {
@@ -719,7 +719,7 @@ export function updateOperatorSelected(op: string): void {
     operator.textContent = operatorText;
   }
 
-  // Uncomment the following lines if you want to include an icon
+  // Uncomment the following lines if you want to include an icon - add operatorIconClass to params
   // const iconElement: HTMLElement | null = document.getElementById("selected-operator-icon");
   // if (iconElement) {
   //   const iconClasses: string[] = operatorIconClass.split(" ");
@@ -906,7 +906,7 @@ export function setHighLowVals(difficulty: number|null, operator: string|null): 
 }
 
 
-export function updateDifficultyRange(operator:string):void {
+export function updateDifficultyRange():void {
   // let  highVal, lowVal;
   let difficulty:string|null = sessionStorage.getItem("activeDifficulty");
   let activeOperator:string|null = sessionStorage.getItem("activeOperators")

@@ -15,7 +15,7 @@ const { numOne: mcQuizNumOne, numTwo: mcQuizNumTwo, opOne: mcQuizOpOne } = mcQui
 const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElements;
 const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElements;
 
-export function newGeneralQuestion(opEl:HTMLElement|null, n1El:HTMLElement|null, n2El:HTMLElement|null, operator:string, func?:(arg1:number,arg2:number,arg3:string)=>void):void {
+export function newGeneralQuestion(opEl:HTMLElement, n1El:HTMLElement, n2El:HTMLElement, operator:string, func?:(arg1:number,arg2:number,arg3:string)=>void):void {
 
     let activeHighVal:string|null = sessionStorage.getItem("activeHighVal")
     let activeLowVal:string|null = sessionStorage.getItem("activeLowVal")
@@ -136,6 +136,9 @@ export function newQuestion(type:string, operator:string, options?:(n1:number,n2
     // burgerUpdate();
 
     // Generate a new question based on the values of num1, num2, and op1
-    newGeneralQuestion(op1, num1, num2, operator, options);
+    if(op1 && num1 && num2){
+        newGeneralQuestion(op1, num1, num2, operator, options);
+
+    }
 }
 
