@@ -13,12 +13,7 @@ const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElement
 //QUIZ
 //
 
-interface QuizStats {
-  numQuestions: number;
-  numAnswered: number;
-  numCorrect: number;
-}
-
+import type { QuizStats } from '../types.js';
 
 
 async function quizAnswerCheck(bool: boolean): Promise<void> {

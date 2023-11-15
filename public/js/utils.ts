@@ -235,7 +235,7 @@ export function enableInput(element: HTMLInputElement):void {
  * @param level - The level used to calculate the new value.
  */
 // Function to reset a number element to zero
-export function resetNumber(element:HTMLDivElement, level:number):void {
+export function resetNumber(element:HTMLElement, level:number):void {
   const resetLevel:number = (level - 1) * 10
   const resetToNumberAsString:string = String(resetLevel);
   element.textContent = resetToNumberAsString;
@@ -955,4 +955,22 @@ export function reformatOperator(operator:string):string {
       break;
   }
   return reformattedOperator
+}
+
+
+
+export function closeAlert(element:HTMLElement):void {
+  element.style.display = 'none';
+}
+
+export async function retrieveAvatar(element:HTMLImageElement):Promise<void> {
+  try {
+    const response = await fetch('/get-avatar');
+    const data = await response.json();
+    const avatarSrc:String = data.avatarSrc;
+    const trimmedSrc:string = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
+    element.src = trimmedSrc;
+  } catch (error) {
+    console.error(error);
+  }
 }

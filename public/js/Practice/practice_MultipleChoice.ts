@@ -1,6 +1,5 @@
 
 import * as utilMethods from '../utils.js';
-import { state } from '../state.js'
 import * as questionLogic from '../sharedQuestionLogic.js';
 import { mcOptions } from '../domElements.js';
 
@@ -19,14 +18,15 @@ import { mcOptions } from '../domElements.js';
  * @param {HTMLElement} falseEl - (optional) the HTML element that represents the incorrect answer
  * @returns {void}
  */
-async function mcAnswerCheck(bool, correctEl, falseEl = null) {
-  const operator = sessionStorage.getItem("activeOperators")
+async function mcAnswerCheck(bool:boolean, correctEl:HTMLElement, falseEl:HTMLElement|null = null) {
+  const operator:string|null = sessionStorage.getItem("activeOperators")
   if (bool) {
     utilMethods.animateCorrect(correctEl);
     await utilMethods.delay(250);
-    questionLogic.newQuestion("multiple-choice", operator, mcCreateOptions);
+    if(operator) questionLogic.newQuestion("multiple-choice", operator, mcCreateOptions);
+    else throw new Error("Error retrieving operator from session storage.")
   } else {
-    utilMethods.animateIncorrect(falseEl);
+    if(falseEl) utilMethods.animateIncorrect(falseEl);
     // utilMethods.animateCorrect(correctEl);
     await utilMethods.delay(250);
     // questionLogic.newQuestion("multiple-choice", operator, mcCreateOptions);
@@ -42,22 +42,22 @@ async function mcAnswerCheck(bool, correctEl, falseEl = null) {
  * @param {string} o1 - the operator
  * @returns {void}
  */
-  export function mcCreateOptions(n1, n2, o1) {
+  export function mcCreateOptions(n1:number, n2:number, o1:string) {
     // Create an array of four possible answer options using the given numbers and operator
-    let options = utilMethods.createOptions(n1, n2, o1)
+    let options :number[]= utilMethods.createOptions(n1, n2, o1)
 
     // Clear the mcOptions element (which contains the multiple choice answer buttons)
     mcOptions.innerHTML = "";
 
     // Calculate the correct answer for the question
-    let ans = utilMethods.calculation(n1, n2, o1)
+    let ans:number = utilMethods.calculation(n1, n2, o1)
 
     // Loop through each answer option and create a button for it
-    options.forEach((option, index) => {
-      const optionEl = document.createElement("button");
+    options.forEach((option) => {
+      const optionEl:HTMLButtonElement = document.createElement("button");
       optionEl.classList.add("option");
-      optionEl.textContent = option;
-      let correctOption;
+      optionEl.textContent = option.toString();
+      let correctOption:HTMLButtonElement;
 
       // If this answer option is equal to the correct answer, save a reference to the button as the correct option
       if (option == ans) {
@@ -65,13 +65,13 @@ async function mcAnswerCheck(bool, correctEl, falseEl = null) {
       }
 
       // Add a mousedown event listener to each button that checks if the answer is correct or not
-      optionEl.addEventListener("mousedown", function (e) {
-        let targetEl = e.target;
-        if (targetEl.textContent == ans) {
+      optionEl.addEventListener("mousedown", function (e:Event) {
+        let targetEl = e.target as HTMLElement;
+        if ((targetEl as HTMLElement).textContent == ans.toString()) {
           // If the selected answer is correct, call mcAnswerCheck with a "true" value and the target element
           mcAnswerCheck(true, targetEl);
         }
-        if (targetEl.textContent != ans) {
+        if ((targetEl as HTMLElement).textContent != ans.toString()) {
           // If the selected answer is incorrect, call mcAnswerCheck with a "false" value, the correct option element, and the target element
           mcAnswerCheck(false, correctOption, targetEl);
         }
@@ -85,13 +85,16 @@ async function mcAnswerCheck(bool, correctEl, falseEl = null) {
 
 
 window.onload = function () {
-  let operator = sessionStorage.getItem("activeOperators")
+  let operator:string|null = sessionStorage.getItem("activeOperators")
 
-  let difficulty = sessionStorage.getItem("activeDifficulty")
-  utilMethods.updateGeneralSelected(operator,difficulty)
-  // sessionStorage.setItem("",operators)
-  // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
-  questionLogic.newQuestion('multiple-choice', operator, mcCreateOptions);
+  let difficulty:string|null = sessionStorage.getItem("activeDifficulty")
+  if(operator && difficulty){
+    utilMethods.updateGeneralSelected(operator,difficulty)
+    // sessionStorage.setItem("",operators)
+    // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
+    questionLogic.newQuestion('multiple-choice', operator, mcCreateOptions);
+  }
+
 }
   //
   //END MC

@@ -1,7 +1,7 @@
-var forgotPasswordAlert = document.getElementById("forgot-password-flash-message");
+var forgotPasswordAlert = document.getElementById("forgot-password-flash-message") as HTMLElement
 
 // When the user clicks on <span> (x), close the modal
-function closeAlert() {
+function closeAlert():void {
 
   forgotPasswordAlert.style.display = 'none';
 }

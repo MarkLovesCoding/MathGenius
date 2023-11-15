@@ -1,1 +1,1 @@
-var getUsernameAlert=document.getElementById("get-username-flash-message");function closeAlert(){getUsernameAlert.style.display="none"}window.onclick=function(e){e.target!==getUsernameAlert&&(getUsernameAlert.style.display="none")};
+"use strict";var getUsernameAlert=document.getElementById("get-username-flash-message");window.onclick=function(e){e.target!==getUsernameAlert&&(getUsernameAlert.style.display="none")};

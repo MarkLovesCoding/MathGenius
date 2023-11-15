@@ -3,11 +3,12 @@
 
 import * as utilMethods from '../utils.js';
 // import { mcCreateOptions } from './practice_MultipleChoice.js';
+import type {DifficultyLevel} from '../types.js'
 
 
 window.onload = function () {  //Ensure DOM is loaded before functions
 
-  sessionStorage.setItem("activeDifficulty",1)
+  sessionStorage.setItem("activeDifficulty","1")
 
   ////////////////////////////////////////////////////////////
   //SHARED
@@ -58,24 +59,24 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
 
-  const operatorMenuForward = document.getElementById("operator-menu-forward")
+  // const operatorMenuForward = document.getElementById("operator-menu-forward") as HTMLElement
   // const operatorPracticeMenuBackwarUpper = document.getElementById("operator-practice-menu-backward-upper")
-  const operatorPracticeMenuBackwardLower = document.getElementById("operator-practice-menu-backward-lower")
-  const operatorPracticeMenuBackwards = [ operatorPracticeMenuBackwardLower];
+  const operatorPracticeMenuBackwardLower = document.getElementById("operator-practice-menu-backward-lower") as HTMLElement
+  // const operatorPracticeMenuBackwards = [ operatorPracticeMenuBackwardLower];
 
-  const difficultyMenuForward = document.getElementById("difficulty-menu-forward")
+  const difficultyMenuForward = document.getElementById("difficulty-menu-forward") as HTMLElement
   // const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
-  const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower")
+  const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower") as HTMLElement
 
-  const difficultyMenuBackwards = [ difficultyMenuBackwardLower]
-  const activitiesChoices = document.querySelectorAll(".activity-choice")
-  const practiceChoices = document.querySelectorAll(".practice-choice")
-  const operatorChoices = document.querySelectorAll(".operator-choice")
-  const operatorAlert = document.getElementById("operator-alert-modal")
+  // const difficultyMenuBackwards = [ difficultyMenuBackwardLower]
+  const activitiesChoices = document.querySelectorAll(".activity-choice") as NodeListOf<Element>
+  const practiceChoices = document.querySelectorAll(".practice-choice") as NodeListOf<Element>
+  const operatorChoices = document.querySelectorAll(".operator-choice") as NodeListOf<Element>
+  // const operatorAlert = document.getElementById("operator-alert-modal") as HTMLElement
 
-  const operatorContainer = document.getElementById("operator-menu-container");
-  const activityContainer = document.getElementById("practice-menu-container");
-  const difficultyContainer = document.getElementById("difficulty-menu-container");
+  const operatorContainer = document.getElementById("operator-menu-container") as HTMLElement
+  const activityContainer = document.getElementById("practice-menu-container") as HTMLElement
+  const difficultyContainer = document.getElementById("difficulty-menu-container") as HTMLElement
 
 
   // Handle the click event on the operatorMenuForward button
@@ -93,22 +94,22 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   //   // Load the difficulty-menu section
   //   // utilMethods.loadSection("difficulty-menu")
   // })
-  for (let el of operatorPracticeMenuBackwards) {
-    el.addEventListener("click", (e) => {
+  // for (let el of operatorPracticeMenuBackwards) {
+    operatorPracticeMenuBackwardLower.addEventListener("click", () => {
       utilMethods.changeViewLeft(activityContainer, operatorContainer);
     })
-  }
+  // }
 
 
   // Handle the click event on the difficultyMenuBackwards button
-  for (let el of difficultyMenuBackwards) {
-    el.addEventListener("click", (e) => {
+  // for (let el of difficultyMenuBackwards) {
+    difficultyMenuBackwardLower.addEventListener("click", () => {
       utilMethods.changeViewLeft(operatorContainer, difficultyContainer);
     })
-  }
+  // }
 
   // Handle the click event on the difficultyMenuForward button
-  difficultyMenuForward.addEventListener("click", (e) => {
+  difficultyMenuForward.addEventListener("click", () => {
 
     // Update the difficulty range based on the user's selection
     utilMethods.updateDifficultyRange()
@@ -125,18 +126,18 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
 
   // A function to add event listeners for activity types (real/practice)
-  function addEventsForTypes(activitiesChoices) {
+  function addEventsForTypes(activitiesChoices:NodeListOf<Element>) {
     for (let activity of activitiesChoices) {
-      activity.addEventListener("click", (e) => {
+      activity.addEventListener("click", () => {
         activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"))
         // Remove the "activity-selected" class from all activity options
-        let type;
-        if (e.target.getAttribute("data-type")) {
-          type = e.target.getAttribute("data-type")
-        }
-        else {
-          type = e.target.parentNode.getAttribute("data-type")
-        }
+        // let type;
+        // if (e.target.getAttribute("data-type")) {
+        //   type = e.target.getAttribute("data-type")
+        // }
+        // else {
+        //   type = e.target.parentNode.getAttribute("data-type")
+        // }
         // Determine which activity type was selected by looking at the "data-type" attribute
         activity.classList.add("activity-selected")
         // Add the "activity-selected" class to the selected activity option
@@ -147,18 +148,18 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
 
   // A function to add event listeners for specific activities (e.g., real addition, practice multiplication)
-  function addEventsForActivities(activitiesChoices) {
+  function addEventsForActivities(activitiesChoices:NodeListOf<Element>) {
     for (let activity of activitiesChoices) {
-      activity.addEventListener("click", (e) => {
+      activity.addEventListener("click", () => {
         activitiesChoices.forEach(activity => activity.classList.remove("activity-selected"))
         // Remove the "activity-selected" class from all activity options
-        let type;
-        if (e.target.getAttribute("data-type")) {
-          type = e.target.getAttribute("data-type")
-        }
-        else {
-          type = e.target.parentNode.getAttribute("data-type")
-        }
+        // let type;
+        // if (e.target.getAttribute("data-type")) {
+        //   type = e.target.getAttribute("data-type")
+        // }
+        // else {
+        //   type = e.target.parentNode.getAttribute("data-type")
+        // }
         // Determine which activity was selected by looking at the "data-type" attribute
         activity.classList.add("activity-selected")
 
@@ -172,25 +173,25 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   // A function to add event listeners for operators (+, -, x, ÷)
 
-  function addEventsForOperators(operatorsChoices) {
+  function addEventsForOperators(operatorsChoices:NodeListOf<Element>) {
     for (let operator of operatorsChoices) {
       // operator.addEventListener("click", toggleOperators)
       
-      operator.addEventListener("click", (e) => {
+      operator.addEventListener("click", () => {
         operatorsChoices.forEach(operator => operator.classList.remove("active-operator"))
         // Remove the "activity-selected" class from all activity options
-        let type;
-        if (e.target.getAttribute("data-sub")) {
-          type = e.target.getAttribute("data-sub")
-        }
-        else {
-          type = e.target.parentNode.getAttribute("data-sub")
-        }
+        // let type;
+        // if (e.target.getAttribute("data-sub")) {
+        //   type = e.target.getAttribute("data-sub")
+        // }
+        // else {
+        //   type = e.target.parentNode.getAttribute("data-sub")
+        // }
         // Determine which activity was selected by looking at the "data-type" attribute
         operator.classList.add("active-operator")
         let updatedOperator = updateOperator(operatorChoices)
         sessionStorage.setItem("activeOperators", updatedOperator)
-        let activity =  sessionStorage.getItem("activity")
+        // let activity =  sessionStorage.getItem("activity")
 
         // const activitySelected = sessionStorage.getItem("activity")
         // utilMethods.updateActivitySelected(activitySelected)
@@ -209,8 +210,8 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   addEventsForActivities(practiceChoices)
 
-  function updateOperator(operatorChoices) {
-    let operatorText
+  function updateOperator(operatorChoices:NodeListOf<Element>) {
+    let operatorText:string ="+";
 
     for (let i = 0; i < 4; i++) {
       if (operatorChoices[i].classList.contains("active-operator")) {
@@ -246,32 +247,47 @@ window.onload = function () {  //Ensure DOM is loaded before functions
   }
 
   // Initialize variables for the range input, range value, and level text elements
-  var rangeInput = document.getElementById("range-input");
-  var rangeValue = document.getElementById("range-value");
-  var levelText = document.getElementById("level-text");
-  const difficultyLevels =  {
-    1: { name: "Easy", color: "green" },
-    2: { name: "Novice", color: "yellow" },
-    3: { name: "Intermediate", color: "orange" },
-    4: { name: "Advanced", color: "red" },
-    5: { name: "Genius!", color: "purple" }
-  }
-  // Add an event listener for when the range input is changed
-  rangeInput.addEventListener("input", () => {
-    // Get the selected difficulty level from the range input value
-    let selectedDifficulty = parseInt(rangeInput.value);
+// Initialize variables for the range input, range value, and level text elements
+const rangeInput = document.getElementById("range-input") as HTMLInputElement;
+const rangeValue = document.getElementById("range-value") as HTMLElement;
+const levelText = document.getElementById("level-text") as HTMLElement;
 
-    // Update the active difficulty level in the state object and update the range value text
-    sessionStorage.setItem("activeDifficulty", selectedDifficulty)
+// Define an interface for the structure of each difficulty level
 
-    rangeValue.textContent = selectedDifficulty;
+// Type the difficultyLevels object using the DifficultyLevel interface
+const difficultyLevels: Record<string, DifficultyLevel> = {
+  "1": { name: "Easy", color: "green" },
+  "2": { name: "Novice", color: "yellow" },
+  "3": { name: "Intermediate", color: "orange" },
+  "4": { name: "Advanced", color: "red" },
+  "5": { name: "Genius!", color: "purple" }
+};
 
+// Add an event listener for when the range input is changed
+rangeInput.addEventListener("input", () => {
+  // Get the selected difficulty level from the range input value
+  const selectedDifficulty: number = parseInt(rangeInput.value, 10);
+
+  // Update the active difficulty level in the session storage and update the range value text
+  sessionStorage.setItem("activeDifficulty", selectedDifficulty.toString());
+
+  rangeValue.textContent = selectedDifficulty.toString();
+  // Check if selectedDifficulty is a valid key in difficultyLevels
+  if (difficultyLevels.hasOwnProperty(selectedDifficulty)) {
     // Set the color of the range input thumb based on the selected difficulty level
-    var sliderColor = difficultyLevels[selectedDifficulty].color;
-    rangeInput.style.setProperty('--thumb-color', sliderColor)
+    const sliderColor: string = difficultyLevels[selectedDifficulty].color;
+    rangeInput.style.setProperty('--thumb-color', sliderColor);
 
     // Update the level text with the name of the selected difficulty level
     levelText.textContent = difficultyLevels[selectedDifficulty].name;
-  });
+  } else {
+    // Handle the case where selectedDifficulty is not a valid key (optional)
+    console.error(`Invalid difficulty level: ${selectedDifficulty}`);
+  }
+  // Set the color of the range input thumb based on the selected difficulty level
+
+});
+
+// Close window.onload function (if it's open)
 
 } //close window.onload function

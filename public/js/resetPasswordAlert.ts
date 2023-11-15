@@ -1,11 +1,10 @@
 
 
-var resetPasswordAlert = document.getElementById("reset-password-flash-message");
+
+var resetPasswordAlert = document.getElementById("reset-password-flash-message") as HTMLElement
 
 // When the user clicks on <span> (x), close the modal
-function closeAlert() {
-  resetPasswordAlert.style.display = 'none';
-}
+
 
 
 // When the user clicks anywhere outside of the modal, close it

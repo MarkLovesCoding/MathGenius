@@ -1,10 +1,14 @@
-// Get references to the necessary elements
-const password = document.querySelector('#password');
-const confirmPassword = document.querySelector('#confirm-password');
-const submitBtn = document.querySelector('#reset-password-button');
+
+const password = document.querySelector('#password') as HTMLInputElement;
+const confirmPassword = document.querySelector('#confirm-password') as HTMLInputElement;
+const submitBtn = document.querySelector('#reset-password-button') as HTMLButtonElement;
+
+if (!password || !confirmPassword || !submitBtn) {
+  throw new Error('Elements not found');
+}
 
 // Function to validate if the passwords match
-function validatePassword() {
+function validatePassword():void {
   if (password.value !== confirmPassword.value) {
     confirmPassword.setCustomValidity('Passwords do not match');
   } else {
@@ -19,7 +23,7 @@ password.addEventListener('change', validatePassword);
 confirmPassword.addEventListener('keyup', validatePassword);
 
 // Handle form submission
-submitBtn.addEventListener('click', (event) => {
+submitBtn.addEventListener('click', (event:MouseEvent):void => {
   if (password.value !== confirmPassword.value) {
     event.preventDefault();
     confirmPassword.setCustomValidity('Passwords do not match');

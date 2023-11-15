@@ -1,8 +1,9 @@
+
 // Get references to the necessary elements
-const modal = document.getElementById("avatar-modal");
-const profile = document.getElementById("profile-user-avatar");
-const span = document.getElementById("avatar-modal-close");
-const userIconsContainer = document.getElementById("avatar-user-icons");
+const modal = document.getElementById("avatar-modal") as HTMLElement
+const profile = document.getElementById("profile-user-avatar") as HTMLImageElement
+const span = document.getElementById("avatar-modal-close") as HTMLElement
+const userIconsContainer = document.getElementById("avatar-user-icons") as HTMLElement
 
 // Open the modal when the profile avatar is clicked
 profile.onclick = function () {
@@ -24,29 +25,29 @@ window.onclick = function (event) {
 };
 
 // Function to retrieve the user's avatar from the server
-async function retrieveAvatar(element) {
-  try {
-    const response = await fetch('/get-avatar');
-    const data = await response.json();
-    const avatarSrc = data.avatarSrc;
-    const trimmedSrc = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
-    element.src = trimmedSrc;
-  } catch (error) {
-    console.error(error);
-  }
-}
+// async function retrieveAvatar(element:HTMLImageElement):Promise<void> {
+//   try {
+//     const response = await fetch('/get-avatar');
+//     const data = await response.json();
+//     const avatarSrc:String = data.avatarSrc;
+//     const trimmedSrc:string = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
+//     element.src = trimmedSrc;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 // Retrieve the user's avatar when the DOM content is loaded
 window.addEventListener('DOMContentLoaded', function () {
-  retrieveAvatar(profile);
+  retrieveProfileAvatar(profile);
 });
 
 // Handle user icon clicks using event delegation
 userIconsContainer.addEventListener("click", handleUserIconClick);
 
 // Function to handle user icon clicks
-async function handleUserIconClick(event) {
-  const selectedIcon = event.target.closest("img");
+async function handleUserIconClick(event:MouseEvent):Promise<void> {
+  const selectedIcon = (event.target as HTMLElement).closest("img") as HTMLImageElement | null;
   if (selectedIcon) {
     // Update the profile avatar with the selected icon
     profile.setAttribute("src", selectedIcon.src);
@@ -57,10 +58,11 @@ async function handleUserIconClick(event) {
     // Close the modal after selecting an icon
     modal.style.display = "none";
   }
+  else{ throw new Error('Icons not found');}
 }
 
 // Retrieve the user ID from the server
-async function getUserId() {
+async function getUserId():Promise<number>{
   try {
     const response = await fetch('/user-id');
     const data = await response.json();
@@ -72,9 +74,19 @@ async function getUserId() {
     throw error;
   }
 }
-
+ async function retrieveProfileAvatar(element:HTMLImageElement):Promise<void> {
+  try {
+    const response = await fetch('/get-avatar');
+    const data = await response.json();
+    const avatarSrc:String = data.avatarSrc;
+    const trimmedSrc:string = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
+    element.src = trimmedSrc;
+  } catch (error) {
+    console.error(error);
+  }
+}
 // Update the session and database with the new image source
-async function updateSessionAndDB(newSrc) {
+async function updateSessionAndDB(newSrc:string):Promise<void> {
   try {
     const userId = await getUserId();
     if (!userId) {

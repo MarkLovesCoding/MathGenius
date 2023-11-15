@@ -1,6 +1,6 @@
 
 
-var success = document.getElementById('success')
+var success = document.getElementById('success') as HTMLElement
 // Fade out the overlay after 1 second
 if (success) {
   setTimeout(function () {

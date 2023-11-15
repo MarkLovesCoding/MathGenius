@@ -4,15 +4,15 @@ import { state } from '../state.js';
 import { changeViewRight,updateActivitySelected } from '../utils.js';
 
 // Get references to the necessary elements
-const operatorContainer = document.getElementById("operator-menu-container");
-const activityContainer = document.getElementById("practice-menu-container");
+const operatorContainer = document.getElementById("operator-menu-container") as HTMLElement
+const activityContainer = document.getElementById("practice-menu-container") as HTMLElement
 
 // Get references to the necessary links
-const linkToFlash = document.getElementById('new-flash');
-const linkToMC = document.getElementById('new-mc');
+const linkToFlash = document.getElementById('new-flash') as HTMLElement
+const linkToMC = document.getElementById('new-mc') as HTMLElement
 
 // Add event listener for linkToFlash
-linkToFlash.addEventListener("click", function () {
+if(linkToFlash)linkToFlash.addEventListener("click", function () {
   // Set "activity" value in sessionStorage and state
   sessionStorage.setItem("activity", "flash");
   state.activity = "flash";
@@ -23,7 +23,7 @@ linkToFlash.addEventListener("click", function () {
 });
 
 // Add event listener for linkToMC
-linkToMC.addEventListener("click", function () {
+if(linkToMC)linkToMC.addEventListener("click", function () {
   // Set "activity" value in sessionStorage and state
   sessionStorage.setItem("activity", "multiple-choice");
   state.activity = "multiple-choice";

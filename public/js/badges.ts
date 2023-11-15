@@ -1,16 +1,10 @@
 
   import {reformatOperator,convertNumberToLevel} from './utils.js';
-
+  import { Badges } from './types.js';
   const badgeImgs:Element[] = Array.from(document.getElementsByClassName("badge-img"))
 
 
-  interface Badges {
-    [operator: string]: {
-      [type: string]: {
-        [diff: string]:boolean;
-      };
-    };
-  }
+
   
   // Retrieves the user ID
   async function getUserId():Promise<String> {
@@ -32,7 +26,6 @@
       const response = await fetch('/get-badges');
       const data = await response.json();
       const badges:Badges = data.badges;
-      console.log("bages",badges)
 
       return badges;
     } catch (error) {
@@ -100,7 +93,6 @@
           let level:Element|null = element.nextElementSibling
           // console.log(level)
           if (best[1] == type && best[0] == operator && operator!== null && type!== null) {
-            console.log("best[1]",best[1],"best[0]",best[0],"type",type,"op",operator)
             element.classList.add("active")
             if(level)level.textContent = convertNumberToLevel(Number(best[2]))
             // level.textContent == convertNumberToLevel(Number(best[2]))
@@ -118,9 +110,7 @@
     const reformattedOperator:string = reformatOperator(operator)
     try {
       const badgesFromDb:Badges = await retrieveBadges();
-      console.log('badges from DB', badgesFromDb)
       if (bool) {
-        console.log("type:",type)
         badgesFromDb[reformattedOperator][type][difficulty] = true;
         await updateSessionAndDB(badgesFromDb);
       }

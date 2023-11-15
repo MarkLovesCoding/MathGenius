@@ -13,23 +13,23 @@ export const newGame = document.getElementById("new-game")  as HTMLElement;
 const gameNumOne = document.getElementById("game-first-number")  as HTMLElement;
 const gameNumTwo = document.getElementById("game-second-number")  as HTMLElement;
 const gameOpOne = document.getElementById("game-first-operator")  as HTMLElement;
-export const gameAnswerInput = document.getElementById("game-answer-input")  as HTMLElement;
+export const gameAnswerInput = document.getElementById("game-answer-input")  as HTMLInputElement;
 export const gameAnswerSubmit = document.getElementById("game-answer-form")  as HTMLElement;
 export const gameCorrectness = document.getElementById("game-correctness")  as HTMLElement;
 export const gameActual = document.getElementById("game-actual")  as HTMLElement;
-export const gameActualContainer = document.getElementById("game-actual-container")  as HTMLElement;
+export const gameActualContainer = document.getElementById("game-actual-container")  as HTMLDivElement;
 export const gameCurrScore = document.getElementById("game-current-score")  as HTMLElement;
 export const gameHighScore = document.getElementById("game-current-high")  as HTMLElement;
-export const gameLevelNumber = document.getElementById("game-level-number")  as HTMLElement;
-export const gameTracker = document.getElementById("game-tracker")  as HTMLElement;
-export const gameTracker2 = document.getElementById("game-tracker-2")  as HTMLElement;
+export const gameLevelNumber = document.getElementById("game-level-number")  as HTMLDivElement;
+export const gameTracker = document.getElementById("game-tracker")  as HTMLDivElement;
+// export const gameTracker2 = document.getElementById("game-tracker-2")  as HTMLElement;
 export const gameTrackerContainer = document.getElementById("game-tracker-container")  as HTMLElement;
 export const gameTrackerContainer2 = document.getElementById("game-tracker-container-2")  as HTMLElement;
 
 export const difficulty = document.getElementById("selected-difficulty-general")  as HTMLElement;
 export const difficultyContainer = document.getElementById("selected-difficulty-container-general")  as HTMLElement;
 
-export const quizAnswerForm = document.getElementById("quiz-answer-form") as HTMLElement;
+export const quizAnswerForm = document.getElementById("quiz-answer-form") as HTMLFormElement;
 export const newQuiz = document.getElementById("new-quiz") as HTMLElement;
 const quizNumOne = document.getElementById("quiz-first-number") as HTMLElement;
 const quizNumTwo = document.getElementById("quiz-second-number") as HTMLElement;
@@ -64,13 +64,16 @@ export const mcQuizOptions = document.getElementById("mc-quiz-options")  as HTML
 const mcQuizNumOne = document.getElementById("mc-quiz-first-number")  as HTMLElement;
 const mcQuizNumTwo = document.getElementById("mc-quiz-second-number")  as HTMLElement;
 const mcQuizOpOne = document.getElementById("mc-quiz-first-operator")  as HTMLElement;
+export const carousel = document.querySelector('.fraction-carousel') as HTMLElement
 
 
-interface QuestionElements {
-    numOne: HTMLElement ,
-    numTwo: HTMLElement ,
-    opOne: HTMLElement 
-}
+
+
+
+import type { QuestionElements } from "./types";
+
+
+
 
 
 

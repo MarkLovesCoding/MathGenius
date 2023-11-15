@@ -1,1 +1,1 @@
-const logoutBtn=document.getElementById("logout-btn");logoutBtn.addEventListener("click",()=>{window.location.href="/logout"});
+"use strict";const logoutBtn=document.getElementById("logout-btn");logoutBtn.addEventListener("click",()=>{window.location.href="/logout"});

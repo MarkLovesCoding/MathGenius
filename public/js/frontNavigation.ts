@@ -1,10 +1,10 @@
 // Get references to the necessary elements
-const linkToTests = document.getElementById('new-real');
-const linkToPractice = document.getElementById('new-practice');
-const linkToLearning = document.getElementById('new-learning');
+const linkToTests = document.getElementById('new-real') as HTMLElement
+const linkToPractice = document.getElementById('new-practice') as HTMLElement
+const linkToLearning = document.getElementById('new-learning') as HTMLElement
 
 // Add event listener for linkToTests
-linkToTests.addEventListener("click", function () {
+if(linkToTests)linkToTests.addEventListener("click", function () {
   sessionStorage.setItem("type", "real");
   
   // Redirect to "/tests" page
@@ -12,7 +12,7 @@ linkToTests.addEventListener("click", function () {
 });
 
 // Add event listener for linkToPractice
-linkToPractice.addEventListener("click", function () {
+if(linkToPractice)linkToPractice.addEventListener("click", function () {
   sessionStorage.setItem("type", "practice");
   
   // Redirect to "/practice" page
@@ -20,7 +20,7 @@ linkToPractice.addEventListener("click", function () {
 });
 
 // Add event listener for linkToLearning
-linkToLearning.addEventListener("click", function () {
+if(linkToLearning)linkToLearning.addEventListener("click", function () {
   sessionStorage.setItem("type", "learning");
   
   // Redirect to "/learning" page
