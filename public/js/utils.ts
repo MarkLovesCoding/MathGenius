@@ -951,7 +951,7 @@ export function reformatOperator(operator:string):string {
       break;
     default:
       reformattedOperator = operator;
-      console.log("Error: Operator not reformatted")
+      // console.log("Operator not reformatted")
       break;
   }
   return reformattedOperator

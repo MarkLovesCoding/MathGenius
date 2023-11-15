@@ -6,6 +6,9 @@ import * as questionLogic from '../sharedQuestionLogic.js';
 import { updateBadgeStatus } from '../badges.js';
 import { animateBadge } from '../badgeEarned.js';
 import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizElements } from '../domElements.js';
+import type { QuizStats } from '../types.js';
+
+
 
 const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElements;
 
@@ -13,7 +16,7 @@ const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElement
 //QUIZ
 //
 
-import type { QuizStats } from '../types.js';
+
 
 
 async function quizAnswerCheck(bool: boolean): Promise<void> {
@@ -206,9 +209,6 @@ if (quizAnswerForm) quizAnswerForm.addEventListener("submit", quizAnswerHandler)
 window.onload = function () {
 
   let operator = sessionStorage.getItem("activeOperators")
-
-
-
   let difficulty = sessionStorage.getItem("activeDifficulty")
   if (operator && difficulty) {
     utilMethods.updateGeneralSelected(operator, difficulty)

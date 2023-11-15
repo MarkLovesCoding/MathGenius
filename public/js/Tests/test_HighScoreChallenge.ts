@@ -299,7 +299,7 @@ gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler); // Add an e
 
 function updateChallengeBadgeAppearance(elements:HTMLCollectionOf<Element>, badges:Badges, operator:string) {
   const reformattedOperator = utilMethods.reformatOperator(operator)
-  const bestBadges = getHighestBadge(badges)
+  const bestBadges:[string,string,string][] = getHighestBadge(badges)
   console.log("bestBadges", bestBadges)
   // for (let element of elements) {
   //   // TO DO

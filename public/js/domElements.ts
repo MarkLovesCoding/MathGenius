@@ -1,3 +1,4 @@
+import type { QuestionElements } from "./types.js";
 
 
 export const mainContainer = document.getElementById("main-container")  as HTMLElement;
@@ -70,7 +71,6 @@ export const carousel = document.querySelector('.fraction-carousel') as HTMLElem
 
 
 
-import type { QuestionElements } from "./types";
 
 
 
