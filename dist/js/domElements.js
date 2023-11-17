@@ -1,1 +1,81 @@
-const mainContainer=document.getElementById("main-container"),diffButtons=document.querySelectorAll(".diff-button"),subjects=document.querySelectorAll(".subject"),burger=document.getElementById("burger"),burgerContainer=document.getElementById("burger-container"),newGame=document.getElementById("new-game"),gameNumOne=document.getElementById("game-first-number"),gameNumTwo=document.getElementById("game-second-number"),gameOpOne=document.getElementById("game-first-operator"),gameAnswerInput=document.getElementById("game-answer-input"),gameAnswerSubmit=document.getElementById("game-answer-form"),gameCorrectness=document.getElementById("game-correctness"),gameActual=document.getElementById("game-actual"),gameActualContainer=document.getElementById("game-actual-container"),gameCurrScore=document.getElementById("game-current-score"),gameHighScore=document.getElementById("game-current-high"),gameLevelNumber=document.getElementById("game-level-number"),gameTracker=document.getElementById("game-tracker"),gameTrackerContainer=document.getElementById("game-tracker-container"),gameTrackerContainer2=document.getElementById("game-tracker-container-2"),difficulty=document.getElementById("selected-difficulty-general"),difficultyContainer=document.getElementById("selected-difficulty-container-general"),quizAnswerForm=document.getElementById("quiz-answer-form"),newQuiz=document.getElementById("new-quiz"),quizNumOne=document.getElementById("quiz-first-number"),quizNumTwo=document.getElementById("quiz-second-number"),quizOpOne=document.getElementById("quiz-first-operator"),quizAnswerInput=document.getElementById("quiz-answer-input"),quizCorrectness=document.getElementById("quiz-correctness"),quizAmountCorrect=document.getElementById("amountCorrect"),quizAmountCorrectPercentage=document.getElementById("amountCorrectPercentage"),quizCurrScore=document.getElementById("quiz-curr-score"),quizCurrQuestion=document.getElementById("quiz-curr-question"),quizCurrScoreContainer=document.querySelector(".quiz-curr-score-container"),quizLastScoreContainer=document.querySelector(".quiz-last-score-container"),quizLastScore=document.getElementById("quiz-last-score"),quizModal=document.getElementById("quiz-modal"),newMC=document.getElementById("new-mc"),mcOptions=document.getElementById("mc-options"),mcNumOne=document.getElementById("mc-first-number"),mcNumTwo=document.getElementById("mc-second-number"),mcOpOne=document.getElementById("mc-first-operator"),flashContainer=document.getElementById("flash-container"),flashCard=document.getElementById("flash-card"),newFlash=document.getElementById("new-flash"),flashAnswer=document.getElementById("flash-answer"),flashNumOne=document.getElementById("flash-first-number"),flashNumTwo=document.getElementById("flash-second-number"),flashOpOne=document.getElementById("flash-first-operator"),newMCQuiz=document.getElementById("new-mc-quiz"),mcQuizOptions=document.getElementById("mc-quiz-options"),mcQuizNumOne=document.getElementById("mc-quiz-first-number"),mcQuizNumTwo=document.getElementById("mc-quiz-second-number"),mcQuizOpOne=document.getElementById("mc-quiz-first-operator"),carousel=document.querySelector(".fraction-carousel"),flashElements={numOne:flashNumOne,numTwo:flashNumTwo,opOne:flashOpOne},mcElements={numOne:mcNumOne,numTwo:mcNumTwo,opOne:mcOpOne},mcQuizElements={numOne:mcQuizNumOne,numTwo:mcQuizNumTwo,opOne:mcQuizOpOne},quizElements={numOne:quizNumOne,numTwo:quizNumTwo,opOne:quizOpOne},gameElements={numOne:gameNumOne,numTwo:gameNumTwo,opOne:gameOpOne};export{mainContainer,diffButtons,subjects,burger,burgerContainer,newGame,gameAnswerInput,gameAnswerSubmit,gameCorrectness,gameActual,gameActualContainer,gameCurrScore,gameHighScore,gameLevelNumber,gameTracker,gameTrackerContainer,gameTrackerContainer2,difficulty,difficultyContainer,quizAnswerForm,newQuiz,quizAnswerInput,quizCorrectness,quizAmountCorrect,quizAmountCorrectPercentage,quizCurrScore,quizCurrQuestion,quizCurrScoreContainer,quizLastScoreContainer,quizLastScore,quizModal,newMC,mcOptions,flashContainer,flashCard,newFlash,flashAnswer,newMCQuiz,mcQuizOptions,carousel,flashElements,mcElements,mcQuizElements,quizElements,gameElements};
+export const mainContainer = document.getElementById("main-container");
+export const diffButtons = document.querySelectorAll(".diff-button");
+export const subjects = document.querySelectorAll(".subject");
+export const burger = document.getElementById("burger");
+export const burgerContainer = document.getElementById("burger-container");
+export const newGame = document.getElementById("new-game");
+const gameNumOne = document.getElementById("game-first-number");
+const gameNumTwo = document.getElementById("game-second-number");
+const gameOpOne = document.getElementById("game-first-operator");
+export const gameAnswerInput = document.getElementById("game-answer-input");
+export const gameAnswerSubmit = document.getElementById("game-answer-form");
+export const gameCorrectness = document.getElementById("game-correctness");
+export const gameActual = document.getElementById("game-actual");
+export const gameActualContainer = document.getElementById("game-actual-container");
+export const gameCurrScore = document.getElementById("game-current-score");
+export const gameHighScore = document.getElementById("game-current-high");
+export const gameLevelNumber = document.getElementById("game-level-number");
+export const gameTracker = document.getElementById("game-tracker");
+// export const gameTracker2 = document.getElementById("game-tracker-2")  as HTMLElement;
+export const gameTrackerContainer = document.getElementById("game-tracker-container");
+export const gameTrackerContainer2 = document.getElementById("game-tracker-container-2");
+export const difficulty = document.getElementById("selected-difficulty-general");
+export const difficultyContainer = document.getElementById("selected-difficulty-container-general");
+export const quizAnswerForm = document.getElementById("quiz-answer-form");
+export const newQuiz = document.getElementById("new-quiz");
+const quizNumOne = document.getElementById("quiz-first-number");
+const quizNumTwo = document.getElementById("quiz-second-number");
+const quizOpOne = document.getElementById("quiz-first-operator");
+export const quizAnswerInput = document.getElementById("quiz-answer-input");
+export const quizCorrectness = document.getElementById("quiz-correctness");
+export const quizAmountCorrect = document.getElementById("amountCorrect");
+export const quizAmountCorrectPercentage = document.getElementById("amountCorrectPercentage");
+export const quizCurrScore = document.getElementById("quiz-curr-score");
+export const quizCurrQuestion = document.getElementById("quiz-curr-question");
+export const quizCurrScoreContainer = document.querySelector(".quiz-curr-score-container");
+export const quizLastScoreContainer = document.querySelector(".quiz-last-score-container");
+export const quizLastScore = document.getElementById("quiz-last-score");
+export const quizModal = document.getElementById("quiz-modal");
+export const newMC = document.getElementById("new-mc");
+export const mcOptions = document.getElementById("mc-options");
+const mcNumOne = document.getElementById("mc-first-number");
+const mcNumTwo = document.getElementById("mc-second-number");
+const mcOpOne = document.getElementById("mc-first-operator");
+export const flashContainer = document.getElementById("flash-container");
+export const flashCard = document.getElementById("flash-card");
+export const newFlash = document.getElementById("new-flash");
+export const flashAnswer = document.getElementById("flash-answer");
+const flashNumOne = document.getElementById("flash-first-number");
+const flashNumTwo = document.getElementById("flash-second-number");
+const flashOpOne = document.getElementById("flash-first-operator");
+export const newMCQuiz = document.getElementById("new-mc-quiz");
+export const mcQuizOptions = document.getElementById("mc-quiz-options");
+const mcQuizNumOne = document.getElementById("mc-quiz-first-number");
+const mcQuizNumTwo = document.getElementById("mc-quiz-second-number");
+const mcQuizOpOne = document.getElementById("mc-quiz-first-operator");
+export const carousel = document.querySelector('.fraction-carousel');
+export const flashElements = {
+    numOne: flashNumOne,
+    numTwo: flashNumTwo,
+    opOne: flashOpOne,
+};
+export const mcElements = {
+    numOne: mcNumOne,
+    numTwo: mcNumTwo,
+    opOne: mcOpOne,
+};
+export const mcQuizElements = {
+    numOne: mcQuizNumOne,
+    numTwo: mcQuizNumTwo,
+    opOne: mcQuizOpOne,
+};
+export const quizElements = {
+    numOne: quizNumOne,
+    numTwo: quizNumTwo,
+    opOne: quizOpOne,
+};
+export const gameElements = {
+    numOne: gameNumOne,
+    numTwo: gameNumTwo,
+    opOne: gameOpOne,
+};
