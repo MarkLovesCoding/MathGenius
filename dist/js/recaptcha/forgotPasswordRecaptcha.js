@@ -1,4 +1,1 @@
-"use strict";
-function onSubmitPassword() {
-    document.getElementById("forgot-password-form").submit();
-}
+"use strict";function onSubmitPassword(){document.getElementById("forgot-password-form").submit()}

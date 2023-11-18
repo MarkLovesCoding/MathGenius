@@ -1,7 +1,7 @@
 import type { QuestionElements } from "./types.js";
 
 
-export const mainContainer = document.getElementById("main-container")  as HTMLElement;
+export const mainContainer = <HTMLElement>document.getElementById("main-container")
 
 export const diffButtons = document.querySelectorAll(".diff-button")  as NodeListOf<Element>
 
@@ -52,13 +52,13 @@ const mcNumOne = document.getElementById("mc-first-number") as HTMLElement
 const mcNumTwo = document.getElementById("mc-second-number") as HTMLElement
 const mcOpOne = document.getElementById("mc-first-operator") as HTMLElement
 
-export const flashContainer = document.getElementById("flash-container")  as HTMLElement;
-export const flashCard = document.getElementById("flash-card")  as HTMLElement;
-export const newFlash = document.getElementById("new-flash")  as HTMLElement;
-export const flashAnswer = document.getElementById("flash-answer")  as HTMLElement;
-const flashNumOne = document.getElementById("flash-first-number")  as HTMLElement;
-const flashNumTwo = document.getElementById("flash-second-number")  as HTMLElement;
-const flashOpOne = document.getElementById("flash-first-operator")  as HTMLElement;
+export const flashContainer = <HTMLElement>document.getElementById("flash-container")  
+export const flashCard = <HTMLElement>document.getElementById("flash-card")  
+export const newFlash = <HTMLElement>document.getElementById("new-flash")  
+export const flashAnswer = <HTMLElement>document.getElementById("flash-answer")  
+const flashNumOne = <HTMLElement>document.getElementById("flash-first-number")  
+const flashNumTwo = <HTMLElement>document.getElementById("flash-second-number")  
+const flashOpOne = <HTMLElement>document.getElementById("flash-first-operator")  
 
 export const newMCQuiz = document.getElementById("new-mc-quiz")  as HTMLElement;
 export const mcQuizOptions = document.getElementById("mc-quiz-options")  as HTMLElement;
