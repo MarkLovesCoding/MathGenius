@@ -2,7 +2,7 @@
 
 
 import * as utilMethods from '../utils.js';
-import { DifficultyLevel } from '../types.js';
+import { DifficultyLevel,Operator } from '../types.js';
 
 
 
@@ -85,7 +85,7 @@ const levelText = <HTMLElement>document.getElementById("level-text")
         operatorsChoices.forEach(operator => operator.classList.remove("active-operator"))
         // Determine which activity was selected by looking at the "data-type" attribute
         operator.classList.add("active-operator")
-        let updatedOperator:string|undefined = updateOperator(operatorChoices)
+        let updatedOperator:Operator = updateOperator(operatorChoices)
         if(updatedOperator){ sessionStorage.setItem("activeOperators", updatedOperator) } else throw new Error("Session Storage for Operator not Set")
         let activity:string|null = sessionStorage.getItem("activity")
         utilMethods.updateOperatorSelected(updatedOperator)
@@ -107,9 +107,9 @@ const levelText = <HTMLElement>document.getElementById("level-text")
   addEventsForTypesOrActivities(realChoices)
   addEventsForOperators(operatorChoices)
 
-  function updateOperator(operatorChoices:NodeListOf<Element>):string {
+  function updateOperator(operatorChoices:NodeListOf<Element>):Operator {
 
-    let operatorText:string="+"
+    let operatorText:Operator="+"
 
     for (let i = 0; i < 4; i++) {
       if (operatorChoices[i].classList.contains("active-operator")) {

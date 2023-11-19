@@ -1,4 +1,7 @@
 
+import { Operator } from "./types";
+
+
 //////////////////////////// MATH Methods
 //
 /**
@@ -61,7 +64,7 @@ export function percentage(n1: number, n2: number): number {
  * @param o1 - The operator ('+', '-', 'x', '÷').
  * @returns The result of the calculation.
  */
-export function calculation(n1: number|string, n2: number|string, o1: string): number {
+export function calculation(n1: number, n2: number, o1: Operator): number {
   n1 = Number(n1)|0
   n2 = Number(n2)|0
   let ans: number;
@@ -79,8 +82,9 @@ export function calculation(n1: number|string, n2: number|string, o1: string): n
       ans = divide(n1, n2);
       break;
     default:
-      ans = Infinity;
-      break;
+      const exhaustiveCheck:never = o1;
+      return exhaustiveCheck
+      
   }
   return ans;
 }
@@ -138,7 +142,7 @@ export function shuffle<T>(array :T[]):T[] {
  * @param o1 - The operator for the calculation.
  * @returns An array of options that includes the correct answer and three other random numbers.
  */
-export function createOptions(n1:number, n2:number, o1:string) {
+export function createOptions(n1:number, n2:number, o1:Operator) {
   var options = [];
   let r1:number, r2:number, r3:number;
   const ans:number = calculation(n1, n2, o1);
@@ -570,7 +574,7 @@ function createActivityTextAndIcon(type:string):string[]{
  * @param op - The type of the operator.
  * @returns An array containing operator text and operator color.
  */
-function createOperatorTextAndIcon(op:string):string[] {
+function createOperatorTextAndIcon(op:Operator):string[] {
   let operatorText:string, operatorColor:string
   switch (op) {
     case "+":
@@ -706,7 +710,7 @@ export function updateActivitySelected(type: string): void {
  * Updates the selected operator in the user interface based on the provided operator.
  * @param op - The selected operator.
  */
-export function updateOperatorSelected(op: string): void {
+export function updateOperatorSelected(op: Operator): void {
   const operator: HTMLElement | null = document.getElementById("selected-operator-menu");
   const [operatorText, operatorColor] = createOperatorTextAndIcon(op);
 
@@ -733,7 +737,7 @@ export function updateOperatorSelected(op: string): void {
  * @param op - The selected operator.
  * @param diff - The selected difficulty.
  */
-export function updateGeneralSelected(op:string, diff:string) {
+export function updateGeneralSelected(op:Operator, diff:string) {
   const difficulty: HTMLElement | null = document.getElementById("selected-difficulty-general");
   const difficultyContainer: HTMLElement | null = document.getElementById("selected-difficulty-container-general");
   const operator: HTMLElement | null = document.getElementById("selected-operator-text-general");
@@ -784,11 +788,11 @@ export async function updateLevelVisuals(level: number): Promise<void> {
  * @param operator - The selected operator.
  * @returns An array containing the high and low values.
  */
-export function setHighLowVals(difficulty: number|null, operator: string|null): [number, number] {
+export function setHighLowVals(difficulty: number|null, operator: Operator): [number, number] {
   let highVal: number;
   let lowVal: number;
 
-  operator = String(operator).trim();
+  // operator = String(operator).trim();
   console.log("sethighVal op:", operator);
 
   if (operator === "x") {
@@ -909,7 +913,7 @@ export function setHighLowVals(difficulty: number|null, operator: string|null): 
 export function updateDifficultyRange():void {
   // let  highVal, lowVal;
   let difficulty:string|null = sessionStorage.getItem("activeDifficulty");
-  let activeOperator:string|null = sessionStorage.getItem("activeOperators")
+  let activeOperator= <Operator>sessionStorage.getItem("activeOperators")
 
   // Set the high and low values based on the current active difficulty level
   const difficultyNumber = Number(difficulty)
@@ -930,13 +934,13 @@ export function updateDifficultyRange():void {
 
 /**
  * Reformats the operator string for better readability.
- * @param operator - The operator to be reformatted.
+ * @param operator as Operator- The operator to be reformatted.
  * @returns The reformatted operator string.
  */
-export function reformatOperator(operator:string):string {
+export function reformatOperator(operator:Operator):string {
 
   let reformattedOperator:string;
-  switch (String(operator).trim()) {
+  switch (operator) {
     case "+":
       reformattedOperator = "addition";
       break;
@@ -950,9 +954,10 @@ export function reformatOperator(operator:string):string {
       reformattedOperator = "division";
       break;
     default:
-      reformattedOperator = operator;
+      const exhaustiveCheck:never = operator
+      return exhaustiveCheck
       // console.log("Operator not reformatted")
-      break;
+      // break;
   }
   return reformattedOperator
 }

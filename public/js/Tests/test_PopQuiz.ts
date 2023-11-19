@@ -6,7 +6,7 @@ import * as questionLogic from '../sharedQuestionLogic.js';
 import { updateBadgeStatus } from '../badges.js';
 import { animateBadge } from '../badgeEarned.js';
 import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizElements } from '../domElements.js';
-import type { QuizStats } from '../types.js';
+import type { QuizStats,Operator } from '../types.js';
 
 
 
@@ -20,7 +20,7 @@ const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElement
 
 
 async function quizAnswerCheck(bool: boolean): Promise<void> {
-  let operator: string | null = sessionStorage.getItem("activeOperators")
+  let operator = <Operator>sessionStorage.getItem("activeOperators")
   if (bool) {
     // Emphasize the quizAnswerForm to indicate a correct answer
     utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
@@ -139,7 +139,7 @@ async function checkQuizStatus(quizStats: QuizStats, currScoreContainerEl: HTMLD
     if (quizStats.numCorrect == 10) {
 
       const activeDifficulty = sessionStorage.getItem('activeDifficulty')
-      const activeOperator = sessionStorage.getItem("activeOperators")
+      const activeOperator = <Operator>sessionStorage.getItem("activeOperators")
 
       await animateBadge()
       if (activeDifficulty && activeOperator) await updateBadgeStatus("quiz", activeDifficulty, activeOperator, true)
@@ -164,7 +164,7 @@ async function finishQuiz(lastScoreEl: HTMLElement, quizStats: QuizStats) {
   utilMethods.showHide([], [quizCorrectness]);
 
 
-  let operator: string | null = sessionStorage.getItem("activeOperators")
+  let operator = <Operator>sessionStorage.getItem("activeOperators")
   // Generate a new question
   if (operator) { questionLogic.newQuestion("quiz", operator) }
 
@@ -190,9 +190,9 @@ function quizUpdateAnswerHandler(e: Event): void {
 function quizAnswerHandler(e: Event): void {
   // if (quizNumOne && quizNumTwo && quizOpOne) {
   let realAns = utilMethods.calculation(
-    quizNumOne.innerHTML,
-    quizNumTwo.innerHTML,
-    quizOpOne.innerHTML
+    parseInt(quizNumOne.innerHTML),
+    parseInt(quizNumTwo.innerHTML),
+    quizOpOne.innerHTML as Operator
   ); // Calculate the correct answer using the quizNumOne, quizNumTwo, and quizOpOne elements
 
   quizAnswerCheck(realAns == state.userValue); // Check if the user's answer is correct using the quizAnswerCheck function
@@ -209,7 +209,7 @@ if (quizAnswerForm) quizAnswerForm.addEventListener("submit", quizAnswerHandler)
 
 window.onload = function () {
 
-  let operator = sessionStorage.getItem("activeOperators")
+  let operator = <Operator>sessionStorage.getItem("activeOperators")
   let difficulty = sessionStorage.getItem("activeDifficulty")
   if (operator && difficulty) {
     utilMethods.updateGeneralSelected(operator, difficulty)

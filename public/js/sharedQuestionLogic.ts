@@ -6,7 +6,7 @@ import { mcElements} from './domElements.js';
 import { mcQuizElements } from './domElements.js';
 import { quizElements } from './domElements.js';
 import { gameElements } from './domElements.js';
-
+import { Operator } from './types.js';
 
 
 const { numOne: flashNumOne, numTwo: flashNumTwo, opOne: flashOpOne } =flashElements;
@@ -15,7 +15,7 @@ const { numOne: mcQuizNumOne, numTwo: mcQuizNumTwo, opOne: mcQuizOpOne } = mcQui
 const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElements;
 const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElements;
 
-export function newGeneralQuestion(opEl:HTMLElement, n1El:HTMLElement, n2El:HTMLElement, operator:string, func?:(arg1:number,arg2:number,arg3:string)=>void):void {
+export function newGeneralQuestion(opEl:HTMLElement, n1El:HTMLElement, n2El:HTMLElement, operator:Operator, func?:(arg1:number,arg2:number,arg3:Operator)=>void):void {
 
     let activeHighVal:string|null = sessionStorage.getItem("activeHighVal")
     let activeLowVal:string|null = sessionStorage.getItem("activeLowVal")
@@ -23,7 +23,7 @@ export function newGeneralQuestion(opEl:HTMLElement, n1El:HTMLElement, n2El:HTML
     let activeHighValNumber:number = Number(activeHighVal)
     let activeLowValNumber:number = Number(activeLowVal)
     // Get a random operator from the list of operators
-    let o1:string =operator;
+    let o1:Operator =operator;
     
     // Generate two random numbers between 0 and the active high value
     let n1:number = utilMethods.randomNumber(0, activeHighValNumber);
@@ -73,7 +73,7 @@ export function newGeneralQuestion(opEl:HTMLElement, n1El:HTMLElement, n2El:HTML
 }
 
 // Function to generate a new question based on the specified type
-export function newQuestion(type:string, operator:string, options?:(n1:number,n2:number,o1:string)=>void):void {
+export function newQuestion(type:string, operator:Operator, options?:(n1:number,n2:number,o1:Operator)=>void):void {
     let num1:HTMLElement|null, num2:HTMLElement|null, op1:HTMLElement|null;
 
     // Load the appropriate section based on the question type

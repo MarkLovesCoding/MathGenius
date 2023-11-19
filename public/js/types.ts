@@ -22,3 +22,4 @@ export type Badges = {
         };
     };
 }
+export type Operator = "+"|"-"|"x"|"÷"

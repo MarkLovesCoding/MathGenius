@@ -2,7 +2,7 @@
 import * as utilMethods from '../utils.js';
 import * as questionLogic from '../sharedQuestionLogic.js';
 import { mcOptions } from '../domElements.js';
-
+import { Operator } from '../types.js';
 
 ////////////////////////////////////////////////////////////
 //MC
@@ -19,7 +19,7 @@ import { mcOptions } from '../domElements.js';
  * @returns {void}
  */
 async function mcAnswerCheck(bool:boolean, correctEl:HTMLElement, falseEl:HTMLElement|null = null) {
-  const operator:string|null = sessionStorage.getItem("activeOperators")
+  const operator = <Operator>sessionStorage.getItem("activeOperators")
   if (bool) {
     utilMethods.animateCorrect(correctEl);
     await utilMethods.delay(250);
@@ -39,10 +39,10 @@ async function mcAnswerCheck(bool:boolean, correctEl:HTMLElement, falseEl:HTMLEl
  *
  * @param {number} n1 - the first number
  * @param {number} n2 - the second number
- * @param {string} o1 - the operator
+ * @param {Operator} o1 - the operator
  * @returns {void}
  */
-  export function mcCreateOptions(n1:number, n2:number, o1:string) {
+  export function mcCreateOptions(n1:number, n2:number, o1:Operator) {
     // Create an array of four possible answer options using the given numbers and operator
     let options :number[]= utilMethods.createOptions(n1, n2, o1)
 
@@ -85,7 +85,7 @@ async function mcAnswerCheck(bool:boolean, correctEl:HTMLElement, falseEl:HTMLEl
 
 
 window.onload = function () {
-  let operator:string|null = sessionStorage.getItem("activeOperators")
+  let operator = <Operator>sessionStorage.getItem("activeOperators")
 
   let difficulty:string|null = sessionStorage.getItem("activeDifficulty")
   if(operator && difficulty){

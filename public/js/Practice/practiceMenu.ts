@@ -3,7 +3,8 @@
 
 import * as utilMethods from '../utils.js';
 // import { mcCreateOptions } from './practice_MultipleChoice.js';
-import type {DifficultyLevel} from '../types.js'
+import type {DifficultyLevel,Operator} from '../types.js'
+
 
 
 window.onload = function () {  //Ensure DOM is loaded before functions
@@ -212,8 +213,8 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   addEventsForActivities(practiceChoices)
 
-  function updateOperator(operatorChoices:NodeListOf<Element>) {
-    let operatorText:string ="+";
+  function updateOperator(operatorChoices:NodeListOf<Element>):Operator {
+    let operatorText:Operator ="+";
 
     for (let i = 0; i < 4; i++) {
       if (operatorChoices[i].classList.contains("active-operator")) {

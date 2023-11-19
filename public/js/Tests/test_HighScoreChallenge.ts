@@ -7,7 +7,7 @@ import { updateBadgeStatus, retrieveBadges, getHighestBadge } from '../badges.js
 import { animateBadge } from '../badgeEarned.js';
 
 import { gameCorrectness, gameElements, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTrackerContainer } from '../domElements.js';
-import { Badges } from '../types.js';
+import { Badges,Operator } from '../types.js';
 
 const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElements;
 
@@ -17,7 +17,7 @@ const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElement
 async function gameAnswerCheck(bool: boolean): Promise<void> {
   // If the answer is correct:
   const level = <string>sessionStorage.getItem("activeDifficulty")
-  const operator= <string>sessionStorage.getItem("activeOperators")
+  const operator= <Operator>sessionStorage.getItem("activeOperators")
 
   // TO DO remove below line update diff range
   utilMethods.updateDifficultyRange()
@@ -127,9 +127,9 @@ function levelUp(level: number): void {
 // }
 async function checkBadgeStatus(badges: Badges, operator: string, difficulty: string): Promise<boolean> {
   // console.log("running Badge status check",badges[operator]['game'][difficulty] )
-  const reformattedOperator = utilMethods.reformatOperator(operator)
+  // const reformattedOperator = utilMethods.reformatOperator(operator)
 
-  if (badges[reformattedOperator]["game"][difficulty] === false) return true;
+  if (badges[operator]["game"][difficulty] === false) return true;
   else return false;
 }
 
@@ -145,7 +145,7 @@ async function updateLevel(): Promise<void> {
   // Checks if the user has reached the next level and adds a new level to the game tracker
   if (currScore % 10 == 0) {
     let currDifficulty: number | null = Number(sessionStorage.getItem("activeDifficulty"));
-    const activeOperator: string | null = sessionStorage.getItem("activeOperators")
+    const activeOperator= <Operator>sessionStorage.getItem("activeOperators")
     const badgesFromDb = await retrieveBadges()
 
     // const activeBadges = sessionStorage.getItem("badges")
@@ -246,9 +246,9 @@ function gameUpdateAnswerHandler(e: Event): void {
 // Adds an event listener to the gameAnswerSubmit element to check the user's answer when the form is submitted
 function gameCheckAnswerHandler(e: Event): void {
   let realAns: number = utilMethods.calculation(
-    gameNumOne.innerHTML,
-    gameNumTwo.innerHTML,
-    gameOpOne.innerHTML
+    parseInt(gameNumOne.innerHTML),
+    parseInt(gameNumTwo.innerHTML),
+    gameOpOne.innerHTML as Operator
   ); // Calculate the correct answer using the gameNumOne, gameNumTwo, and gameOpOne elements
 
   gameActual.innerHTML = realAns.toString(); // Display the correct answer in the gameActual element
@@ -264,7 +264,7 @@ function gameOverWin() {
 async function resetGameSettings() {
   // utilMethods.correctnessView(false, gameCorrectness);
   // utilMethods.incorrectMotion(gameCorrectness);
-  const operator: string | null = sessionStorage.getItem("activeOperators")
+  const operator = <Operator>sessionStorage.getItem("activeOperators")
   // const difficulty = sessionStorage.getItem("activeDifficulty")
   utilMethods.disableInput(gameAnswerInput);
   // utilMethods.visibilityTimedToggle(true, gameActualContainer, 1000);
@@ -297,7 +297,7 @@ gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler); // Add an e
 
 
 
-function updateChallengeBadgeAppearance(elements:HTMLCollectionOf<Element>, badges:Badges, operator:string) {
+function updateChallengeBadgeAppearance(elements:HTMLCollectionOf<Element>, badges:Badges, operator:Operator) {
   const reformattedOperator = utilMethods.reformatOperator(operator)
   const bestBadges:[string,string,string][] = getHighestBadge(badges)
   console.log("bestBadges", bestBadges)
@@ -349,7 +349,7 @@ function updateChallengeBadgeAppearance(elements:HTMLCollectionOf<Element>, badg
 
 
 window.onload = async function () {
-  let operator = sessionStorage.getItem("activeOperators")
+  let operator = <Operator>sessionStorage.getItem("activeOperators")
   // state.activeOperators = sessionStorage.getItem("activeOperators")
 
 

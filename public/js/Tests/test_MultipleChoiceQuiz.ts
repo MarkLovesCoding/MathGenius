@@ -7,7 +7,7 @@ import { updateBadgeStatus } from '../badges.js';
 import { animateBadge } from '../badgeEarned.js';
 import { mcQuizOptions } from '../domElements.js';
 
-
+import { Operator } from '../types.js';
 
 
 //////MCQUIZ
@@ -64,7 +64,7 @@ async function checkMCQAnswered(): Promise<void> {
 
     if (state.mcQuizActive.mcqNumCorrect == 10) {
       const activeDifficulty: string | null = sessionStorage.getItem("activeDifficulty")
-      const activeOperator: string | null = sessionStorage.getItem("activeOperators")
+      const activeOperator= <Operator>sessionStorage.getItem("activeOperators")
       await animateBadge()
       if (activeDifficulty && activeOperator) {
         await updateBadgeStatus("mcquiz", activeDifficulty, activeOperator, true)
@@ -84,7 +84,7 @@ async function checkMCQAnswered(): Promise<void> {
 
 async function mcQuizAnswerCheck(bool: boolean, correctEl: HTMLElement, falseEl: null | HTMLElement = null): Promise<void> {
   // Check if the answer is correct or not
-  const operator: string | null = sessionStorage.getItem("activeOperators")
+  const operator= <Operator>sessionStorage.getItem("activeOperators")
   if (bool) {
     // If the answer is correct:
     // Increment the number of correct answers and answered questions
@@ -120,7 +120,7 @@ async function mcQuizAnswerCheck(bool: boolean, correctEl: HTMLElement, falseEl:
   }
 }
 
-export function mcQuizCreateOptions(n1: number, n2: number, o1: string): void {
+export function mcQuizCreateOptions(n1: number, n2: number, o1: Operator): void {
 
   // Create an array of options for the multiple choice question
   let options:number[]= utilMethods.createOptions(n1, n2, o1)
@@ -164,7 +164,7 @@ export function mcQuizCreateOptions(n1: number, n2: number, o1: string): void {
 ///
 window.onload = function () {
 
-  let operator: string | null = sessionStorage.getItem("activeOperators")
+  let operator= <Operator>sessionStorage.getItem("activeOperators")
 
 
 

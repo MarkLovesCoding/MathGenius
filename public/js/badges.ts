@@ -1,6 +1,6 @@
 
   import {reformatOperator,convertNumberToLevel} from './utils.js';
-  import { Badges } from './types.js';
+  import { Badges,Operator} from './types.js';
   const badgeImgs:Element[] = Array.from(document.getElementsByClassName("badge-img"))
 
 
@@ -106,7 +106,7 @@
   }
 
   // Updates badge status based on type, difficulty, and trueness. Implemented within game client script.
-  export async function updateBadgeStatus(type:string, difficulty:string, operator:string, bool:boolean):Promise<void> {
+  export async function updateBadgeStatus(type:string, difficulty:string, operator:Operator, bool:boolean):Promise<void> {
     const reformattedOperator:string = reformatOperator(operator)
     try {
       const badgesFromDb:Badges = await retrieveBadges();
