@@ -6,7 +6,7 @@ import { mcElements} from './domElements.js';
 import { mcQuizElements } from './domElements.js';
 import { quizElements } from './domElements.js';
 import { gameElements } from './domElements.js';
-import { Operator } from './types.js';
+import { ActivityType, Operator } from './types.js';
 
 
 const { numOne: flashNumOne, numTwo: flashNumTwo, opOne: flashOpOne } =flashElements;
@@ -73,7 +73,7 @@ export function newGeneralQuestion(opEl:HTMLElement, n1El:HTMLElement, n2El:HTML
 }
 
 // Function to generate a new question based on the specified type
-export function newQuestion(type:string, operator:Operator, options?:(n1:number,n2:number,o1:Operator)=>void):void {
+export function newQuestion(type:ActivityType, operator:Operator, options?:(n1:number,n2:number,o1:Operator)=>void):void {
     let num1:HTMLElement|null, num2:HTMLElement|null, op1:HTMLElement|null;
 
     // Load the appropriate section based on the question type
@@ -125,11 +125,13 @@ export function newQuestion(type:string, operator:Operator, options?:(n1:number,
 
         // If the type is not recognized, default to quiz type
         default:
-            num1 = quizNumOne;
-            num2 = quizNumTwo;
-            op1 = quizOpOne;
-            console.log("Type not identified. Please Fix")
-            break;
+            const exhaustiveCheck:never = type
+            return exhaustiveCheck
+            // num1 = quizNumOne;
+            // num2 = quizNumTwo;
+            // op1 = quizOpOne;
+            // console.log("Type not identified. Please Fix")
+            // break;
     }
 
     // Update the burger menu

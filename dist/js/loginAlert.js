@@ -1,1 +1,0 @@
-import{closeAlert}from"./utils";var loginAlert=document.getElementById("login-flash-message"),closeButton=document.getElementById("close-login-alert");closeButton&&closeButton.addEventListener("click",()=>closeAlert(loginAlert)),window.onclick=function(e){e.target!==loginAlert&&(loginAlert.style.display="none")};

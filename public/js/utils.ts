@@ -1,5 +1,5 @@
 
-import { Operator,Difficulty,OperatorVerbose } from "./types";
+import { Operator,Difficulty,OperatorVerbose, ActivityType } from "./types";
 
 
 //////////////////////////// MATH Methods
@@ -537,7 +537,7 @@ export function changeViewRight(element1: HTMLElement, element2: HTMLElement): v
  * @returns An array containing activity text and icon classes.
  */
 
-function createActivityTextAndIcon(type:string):string[]{
+function createActivityTextAndIcon(type:ActivityType):string[]{
   let activityText:string, activityIconClass:string
   switch (type) {
     case "multiple-choice-quiz":
@@ -561,10 +561,12 @@ function createActivityTextAndIcon(type:string):string[]{
       activityIconClass = "mc-icon icon fas fa-table-cells-large fa-large";
       break;
     default:
-      activityIconClass = " a ";
+      const exhaustiveCheck:never = type
+      return exhaustiveCheck
+      // activityIconClass = " a ";
 
-      activityText = type;
-      break;
+      // activityText = type;
+      // break;
   }
   return [activityText, activityIconClass]
 }

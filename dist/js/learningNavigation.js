@@ -1,1 +1,0 @@
-"use strict";const linkToTT=document.getElementById("new-times-tables"),linkToFractions=document.getElementById("new-fractions");linkToTT&&linkToTT.addEventListener("click",function(){window.location.href="/learning/times-table"}),linkToFractions&&linkToFractions.addEventListener("click",function(){window.location.href="/learning/fractions"});

@@ -1,1 +1,0 @@
-"use strict";var resetPasswordAlert=document.getElementById("reset-password-flash-message");window.onclick=function(e){e.target!==resetPasswordAlert&&(resetPasswordAlert.style.display="none")};

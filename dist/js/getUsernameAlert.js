@@ -1,1 +1,0 @@
-"use strict";var getUsernameAlert=document.getElementById("get-username-flash-message");window.onclick=function(e){e.target!==getUsernameAlert&&(getUsernameAlert.style.display="none")};
