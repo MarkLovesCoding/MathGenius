@@ -642,47 +642,46 @@ export function createDifficultyText(diff:Difficulty):string[] {
       difficultyColor = "purple";
       break;
     default:
-      difficultyText = "Good Luck!";
-      difficultyColor = "#f3e6aa";
-      break;
+      const exhaustiveCheck:never = diff
+      return exhaustiveCheck
   }
 
   return [difficultyText, difficultyColor]
 }
 
-export function convertNumberToLevel(num:number):string {
-  let level:string;
-  switch (num) {
-    case 1:
-      level = "Easy";
-      break;
-    case 2:
-      level = "Novice";
-      break;
-    case 3:
-      level = "Intermediate";
-      break;
-    case 4:
-      level = "Advanced";
-      break;
-    case 5:
-      level = "Genius!";
-      break;
-    default:
-      level = "-";
-      break;
-  }
+// export function convertNumberToLevel(num:number):string {
+//   let level:string;
+//   switch (num) {
+//     case 1:
+//       level = "Easy";
+//       break;
+//     case 2:
+//       level = "Novice";
+//       break;
+//     case 3:
+//       level = "Intermediate";
+//       break;
+//     case 4:
+//       level = "Advanced";
+//       break;
+//     case 5:
+//       level = "Genius!";
+//       break;
+//     default:
+//       level = "-";
+//       break;
+//   }
 
 
-  return level
-}
+//   return level
+// }
 
 
 /**
  * Updates the selected activity in the user interface based on the provided activity type.
  * @param type - The type of the activity to be selected.
  */
-export function updateActivitySelected(type: string): void {
+export function updateActivitySelected(type: ActivityType): void {
   // Get elements by their IDs
   const activityElOp: HTMLElement | null = document.getElementById("selected-activity-menu-op");
   const activityElDiff: HTMLElement | null = document.getElementById("selected-activity-menu-diff");

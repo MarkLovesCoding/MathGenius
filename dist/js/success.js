@@ -1,0 +1,1 @@
+"use strict";var success=document.getElementById("success");success&&(setTimeout(function(){success.style.opacity="0"},1e3),setTimeout(function(){success.style.display="none",success.style.zIndex="0"},2e3));

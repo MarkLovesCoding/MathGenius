@@ -1,6 +1,7 @@
 
-  import {reformatOperator,convertNumberToLevel} from './utils.js';
-  import { Badges,Operator} from './types.js';
+  import {reformatOperator,createDifficultyText} from './utils.js';
+  import { Badges,Operator,Difficulty} from './types.js';
+
   const badgeImgs:Element[] = Array.from(document.getElementsByClassName("badge-img"))
 
 
@@ -34,8 +35,8 @@
       return {}
     }
   }
-  export function getHighestBadge(badges:Badges):[string,string,string][] {
-    let bestBadges:[string,string,string][] = []
+  export function getHighestBadge(badges:Badges):[string,string,Difficulty][] {
+    let bestBadges:[string,string,Difficulty][] = []
 
     for (let op in badges) {
       for (let type in badges[op]) {
@@ -47,7 +48,7 @@
           }
         }
 
-        bestBadges.push([op, type, String(typeMax)])
+        bestBadges.push([op, type, typeMax.toString() as Difficulty])
 
       }
     }
@@ -94,7 +95,7 @@
           // console.log(level)
           if (best[1] == type && best[0] == operator && operator!== null && type!== null) {
             element.classList.add("active")
-            if(level)level.textContent = convertNumberToLevel(Number(best[2]))
+            if(level) level.textContent = createDifficultyText(best[2])[0]
             // level.textContent == convertNumberToLevel(Number(best[2]))
 
           }

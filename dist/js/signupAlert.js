@@ -1,0 +1,1 @@
+import{closeAlert}from"./utils";var signupAlert=document.getElementById("signup-flash-message"),closeButton=document.getElementById("close-signup-alert");closeButton.addEventListener("click",()=>closeAlert(signupAlert)),window.onclick=function(e){e.target!==signupAlert&&(signupAlert.style.display="none")};

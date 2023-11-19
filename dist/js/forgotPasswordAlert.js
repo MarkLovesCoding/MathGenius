@@ -1,0 +1,1 @@
+"use strict";var forgotPasswordAlert=document.getElementById("forgot-password-flash-message");function closeAlert(){forgotPasswordAlert.style.display="none"}window.onclick=function(o){o.target!==forgotPasswordAlert&&(forgotPasswordAlert.style.display="none")};

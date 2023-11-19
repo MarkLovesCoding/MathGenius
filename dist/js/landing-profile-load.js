@@ -1,0 +1,1 @@
+"use strict";async function retrieveLandingAvatar(t){try{var a=(await(await fetch("/get-avatar")).json()).avatarSrc.replace(/https?:\/\/[^\/]+/,"../");t.src=a}catch(t){console.error(t)}}window.addEventListener("DOMContentLoaded",function(){retrieveLandingAvatar(document.getElementById("profile-user-avatar"))});
