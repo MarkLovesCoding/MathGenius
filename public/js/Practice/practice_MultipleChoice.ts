@@ -2,7 +2,7 @@
 import * as utilMethods from '../utils.js';
 import * as questionLogic from '../sharedQuestionLogic.js';
 import { mcOptions } from '../domElements.js';
-import { Operator } from '../types.js';
+import { Difficulty, Operator } from '../types.js';
 
 ////////////////////////////////////////////////////////////
 //MC
@@ -87,7 +87,7 @@ async function mcAnswerCheck(bool:boolean, correctEl:HTMLElement, falseEl:HTMLEl
 window.onload = function () {
   let operator = <Operator>sessionStorage.getItem("activeOperators")
 
-  let difficulty:string|null = sessionStorage.getItem("activeDifficulty")
+  let difficulty= <Difficulty>sessionStorage.getItem("activeDifficulty")
   if(operator && difficulty){
     utilMethods.updateGeneralSelected(operator,difficulty)
     // sessionStorage.setItem("",operators)

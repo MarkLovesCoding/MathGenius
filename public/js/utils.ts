@@ -1,5 +1,5 @@
 
-import { Operator } from "./types";
+import { Operator,Difficulty,OperatorVerbose } from "./types";
 
 
 //////////////////////////// MATH Methods
@@ -603,9 +603,11 @@ function createOperatorTextAndIcon(op:Operator):string[] {
       break;
     default:
       // operatorIconClass = "  ";
-      operatorText = "You Can Do It!"
-      operatorColor = "#f3e6aa"
-      break;
+      const exhaustiveCheck:never = op
+      return exhaustiveCheck
+      // operatorText = "You Can Do It!"
+      // operatorColor = "#f3e6aa"
+      // break;
   }
   return [operatorText, operatorColor]
 }
@@ -614,9 +616,9 @@ function createOperatorTextAndIcon(op:Operator):string[] {
  * @param diff - The level of difficulty.
  * @returns An array containing difficulty converted to verbose text and color schema for difficulty.
  */
-export function createDifficultyText(diff:string):string[] {
+export function createDifficultyText(diff:Difficulty):string[] {
   let difficultyText:string, difficultyColor:string
-  switch (String(diff)) {
+  switch (diff) {
     case "1":
       difficultyText = "Easy";
       difficultyColor = "green";
@@ -737,7 +739,7 @@ export function updateOperatorSelected(op: Operator): void {
  * @param op - The selected operator.
  * @param diff - The selected difficulty.
  */
-export function updateGeneralSelected(op:Operator, diff:string) {
+export function updateGeneralSelected(op:Operator, diff:Difficulty) {
   const difficulty: HTMLElement | null = document.getElementById("selected-difficulty-general");
   const difficultyContainer: HTMLElement | null = document.getElementById("selected-difficulty-container-general");
   const operator: HTMLElement | null = document.getElementById("selected-operator-text-general");
@@ -768,8 +770,8 @@ export function updateGeneralSelected(op:Operator, diff:string) {
  * Asynchronously updates the visual representation of the selected level in the general settings.
  * @param level - The selected level.
  */
-export async function updateLevelVisuals(level: number): Promise<void> {
-  const [difficultyText, difficultyColor] = createDifficultyText(String(level));
+export async function updateLevelVisuals(level: Difficulty): Promise<void> {
+  const [difficultyText, difficultyColor] = createDifficultyText(level);
   const difficulty: HTMLElement | null = document.getElementById("selected-difficulty-general");
   const difficultyContainer: HTMLElement | null = document.getElementById("selected-difficulty-container-general");
 
@@ -788,120 +790,117 @@ export async function updateLevelVisuals(level: number): Promise<void> {
  * @param operator - The selected operator.
  * @returns An array containing the high and low values.
  */
-export function setHighLowVals(difficulty: number|null, operator: Operator): [number, number] {
+export function setHighLowVals(difficulty: Difficulty, operator: Operator): [number, number] {
   let highVal: number;
   let lowVal: number;
 
   // operator = String(operator).trim();
-  console.log("sethighVal op:", operator);
+  // console.log("sethighVal op:", operator);
 
   if (operator === "x") {
     switch (difficulty) {
-      case 1:
+      case "1":
         highVal = 5;
         lowVal = 0;
         break;
-      case 2:
+      case "2":
         highVal = 6;
         lowVal = 2;
         break;
-      case 3:
+      case "3":
         highVal = 8;
         lowVal = 3;
         break;
-      case 4:
+      case "4":
         highVal = 10;
         lowVal = 3;
         break;
-      case 5:
+      case "5":
         highVal = 12;
         lowVal = 4;
         break;
       default:
-        highVal = 0;
-        lowVal = 0;
-        break;
+        const exhaustiveCheck:never = difficulty
+        return exhaustiveCheck
     }
   } else if (operator === "+") {
     switch (difficulty) {
-      case 1:
+      case "1":
         highVal = 5;
         lowVal = 0;
         break;
-      case 2:
+      case "2":
         highVal = 10;
         lowVal = 0;
         break;
-      case 3:
+      case "3":
         highVal = 20;
         lowVal = 0;
         break;
-      case 4:
+      case "4":
         highVal = 32;
         lowVal = 0;
         break;
-      case 5:
+      case "5":
         highVal = 50;
         lowVal = 0;
         break;
       default:
-        highVal = 0;
-        lowVal = 0;
-        break;
+        const exhaustiveCheck:never = difficulty
+        return exhaustiveCheck
+        
     }
   } else if (operator === "-") {
     switch (difficulty) {
-      case 1:
+      case "1":
         highVal = 9;
         lowVal = 0;
         break;
-      case 2:
+      case "2":
         highVal = 20;
         lowVal = 0;
         break;
-      case 3:
+      case "3":
         highVal = 40;
         lowVal = 0;
         break;
-      case 4:
+      case "4":
         highVal = 70;
         lowVal = 0;
         break;
-      case 5:
+      case "5":
         highVal = 100;
         lowVal = 0;
         break;
       default:
-        highVal = 0;
-        lowVal = 0;
-        break;
+        const exhaustiveCheck:never = difficulty
+        return exhaustiveCheck
     }
   } else {
     switch (difficulty) {
-      case 1:
+      case "1":
         highVal = 1;
         lowVal = 0;
         break;
-      case 2:
+      case "2":
         highVal = 3;
         lowVal = 1;
         break;
-      case 3:
+      case "3":
         highVal = 4;
         lowVal = 2;
         break;
-      case 4:
+      case "4":
         highVal = 9;
         lowVal = 3;
         break;
-      case 5:
+      case "5":
         highVal = 12;
         lowVal = 3;
         break;
       default:
-        highVal = 0;
-        lowVal = 0;
-        break;
+        const exhaustiveCheck:never = difficulty
+        return exhaustiveCheck
     }
   }
 
@@ -912,11 +911,11 @@ export function setHighLowVals(difficulty: number|null, operator: Operator): [nu
 
 export function updateDifficultyRange():void {
   // let  highVal, lowVal;
-  let difficulty:string|null = sessionStorage.getItem("activeDifficulty");
+  let difficulty = <Difficulty>sessionStorage.getItem("activeDifficulty");
   let activeOperator= <Operator>sessionStorage.getItem("activeOperators")
 
   // Set the high and low values based on the current active difficulty level
-  const difficultyNumber = Number(difficulty)
+  const difficultyNumber = difficulty
   const [highVal, lowVal] = setHighLowVals(difficultyNumber, activeOperator)
 
 
@@ -937,9 +936,9 @@ export function updateDifficultyRange():void {
  * @param operator as Operator- The operator to be reformatted.
  * @returns The reformatted operator string.
  */
-export function reformatOperator(operator:Operator):string {
+export function reformatOperator(operator:Operator):OperatorVerbose {
 
-  let reformattedOperator:string;
+  let reformattedOperator:OperatorVerbose;
   switch (operator) {
     case "+":
       reformattedOperator = "addition";

@@ -3,7 +3,7 @@ import * as utilMethods from '../utils.js';
 
 import * as questionLogic from '../sharedQuestionLogic.js';
 import { flashAnswer, flashCard, flashElements } from '../domElements.js';
-import { Operator } from '../types.js';
+import { Difficulty, Operator } from '../types.js';
 const { numOne: flashNumOne, numTwo: flashNumTwo, opOne: flashOpOne } = flashElements;
 
 // Function to handle the flashCard mousedown event
@@ -32,7 +32,7 @@ window.onload = function () {
   let operator = <Operator>sessionStorage.getItem("activeOperators")
 
 
-  let difficulty: string | null = sessionStorage.getItem("activeDifficulty")
+  let difficulty = <Difficulty>sessionStorage.getItem("activeDifficulty")
   if (operator && difficulty) {
     utilMethods.updateGeneralSelected(operator, difficulty)
 

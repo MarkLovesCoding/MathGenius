@@ -7,7 +7,7 @@ import { updateBadgeStatus } from '../badges.js';
 import { animateBadge } from '../badgeEarned.js';
 import { mcQuizOptions } from '../domElements.js';
 
-import { Operator } from '../types.js';
+import { Operator, Difficulty } from '../types.js';
 
 
 //////MCQUIZ
@@ -168,7 +168,7 @@ window.onload = function () {
 
 
 
-  let difficulty: string | null = sessionStorage.getItem("activeDifficulty")
+  let difficulty= <Difficulty>sessionStorage.getItem("activeDifficulty")
   if (operator && difficulty) {
     utilMethods.updateGeneralSelected(operator, difficulty)
     questionLogic.newQuestion('multiple-choice-quiz', operator, mcQuizCreateOptions);

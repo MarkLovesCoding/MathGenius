@@ -6,7 +6,7 @@ import * as questionLogic from '../sharedQuestionLogic.js';
 import { updateBadgeStatus } from '../badges.js';
 import { animateBadge } from '../badgeEarned.js';
 import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizElements } from '../domElements.js';
-import type { QuizStats,Operator } from '../types.js';
+import type { QuizStats,Operator, Difficulty } from '../types.js';
 
 
 
@@ -210,7 +210,7 @@ if (quizAnswerForm) quizAnswerForm.addEventListener("submit", quizAnswerHandler)
 window.onload = function () {
 
   let operator = <Operator>sessionStorage.getItem("activeOperators")
-  let difficulty = sessionStorage.getItem("activeDifficulty")
+  let difficulty = <Difficulty>sessionStorage.getItem("activeDifficulty")
   if (operator && difficulty) {
     utilMethods.updateGeneralSelected(operator, difficulty)
     questionLogic.newQuestion('quiz', operator);

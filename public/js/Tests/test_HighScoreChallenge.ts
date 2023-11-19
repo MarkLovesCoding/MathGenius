@@ -7,7 +7,7 @@ import { updateBadgeStatus, retrieveBadges, getHighestBadge } from '../badges.js
 import { animateBadge } from '../badgeEarned.js';
 
 import { gameCorrectness, gameElements, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTrackerContainer } from '../domElements.js';
-import { Badges,Operator } from '../types.js';
+import { Badges,Operator, OperatorVerbose, Difficulty } from '../types.js';
 
 const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElements;
 
@@ -125,7 +125,7 @@ function levelUp(level: number): void {
 
 //   difficulty.textContent = difficultyText
 // }
-async function checkBadgeStatus(badges: Badges, operator: string, difficulty: string): Promise<boolean> {
+async function checkBadgeStatus(badges: Badges, operator: OperatorVerbose, difficulty: string): Promise<boolean> {
   // console.log("running Badge status check",badges[operator]['game'][difficulty] )
   // const reformattedOperator = utilMethods.reformatOperator(operator)
 
@@ -153,9 +153,10 @@ async function updateLevel(): Promise<void> {
     // await updateBadgeStatus("game", currDifficulty, activeOperator, true)
 
     let nextDifficulty = currDifficulty == 5 ? 5 : currDifficulty + 1
-    await utilMethods.updateLevelVisuals(nextDifficulty)
+    if( nextDifficulty > 5 ||nextDifficulty  < 1) throw new Error("Next Difficulty out of range")
+    await utilMethods.updateLevelVisuals(nextDifficulty.toString() as Difficulty)
     if (activeOperator && currDifficulty) {
-      utilMethods.updateGeneralSelected(activeOperator, nextDifficulty.toString())
+      utilMethods.updateGeneralSelected(activeOperator, nextDifficulty.toString() as Difficulty)
       sessionStorage.setItem("activeDifficulty", nextDifficulty.toString())
       utilMethods.updateDifficultyRange()
       if (await checkBadgeStatus(badgesFromDb, utilMethods.reformatOperator(activeOperator), currDifficulty.toString())) {
@@ -274,7 +275,7 @@ async function resetGameSettings() {
   utilMethods.resetLevelNumber(gameLevelNumber);
   utilMethods.resetWidth([gameTracker]);
   sessionStorage.setItem("activeDifficulty", "1")
-  await utilMethods.updateLevelVisuals(1)
+  await utilMethods.updateLevelVisuals("1")
   if (operator) {
     utilMethods.updateGeneralSelected(operator, "1")
 
@@ -298,7 +299,7 @@ gameAnswerSubmit.addEventListener("submit", gameCheckAnswerHandler); // Add an e
 
 
 function updateChallengeBadgeAppearance(elements:HTMLCollectionOf<Element>, badges:Badges, operator:Operator) {
-  const reformattedOperator = utilMethods.reformatOperator(operator)
+  const reformattedOperator:OperatorVerbose = utilMethods.reformatOperator(operator)
   const bestBadges:[string,string,string][] = getHighestBadge(badges)
   console.log("bestBadges", bestBadges)
   // for (let element of elements) {

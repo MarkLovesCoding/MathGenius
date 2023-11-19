@@ -23,3 +23,5 @@ export type Badges = {
     };
 }
 export type Operator = "+"|"-"|"x"|"÷"
+export type Difficulty = "1"|"2"|"3"|"4"|"5"
+export type OperatorVerbose = "addition"|"subtraction"|"multiplication"|"division"
