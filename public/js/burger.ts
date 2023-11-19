@@ -1,14 +1,14 @@
 // Get references to the necessary elements
-const burgerContainer = document.getElementById('burger-container') as HTMLElement
-const expandedMenu = document.getElementById('expanded-menu') as HTMLElement
-const burgerSpans = document.querySelectorAll('.burger span') as NodeListOf<Element>
-const burger = document.getElementById('burger') as HTMLElement
-const testNav = (document.getElementById('test-nav') as HTMLElement)?.parentElement;
-const practiceNav = (document.getElementById('practice-nav') as HTMLElement)?.parentElement;
-const learningNav = (document.getElementById('learning-nav') as HTMLElement)?.parentElement;
-const profileNav = (document.getElementById('profile-nav') as HTMLElement)?.parentElement;
-const homeNav = (document.getElementById('home-nav') as HTMLElement)?.parentElement;
-const logoutNav = (document.getElementById('logout-nav') as HTMLElement)?.parentElement;
+const burgerContainer = <HTMLElement>document.getElementById('burger-container') as HTMLElement
+const expandedMenu = <HTMLElement>document.getElementById('expanded-menu') as HTMLElement
+const burgerSpans = <NodeListOf<Element>>document.querySelectorAll('.burger span') as NodeListOf<Element>
+const burger = <HTMLElement>document.getElementById('burger') as HTMLElement
+const testNav = (<HTMLElement>document.getElementById('test-nav') as HTMLElement)?.parentElement;
+const practiceNav = (<HTMLElement>document.getElementById('practice-nav') as HTMLElement)?.parentElement;
+const learningNav = (<HTMLElement>document.getElementById('learning-nav') as HTMLElement)?.parentElement;
+const profileNav = (<HTMLElement>document.getElementById('profile-nav') as HTMLElement)?.parentElement;
+const homeNav = (<HTMLElement>document.getElementById('home-nav') as HTMLElement)?.parentElement;
+const logoutNav = (<HTMLElement>document.getElementById('logout-nav') as HTMLElement)?.parentElement;
 
 
 

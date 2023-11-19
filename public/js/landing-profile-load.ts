@@ -15,7 +15,7 @@
 
 // Initialize the avatar retrieval
 window.addEventListener('DOMContentLoaded', function () {
-  const profile = document.getElementById("profile-user-avatar") as HTMLImageElement
+  const profile = <HTMLImageElement>document.getElementById("profile-user-avatar") 
 
   retrieveLandingAvatar(profile)
 })

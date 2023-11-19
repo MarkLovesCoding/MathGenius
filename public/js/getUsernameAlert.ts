@@ -1,6 +1,6 @@
 
 
-var getUsernameAlert = document.getElementById("get-username-flash-message") as HTMLElement
+var getUsernameAlert = <HTMLElement>document.getElementById("get-username-flash-message")
 
 // When the user clicks on <span> (x), close the modal
 

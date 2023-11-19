@@ -94,7 +94,9 @@ window.onload = function () {
     // questionLogic.newGeneralQuestion(flashOpOne,flashNumOne,flashNumTwo,state.activeOperators)
     questionLogic.newQuestion('multiple-choice', operator, mcCreateOptions);
   }
-
+  else{
+    throw new Error("Session Storage not retrieved")
+  }
 }
   //
   //END MC

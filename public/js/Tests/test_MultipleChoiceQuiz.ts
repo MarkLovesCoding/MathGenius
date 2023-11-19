@@ -24,11 +24,11 @@ function finishMCQuiz(): void {
   state.mcQuizActive.mcqFailedAttempts = 0;
 }
 
-const mcQuestionNumber = document.getElementById("mc-question-number") as HTMLElement
-const mcQuestionsCorrect = document.getElementById("mc-questions-correct") as HTMLElement
-const mcQuizModal = document.getElementById("mc-quiz-modal") as HTMLElement
-const mcQuizAmountCorrect = document.getElementById("mc-quiz-amountCorrect") as HTMLElement
-const mcQuizAmountCorrectPercentage = document.getElementById("mc-quiz-amountCorrectPercentage") as HTMLElement
+const mcQuestionNumber = <HTMLElement>document.getElementById("mc-question-number") 
+const mcQuestionsCorrect = <HTMLElement>document.getElementById("mc-questions-correct") 
+const mcQuizModal = <HTMLElement>document.getElementById("mc-quiz-modal") 
+const mcQuizAmountCorrect = <HTMLElement>document.getElementById("mc-quiz-amountCorrect") 
+const mcQuizAmountCorrectPercentage = <HTMLElement>document.getElementById("mc-quiz-amountCorrectPercentage") 
 
 
 async function mcQuizShowScore():Promise<void> {

@@ -1,9 +1,9 @@
 
 // Get references to the necessary elements
-const modal = document.getElementById("avatar-modal") as HTMLElement
-const profile = document.getElementById("profile-user-avatar") as HTMLImageElement
-const span = document.getElementById("avatar-modal-close") as HTMLElement
-const userIconsContainer = document.getElementById("avatar-user-icons") as HTMLElement
+const modal = <HTMLElement>document.getElementById("avatar-modal")
+const profile = <HTMLImageElement>document.getElementById("profile-user-avatar")
+const span = <HTMLElement>document.getElementById("avatar-modal-close") 
+const userIconsContainer = <HTMLElement>document.getElementById("avatar-user-icons") 
 
 // Open the modal when the profile avatar is clicked
 profile.onclick = function () {

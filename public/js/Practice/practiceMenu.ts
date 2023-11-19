@@ -61,24 +61,26 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   // const operatorMenuForward = document.getElementById("operator-menu-forward") as HTMLElement
   // const operatorPracticeMenuBackwarUpper = document.getElementById("operator-practice-menu-backward-upper")
-  const operatorPracticeMenuBackwardLower = document.getElementById("operator-practice-menu-backward-lower") as HTMLElement
+  const operatorPracticeMenuBackwardLower = <HTMLElement>document.getElementById("operator-practice-menu-backward-lower") 
   // const operatorPracticeMenuBackwards = [ operatorPracticeMenuBackwardLower];
 
-  const difficultyMenuForward = document.getElementById("difficulty-menu-forward") as HTMLElement
+  const difficultyMenuForward = <HTMLElement>document.getElementById("difficulty-menu-forward") 
   // const difficultyMenuBackwardUpper = document.getElementById("difficulty-menu-backward-upper")
-  const difficultyMenuBackwardLower = document.getElementById("difficulty-menu-backward-lower") as HTMLElement
+  const difficultyMenuBackwardLower = <HTMLElement>document.getElementById("difficulty-menu-backward-lower") 
 
   // const difficultyMenuBackwards = [ difficultyMenuBackwardLower]
-  const activitiesChoices = document.querySelectorAll(".activity-choice") as NodeListOf<Element>
-  const practiceChoices = document.querySelectorAll(".practice-choice") as NodeListOf<Element>
-  const operatorChoices = document.querySelectorAll(".operator-choice") as NodeListOf<Element>
+  const activitiesChoices = <NodeListOf<Element>>document.querySelectorAll(".activity-choice")
+  const practiceChoices = <NodeListOf<Element>>document.querySelectorAll(".practice-choice")
+  const operatorChoices = <NodeListOf<Element>>document.querySelectorAll(".operator-choice") 
   // const operatorAlert = document.getElementById("operator-alert-modal") as HTMLElement
 
-  const operatorContainer = document.getElementById("operator-menu-container") as HTMLElement
-  const activityContainer = document.getElementById("practice-menu-container") as HTMLElement
-  const difficultyContainer = document.getElementById("difficulty-menu-container") as HTMLElement
+  const operatorContainer = <HTMLElement>document.getElementById("operator-menu-container") 
+  const activityContainer = <HTMLElement>document.getElementById("practice-menu-container") 
+  const difficultyContainer = <HTMLElement>document.getElementById("difficulty-menu-container") 
 
-
+  const rangeInput = <HTMLInputElement>document.getElementById("range-input") 
+  const rangeValue = <HTMLElement>document.getElementById("range-value") 
+  const levelText = <HTMLElement>document.getElementById("level-text") 
   // Handle the click event on the operatorMenuForward button
   // operatorMenuForward.addEventListener("click", (e) => {
 
@@ -248,9 +250,6 @@ window.onload = function () {  //Ensure DOM is loaded before functions
 
   // Initialize variables for the range input, range value, and level text elements
 // Initialize variables for the range input, range value, and level text elements
-const rangeInput = document.getElementById("range-input") as HTMLInputElement;
-const rangeValue = document.getElementById("range-value") as HTMLElement;
-const levelText = document.getElementById("level-text") as HTMLElement;
 
 // Define an interface for the structure of each difficulty level
 

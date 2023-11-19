@@ -1,6 +1,6 @@
 // Get references to the necessary elements
-const linkToTT = document.getElementById('new-times-tables') as HTMLElement
-const linkToFractions = document.getElementById('new-fractions') as HTMLElement
+const linkToTT = <HTMLElement>document.getElementById('new-times-tables') 
+const linkToFractions = <HTMLElement>document.getElementById('new-fractions') 
 
 // Add event listener for linkToTT
 if (linkToTT) linkToTT.addEventListener("click", function () {

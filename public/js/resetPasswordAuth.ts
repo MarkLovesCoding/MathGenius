@@ -1,7 +1,7 @@
 
-const password = document.querySelector('#password') as HTMLInputElement;
-const confirmPassword = document.querySelector('#confirm-password') as HTMLInputElement;
-const submitBtn = document.querySelector('#reset-password-button') as HTMLButtonElement;
+const password = <HTMLInputElement>document.querySelector('#password') 
+const confirmPassword = <HTMLInputElement>document.querySelector('#confirm-password') 
+const submitBtn = <HTMLButtonElement>document.querySelector('#reset-password-button') 
 
 if (!password || !confirmPassword || !submitBtn) {
   throw new Error('Elements not found');

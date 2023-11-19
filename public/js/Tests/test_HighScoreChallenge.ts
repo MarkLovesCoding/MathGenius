@@ -16,8 +16,8 @@ const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElement
 //
 async function gameAnswerCheck(bool: boolean): Promise<void> {
   // If the answer is correct:
-  const level: string | null = sessionStorage.getItem("activeDifficulty")
-  const operator: string | null = sessionStorage.getItem("activeOperators")
+  const level = <string>sessionStorage.getItem("activeDifficulty")
+  const operator= <string>sessionStorage.getItem("activeOperators")
 
   // TO DO remove below line update diff range
   utilMethods.updateDifficultyRange()
@@ -65,9 +65,9 @@ async function gameAnswerCheck(bool: boolean): Promise<void> {
  * if necessary.
  */
 function updateScore(): void {
-  let currScoreInner = parseInt(gameCurrScore.innerHTML);
+  let currScoreInner = parseInt(gameCurrScore?.innerHTML);
   currScoreInner += 1;
-  gameCurrScore.innerHTML = currScoreInner.toString();
+  gameCurrScore.innerHTML = currScoreInner?.toString();
   checkHighScore();
 }
 
@@ -77,7 +77,7 @@ function updateScore(): void {
 * if necessary.
 */
 function checkHighScore(): void {
-  let curr = Number(gameCurrScore.innerHTML);
+  let curr = Number(gameCurrScore?.innerHTML);
   let highScore = parseInt(state.high_score.toString())
   if (curr == 50) gameOverWin()
   if (curr > highScore) {

@@ -1,4 +1,4 @@
-var isLandscape: boolean | null;
+var isLandscape: boolean;
 
 // Event listener for window resize to check if the orientation is landscape
 window.addEventListener("resize", function () {
@@ -8,12 +8,12 @@ window.addEventListener("resize", function () {
 // Event listener for DOMContentLoaded to set up the initial state
 window.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
-    const numbers = document.querySelectorAll(".number") as NodeListOf<HTMLDivElement>;
-    const timesTable = document.querySelector(".times-table") as HTMLDivElement;
-    let activeNumber = document.querySelector('.number[data-number="1"]') as HTMLDivElement | null;
+    const numbers = <NodeListOf<HTMLDivElement>>document.querySelectorAll(".number") 
+    const timesTable = <HTMLDivElement>document.querySelector(".times-table") 
+    let activeNumber = <HTMLDivElement>document.querySelector('.number[data-number="1"]') 
 
     // Load times table for number 1 on page load
-    const initialNumber = document.querySelector('.number[data-number="1"]') as HTMLDivElement;
+    const initialNumber = <HTMLDivElement>document.querySelector('.number[data-number="1"]') 
     if (initialNumber) {
       initialNumber.classList.add("active");
       timesTable.innerHTML = generateTimesTable(1);

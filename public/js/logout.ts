@@ -1,5 +1,5 @@
 // Add an event listener for when the logout button is clicked
-const logoutBtn = document.getElementById('logout-btn') as HTMLElement
+const logoutBtn = <HTMLElement>document.getElementById('logout-btn') 
 logoutBtn.addEventListener('click', () => {
 
   // Redirect to the logout page

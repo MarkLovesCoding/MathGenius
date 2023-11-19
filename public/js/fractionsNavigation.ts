@@ -3,9 +3,9 @@
 // import { carousel } from "./domElements"
 // Get references to the necessary elements
 // const carouselContainer = document.querySelector('.fraction-carousel-container') as HTMLElement
-const carouselItems = Array.from(document.querySelectorAll('.fraction-lesson')) as HTMLElement[]
-const previousButton = document.querySelector('.fraction-previous-btn') as HTMLElement
-const nextButton = document.querySelector('.fraction-next-btn') as HTMLElement
+const carouselItems = Array.from(<NodeListOf<Element>>document.querySelectorAll('.fraction-lesson')) 
+const previousButton = <HTMLElement>document.querySelector('.fraction-previous-btn') 
+const nextButton = <HTMLElement>document.querySelector('.fraction-next-btn') 
 
 
 

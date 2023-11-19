@@ -1,9 +1,9 @@
 function onSubmit() :void{
-  (document.getElementById("login-form") as HTMLFormElement).submit();
+  (<HTMLFormElement>document.getElementById("login-form")).submit();
 }
 function onSubmitGoogle():void {
-  (document.getElementById("google-login-form") as HTMLFormElement).submit();
+  (<HTMLFormElement>document.getElementById("google-login-form")).submit();
 }
 function onSubmitGuestLogIn():void {
-  (document.getElementById("guest-login-form") as HTMLFormElement).submit();
+  (<HTMLFormElement>document.getElementById("guest-login-form") ).submit();
 }

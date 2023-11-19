@@ -1,12 +1,12 @@
 import { closeAlert } from "./utils";
-var signupAlert = document.getElementById("signup-flash-message") as HTMLElement
+var signupAlert = <HTMLElement>document.getElementById("signup-flash-message")
 
 // When the user clicks on <span> (x), close the modal
 // function closeAlertSignUp():void {
 //   signupAlert.style.display = 'none';
 // }
 
-var closeButton = document.getElementById('close-signup-alert') as HTMLElement
+var closeButton = <HTMLElement>document.getElementById('close-signup-alert') 
 
   closeButton.addEventListener('click', ()=>closeAlert(signupAlert));
 

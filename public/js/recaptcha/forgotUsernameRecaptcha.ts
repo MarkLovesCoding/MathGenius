@@ -1,3 +1,3 @@
 function onSubmitUsername():void {
-  (document.getElementById("forgot-username-form")as HTMLFormElement).submit();
+  (<HTMLFormElement>document.getElementById("forgot-username-form")).submit();
 }

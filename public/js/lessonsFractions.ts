@@ -1,7 +1,7 @@
 // Get references to the necessary elements
 import { carousel } from "./domElements";
 
-const lessons = document.querySelectorAll('.fraction-lesson') as NodeListOf<Element>
+const lessons = <NodeListOf<Element>>document.querySelectorAll('.fraction-lesson') 
 let currentPosition = 0;
 
 // Function to show the lesson at the specified index
@@ -10,8 +10,8 @@ function showLesson(index: number): void {
 }
 
 // Get references to the previous and next buttons
-const previousBtn = document.querySelector('.fraction-previous-btn') as HTMLElement
-const nextBtn = document.querySelector('.fraction-next-btn') as HTMLElement
+const previousBtn = <HTMLElement>document.querySelector('.fraction-previous-btn') 
+const nextBtn = <HTMLElement>document.querySelector('.fraction-next-btn') 
 
 // Event listener for previous button
 previousBtn.addEventListener('click', () => {

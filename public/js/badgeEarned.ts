@@ -1,6 +1,6 @@
 // Get references to the necessary elements
-const modalImage: HTMLElement | null = document.querySelector('.badge-modal-image');
-const modalContainer: HTMLElement | null = document.querySelector('.badge-modal-container');
+const modalImage: HTMLElement | null = <HTMLElement>document.querySelector('.badge-modal-image');
+const modalContainer: HTMLElement | null = <HTMLElement>document.querySelector('.badge-modal-container');
 
 // Check if elements are found before attempting to access their properties
 

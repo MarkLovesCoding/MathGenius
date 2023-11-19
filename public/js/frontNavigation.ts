@@ -1,7 +1,7 @@
 // Get references to the necessary elements
-const linkToTests = document.getElementById('new-real') as HTMLElement
-const linkToPractice = document.getElementById('new-practice') as HTMLElement
-const linkToLearning = document.getElementById('new-learning') as HTMLElement
+const linkToTests = <HTMLElement>document.getElementById('new-real') 
+const linkToPractice = <HTMLElement>document.getElementById('new-practice') 
+const linkToLearning = <HTMLElement>document.getElementById('new-learning')
 
 // Add event listener for linkToTests
 if(linkToTests)linkToTests.addEventListener("click", function () {

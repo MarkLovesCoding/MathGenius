@@ -143,7 +143,7 @@ async function checkQuizStatus(quizStats: QuizStats, currScoreContainerEl: HTMLD
 
       await animateBadge()
       if (activeDifficulty && activeOperator) await updateBadgeStatus("quiz", activeDifficulty, activeOperator, true)
-
+      else { throw new Error("Session storage operator and difficulty not retrieved") }
     }
     else {
       quizShowScore();
@@ -167,9 +167,10 @@ async function finishQuiz(lastScoreEl: HTMLElement, quizStats: QuizStats) {
   let operator: string | null = sessionStorage.getItem("activeOperators")
   // Generate a new question
   if (operator) { questionLogic.newQuestion("quiz", operator) }
-  else {
-    console.log("No operator retrieved from Session Storage")
-  }
+
+  else { throw new Error("Session storage operator not retrieved") }
+
+
 
 }
 
@@ -214,5 +215,6 @@ window.onload = function () {
     utilMethods.updateGeneralSelected(operator, difficulty)
     questionLogic.newQuestion('quiz', operator);
   }
+  else { throw new Error("Session storage not retrieved") }
 
 } 

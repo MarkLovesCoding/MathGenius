@@ -4,12 +4,12 @@ import { state } from '../state.js';
 import { changeViewRight,updateActivitySelected } from '../utils.js';
 
 // Get references to the necessary elements
-const operatorContainer = document.getElementById("operator-menu-container") as HTMLElement
-const activityContainer = document.getElementById("practice-menu-container") as HTMLElement
+const operatorContainer = <HTMLElement>document.getElementById("operator-menu-container") 
+const activityContainer = <HTMLElement>document.getElementById("practice-menu-container") 
 
 // Get references to the necessary links
-const linkToFlash = document.getElementById('new-flash') as HTMLElement
-const linkToMC = document.getElementById('new-mc') as HTMLElement
+const linkToFlash = <HTMLElement>document.getElementById('new-flash') 
+const linkToMC = <HTMLElement>document.getElementById('new-mc') 
 
 // Add event listener for linkToFlash
 if(linkToFlash)linkToFlash.addEventListener("click", function () {

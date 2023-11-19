@@ -62,8 +62,8 @@ export function percentage(n1: number, n2: number): number {
  * @returns The result of the calculation.
  */
 export function calculation(n1: number|string, n2: number|string, o1: string): number {
-  n1 = Number(n1)
-  n2 = Number(n2)
+  n1 = Number(n1)|0
+  n2 = Number(n2)|0
   let ans: number;
   switch (o1) {
     case '+':
