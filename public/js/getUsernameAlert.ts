@@ -1,6 +1,6 @@
-
-
-var getUsernameAlert = <HTMLElement>document.getElementById("get-username-flash-message")
+var getUsernameAlert = <HTMLElement>(
+  document.getElementById("get-username-flash-message")
+);
 
 // When the user clicks on <span> (x), close the modal
 
@@ -9,7 +9,4 @@ window.onclick = function (event) {
   if (event.target !== getUsernameAlert) {
     getUsernameAlert.style.display = "none";
   }
-}
-
-
-
+};

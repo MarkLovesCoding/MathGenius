@@ -1,17 +1,14 @@
 $timesTableNumberSize: 40px;
 $timesTableColumnWidth: 105px;
 
-.rotate-please{
-  display:none;
+.rotate-please {
+  display: none;
   justify-content: center;
   align-items: center;
-
 }
-.rotate-text{
-  color:$chalk-white;
+.rotate-text {
+  color: $chalk-white;
 }
-
-
 
 .main {
   display: flex;
@@ -19,7 +16,6 @@ $timesTableColumnWidth: 105px;
   justify-content: center;
   width: 100%;
   height: 100%;
-
 }
 
 .lesson {
@@ -28,7 +24,6 @@ $timesTableColumnWidth: 105px;
   align-items: center;
   justify-content: center;
   width: 300px;
-
 }
 
 .times-table-bottom {
@@ -47,7 +42,6 @@ $timesTableColumnWidth: 105px;
   position: relative;
   /*   border:2px solid black; */
   width: $timesTableColumnWidth;
-
 }
 
 .number {
@@ -67,7 +61,6 @@ $timesTableColumnWidth: 105px;
   cursor: pointer;
   transition: background-color 150ms ease-out;
 }
-
 
 .number.active,
 .number:hover {
@@ -98,9 +91,7 @@ $timesTableColumnWidth: 105px;
   font-size: 16px;
   line-height: 1.2;
   // transition: opacity 0.4s ease, height 0.4s ease;
-
 }
-
 
 .times-table table {
   border-collapse: collapse;
@@ -114,7 +105,6 @@ $timesTableColumnWidth: 105px;
   text-align: center;
   // text-align: right;
   height: $timesTableNumberSize;
-
 }
 
 .times-table th {
@@ -136,12 +126,10 @@ $timesTableColumnWidth: 105px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   // font-size: 1rem;
-  font-weight:800;
-   width: 80px;
-   text-align: inherit;
-  ;
+  font-weight: 800;
+  width: 80px;
+  text-align: inherit;
 }
-
 
 tr:hover {
   background-color: $chalk-white;
@@ -155,9 +143,6 @@ tr:hover {
   justify-content: flex-start;
   align-items: flex-start;
 }
-
-
-
 
 //     .lesson {
 //       flex-direction: column;
@@ -207,8 +192,6 @@ tr:hover {
 //     align-items:Center;
 //   }
 
-
-
 //     tr{
 
 //      height:40px;
@@ -216,40 +199,36 @@ tr:hover {
 
 //     }
 
-
-
-
-@media screen and (max-height:650px) {
- .times-table-header{
-  font-size:.75em;
-  padding-bottom:5px;
- }
- .number-container{
-  width:30px;
- }
-.times-table {
-line-height:0.8;
-font-size: 13px;
-&tr{
-  height:25px;
-}
-}
-.number{
-  
-  width: 30px;
-  height:30px;
-}
-.times-table th, .times-table td{
-  height:30px;
-  padding:2px;
-}
-}
-@media screen and (orientation:landscape) and(max-height:415px) {
-
-  .lesson{
-    display:none;
+@media screen and (max-height: 650px) {
+  .times-table-header {
+    font-size: 0.75em;
+    padding-bottom: 5px;
   }
-  .rotate-please{
-    display:flex;
+  .number-container {
+    width: 30px;
+  }
+  .times-table {
+    line-height: 0.8;
+    font-size: 13px;
+    &tr {
+      height: 25px;
+    }
+  }
+  .number {
+    width: 30px;
+    height: 30px;
+  }
+  .times-table th,
+  .times-table td {
+    height: 30px;
+    padding: 2px;
+  }
+}
+@media screen and (orientation: landscape) and(max-height:415px) {
+  .lesson {
+    display: none;
+  }
+  .rotate-please {
+    display: flex;
   }
 }

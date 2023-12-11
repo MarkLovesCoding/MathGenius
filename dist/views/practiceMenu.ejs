@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge."
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Math Genius</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon2.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description"
-    content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>Math Genius</title>
-  <link rel="shortcut icon" type="image/png" href="/assets/favicon2.png">
-  <link rel="stylesheet" href="/css/styles.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Monomaniac+One&family=Pangolin&family=roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
 
+  <body>
+    <%- include('partials/_burger') %> <%- include('partials/_brand') %> <%-
+    include('partials/_modals') %>
+    <div class="main-container" id="main-container">
+      <!-- <%- include('partials/_menuChoicesStatus') %> -->
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Monomaniac+One&family=Pangolin&family=roboto&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-
-<body>
-  <%- include('partials/_burger') %>
-    <%- include('partials/_brand') %>
-      <%- include('partials/_modals') %>
-        <div class="main-container" id="main-container">
-          <!-- <%- include('partials/_menuChoicesStatus') %> -->
-
-            <%- include('partials/_activityMenuPractice') %>
-              <%- include('partials/_operatorMenuPractice') %>
-                <%- include('partials/_difficultyMenu') %>
-        </div>
-        <script type="module" src="/js/Practice/practiceMenu.js"></script>
-        <script type="module" src="/js/Practice/practiceNavigation.js"></script>
-        <script type="module" src="/js/burger.js"></script>
-
-
-</body>
-
+      <%- include('partials/_activityMenuPractice') %> <%-
+      include('partials/_operatorMenuPractice') %> <%-
+      include('partials/_difficultyMenu') %>
+    </div>
+    <script type="module" src="/js/Practice/practiceMenu.js"></script>
+    <script type="module" src="/js/Practice/practiceNavigation.js"></script>
+    <script type="module" src="/js/burger.js"></script>
+  </body>
 </html>

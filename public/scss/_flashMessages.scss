@@ -1,14 +1,14 @@
-// 
+//
 //flash
 
 .login-flash-message,
 .signup-flash-message,
 .reset-password-flash-message {
-    width: 100%;
-    height: auto;
-    padding: 10px;
-    @include center-flex;
-    text-align: center;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  @include center-flex;
+  text-align: center;
 }
 
 .login-flash-message.error,
@@ -16,13 +16,13 @@
 .forgot-password-flash-message.error,
 .forgot-username-flash-message.error,
 .reset-password-flash-message.error {
-    background-color: pink;
-    color: red;
-    font-family: roboto;
-    font-size: 12px;
-    padding: 10px 20px;
-    font-weight: 800;
-    margin: 5px;
+  background-color: pink;
+  color: red;
+  font-family: roboto;
+  font-size: 12px;
+  padding: 10px 20px;
+  font-weight: 800;
+  margin: 5px;
 }
 
 .login-flash-message.success,
@@ -30,12 +30,11 @@
 .forgot-password-flash-message.success,
 .forgot-username-flash-message.success,
 .reset-password-flash-message.success {
-    background-color: rgb(107, 216, 129);
-    color: rgb(16, 75, 15);
-    font-family: roboto;
-    font-size: 12px;
-    padding: 10px 20px;
-    font-weight: 800;
-    margin: 5px;
-
+  background-color: rgb(107, 216, 129);
+  color: rgb(16, 75, 15);
+  font-family: roboto;
+  font-size: 12px;
+  padding: 10px 20px;
+  font-weight: 800;
+  margin: 5px;
 }

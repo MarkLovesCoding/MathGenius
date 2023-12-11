@@ -1,3 +1,3 @@
-function onSubmitPassword():void {
+function onSubmitPassword(): void {
   (<HTMLFormElement>document.getElementById("forgot-password-form")).submit();
 }

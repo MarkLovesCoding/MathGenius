@@ -1,144 +1,143 @@
 .flash-box {
-    cursor: pointer;
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Safari */
-    -moz-user-select: none;
-    /* Old versions of Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: white;
-    padding: 1em;
-    margin: 1em;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transition: 0.6s;
-    -webkit-transform-style: preserve-3d;
-    -webkit-transform: rotateY(0deg);
-    -moz-transition: 0.6s;
-    -moz-transform-style: preserve-3d;
-    -moz-transform: rotateY(0deg);
-    -o-transition: 0.6s;
-    -o-transform-style: preserve-3d;
-    -o-transform: rotateY(0deg);
-    -ms-transition: 0.6s;
-    -ms-transform-style: preserve-3d;
-    -ms-transform: rotateY(0deg);
-    transition: 0.6s;
-    transform-style: preserve-3d;
-    transform: rotateY(0deg);
-    margin: 0;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  padding: 1em;
+  margin: 1em;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: rotateY(0deg);
+  -moz-transition: 0.6s;
+  -moz-transform-style: preserve-3d;
+  -moz-transform: rotateY(0deg);
+  -o-transition: 0.6s;
+  -o-transform-style: preserve-3d;
+  -o-transform: rotateY(0deg);
+  -ms-transition: 0.6s;
+  -ms-transform-style: preserve-3d;
+  -ms-transform: rotateY(0deg);
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  margin: 0;
 }
 
 .flash-container {
-    display: flex;
+  display: flex;
 }
 
 .flash-card-container {
-    width: 80%;
-    max-width: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    transition: all 0.5s ease;
-    transform-style: preserve-3d;
-    position: relative;
-    -webkit-perspective: 1000;
-    -moz-perspective: 1000;
-    -ms-perspective: 1000;
-    perspective: 1000;
-    -ms-transform: perspective(1000px);
-    -moz-transform: perspective(1000px);
-    -moz-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    -webkit-transform: perspective(1000px);
-    -webkit-transition: 0.3s;
-    -webkit-transform-style: preserve-3d;
-    -ms-transition: 0.3s;
-    -moz-transition: 0.3s;
-    transition: 0.3s;
-    transform-style: preserve-3d;
+  width: 80%;
+  max-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.5s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+  -ms-transform: perspective(1000px);
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -webkit-transform: perspective(1000px);
+  -webkit-transition: 0.3s;
+  -webkit-transform-style: preserve-3d;
+  -ms-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  transform-style: preserve-3d;
 }
 
 .flash-text {
-    font-size: 40px;
-    font-weight: 600;
+  font-size: 40px;
+  font-weight: 600;
 }
 
 .flash-question-box {
-    position: relative;
-    min-height: 200px;
-    background: #3d5e56;
+  position: relative;
+  min-height: 200px;
+  background: #3d5e56;
+  color: $chalk-white;
+  font-family: "Pangolin", cursive;
+  z-index: 2;
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  box-shadow: $shadowLarge;
+
+  &::after {
+    position: absolute;
     color: $chalk-white;
-    font-family: 'Pangolin', cursive;
-    z-index: 2;
-    -webkit-transform: rotateY(0deg);
-    -ms-transform: rotateY(0deg);
-    box-shadow: $shadowLarge;
-
-    &::after {
-        position: absolute;
-        color: $chalk-white;
-        font-family: 'Pangolin', cursive;
-        content: "Question";
-        top: 10px;
-        left: 10px;
-        font-style: italic;
-        z-index: 10;
-        font-size: 20px;
-
-    }
+    font-family: "Pangolin", cursive;
+    content: "Question";
+    top: 10px;
+    left: 10px;
+    font-style: italic;
+    z-index: 10;
+    font-size: 20px;
+  }
 }
 
 .flash-answer-box {
-    -webkit-transform: rotateY(-180deg);
-    -moz-transform: rotateY(-180deg);
-    -o-transform: rotateY(-180deg);
-    -ms-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
-    min-height: 200px;
-    background: $chalk-white;
-    color: $chalkboard-green;
-    font-family: 'Pangolin', cursive;
-    box-shadow: $shadowLarge;
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  min-height: 200px;
+  background: $chalk-white;
+  color: $chalkboard-green;
+  font-family: "Pangolin", cursive;
+  box-shadow: $shadowLarge;
 
-    &::after {
-        position: absolute;
-        color: $chalkboard-green;
-        font-family: 'Pangolin', cursive;
-        content: "Answer";
-        top: 10px;
-        left: 10px;
-        font-style: italic;
-        z-index: 10;
-        font-size: 20px;
-    }
+  &::after {
+    position: absolute;
+    color: $chalkboard-green;
+    font-family: "Pangolin", cursive;
+    content: "Answer";
+    top: 10px;
+    left: 10px;
+    font-style: italic;
+    z-index: 10;
+    font-size: 20px;
+  }
 }
 
 .flash-box {
-    border: 5px solid $wood;
-    border-radius: 5px;
+  border: 5px solid $wood;
+  border-radius: 5px;
 }
 
 .flip {
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
-    transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }

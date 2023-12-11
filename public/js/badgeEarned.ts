@@ -1,6 +1,10 @@
 // Get references to the necessary elements
-const modalImage: HTMLElement | null = <HTMLElement>document.querySelector('.badge-modal-image');
-const modalContainer: HTMLElement | null = <HTMLElement>document.querySelector('.badge-modal-container');
+const modalImage: HTMLElement | null = <HTMLElement>(
+  document.querySelector(".badge-modal-image")
+);
+const modalContainer: HTMLElement | null = <HTMLElement>(
+  document.querySelector(".badge-modal-container")
+);
 
 // Check if elements are found before attempting to access their properties
 
@@ -9,14 +13,14 @@ function playPulseAnimation(): void {
   if (modalImage && modalContainer) {
     modalContainer.style.display = "flex";
     modalContainer.style.zIndex = "1000";
-    modalImage.classList.add('pulse');
+    modalImage.classList.add("pulse");
   }
 }
 
 // Function to stop the pulse animation
 function stopPulseAnimation(): void {
   if (modalImage && modalContainer) {
-    modalImage.classList.remove('pulse');
+    modalImage.classList.remove("pulse");
     modalContainer.style.display = "none";
     modalContainer.style.zIndex = "0";
   }

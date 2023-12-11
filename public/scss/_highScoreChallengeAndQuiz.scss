@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.question-field{
+.question-field {
   @include center-flex;
   font-family: $chalkboardFont;
   font-size: 1.8em;
@@ -38,7 +38,6 @@
   color: $chalk-white;
 }
 
-
 .actual {
   color: $chalk-white;
   font-family: $chalkboardFont;
@@ -55,8 +54,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   transition: all 200 ease;
-  & .input{
-    margin-left:10px;
+  & .input {
+    margin-left: 10px;
   }
 }
 
@@ -72,20 +71,20 @@
   @include center-flex;
   min-width: 200px;
 
-  &>* {
+  & > * {
     color: $chalk-white;
     font-size: 14px;
   }
 }
 
-.level-text, .level-number {
-
+.level-text,
+.level-number {
   margin-right: 10px;
   margin-bottom: 10px;
   color: $chalk-white;
 }
-.level-number{
-  font-size:14px;
+.level-number {
+  font-size: 14px;
 }
 .progress-container {
   color: $chalk-white;
@@ -113,8 +112,6 @@
   flex-wrap: wrap;
   margin-top: 5px;
 }
-
-
 
 .tracker-container {
   width: 100%;
@@ -148,12 +145,11 @@
   border-radius: 10px;
   padding: 0.5em;
   width: 100%;
-
 }
-.game-box{
-  background-color:rgba(255,255,255,0.1);
+.game-box {
+  background-color: rgba(255, 255, 255, 0.1);
   // display:flex;
-  padding:5px;
+  padding: 5px;
 }
 
 .game-question {
@@ -171,7 +167,7 @@
 .correctness-container {
   @include center-flex;
   flex-direction: row;
-  margin-top:5px;
+  margin-top: 5px;
 }
 
 .game-correctness {
@@ -199,9 +195,7 @@
 .game-correctness .correctness {
   margin: 0.2em;
   padding: 0;
-
 }
-
 
 // Quiz
 
@@ -230,13 +224,12 @@
   margin: 2px;
   color: $chalk-white;
 
-  &>* {
+  & > * {
     padding: 2px;
     margin: 2px;
     color: $chalk-white;
   }
 }
-
 
 .quiz-question {
   border-radius: 10px;
@@ -258,8 +251,6 @@
   padding: 0 20px;
 }
 
-
-
 // Shared
 .input {
   font-family: $chalkboardFont;
@@ -279,7 +270,6 @@
   }
 }
 
-
 .answer-submit {
   margin: 12px;
   cursor: pointer;
@@ -289,33 +279,33 @@
   border: none;
   border-radius: 25px;
   text-rendering: optimizeLegibility;
-  font-size: 16px; 
-  font-family:'Pangolin';
+  font-size: 16px;
+  font-family: "Pangolin";
   background-color: #f3e4be;
   color: $chalkboard-green;
   box-shadow: $cardShadow;
   transform: translate(0px, 0px);
   transition: 100ms transform ease, 50ms box-shadow ease;
-  width:50px;
+  width: 50px;
 }
 
 .answer-submit:active {
   box-shadow: 0px 0px 1px black;
   transform: translate(2px, 2px);
 }
-.icon-calculator{
-  font-size:24px;
+.icon-calculator {
+  font-size: 24px;
 }
-.badge-tracker-container-challenge{
+.badge-tracker-container-challenge {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;;
-  flex-wrap:wrap;
-   & > .badge{
+  align-items: center;
+  flex-wrap: wrap;
+  & > .badge {
     // width:15vw;
-    >*{
-      font-size:12px;
+    > * {
+      font-size: 12px;
     }
   }
 }
@@ -336,21 +326,21 @@
   display: flex;
   font-weight: 500;
 }
-.start-over{
-  padding:5px;
-  
+.start-over {
+  padding: 5px;
 }
-.hsc-start-over{
+.hsc-start-over {
   border: 3px solid #51addd;
   padding: 4.5px 10px;
   border-radius: 20px;
   color: $chalkboard-green;
   background-color: #f3e4be;
-  cursor:pointer;
-  box-shadow:$cardShadow;
-  transition:box-shadow 200ms ease;
+  cursor: pointer;
+  box-shadow: $cardShadow;
+  transition: box-shadow 200ms ease;
 
- &:active{
-  box-shadow: 0px 0px 1px black;
- transform: translate(2px, 2px);
-}}
+  &:active {
+    box-shadow: 0px 0px 1px black;
+    transform: translate(2px, 2px);
+  }
+}

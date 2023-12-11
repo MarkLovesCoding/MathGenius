@@ -1,155 +1,155 @@
-
-  
-.fraction-lesson-container{
+.fraction-lesson-container {
   /*   width: 600px; */
-    
-    margin: 0 auto;
-  }
-  
-  .lessons-header {
-    text-align: center;
-    color:$chalk-white;
-    text-decoration: underline;
-    &>h1{
-      font-size:1.7rem;
-    }
-  }
-  .lessons-bottom{
-    display:flex;
-    flex-direction:column;
-  }
-  .buttons{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-  }
-  .fraction-carousel-container {
-    width: 600px;
-    height:600px;
-    // overflow: hidden;
-    overflow-y: auto;
-    position: relative;
-    max-width: 90vw;
-    max-height: 60vh;
-    border-radius:10px;
-    padding:10px 0;
-    margin-bottom:10px;
-    display: flex;
-    justify-content: center;
-    border: 2px solid rgba(255,255,255,0.05);
-    padding:10px;
-    &:hover{
-      // border:2px solid $chalk-white;
-      background: rgba(255,255,255,0.05);
-    }
-    &:focus{
-      // border:2px solid $chalk-white;
-      background: rgba(255,255,255,0.05);
 
-    }
-  }
-  
-  .fraction-carousel {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
-    max-height:500px;
-  justify-content: center;
-    // position:relative;
-  }
-  
-  .fraction-lesson {
-    position:absolute;
-    top:0;
-    display:none;
-    flex-direction:column;
-    width: 90%; 
-    padding:10px;
-    // left:100%;
-    // margin-right: 20px;
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-    // overflow-y:scroll;
-    justify-content: center;
-    align-items: center;
-    &>p{
-      font-size:0.85rem;
-      margin:5px 0;
-    }
-    &>*{
-      color:$chalk-white;
-    }
-    & > h2{
-      font-size:1.1rem;
-      font-style:italic;
-      padding-bottom:10px;
-    }
-    &>p{
-      line-height:30px;
-      text-align: left;
-      max-width:375px;
-    }
-
-  }
-
-  sup, sub
-{
-    height: 0;
-    line-height: 1;
-    vertical-align: baseline;
-
-    position: relative;
+  margin: 0 auto;
 }
 
-sup { bottom: 1ex; }
-sub { top: .5ex; }
-  .fraction-lesson.active {
-    top:0;
-    display: flex;
-    opacity: 1;
-    // left:0;
+.lessons-header {
+  text-align: center;
+  color: $chalk-white;
+  text-decoration: underline;
+  & > h1 {
+    font-size: 1.7rem;
   }
-  .fraction-lesson.fraction-left {
-    opacity: 1;
-    // left:-100;
+}
+.lessons-bottom {
+  display: flex;
+  flex-direction: column;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.fraction-carousel-container {
+  width: 600px;
+  height: 600px;
+  // overflow: hidden;
+  overflow-y: auto;
+  position: relative;
+  max-width: 90vw;
+  max-height: 60vh;
+  border-radius: 10px;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  &:hover {
+    // border:2px solid $chalk-white;
+    background: rgba(255, 255, 255, 0.05);
   }
-  .fraction-previous-btn,
-  .fraction-next-btn {
-    display: block;
-    margin: 0 auto;
-    width: 100px;
-    height: 40px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    z-index:20;
+  &:focus {
+    // border:2px solid $chalk-white;
+    background: rgba(255, 255, 255, 0.05);
   }
-  
-  .lessons-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
+}
+
+.fraction-carousel {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  max-height: 500px;
+  justify-content: center;
+  // position:relative;
+}
+
+.fraction-lesson {
+  position: absolute;
+  top: 0;
+  display: none;
+  flex-direction: column;
+  width: 90%;
+  padding: 10px;
+  // left:100%;
+  // margin-right: 20px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  // overflow-y:scroll;
+  justify-content: center;
+  align-items: center;
+  & > p {
+    font-size: 0.85rem;
+    margin: 5px 0;
   }
-  .lesson-section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width:100%;
-    margin: 10px;
+  & > * {
+    color: $chalk-white;
+  }
+  & > h2 {
+    font-size: 1.1rem;
+    font-style: italic;
+    padding-bottom: 10px;
+  }
+  & > p {
+    line-height: 30px;
+    text-align: left;
+    max-width: 375px;
+  }
+}
+
+sup,
+sub {
+  height: 0;
+  line-height: 1;
+  vertical-align: baseline;
+
+  position: relative;
+}
+
+sup {
+  bottom: 1ex;
+}
+sub {
+  top: 0.5ex;
+}
+.fraction-lesson.active {
+  top: 0;
+  display: flex;
+  opacity: 1;
+  // left:0;
+}
+.fraction-lesson.fraction-left {
+  opacity: 1;
+  // left:-100;
+}
+.fraction-previous-btn,
+.fraction-next-btn {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 40px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.lessons-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+.lesson-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  margin: 10px;
+  // flex-wrap: wrap;
+  & > h1 {
+    font-size: 1.2rem;
+  }
+  & > * {
     // flex-wrap: wrap;
-    &>h1{
-      font-size:1.2rem;
-    }
-    &>*{
-      // flex-wrap: wrap;
-      margin:2px 5px;
-    }
+    margin: 2px 5px;
   }
-  .comparison-operator-pizza{
-    align-self: flex-start;
-  }
+}
+.comparison-operator-pizza {
+  align-self: flex-start;
+}

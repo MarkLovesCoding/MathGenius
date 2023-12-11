@@ -1,118 +1,119 @@
 .mc-container {
-    justify-content: flex-end;
-    padding-bottom: 25px;
-    justify-content: center;
-    flex-direction: column;
-    padding-top: 25px;
+  justify-content: flex-end;
+  padding-bottom: 25px;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 25px;
 }
 
 .mc-quiz-stats,
 .mc-question-number,
 .mc-num-correct {
-    display: flex;
-    color: $chalk-white;
-    font-size: 1em;
+  display: flex;
+  color: $chalk-white;
+  font-size: 1em;
 }
 
 .mc-quiz-stats {
-    flex-direction: column;
-    padding-top: 10px;
+  flex-direction: column;
+  padding-top: 10px;
 }
 
 .mc-top {
-    @include center-flex;
-    width: 100%;
-    margin-bottom:15px;
+  @include center-flex;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 .mc-question-number,
 .mc-num-correct {
-    padding-top: 10px;
-    flex-direction: row;
-    align-items: center;
-    &>p {
-        padding-right: 10px;
-    }
-    justify-content: center;
+  padding-top: 10px;
+  flex-direction: row;
+  align-items: center;
+  & > p {
+    padding-right: 10px;
+  }
+  justify-content: center;
 }
 
 .options-container {
-    z-index: 100;
-    @include center-flex;
+  z-index: 100;
+  @include center-flex;
 }
 
 .options {
-    z-index: 100;
-    display: grid;
-    grid-template-areas: "option option"
-        "option option";
-    flex: wrap;
-    width: 100%;
-    flex-wrap: wrap;
-    align-content: center;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5px;
+  z-index: 100;
+  display: grid;
+  grid-template-areas:
+    "option option"
+    "option option";
+  flex: wrap;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
 }
 
 .option {
-    background-color: $chalk-white;
-    color: $chalkboard-green;
-    font-family: $chalkboardFont;
-    padding: 16px 26px;
-    margin: 10px;
-    cursor: pointer;
-    border-radius: 2px;
-    font-size: 18px;
-    width: 60vw;
-    max-width: 100px;
-    z-index: 120;
-    border: 2px $chalkboard-green solid;
-    font-size: 1.2em;
-    font-weight: 600;
-    box-shadow: $cardShadow;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: $chalk-white;
+  color: $chalkboard-green;
+  font-family: $chalkboardFont;
+  padding: 16px 26px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 18px;
+  width: 60vw;
+  max-width: 100px;
+  z-index: 120;
+  border: 2px $chalkboard-green solid;
+  font-size: 1.2em;
+  font-weight: 600;
+  box-shadow: $cardShadow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mc-container,
 .mc-quiz-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .choose-option {
-    margin: 10px;
-    height: 70px;
-    width: 70px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-basis: 30%;
+  margin: 10px;
+  height: 70px;
+  width: 70px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 30%;
 }
 
 .correct-answer {
-    background-color: $kelly-green;
-    color: $darkText;
-    font-family: $chalkboardFont;
-    border-radius:25px;
-    padding:8px;
+  background-color: $kelly-green;
+  color: $darkText;
+  font-family: $chalkboardFont;
+  border-radius: 25px;
+  padding: 8px;
 }
 
 .incorrect-answer {
-    background-color: $red-munsell;
-    color: $darkText;
-    font-family: $chalkboardFont;
+  background-color: $red-munsell;
+  color: $darkText;
+  font-family: $chalkboardFont;
 }
 
 .choose-container {
-    grid-area: choices;
+  grid-area: choices;
 }
-.mc-question-box{
-    background:rgba(255,255,255,0.1);
-    padding:0.5em;
-    border:7px dashed #ffffffb5;
+.mc-question-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5em;
+  border: 7px dashed #ffffffb5;
 }

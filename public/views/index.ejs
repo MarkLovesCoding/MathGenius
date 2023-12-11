@@ -1,100 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Math Game for Grades 1-4. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge."
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Math Genius</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon2.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description"
-    content="Math Game for Grades 1-4. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>Math Genius</title>
-  <link rel="shortcut icon" type="image/png" href="/assets/favicon2.png">
-  <link rel="stylesheet" href="/css/styles.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Monomaniac+One&family=Pangolin&family=roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Monomaniac+One&family=Pangolin&family=roboto&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+  <body>
+    <% if (flashData) { %> <% if(flashData.flashMessage=="success" ){ %>
+    <div class="success-container" id="success">
+      <svg
+        class="success-svg"
+        viewBox="0 0 26 26"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g
+          stroke="currentColor"
+          stroke-width="2"
+          fill="none"
+          fill-rule="evenodd"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            class="success-circle"
+            d="M13 1C6.372583 1 1 6.372583 1 13s5.372583 12 12 12 12-5.372583 12-12S19.627417 1 13 1z"
+          />
+          <path class="succes-tick" d="M6.5 13.5L10 17 l8.808621-8.308621" />
+        </g>
+      </svg>
+    </div>
+    <%} %> <%}%> <%- include('partials/_burger') %> <%-
+    include('partials/_brand') %> <%- include('partials/_modals') %>
 
-<body>
-  <% if (flashData) { %>
-    <% if(flashData.flashMessage=="success" ){ %>
-      <div class="success-container" id="success">
-        <svg class="success-svg" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
-          <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path class="success-circle"
-              d="M13 1C6.372583 1 1 6.372583 1 13s5.372583 12 12 12 12-5.372583 12-12S19.627417 1 13 1z" />
-            <path class="succes-tick" d="M6.5 13.5L10 17 l8.808621-8.308621" />
-          </g>
-        </svg>
-      </div>
-      <%} %>
-        <%}%>
-          <%- include('partials/_burger') %>
-            <%- include('partials/_brand') %>
-
-
-
-      <%- include('partials/_modals') %>
-
-              <div class="main-container" id="main-container">
-                <div class="activity-menu-container display-container" id="activity-menu-container">
-                  <div class="activity-group">
-                    <div class="top welcome-top">
-                      <div class="welcome-message" id="welcome-message">
-                        <% if (userData) { %>
-                          <% if (userData.name) { %>
-                            <a class="profile-link-main" href="/profile">
-                              <% if (userData.imageSrc) { %>
-                              <div class="profile-img-container">
-                                <img id="profile-user-avatar" class="profile-user-avatar" src="../assets/temp.png"
-                                  width="80" height="80" alt="User Image" />
-                              </div>
-                              <%}%>
-                              <span class="hi">Hi </span>
-                              <%= userData.name %>
-                            </a>
-                            <%} %>
-                              <%}%>
-                      </div>
-                      <div class="header-text welcome-header-index">
-                        <!-- <div>Welcome back to Math Genius.</div> -->
-                        <div>Have fun learning!</div>
-                      </div>
-                    </div>
-                    <div class="icons-middle">
-                      <div class="icons-middle-inner">
-                        <div class="inner">
-                          <div class=" icon-container real activity-choice" id="new-real" data-type="real">
-                            <p></p>
-                            <i class="real-icon icon fas fa-square-check fa-large"></i>
-                          </div>
-                          <p class="icon-text">Challenges</p>
-                        </div>
-                        <div class="inner">
-                          <div class=" icon-container practice activity-choice" id="new-practice" data-type="practice">
-                            <p></p>
-                            <i class=" practice-icon icon fas fa-calculator fa-large"></i>
-                          </div>
-                          <p class="icon-text">Practice</p>
-                        </div>
-                        <div class="inner">
-                          <div class=" icon-container learning activity-choice" id="new-learning" data-type="learning">
-                            <p></p>
-                            <i class=" learning-icon icon fas fa-pencil fa-large"></i>
-                          </div>
-                          <p class="icon-text">Learning Tools</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+    <div class="main-container" id="main-container">
+      <div
+        class="activity-menu-container display-container"
+        id="activity-menu-container"
+      >
+        <div class="activity-group">
+          <div class="top welcome-top">
+            <div class="welcome-message" id="welcome-message">
+              <% if (userData) { %> <% if (userData.name) { %>
+              <a class="profile-link-main" href="/profile">
+                <% if (userData.imageSrc) { %>
+                <div class="profile-img-container">
+                  <img
+                    id="profile-user-avatar"
+                    class="profile-user-avatar"
+                    src="../assets/temp.png"
+                    width="80"
+                    height="80"
+                    alt="User Image"
+                  />
                 </div>
+                <%}%>
+                <span class="hi">Hi </span>
+                <%= userData.name %>
+              </a>
+              <%} %> <%}%>
+            </div>
+            <div class="header-text welcome-header-index">
+              <!-- <div>Welcome back to Math Genius.</div> -->
+              <div>Have fun learning!</div>
+            </div>
+          </div>
+          <div class="icons-middle">
+            <div class="icons-middle-inner">
+              <div class="inner">
+                <div
+                  class="icon-container real activity-choice"
+                  id="new-real"
+                  data-type="real"
+                >
+                  <p></p>
+                  <i class="real-icon icon fas fa-square-check fa-large"></i>
+                </div>
+                <p class="icon-text">Challenges</p>
               </div>
-              <script type="module" src="/js/success.js"></script>
-              <script type="module" src="/js/burger.js"></script>
-              <script type="module" src="/js/frontNavigation.js"></script>
-              <script type="module" src="/js/landing-profile-load.js"></script>
-</body>
-
+              <div class="inner">
+                <div
+                  class="icon-container practice activity-choice"
+                  id="new-practice"
+                  data-type="practice"
+                >
+                  <p></p>
+                  <i class="practice-icon icon fas fa-calculator fa-large"></i>
+                </div>
+                <p class="icon-text">Practice</p>
+              </div>
+              <div class="inner">
+                <div
+                  class="icon-container learning activity-choice"
+                  id="new-learning"
+                  data-type="learning"
+                >
+                  <p></p>
+                  <i class="learning-icon icon fas fa-pencil fa-large"></i>
+                </div>
+                <p class="icon-text">Learning Tools</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/js/success.js"></script>
+    <script type="module" src="/js/burger.js"></script>
+    <script type="module" src="/js/frontNavigation.js"></script>
+    <script type="module" src="/js/landing-profile-load.js"></script>
+  </body>
 </html>

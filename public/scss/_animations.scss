@@ -1,116 +1,104 @@
 //test and practice
 .badge-modal-container {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 .badge-modal-image {
-    width: 80px;
-    height: 80px;
-    opacity: 1;
-    transition: width 0.3s, height 0.3s, opacity 0.3s;
+  width: 80px;
+  height: 80px;
+  opacity: 1;
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
 }
 
 .badge-modal-image.pulse {
-    animation: badgePulseAnimation 2s infinite, badgeFadeOutAnimation 0.3s 1.7s forwards;
+  animation: badgePulseAnimation 2s infinite,
+    badgeFadeOutAnimation 0.3s 1.7s forwards;
 }
 
 @keyframes badgePulseAnimation {
-    0% {
-        width: 80px;
-        height: 80px;
-    }
+  0% {
+    width: 80px;
+    height: 80px;
+  }
 
-    50% {
-        width: 160px;
-        height: 160px;
-    }
+  50% {
+    width: 160px;
+    height: 160px;
+  }
 
-    100% {
-        width: 80px;
-        height: 80px;
-    }
+  100% {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 @keyframes badgeFadeOutAnimation {
-    0% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
 .test-header {
-    height: 30px;
+  height: 30px;
 }
 
 .test-middle {
-    max-height: 67vh;
+  max-height: 67vh;
 }
 
 .incorrect {
-    animation: horizontal-shaking 0.4s;
+  animation: horizontal-shaking 0.4s;
 }
 
 @keyframes horizontal-shaking {
-    0% {
-        transform: translateX(0);
-    }
+  0% {
+    transform: translateX(0);
+  }
 
-    25% {
-        transform: translateX(5px);
-    }
+  25% {
+    transform: translateX(5px);
+  }
 
-    50% {
-        transform: translateX(-5px);
-    }
+  50% {
+    transform: translateX(-5px);
+  }
 
-    75% {
-        transform: translateX(5px);
-    }
+  75% {
+    transform: translateX(5px);
+  }
 
-    100% {
-        transform: translateX(0);
-    }
+  100% {
+    transform: translateX(0);
+  }
 }
 
-
-
-
-
-
-
-
-
-
-.active-section{
-    opacity:1
+.active-section {
+  opacity: 1;
 }
 
-
-
-.transition-out-left{
-    left:-100%;
-    
+.transition-out-left {
+  left: -100%;
 }
-.transition-out-right{
-    left:100%;
+.transition-out-right {
+  left: 100%;
 }
-.reset-section-left{
-    opacity:0;
-    left:-100%;
+.reset-section-left {
+  opacity: 0;
+  left: -100%;
 }
 
-.reset-section-left{
-    opacity:0;
-    left:100%;   
+.reset-section-left {
+  opacity: 0;
+  left: 100%;
 }

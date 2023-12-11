@@ -1,194 +1,164 @@
-
-
-
 // BURGER
 
 .burger-container {
-    cursor:pointer;
-    width: 60px;
-    height: 60px;
-    display: flex; // make none after editing.
-  background:rgba(255, 255, 255, 0);
-    position: absolute;
-    top: 3vmin;
-    right: 3vmin;
-    transition: all 200ms ease;
-    z-index:200;
-  
-    &:hover {
-  
-      .burger:not(.active) span:nth-child(1) {
-        transform: scaleX(0.8);
-      }
-      .burger:not(.active) span:nth-child(2) {
-        transform: scaleX(0.5);
-      }
-      .burger:not(.active) span:nth-child(3) {
-        transform: scaleX(0.8);
-      }
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  display: flex; // make none after editing.
+  background: rgba(255, 255, 255, 0);
+  position: absolute;
+  top: 3vmin;
+  right: 3vmin;
+  transition: all 200ms ease;
+  z-index: 200;
+
+  &:hover {
+    .burger:not(.active) span:nth-child(1) {
+      transform: scaleX(0.8);
+    }
+    .burger:not(.active) span:nth-child(2) {
+      transform: scaleX(0.5);
+    }
+    .burger:not(.active) span:nth-child(3) {
+      transform: scaleX(0.8);
     }
   }
-  .burger {
-    width: 35px;
-    height: 30px;
-    position: relative;
-    z-index:10;
-    @include center-flex;
-    border-radius: 100%;
-    & span {
-      background-color:$chalk-white;
-      position: absolute;
-      border-radius: 2px;
-      transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
-      width: 100%;
-      height: 5px;
-      &.active{
-        background-color:$chalkboard-green;
-      }
-      &:nth-child(1) {
-        top: 0px;
-        left: 0px;
-      }
-      &:nth-child(2) {
-        top: 13px;
-        left: 0px;
-      }
-      &:nth-child(3) {
-        bottom: 0px;
-        left: 0px;
-      }
+}
+.burger {
+  width: 35px;
+  height: 30px;
+  position: relative;
+  z-index: 10;
+  @include center-flex;
+  border-radius: 100%;
+  & span {
+    background-color: $chalk-white;
+    position: absolute;
+    border-radius: 2px;
+    transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+    width: 100%;
+    height: 5px;
+    &.active {
+      background-color: $chalkboard-green;
+    }
+    &:nth-child(1) {
+      top: 0px;
+      left: 0px;
+    }
+    &:nth-child(2) {
+      top: 13px;
+      left: 0px;
+    }
+    &:nth-child(3) {
+      bottom: 0px;
+      left: 0px;
     }
   }
-  
-  
-  .burger span:nth-child(1) {
-    top: 0px;
-    left: 0px;
-  } 
-  .burger span:nth-child(2) {
-    top: 13px;
-    left: 0px;
-  }
-  .burger span:nth-child(3) {
-    bottom: 0px;
-    left: 0px;
-  }
-  
-  .burger.active span:nth-child(1) {
-    transform: rotate(45deg);
-    top: 13px;
-  }
-  .burger.active span:nth-child(2) {
-    transform: scale(0);
-    transition-duration: 50ms;
-  }
-  .burger.active span:nth-child(3) {
-    top: 13px;
-    transform: rotate(-45deg);
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .expanded-menu {
-    position: absolute;
-    display:none;
-    top: calc(-3vh + 15px);
-    right: calc(-3vw + 15px);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #1b2e6000;
-    transform-origin: center;
-    overflow: hidden;
-    transition: 
-      width 0.3s ease-in-out, 
-      height 0.3s ease-in-out, 
-      border-radius 0.3s ease-in-out,
-      background-color 0.3s ease-in-out;
-    // transition:all 0.5s ease;
-    z-index: 1;
-  }
-  
-  
-  .expanded-menu.active {
-    
-    transition:all 0.5s ease;
-    width: 300px;
-    max-height:calc(97vh - 6px);
-    max-width:calc(97vh - 6px);
-    height: 600px;
-    border-radius: 10px;
-    background-color:$chalk-white;
-    display:flex;
-    position: absolute;
-      top: calc(-2vh + 6px);
-      right:calc(-1vh + 6px);
-      // border-top-right-radius: 0;
-      @include center-flex;
-  
-  }
-  
-  
-  .expanded-menu.active ul {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .expanded-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    @include center-flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items:flex-start;
-    height: 100%;
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  
-  .expanded-menu li {
-    margin: 10px 0;
-    text-align: center;
-      transition:background-color 0.15s ease;
-    padding:20px;
-    border-radius:5px;
-    position: relative;
-    &:hover{
-      background-color:white;
+}
 
+.burger span:nth-child(1) {
+  top: 0px;
+  left: 0px;
+}
+.burger span:nth-child(2) {
+  top: 13px;
+  left: 0px;
+}
+.burger span:nth-child(3) {
+  bottom: 0px;
+  left: 0px;
+}
 
-      padding: 20px 20px;
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 13px;
+}
+.burger.active span:nth-child(2) {
+  transform: scale(0);
+  transition-duration: 50ms;
+}
+.burger.active span:nth-child(3) {
+  top: 13px;
+  transform: rotate(-45deg);
+}
+
+.expanded-menu {
+  position: absolute;
+  display: none;
+  top: calc(-3vh + 15px);
+  right: calc(-3vw + 15px);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1b2e6000;
+  transform-origin: center;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
+    border-radius 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  // transition:all 0.5s ease;
+  z-index: 1;
+}
+
+.expanded-menu.active {
+  transition: all 0.5s ease;
+  width: 300px;
+  max-height: calc(97vh - 6px);
+  max-width: calc(97vh - 6px);
+  height: 600px;
+  border-radius: 10px;
+  background-color: $chalk-white;
+  display: flex;
+  position: absolute;
+  top: calc(-2vh + 6px);
+  right: calc(-1vh + 6px);
+  // border-top-right-radius: 0;
+  @include center-flex;
+}
+
+.expanded-menu.active ul {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expanded-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @include center-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.expanded-menu li {
+  margin: 10px 0;
+  text-align: center;
+  transition: background-color 0.15s ease;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  &:hover {
+    background-color: white;
+
+    padding: 20px 20px;
   }
-  &::after{
-    content:"";
-    position:absolute;
-  
+  &::after {
+    content: "";
+    position: absolute;
+
     background-color: $chalkboard-green;
     left: 9px;
     top: 15px;
     height: 28px;
     width: 1px;
-  }  
-}
-  
-  .expanded-menu a {
-    color: $chalkboard-green;
-    text-decoration: none;
-    font-size: 16px;
   }
-  
-  
+}
+
+.expanded-menu a {
+  color: $chalkboard-green;
+  text-decoration: none;
+  font-size: 16px;
+}

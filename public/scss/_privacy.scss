@@ -1,39 +1,38 @@
+.privacy-link-container,
+.privacy-back-link-container {
+  position: absolute;
+  bottom: 5vh;
+  left: 0;
+  width: 100%;
+  @include center-flex;
+}
+.privacy-link,
+.privacy-back-link {
+  color: $chalk-white;
+  font-size: 12px;
+  &:visited {
+    color: $chalk-white;
+  }
+  &:link {
+    color: $chalk-white;
+  }
+  &:hover {
+    color: rgb(215, 229, 224);
+  }
+}
+.privacy-outer-container {
+  @include center-flex;
+  height: 100%;
+  width: 100%;
+}
+.privacy-inner-container {
+  margin-top: 12vh;
+  margin-bottom: 10vh;
 
-.privacy-link-container, .privacy-back-link-container{
-    position:absolute;
-    bottom:5vh;
-    left:0;
-    width:100%;
-    @include center-flex;
+  width: 85vw;
+  height: 80vh;
+  overflow-y: scroll;
+  & > span {
+    color: $chalk-white !important;
   }
-  .privacy-link,.privacy-back-link{
-    color:$chalk-white;
-    font-size:12px;
-    &:visited{
-      color:$chalk-white;
-  
-    }
-    &:link{
-      color:$chalk-white;
-    }
-    &:hover{
-      color:rgb(215, 229, 224)
-    }
-  }
-  .privacy-outer-container{
-   
-    @include  center-flex;
-    height:100%;
-    width:100%;
-  }
-  .privacy-inner-container{
-    margin-top:12vh;
-    margin-bottom:10vh;
-    
-    width:85vw;
-    height:80vh;
-    overflow-y:scroll;
-    &>span{
-      color:$chalk-white !important;
-    }
-  }
+}

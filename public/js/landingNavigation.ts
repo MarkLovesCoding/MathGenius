@@ -1,7 +1,7 @@
 // Get references to the necessary elements
-const login = <HTMLElement>document.getElementById('landing-log-in') 
-const signup = <HTMLElement>document.getElementById('landing-signup') 
-const guest = <HTMLElement>document.getElementById('landing-guest') 
+const login = <HTMLElement>document.getElementById("landing-log-in");
+const signup = <HTMLElement>document.getElementById("landing-signup");
+const guest = <HTMLElement>document.getElementById("landing-guest");
 
 // Add event listener for login
 login.addEventListener("click", function () {

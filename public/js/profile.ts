@@ -1,9 +1,12 @@
-
 // Get references to the necessary elements
-const modal = <HTMLElement>document.getElementById("avatar-modal")
-const profile = <HTMLImageElement>document.getElementById("profile-user-avatar")
-const span = <HTMLElement>document.getElementById("avatar-modal-close") 
-const userIconsContainer = <HTMLElement>document.getElementById("avatar-user-icons") 
+const modal = <HTMLElement>document.getElementById("avatar-modal");
+const profile = <HTMLImageElement>(
+  document.getElementById("profile-user-avatar")
+);
+const span = <HTMLElement>document.getElementById("avatar-modal-close");
+const userIconsContainer = <HTMLElement>(
+  document.getElementById("avatar-user-icons")
+);
 
 // Open the modal when the profile avatar is clicked
 profile.onclick = function () {
@@ -38,7 +41,7 @@ window.onclick = function (event) {
 // }
 
 // Retrieve the user's avatar when the DOM content is loaded
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener("DOMContentLoaded", function () {
   retrieveProfileAvatar(profile);
 });
 
@@ -46,8 +49,10 @@ window.addEventListener('DOMContentLoaded', function () {
 userIconsContainer.addEventListener("click", handleUserIconClick);
 
 // Function to handle user icon clicks
-async function handleUserIconClick(event:MouseEvent):Promise<void> {
-  const selectedIcon = (event.target as HTMLElement).closest("img") as HTMLImageElement | null;
+async function handleUserIconClick(event: MouseEvent): Promise<void> {
+  const selectedIcon = (event.target as HTMLElement).closest(
+    "img"
+  ) as HTMLImageElement | null;
   if (selectedIcon) {
     // Update the profile avatar with the selected icon
     profile.setAttribute("src", selectedIcon.src);
@@ -57,14 +62,15 @@ async function handleUserIconClick(event:MouseEvent):Promise<void> {
 
     // Close the modal after selecting an icon
     modal.style.display = "none";
+  } else {
+    throw new Error("Icons not found");
   }
-  else{ throw new Error('Icons not found');}
 }
 
 // Retrieve the user ID from the server
-async function getUserId():Promise<number>{
+async function getUserId(): Promise<number> {
   try {
-    const response = await fetch('/user-id');
+    const response = await fetch("/user-id");
     const data = await response.json();
     const userId = data.userId;
     // Do something with the user ID if needed
@@ -74,40 +80,40 @@ async function getUserId():Promise<number>{
     throw error;
   }
 }
- async function retrieveProfileAvatar(element:HTMLImageElement):Promise<void> {
+async function retrieveProfileAvatar(element: HTMLImageElement): Promise<void> {
   try {
-    const response = await fetch('/get-avatar');
+    const response = await fetch("/get-avatar");
     const data = await response.json();
-    const avatarSrc:String = data.avatarSrc;
-    const trimmedSrc:string = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
+    const avatarSrc: String = data.avatarSrc;
+    const trimmedSrc: string = avatarSrc.replace(/https?:\/\/[^\/]+/, "../");
     element.src = trimmedSrc;
   } catch (error) {
     console.error(error);
   }
 }
 // Update the session and database with the new image source
-async function updateSessionAndDB(newSrc:string):Promise<void> {
+async function updateSessionAndDB(newSrc: string): Promise<void> {
   try {
     const userId = await getUserId();
     if (!userId) {
-      console.error('Failed to retrieve user ID');
+      console.error("Failed to retrieve user ID");
       return;
     }
 
     const response = await fetch(`/update-image`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userId, newSrc })
+      body: JSON.stringify({ userId, newSrc }),
     });
 
     if (response.ok) {
-      console.log('Image source updated successfully!');
+      console.log("Image source updated successfully!");
     } else {
-      console.error('Error updating image source!');
+      console.error("Error updating image source!");
     }
   } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
+    console.error("There was a problem with the fetch operation:", error);
   }
 }

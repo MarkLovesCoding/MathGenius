@@ -1,6 +1,4 @@
-
-import { Operator,Difficulty,OperatorVerbose, ActivityType } from "./types";
-
+import { Operator, Difficulty, OperatorVerbose, ActivityType } from "./types";
 
 //////////////////////////// MATH Methods
 //
@@ -42,7 +40,7 @@ export function multiply(num1: number, num2: number): number {
  */
 export function divide(num1: number, num2: number): number {
   if (num2 === 0) {
-    throw new Error('Division by zero is not allowed.');
+    throw new Error("Division by zero is not allowed.");
   }
   return num1 / num2;
 }
@@ -65,26 +63,25 @@ export function percentage(n1: number, n2: number): number {
  * @returns The result of the calculation.
  */
 export function calculation(n1: number, n2: number, o1: Operator): number {
-  n1 = Number(n1)|0
-  n2 = Number(n2)|0
+  n1 = Number(n1) | 0;
+  n2 = Number(n2) | 0;
   let ans: number;
   switch (o1) {
-    case '+':
+    case "+":
       ans = add(n1, n2);
       break;
-    case '-':
+    case "-":
       ans = subtract(n1, n2);
       break;
-    case 'x':
+    case "x":
       ans = multiply(n1, n2);
       break;
-    case '÷':
+    case "÷":
       ans = divide(n1, n2);
       break;
     default:
-      const exhaustiveCheck:never = o1;
-      return exhaustiveCheck
-      
+      const exhaustiveCheck: never = o1;
+      return exhaustiveCheck;
   }
   return ans;
 }
@@ -108,32 +105,26 @@ export function randomNumber(min: number, max: number): number {
 //   return arr[r];
 // }
 
-
-
-
 /**
  * Shuffles the elements of an array in place.
  * @param array - The array to be shuffled.
  * @returns The input array with its elements randomly rearranged.
  * @template T - The type of elements in the array.
  */
-export function shuffle<T>(array :T[]):T[] {
-  let currentIndex:number = array.length,
-    randomIndex:number;
+export function shuffle<T>(array: T[]): T[] {
+  let currentIndex: number = array.length,
+    randomIndex: number;
 
   while (currentIndex != 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
-      array[currentIndex]
+      array[currentIndex],
     ];
   }
   return array;
 }
-
-
-
 
 /**
  * Generates an array of options for a mathematical calculation.
@@ -142,10 +133,10 @@ export function shuffle<T>(array :T[]):T[] {
  * @param o1 - The operator for the calculation.
  * @returns An array of options that includes the correct answer and three other random numbers.
  */
-export function createOptions(n1:number, n2:number, o1:Operator) {
+export function createOptions(n1: number, n2: number, o1: Operator) {
   var options = [];
-  let r1:number, r2:number, r3:number;
-  const ans:number = calculation(n1, n2, o1);
+  let r1: number, r2: number, r3: number;
+  const ans: number = calculation(n1, n2, o1);
   options.push(ans);
 
   do {
@@ -184,42 +175,43 @@ export function delay<T>(time: number): Promise<T> {
   });
 }
 
-
 ////////////////////////////DOM Manipulation Methods
 //
 //
-
 
 /**
  * Loads a specific section by showing and hiding elements in the DOM.
  * @param sectionName - The name of the section to be loaded.
  */
-export function loadSection(sectionName:string):void {
+export function loadSection(sectionName: string): void {
   // Hide all sections
-  var sections = document.querySelectorAll<HTMLDivElement>('#main-container > div');
+  var sections = document.querySelectorAll<HTMLDivElement>(
+    "#main-container > div"
+  );
   for (var i = 0; i < sections.length; i++) {
-    sections[i].style.display = 'none';
+    sections[i].style.display = "none";
   }
 
   // Show the selected section
-  var section = document.getElementById(sectionName + '-container') as HTMLDivElement | null;
-  if(section){
-    section.style.display = 'flex';
-    
+  var section = document.getElementById(
+    sectionName + "-container"
+  ) as HTMLDivElement | null;
+  if (section) {
+    section.style.display = "flex";
+
     // Special handling for the "menu" section to display it as a grid
     if (sectionName == "menu") {
-      section.style.display = 'grid';
+      section.style.display = "grid";
     }
   }
 }
-
 
 /**
  * Disables the specified input element by setting the "disabled" attribute to "true".
  * @param element - The input element to be disabled.
  */
 // Function to disable an input element
-export function disableInput(element: HTMLInputElement):void {
+export function disableInput(element: HTMLInputElement): void {
   element.setAttribute("disabled", "true");
 }
 
@@ -228,7 +220,7 @@ export function disableInput(element: HTMLInputElement):void {
  * @param element - The input element to be enabled and focused.
  */
 
-export function enableInput(element: HTMLInputElement):void {
+export function enableInput(element: HTMLInputElement): void {
   element.removeAttribute("disabled");
   element.focus();
 }
@@ -239,12 +231,11 @@ export function enableInput(element: HTMLInputElement):void {
  * @param level - The level used to calculate the new value.
  */
 // Function to reset a number element to zero
-export function resetNumber(element:HTMLElement, level:number):void {
-  const resetLevel:number = (level - 1) * 10
-  const resetToNumberAsString:string = String(resetLevel);
+export function resetNumber(element: HTMLElement, level: number): void {
+  const resetLevel: number = (level - 1) * 10;
+  const resetToNumberAsString: string = String(resetLevel);
   element.textContent = resetToNumberAsString;
 }
-
 
 /**
  * Resets the text content of a div element to "1".
@@ -277,18 +268,17 @@ export function resetAnswerInput(elementsArray: HTMLInputElement[]): void {
   }
 }
 
-
-
-
-
-
 /**
  * Toggles the visibility of an element with a timed delay.
  * @param bool - A boolean indicating whether to make the element visible or hidden.
  * @param element - The div element to toggle visibility.
  * @param time - The time delay (in milliseconds) before hiding the element.
  */
-export function visibilityTimedToggle(bool:boolean, element:HTMLDivElement, time:number):void {
+export function visibilityTimedToggle(
+  bool: boolean,
+  element: HTMLDivElement,
+  time: number
+): void {
   // If bool is true, make the element visible and set a timeout to hide it after the specified time
   if (bool) {
     element.style.visibility = "visible";
@@ -296,20 +286,18 @@ export function visibilityTimedToggle(bool:boolean, element:HTMLDivElement, time
       element.style.visibility = "hidden";
     }, time);
   }
-  
+
   // If bool is false,  hide the element
   if (!bool) {
     element.style.visibility = "hidden";
   }
 }
 
-
 /**
- * 
+ *
  * @param bool Boolean indicating whether to make Element Visibile or hidden
  * @param element The Element to toggle visibility
  */
-
 
 /**
  * Toggles the visibility of an element based on a boolean value.
@@ -330,7 +318,10 @@ export function visibilityToggle(bool: boolean, element: HTMLDivElement): void {
  * @param elementsShow - An array of elements to be shown (display: flex).
  * @param elementsHide - An array of elements to be hidden (display: none).
  */
-export function showHide(elementsShow: HTMLElement[] = [], elementsHide: HTMLElement[] = []): void {
+export function showHide(
+  elementsShow: HTMLElement[] = [],
+  elementsHide: HTMLElement[] = []
+): void {
   // Show elements in the elementsShow array
   if (elementsShow.length > 0) {
     elementsShow.forEach((el) => {
@@ -377,7 +368,6 @@ export function emphasize(
   scale: number = 1.3,
   scaleTime: number = 250
 ): void {
-
   // Get the existing transform style of the element
   let existingTransform = getStyle(element, "transform") || "";
 
@@ -397,9 +387,6 @@ export function emphasize(
     scaleTime
   );
 }
-
-
-
 
 /**
  * Animates an element to indicate a correct state.
@@ -461,10 +448,9 @@ export function getStyle(el: HTMLElement, styleProp: string): string {
     return defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
   } else {
     // Fallback for older versions of IE (may not be accurate in all cases)
-    return(el as any).style[styleProp] || '';
+    return (el as any).style[styleProp] || "";
   }
 }
-
 
 /**
  * Updates the correctness view based on a boolean value.
@@ -488,7 +474,6 @@ export function correctnessView(bool: boolean, element: HTMLElement): void {
   }
 }
 
-
 /**
  * Converts a string to an array by removing commas.
  * @param inputString - The input string to be converted.
@@ -496,10 +481,10 @@ export function correctnessView(bool: boolean, element: HTMLElement): void {
  */
 export function convertStringToArray(inputString: string): string[] {
   // Remove all commas from the input string
-  const stringWithoutCommas = inputString.replace(/,/g, '');
+  const stringWithoutCommas = inputString.replace(/,/g, "");
 
   // Create an array with each character in the modified string
-  const characterArray = stringWithoutCommas.split('');
+  const characterArray = stringWithoutCommas.split("");
   return characterArray;
 }
 
@@ -508,11 +493,14 @@ export function convertStringToArray(inputString: string): string[] {
  * @param element1 - The first HTML element.
  * @param element2 - The second HTML element.
  */
-export function changeViewLeft(element1: HTMLElement, element2: HTMLElement): void {
-  element1.style.left = '0';
-  element2.style.left = '100%';
-  element1.style.opacity = '1';
-  element2.style.opacity = '0';
+export function changeViewLeft(
+  element1: HTMLElement,
+  element2: HTMLElement
+): void {
+  element1.style.left = "0";
+  element2.style.left = "100%";
+  element1.style.opacity = "1";
+  element2.style.opacity = "0";
 }
 
 /**
@@ -520,16 +508,15 @@ export function changeViewLeft(element1: HTMLElement, element2: HTMLElement): vo
  * @param element1 - The first HTML element.
  * @param element2 - The second HTML element.
  */
-export function changeViewRight(element1: HTMLElement, element2: HTMLElement): void {
-  element1.style.left = '-100%';
-  element2.style.left = '0';
-  element1.style.opacity = '0';
-  element2.style.opacity = '1';
+export function changeViewRight(
+  element1: HTMLElement,
+  element2: HTMLElement
+): void {
+  element1.style.left = "-100%";
+  element2.style.left = "0";
+  element1.style.opacity = "0";
+  element2.style.opacity = "1";
 }
-
-
-
-
 
 /**
  * Creates activity text and icon classes based on the provided activity type.
@@ -537,8 +524,8 @@ export function changeViewRight(element1: HTMLElement, element2: HTMLElement): v
  * @returns An array containing activity text and icon classes.
  */
 
-function createActivityTextAndIcon(type:ActivityType):string[]{
-  let activityText:string, activityIconClass:string
+function createActivityTextAndIcon(type: ActivityType): string[] {
+  let activityText: string, activityIconClass: string;
   switch (type) {
     case "multiple-choice-quiz":
       activityText = "Mulitple Choice Quiz";
@@ -561,14 +548,14 @@ function createActivityTextAndIcon(type:ActivityType):string[]{
       activityIconClass = "mc-icon icon fas fa-table-cells-large fa-large";
       break;
     default:
-      const exhaustiveCheck:never = type
-      return exhaustiveCheck
-      // activityIconClass = " a ";
+      const exhaustiveCheck: never = type;
+      return exhaustiveCheck;
+    // activityIconClass = " a ";
 
-      // activityText = type;
-      // break;
+    // activityText = type;
+    // break;
   }
-  return [activityText, activityIconClass]
+  return [activityText, activityIconClass];
 }
 
 /**
@@ -576,8 +563,8 @@ function createActivityTextAndIcon(type:ActivityType):string[]{
  * @param op - The type of the operator.
  * @returns An array containing operator text and operator color.
  */
-function createOperatorTextAndIcon(op:Operator):string[] {
-  let operatorText:string, operatorColor:string
+function createOperatorTextAndIcon(op: Operator): string[] {
+  let operatorText: string, operatorColor: string;
   switch (op) {
     case "+":
       operatorText = "Addition";
@@ -605,21 +592,21 @@ function createOperatorTextAndIcon(op:Operator):string[] {
       break;
     default:
       // operatorIconClass = "  ";
-      const exhaustiveCheck:never = op
-      return exhaustiveCheck
-      // operatorText = "You Can Do It!"
-      // operatorColor = "#f3e6aa"
-      // break;
+      const exhaustiveCheck: never = op;
+      return exhaustiveCheck;
+    // operatorText = "You Can Do It!"
+    // operatorColor = "#f3e6aa"
+    // break;
   }
-  return [operatorText, operatorColor]
+  return [operatorText, operatorColor];
 }
 /**
  * Creates diffictulty text and difficulty color based on difficulty level.
  * @param diff - The level of difficulty.
  * @returns An array containing difficulty converted to verbose text and color schema for difficulty.
  */
-export function createDifficultyText(diff:Difficulty):string[] {
-  let difficultyText:string, difficultyColor:string
+export function createDifficultyText(diff: Difficulty): string[] {
+  let difficultyText: string, difficultyColor: string;
   switch (diff) {
     case "1":
       difficultyText = "Easy";
@@ -642,11 +629,11 @@ export function createDifficultyText(diff:Difficulty):string[] {
       difficultyColor = "purple";
       break;
     default:
-      const exhaustiveCheck:never = diff
-      return exhaustiveCheck
+      const exhaustiveCheck: never = diff;
+      return exhaustiveCheck;
   }
 
-  return [difficultyText, difficultyColor]
+  return [difficultyText, difficultyColor];
 }
 
 // export function convertNumberToLevel(num:number):string {
@@ -672,10 +659,8 @@ export function createDifficultyText(diff:Difficulty):string[] {
 //       break;
 //   }
 
-
 //   return level
 // }
-
 
 /**
  * Updates the selected activity in the user interface based on the provided activity type.
@@ -683,41 +668,56 @@ export function createDifficultyText(diff:Difficulty):string[] {
  */
 export function updateActivitySelected(type: ActivityType): void {
   // Get elements by their IDs
-  const activityElOp: HTMLElement | null = document.getElementById("selected-activity-menu-op");
-  const activityElDiff: HTMLElement | null = document.getElementById("selected-activity-menu-diff");
-  let iconElementOp: HTMLElement | null = document.getElementById("selected-activity-icon-op");
-  let iconElementDiff: HTMLElement | null = document.getElementById("selected-activity-icon-diff");
+  const activityElOp: HTMLElement | null = document.getElementById(
+    "selected-activity-menu-op"
+  );
+  const activityElDiff: HTMLElement | null = document.getElementById(
+    "selected-activity-menu-diff"
+  );
+  let iconElementOp: HTMLElement | null = document.getElementById(
+    "selected-activity-icon-op"
+  );
+  let iconElementDiff: HTMLElement | null = document.getElementById(
+    "selected-activity-icon-diff"
+  );
 
   // Constants for class names
-
 
   // Get activity text and icon classes based on the provided type
   const [activityText, activityIconClass] = createActivityTextAndIcon(type);
 
   // Split icon classes and update the icon elements
   const activityClasses: string[] = activityIconClass.split(" ");
-  
-  if(iconElementOp instanceof HTMLElement)  iconElementOp.classList.remove(...iconElementOp.classList);
-  if(iconElementDiff instanceof HTMLElement)  iconElementDiff.classList.remove(...iconElementDiff.classList);
+
+  if (iconElementOp instanceof HTMLElement)
+    iconElementOp.classList.remove(...iconElementOp.classList);
+  if (iconElementDiff instanceof HTMLElement)
+    iconElementDiff.classList.remove(...iconElementDiff.classList);
 
   for (let c of activityClasses) {
-    if(iconElementOp instanceof HTMLElement)  iconElementOp.classList.add(c)
-    if(iconElementDiff instanceof HTMLElement)  iconElementDiff.classList.add(c)
+    if (iconElementOp instanceof HTMLElement) iconElementOp.classList.add(c);
+    if (iconElementDiff instanceof HTMLElement)
+      iconElementDiff.classList.add(c);
   }
-  if(activityElOp instanceof HTMLElement) activityElOp.innerHTML = activityText 
-  if(activityElDiff instanceof HTMLElement) activityElDiff.innerHTML = activityText 
+  if (activityElOp instanceof HTMLElement)
+    activityElOp.innerHTML = activityText;
+  if (activityElDiff instanceof HTMLElement)
+    activityElDiff.innerHTML = activityText;
 }
-
 
 /**
  * Updates the selected operator in the user interface based on the provided operator.
  * @param op - The selected operator.
  */
 export function updateOperatorSelected(op: Operator): void {
-  const operator: HTMLElement | null = document.getElementById("selected-operator-menu");
+  const operator: HTMLElement | null = document.getElementById(
+    "selected-operator-menu"
+  );
   const [operatorText, operatorColor] = createOperatorTextAndIcon(op);
 
-  const operatorContainer: HTMLElement | null = document.getElementById("selected-operator-container-menu");
+  const operatorContainer: HTMLElement | null = document.getElementById(
+    "selected-operator-container-menu"
+  );
   if (operatorContainer) {
     operatorContainer.style.border = "3px solid " + operatorColor;
   }
@@ -740,13 +740,21 @@ export function updateOperatorSelected(op: Operator): void {
  * @param op - The selected operator.
  * @param diff - The selected difficulty.
  */
-export function updateGeneralSelected(op:Operator, diff:Difficulty) {
-  const difficulty: HTMLElement | null = document.getElementById("selected-difficulty-general");
-  const difficultyContainer: HTMLElement | null = document.getElementById("selected-difficulty-container-general");
-  const operator: HTMLElement | null = document.getElementById("selected-operator-text-general");
-  const operatorContainer: HTMLElement | null = document.getElementById("selected-operator-container-general");
-  const [operatorText, operatorColor] = createOperatorTextAndIcon(op)
-  const [diffText, diffColor] = createDifficultyText(diff)
+export function updateGeneralSelected(op: Operator, diff: Difficulty) {
+  const difficulty: HTMLElement | null = document.getElementById(
+    "selected-difficulty-general"
+  );
+  const difficultyContainer: HTMLElement | null = document.getElementById(
+    "selected-difficulty-container-general"
+  );
+  const operator: HTMLElement | null = document.getElementById(
+    "selected-operator-text-general"
+  );
+  const operatorContainer: HTMLElement | null = document.getElementById(
+    "selected-operator-container-general"
+  );
+  const [operatorText, operatorColor] = createOperatorTextAndIcon(op);
+  const [diffText, diffColor] = createDifficultyText(diff);
 
   if (operatorContainer) {
     operatorContainer.style.border = "3px solid " + operatorColor;
@@ -765,16 +773,18 @@ export function updateGeneralSelected(op:Operator, diff:Difficulty) {
   }
 }
 
-
-
 /**
  * Asynchronously updates the visual representation of the selected level in the general settings.
  * @param level - The selected level.
  */
 export async function updateLevelVisuals(level: Difficulty): Promise<void> {
   const [difficultyText, difficultyColor] = createDifficultyText(level);
-  const difficulty: HTMLElement | null = document.getElementById("selected-difficulty-general");
-  const difficultyContainer: HTMLElement | null = document.getElementById("selected-difficulty-container-general");
+  const difficulty: HTMLElement | null = document.getElementById(
+    "selected-difficulty-general"
+  );
+  const difficultyContainer: HTMLElement | null = document.getElementById(
+    "selected-difficulty-container-general"
+  );
 
   if (difficultyContainer) {
     difficultyContainer.style.border = "3px solid " + difficultyColor;
@@ -791,7 +801,10 @@ export async function updateLevelVisuals(level: Difficulty): Promise<void> {
  * @param operator - The selected operator.
  * @returns An array containing the high and low values.
  */
-export function setHighLowVals(difficulty: Difficulty, operator: Operator): [number, number] {
+export function setHighLowVals(
+  difficulty: Difficulty,
+  operator: Operator
+): [number, number] {
   let highVal: number;
   let lowVal: number;
 
@@ -821,8 +834,8 @@ export function setHighLowVals(difficulty: Difficulty, operator: Operator): [num
         lowVal = 4;
         break;
       default:
-        const exhaustiveCheck:never = difficulty
-        return exhaustiveCheck
+        const exhaustiveCheck: never = difficulty;
+        return exhaustiveCheck;
     }
   } else if (operator === "+") {
     switch (difficulty) {
@@ -847,9 +860,8 @@ export function setHighLowVals(difficulty: Difficulty, operator: Operator): [num
         lowVal = 0;
         break;
       default:
-        const exhaustiveCheck:never = difficulty
-        return exhaustiveCheck
-        
+        const exhaustiveCheck: never = difficulty;
+        return exhaustiveCheck;
     }
   } else if (operator === "-") {
     switch (difficulty) {
@@ -874,8 +886,8 @@ export function setHighLowVals(difficulty: Difficulty, operator: Operator): [num
         lowVal = 0;
         break;
       default:
-        const exhaustiveCheck:never = difficulty
-        return exhaustiveCheck
+        const exhaustiveCheck: never = difficulty;
+        return exhaustiveCheck;
     }
   } else {
     switch (difficulty) {
@@ -900,8 +912,8 @@ export function setHighLowVals(difficulty: Difficulty, operator: Operator): [num
         lowVal = 3;
         break;
       default:
-        const exhaustiveCheck:never = difficulty
-        return exhaustiveCheck
+        const exhaustiveCheck: never = difficulty;
+        return exhaustiveCheck;
     }
   }
 
@@ -909,37 +921,30 @@ export function setHighLowVals(difficulty: Difficulty, operator: Operator): [num
   return vals;
 }
 
-
-export function updateDifficultyRange():void {
+export function updateDifficultyRange(): void {
   // let  highVal, lowVal;
   let difficulty = <Difficulty>sessionStorage.getItem("activeDifficulty");
-  let activeOperator= <Operator>sessionStorage.getItem("activeOperators")
+  let activeOperator = <Operator>sessionStorage.getItem("activeOperators");
 
   // Set the high and low values based on the current active difficulty level
-  const difficultyNumber = difficulty
-  const [highVal, lowVal] = setHighLowVals(difficultyNumber, activeOperator)
+  const difficultyNumber = difficulty;
+  const [highVal, lowVal] = setHighLowVals(difficultyNumber, activeOperator);
 
-
-  sessionStorage.setItem("activeHighVal", String(highVal))
-  sessionStorage.setItem("activeLowVal", String(lowVal))
+  sessionStorage.setItem("activeHighVal", String(highVal));
+  sessionStorage.setItem("activeLowVal", String(lowVal));
 
   // Set the active high value based on the current active difficulty level
   // let highValue = (i) * 10;
   // state.activeHighVal = highValue
-
-
-
 }
-
 
 /**
  * Reformats the operator string for better readability.
  * @param operator as Operator- The operator to be reformatted.
  * @returns The reformatted operator string.
  */
-export function reformatOperator(operator:Operator):OperatorVerbose {
-
-  let reformattedOperator:OperatorVerbose;
+export function reformatOperator(operator: Operator): OperatorVerbose {
+  let reformattedOperator: OperatorVerbose;
   switch (operator) {
     case "+":
       reformattedOperator = "addition";
@@ -954,26 +959,24 @@ export function reformatOperator(operator:Operator):OperatorVerbose {
       reformattedOperator = "division";
       break;
     default:
-      const exhaustiveCheck:never = operator
-      return exhaustiveCheck
-      // console.log("Operator not reformatted")
-      // break;
+      const exhaustiveCheck: never = operator;
+      return exhaustiveCheck;
+    // console.log("Operator not reformatted")
+    // break;
   }
-  return reformattedOperator
+  return reformattedOperator;
 }
 
-
-
-export function closeAlert(element:HTMLElement):void {
-  element.style.display = 'none';
+export function closeAlert(element: HTMLElement): void {
+  element.style.display = "none";
 }
 
-export async function retrieveAvatar(element:HTMLImageElement):Promise<void> {
+export async function retrieveAvatar(element: HTMLImageElement): Promise<void> {
   try {
-    const response = await fetch('/get-avatar');
+    const response = await fetch("/get-avatar");
     const data = await response.json();
-    const avatarSrc:String = data.avatarSrc;
-    const trimmedSrc:string = avatarSrc.replace(/https?:\/\/[^\/]+/, '../');
+    const avatarSrc: String = data.avatarSrc;
+    const trimmedSrc: string = avatarSrc.replace(/https?:\/\/[^\/]+/, "../");
     element.src = trimmedSrc;
   } catch (error) {
     console.error(error);
