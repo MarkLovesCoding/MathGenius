@@ -1,14 +1,11 @@
+import * as utilMethods from "../utils.js";
+import { state } from "../state.js";
+import * as questionLogic from "../sharedQuestionLogic.js";
+import { updateBadgeStatus } from "../badges.js";
+import { animateBadge } from "../badgeEarned.js";
 
-
-import * as utilMethods from '../utils.js';
-import { state } from '../state.js'
-import * as questionLogic from '../sharedQuestionLogic.js';
-import { updateBadgeStatus } from '../badges.js';
-import { animateBadge } from '../badgeEarned.js';
-import { mcQuizOptions } from '../domElements.js';
-
-import { Operator, Difficulty } from '../types.js';
-
+import { Operator, Difficulty } from "../types.js";
+const mcQuizOptions = <HTMLElement>document.getElementById("mc-quiz-options");
 
 //////MCQUIZ
 
@@ -24,17 +21,30 @@ function finishMCQuiz(): void {
   state.mcQuizActive.mcqFailedAttempts = 0;
 }
 
-const mcQuestionNumber = <HTMLElement>document.getElementById("mc-question-number") 
-const mcQuestionsCorrect = <HTMLElement>document.getElementById("mc-questions-correct") 
-const mcQuizModal = <HTMLElement>document.getElementById("mc-quiz-modal") 
-const mcQuizAmountCorrect = <HTMLElement>document.getElementById("mc-quiz-amountCorrect") 
-const mcQuizAmountCorrectPercentage = <HTMLElement>document.getElementById("mc-quiz-amountCorrectPercentage") 
+const mcQuestionNumber = <HTMLElement>(
+  document.getElementById("mc-question-number")
+);
+const mcQuestionsCorrect = <HTMLElement>(
+  document.getElementById("mc-questions-correct")
+);
+const mcQuizModal = <HTMLElement>document.getElementById("mc-quiz-modal");
+const mcQuizAmountCorrect = <HTMLElement>(
+  document.getElementById("mc-quiz-amountCorrect")
+);
+const mcQuizAmountCorrectPercentage = <HTMLElement>(
+  document.getElementById("mc-quiz-amountCorrectPercentage")
+);
 
-
-async function mcQuizShowScore():Promise<void> {
+async function mcQuizShowScore(): Promise<void> {
   // Update text content of elements with score information
   mcQuizAmountCorrect.textContent = state.mcQuizActive.mcqNumCorrect.toString();
-  mcQuizAmountCorrectPercentage.textContent = utilMethods.percentage(state.mcQuizActive.mcqNumCorrect, state.mcQuizActive.mcqNumAnswered).toString() + "%";
+  mcQuizAmountCorrectPercentage.textContent =
+    utilMethods
+      .percentage(
+        state.mcQuizActive.mcqNumCorrect,
+        state.mcQuizActive.mcqNumAnswered
+      )
+      .toString() + "%";
   // Show quiz modal and add emphasis effect
   mcQuizModal.style.visibility = "visible";
   mcQuizModal.style.zIndex = "101";
@@ -51,40 +61,46 @@ function updateMCQuizPage(): void {
   // const numQuestion: number = state.mcQuizActive.mcqNumQuestion;
   const numAnswered: number = state.mcQuizActive.mcqNumAnswered;
   // if(mcQuestionNumber && mcQuestionsCorrect){
-    mcQuestionNumber.textContent = numAnswered.toString();
-    mcQuestionsCorrect.textContent = numCorrect.toString();
+  mcQuestionNumber.textContent = numAnswered.toString();
+  mcQuestionsCorrect.textContent = numCorrect.toString();
   // } else throw new Error("Dom not loaded: Multiple Choice Question Numbers")
-
-
 }
 
 async function checkMCQAnswered(): Promise<void> {
   // If all questions have been answered, show score and finish quiz
   if (state.mcQuizActive.mcqNumAnswered == state.mcQuizActive.mcqNumQuestion) {
-
     if (state.mcQuizActive.mcqNumCorrect == 10) {
-      const activeDifficulty: string | null = sessionStorage.getItem("activeDifficulty")
-      const activeOperator= <Operator>sessionStorage.getItem("activeOperators")
-      await animateBadge()
+      const activeDifficulty: string | null =
+        sessionStorage.getItem("activeDifficulty");
+      const activeOperator = <Operator>(
+        sessionStorage.getItem("activeOperators")
+      );
+      await animateBadge();
       if (activeDifficulty && activeOperator) {
-        await updateBadgeStatus("mcquiz", activeDifficulty, activeOperator, true)
-      } else throw new Error("Error retrieving diff and operator from session Storage")
-
+        await updateBadgeStatus(
+          "mcquiz",
+          activeDifficulty,
+          activeOperator,
+          true
+        );
+      } else
+        throw new Error(
+          "Error retrieving diff and operator from session Storage"
+        );
+    } else {
+      mcQuizShowScore();
     }
-    else {
-      mcQuizShowScore()
-
-    }
-    finishMCQuiz()
+    finishMCQuiz();
   }
 }
 
-
-
-
-async function mcQuizAnswerCheck(bool: boolean, correctEl: HTMLElement, falseEl: null | HTMLElement = null): Promise<void> {
+async function mcQuizAnswerCheck(
+  bool: boolean,
+  correctEl: HTMLElement,
+  falseEl: null | HTMLElement = null
+): Promise<void> {
   // Check if the answer is correct or not
-  const operator= <Operator>sessionStorage.getItem("activeOperators")
+  const operator = <Operator>sessionStorage.getItem("activeOperators");
   if (bool) {
     // If the answer is correct:
     // Increment the number of correct answers and answered questions
@@ -97,39 +113,46 @@ async function mcQuizAnswerCheck(bool: boolean, correctEl: HTMLElement, falseEl:
       state.mcQuizActive.mcqNumAnswered += 1;
     }
     state.mcQuizActive.mcqFailedAttempts = 0;
-    // Check if all questions are answered and show the score if true. Animate the correct element 
-    checkMCQAnswered()
+    // Check if all questions are answered and show the score if true. Animate the correct element
+    checkMCQAnswered();
     utilMethods.animateCorrect(correctEl);
     // Wait for a short delay before updating the quiz page and generating a new question
     await utilMethods.delay(150);
-    updateMCQuizPage()
-    if (operator) questionLogic.newQuestion("multiple-choice-quiz", operator, mcQuizCreateOptions);
-    else throw new Error("Error retrieving operator from session storage")
+    updateMCQuizPage();
+    if (operator)
+      questionLogic.newQuestion(
+        "multiple-choice-quiz",
+        operator,
+        mcQuizCreateOptions
+      );
+    else throw new Error("Error retrieving operator from session storage");
   } else {
     // If the answer is incorrect:
     // Increment the number of failed attempts
     state.mcQuizActive.mcqFailedAttempts += 1;
     // Check if all questions are answered and show the score if true. Animate elements based on correctness
-    checkMCQAnswered()
+    checkMCQAnswered();
     if (falseEl) utilMethods.animateIncorrect(falseEl);
-    // utilMethods.animateCorrect(correctEl);
     // Wait for a short delay before updating the quiz page and generating a new question
     await utilMethods.delay(150);
-    updateMCQuizPage()
+    updateMCQuizPage();
     // questionLogic.newQuestion("multiple-choice-quiz",operator, mcQuizCreateOptions);
   }
 }
 
-export function mcQuizCreateOptions(n1: number, n2: number, o1: Operator): void {
-
+export function mcQuizCreateOptions(
+  n1: number,
+  n2: number,
+  o1: Operator
+): void {
   // Create an array of options for the multiple choice question
-  let options:number[]= utilMethods.createOptions(n1, n2, o1)
+  let options: number[] = utilMethods.createOptions(n1, n2, o1);
 
   // Clear the options element
   mcQuizOptions.innerHTML = "";
 
   // Calculate the answer to the question
-  let ans = utilMethods.calculation(n1, n2, o1)
+  let ans = utilMethods.calculation(n1, n2, o1);
 
   // Create a button element for each option and append it to the options element
   options.forEach((option) => {
@@ -150,7 +173,6 @@ export function mcQuizCreateOptions(n1: number, n2: number, o1: Operator): void 
         mcQuizAnswerCheck(true, targetEl);
       }
       if (targetEl.textContent != ans.toString()) {
-
         // If the answer is incorrect, call mcQuizAnswerCheck with false as the first argument, the button element with the correct answer as the second argument, and the current button element as the third argument
         mcQuizAnswerCheck(false, correctOption, targetEl);
       }
@@ -159,19 +181,18 @@ export function mcQuizCreateOptions(n1: number, n2: number, o1: Operator): void 
   });
 }
 
-
 ///
 ///
 window.onload = function () {
+  let operator = <Operator>sessionStorage.getItem("activeOperators");
 
-  let operator= <Operator>sessionStorage.getItem("activeOperators")
-
-
-
-  let difficulty= <Difficulty>sessionStorage.getItem("activeDifficulty")
+  let difficulty = <Difficulty>sessionStorage.getItem("activeDifficulty");
   if (operator && difficulty) {
-    utilMethods.updateGeneralSelected(operator, difficulty)
-    questionLogic.newQuestion('multiple-choice-quiz', operator, mcQuizCreateOptions);
+    utilMethods.updateGeneralSelected(operator, difficulty);
+    questionLogic.newQuestion(
+      "multiple-choice-quiz",
+      operator,
+      mcQuizCreateOptions
+    );
   }
-
-} 
+};

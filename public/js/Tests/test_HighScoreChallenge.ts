@@ -6,10 +6,25 @@ import * as questionLogic from '../sharedQuestionLogic.js';
 import { updateBadgeStatus, retrieveBadges, getHighestBadge } from '../badges.js';
 import { animateBadge } from '../badgeEarned.js';
 
-import { gameCorrectness, gameElements, gameActual, gameActualContainer, gameAnswerInput, gameAnswerSubmit, gameCurrScore, gameHighScore, gameLevelNumber, gameTracker, gameTrackerContainer } from '../domElements.js';
+
 import { Badges,Operator, OperatorVerbose, Difficulty } from '../types.js';
 
-const { numOne: gameNumOne, numTwo: gameNumTwo, opOne: gameOpOne } = gameElements;
+
+const gameNumOne = <HTMLElement>document.getElementById("game-first-number") ;
+const gameNumTwo = <HTMLElement>document.getElementById("game-second-number") ;
+const gameOpOne = <HTMLElement>document.getElementById("game-first-operator") ;
+ const gameAnswerInput = <HTMLInputElement>document.getElementById("game-answer-input");
+ const gameAnswerSubmit = <HTMLElement>document.getElementById("game-answer-form") ;
+ const gameCorrectness = <HTMLElement>document.getElementById("game-correctness") ;
+ const gameActual = <HTMLElement>document.getElementById("game-actual") ;
+ const gameActualContainer = <HTMLDivElement>document.getElementById("game-actual-container");
+ const gameCurrScore = <HTMLElement>document.getElementById("game-current-score") ;
+ const gameHighScore = <HTMLElement>document.getElementById("game-current-high") ;
+ const gameLevelNumber = <HTMLDivElement>document.getElementById("game-level-number");
+ const gameTracker = <HTMLDivElement>document.getElementById("game-tracker");
+  const gameTrackerContainer = <HTMLElement>document.getElementById("game-tracker-container") ;
+
+
 
 ////////////////////////////////////////////////////////////
 //GAME

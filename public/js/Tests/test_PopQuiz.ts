@@ -1,26 +1,49 @@
+import * as utilMethods from "../utils.js";
+import { state } from "../state.js";
+import * as questionLogic from "../sharedQuestionLogic.js";
+import { updateBadgeStatus } from "../badges.js";
+import { animateBadge } from "../badgeEarned.js";
 
+import type { QuizStats, Operator, Difficulty } from "../types.js";
 
-import * as utilMethods from '../utils.js';
-import { state } from '../state.js'
-import * as questionLogic from '../sharedQuestionLogic.js';
-import { updateBadgeStatus } from '../badges.js';
-import { animateBadge } from '../badgeEarned.js';
-import { quizAmountCorrect, quizAmountCorrectPercentage, quizAnswerForm, quizAnswerInput, quizCorrectness, quizCurrQuestion, quizCurrScore, quizCurrScoreContainer, quizLastScore, quizLastScoreContainer, quizModal, quizElements } from '../domElements.js';
-import type { QuizStats,Operator, Difficulty } from '../types.js';
+const quizAnswerForm = <HTMLFormElement>(
+  document.getElementById("quiz-answer-form")
+);
 
+const quizNumOne = <HTMLElement>document.getElementById("quiz-first-number");
+const quizNumTwo = <HTMLElement>document.getElementById("quiz-second-number");
+const quizOpOne = <HTMLElement>document.getElementById("quiz-first-operator");
+const quizAnswerInput = <HTMLInputElement>(
+  document.getElementById("quiz-answer-input")
+);
+const quizCorrectness = <HTMLElement>(
+  document.getElementById("quiz-correctness")
+);
+const quizAmountCorrect = <HTMLElement>document.getElementById("amountCorrect");
+const quizAmountCorrectPercentage = <HTMLElement>(
+  document.getElementById("amountCorrectPercentage")
+);
+const quizCurrScore = <HTMLElement>document.getElementById("quiz-curr-score");
+const quizCurrQuestion = <HTMLElement>(
+  document.getElementById("quiz-curr-question")
+);
+const quizCurrScoreContainer = <HTMLDivElement>(
+  document.querySelector(".quiz-curr-score-container")
+);
+const quizLastScoreContainer = <HTMLDivElement>(
+  document.querySelector(".quiz-last-score-container")
+);
+const quizLastScore = <HTMLElement>document.getElementById("quiz-last-score");
+const quizModal = <HTMLElement>document.getElementById("quiz-modal");
 
-
-const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElements;
+// const { numOne: quizNumOne, numTwo: quizNumTwo, opOne: quizOpOne } = quizElements;
 
 ////////////////////////////////////////////////////////////
 //QUIZ
 //
 
-
-
-
 async function quizAnswerCheck(bool: boolean): Promise<void> {
-  let operator = <Operator>sessionStorage.getItem("activeOperators")
+  let operator = <Operator>sessionStorage.getItem("activeOperators");
   if (bool) {
     // Emphasize the quizAnswerForm to indicate a correct answer
     utilMethods.emphasize(quizAnswerForm, 50, 1.1, 150);
@@ -34,24 +57,23 @@ async function quizAnswerCheck(bool: boolean): Promise<void> {
 
     // Check the quiz status, update the scores accordingly, and delay 700ms
 
-    checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
+    checkQuizStatus(
+      state.quizStats,
+      quizCurrScoreContainer,
+      quizLastScoreContainer,
+      quizLastScore
+    );
     await utilMethods.delay(700);
-
-
 
     // Re-enable the quizAnswerInput and reset the input fields
 
     utilMethods.enableInput(quizAnswerInput);
-    utilMethods.resetAnswerInput([
-      quizAnswerInput]);
-
-
+    utilMethods.resetAnswerInput([quizAnswerInput]);
 
     // Generate a new question for the quiz
     if (operator) {
       questionLogic.newQuestion("quiz", operator);
-    } else console.log("operator value not retrieved from sessionStorage")
-
+    } else console.log("operator value not retrieved from sessionStorage");
   } else {
     // Display an animation to indicate an incorrect answer
     utilMethods.incorrectMotion(quizAnswerForm);
@@ -66,7 +88,12 @@ async function quizAnswerCheck(bool: boolean): Promise<void> {
     // Check the quiz status, update the scores accordingly and delay 700ms
     // Check the quiz status, update the scores accordingly, and delay 700ms
 
-    checkQuizStatus(state.quizStats, quizCurrScoreContainer, quizLastScoreContainer, quizLastScore);
+    checkQuizStatus(
+      state.quizStats,
+      quizCurrScoreContainer,
+      quizLastScoreContainer,
+      quizLastScore
+    );
     await utilMethods.delay(700);
 
     // Re-enable the quizAnswerInput and reset the input fields
@@ -77,15 +104,22 @@ async function quizAnswerCheck(bool: boolean): Promise<void> {
     // Generate a new question for the quiz
     if (operator) {
       questionLogic.newQuestion("quiz", operator);
-    } else console.log("operator value not retrieved from sessionStorage")
-
+    } else console.log("operator value not retrieved from sessionStorage");
   }
 }
 async function quizShowScore(): Promise<void> {
   // Update the quiz score information in the view
-  if (quizAmountCorrect && quizAmountCorrectPercentage && quizModal && quizAnswerInput) {
+  if (
+    quizAmountCorrect &&
+    quizAmountCorrectPercentage &&
+    quizModal &&
+    quizAnswerInput
+  ) {
     quizAmountCorrect.textContent = state.quizStats.numCorrect.toString();
-    quizAmountCorrectPercentage.textContent = utilMethods.percentage(state.quizStats.numCorrect, state.quizStats.numAnswered).toString() + "%";
+    quizAmountCorrectPercentage.textContent =
+      utilMethods
+        .percentage(state.quizStats.numCorrect, state.quizStats.numAnswered)
+        .toString() + "%";
 
     // Display the quizModal with an animation
     quizModal.style.visibility = "visible";
@@ -100,7 +134,6 @@ async function quizShowScore(): Promise<void> {
     // Re-enable the quizAnswerInput after the quiz is over
     utilMethods.enableInput(quizAnswerInput);
   }
-
 }
 
 function resetQuizProperty(quizStats: QuizStats) {
@@ -109,7 +142,11 @@ function resetQuizProperty(quizStats: QuizStats) {
   quizStats.numCorrect = 0;
 }
 
-function updateQuizScores(score: HTMLElement, question: HTMLElement, quizStats: QuizStats) {
+function updateQuizScores(
+  score: HTMLElement,
+  question: HTMLElement,
+  quizStats: QuizStats
+) {
   // Update the scores displayed on the quiz interface
   score.innerHTML = quizStats.numCorrect.toString();
   question.innerHTML = quizStats.numAnswered.toString();
@@ -124,11 +161,14 @@ function addToQuizProperty(bool: boolean, quizStats: QuizStats) {
   // Update the scores displayed on the quiz interface
 
   updateQuizScores(quizCurrScore, quizCurrQuestion, quizStats);
-
-
 }
 
-async function checkQuizStatus(quizStats: QuizStats, currScoreContainerEl: HTMLDivElement, lastScoreContainerEl: HTMLDivElement, lastScoreEl: HTMLElement) {
+async function checkQuizStatus(
+  quizStats: QuizStats,
+  currScoreContainerEl: HTMLDivElement,
+  lastScoreContainerEl: HTMLDivElement,
+  lastScoreEl: HTMLElement
+) {
   // Check whether the quiz has been completed, and if so, finish the quiz
   if (quizStats.numAnswered == 1) {
     // If this is the first question, show the current score container element
@@ -137,15 +177,20 @@ async function checkQuizStatus(quizStats: QuizStats, currScoreContainerEl: HTMLD
   if (quizStats.numAnswered >= quizStats.numQuestions) {
     // If this is the last question, show the quiz score modal and update the last score container element
     if (quizStats.numCorrect == 10) {
+      const activeDifficulty = sessionStorage.getItem("activeDifficulty");
+      const activeOperator = <Operator>(
+        sessionStorage.getItem("activeOperators")
+      );
 
-      const activeDifficulty = sessionStorage.getItem('activeDifficulty')
-      const activeOperator = <Operator>sessionStorage.getItem("activeOperators")
-
-      await animateBadge()
-      if (activeDifficulty && activeOperator) await updateBadgeStatus("quiz", activeDifficulty, activeOperator, true)
-      else { throw new Error("Session storage operator and difficulty not retrieved") }
-    }
-    else {
+      await animateBadge();
+      if (activeDifficulty && activeOperator)
+        await updateBadgeStatus("quiz", activeDifficulty, activeOperator, true);
+      else {
+        throw new Error(
+          "Session storage operator and difficulty not retrieved"
+        );
+      }
+    } else {
       quizShowScore();
     }
     await utilMethods.delay(1200);
@@ -155,23 +200,19 @@ async function checkQuizStatus(quizStats: QuizStats, currScoreContainerEl: HTMLD
   }
 }
 
-
 async function finishQuiz(lastScoreEl: HTMLElement, quizStats: QuizStats) {
-
   // Update the last score element and reset the quiz statistics object
   lastScoreEl.innerHTML = quizStats.numCorrect.toString();
-  resetQuizProperty(quizStats)
+  resetQuizProperty(quizStats);
   utilMethods.showHide([], [quizCorrectness]);
 
-
-  let operator = <Operator>sessionStorage.getItem("activeOperators")
+  let operator = <Operator>sessionStorage.getItem("activeOperators");
   // Generate a new question
-  if (operator) { questionLogic.newQuestion("quiz", operator) }
-
-  else { throw new Error("Session storage operator not retrieved") }
-
-
-
+  if (operator) {
+    questionLogic.newQuestion("quiz", operator);
+  } else {
+    throw new Error("Session storage operator not retrieved");
+  }
 }
 
 //
@@ -186,7 +227,6 @@ function quizUpdateAnswerHandler(e: Event): void {
   }
 }
 
-
 function quizAnswerHandler(e: Event): void {
   // if (quizNumOne && quizNumTwo && quizOpOne) {
   let realAns = utilMethods.calculation(
@@ -197,24 +237,20 @@ function quizAnswerHandler(e: Event): void {
 
   quizAnswerCheck(realAns == state.userValue); // Check if the user's answer is correct using the quizAnswerCheck function
   e.preventDefault(); // Prevent the form from submitting and refreshing the page
-
-
-
 }
 
-if (quizAnswerInput) quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler); // Add an event listener to the quizAnswerInput element that updates the state with the user's answer
-if (quizAnswerForm) quizAnswerForm.addEventListener("submit", quizAnswerHandler); // Add an event listener to the quizAnswerForm element that checks the user's answer
-
-
+if (quizAnswerInput)
+  quizAnswerInput.addEventListener("input", quizUpdateAnswerHandler); // Add an event listener to the quizAnswerInput element that updates the state with the user's answer
+if (quizAnswerForm)
+  quizAnswerForm.addEventListener("submit", quizAnswerHandler); // Add an event listener to the quizAnswerForm element that checks the user's answer
 
 window.onload = function () {
-
-  let operator = <Operator>sessionStorage.getItem("activeOperators")
-  let difficulty = <Difficulty>sessionStorage.getItem("activeDifficulty")
+  let operator = <Operator>sessionStorage.getItem("activeOperators");
+  let difficulty = <Difficulty>sessionStorage.getItem("activeDifficulty");
   if (operator && difficulty) {
-    utilMethods.updateGeneralSelected(operator, difficulty)
-    questionLogic.newQuestion('quiz', operator);
+    utilMethods.updateGeneralSelected(operator, difficulty);
+    questionLogic.newQuestion("quiz", operator);
+  } else {
+    throw new Error("Session storage not retrieved");
   }
-  else { throw new Error("Session storage not retrieved") }
-
-} 
+};
