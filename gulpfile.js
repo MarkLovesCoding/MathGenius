@@ -13,7 +13,7 @@ const tsProject = ts.createProject("tsconfig.json");
 
 // require('dotenv').config();
 
-require("dotenv").config({ path: "../environmental/mg/.env" });
+// require("dotenv").config({ path: "../environmental/mg/.env" });
 gulp.task("compile-ts", function () {
   return tsProject.src().pipe(tsProject()).js.pipe(gulp.dest("dist/js"));
 });
@@ -112,8 +112,8 @@ function buildProject() {
 }
 
 // Development tasks
-let isDev = process.env.NODE_ENV.trim() == "development";
-
+// let isDev = process.env.NODE_ENV.trim() == "development";
+let isDev = false;
 gulp.task(
   "dev",
   gulp.series(
