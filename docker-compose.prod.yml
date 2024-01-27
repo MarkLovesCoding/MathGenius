@@ -2,7 +2,7 @@ version: "3"
 
 services:
   web:
-    image: markhaldev/mathgeniusimage:dev
+    image: markhaldev/mathgeniusimage:prod
     build:
       context: .
       dockerfile: Dockerfile

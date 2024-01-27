@@ -6,98 +6,68 @@ const browserSync = require("browser-sync").create();
 const clean = require("gulp-clean");
 const uglify = require("gulp-uglify");
 const cleanCSS = require("gulp-clean-css");
-const nodemon = require("gulp-nodemon");
-// const ejs = require('gulp-ejs')
 const ts = require("gulp-typescript");
 const tsProject = ts.createProject("tsconfig.json");
 
-// require('dotenv').config();
+// Define environment variable to differentiate between development and production
+const isDev = process.env.NODE_ENV === "development";
 
-// require("dotenv").config({ path: "../environmental/mg/.env" });
+// Task to compile TypeScript
 gulp.task("compile-ts", function () {
   return tsProject.src().pipe(tsProject()).js.pipe(gulp.dest("dist/js"));
 });
 
+// Task to clean the dist directory
 gulp.task("clean", function () {
   return gulp.src("dist/*").pipe(clean());
 });
 
-// Compile SASS
-function compileSass() {
+// Task to compile SASS
+gulp.task("compile-sass", function () {
   return gulp
     .src("public/scss/styles.scss")
     .pipe(sass.sync().on("error", sass.logError))
     .pipe(gulp.dest("dist/css"))
     .pipe(browserSync.stream());
-}
+});
 
-gulp.task("sass", compileSass);
-
-// Minify CSS
-function minifyCss() {
-  return gulp
-    .src("dist/css/*.css")
-    .pipe(cleanCSS())
-    .pipe(gulp.dest("dist/css"));
-}
-
-gulp.task("minify-css", minifyCss);
-
-// Transpile JS with Babel
-function transpileJs() {
+// Task to transpile JavaScript files with Babel
+gulp.task("transpile-js", function () {
   return gulp
     .src("public/js/**/*.js")
     .pipe(babel())
     .pipe(gulp.dest("dist/js"))
     .pipe(browserSync.stream());
-}
+});
 
-gulp.task("babel", transpileJs);
+// Task to copy EJS files to dist folder
+gulp.task("copy-ejs", function () {
+  return gulp.src("public/views/**/*.ejs").pipe(gulp.dest("dist/views"));
+});
 
-// Minify JS
-function minifyJs() {
-  return gulp.src("dist/js/**/*.js").pipe(uglify()).pipe(gulp.dest("dist/js"));
-}
-
-gulp.task("minify-js", minifyJs);
-
-// Transpile JS for build
-function transpileBuildJs() {
-  return gulp.src("public/js/**/*.js").pipe(babel()).pipe(gulp.dest("dist/js"));
-}
-
-gulp.task("babel-build", transpileBuildJs);
-
-// Copy EJS files to dist folder
-function copyEjs() {
-  return (
-    gulp
-      .src("public/views/**/*.ejs")
-      // .pipe(ejs())
-      .pipe(gulp.dest("dist/views"))
-  );
-}
-
-gulp.task("copy-ejs", copyEjs);
-
-// Copy assets to dist folder
-function copyAssets() {
+// Task to copy assets to dist folder
+gulp.task("copy-assets", function () {
   return gulp.src("public/assets/**/*").pipe(gulp.dest("dist/assets"));
-}
+});
 
-gulp.task("copy-assets", copyAssets);
-
-function devServer() {
-  gulp.watch("public/scss/**/*.scss", compileSass);
-  gulp.watch("public/js/**/*.js", transpileJs);
+// Task to run development server
+gulp.task("dev-server", function () {
+  gulp.watch("public/scss/**/*.scss", gulp.series("compile-sass"));
+  gulp.watch("public/js/**/*.js", gulp.series("transpile-js"));
   gulp.watch(
     "public/views/**/*.ejs",
     gulp.series("copy-ejs", browserSync.reload)
   );
-}
 
-// Build project
-function buildProject() {
+  browserSync.init({
+    server: {
+      baseDir: "./dist",
+    },
+  });
+});
+
+// Task to build project
+gulp.task("build-project", function () {
   return gulp
     .src([
       "public/**/*",
@@ -109,71 +79,47 @@ function buildProject() {
       "!public/views/**/*",
     ])
     .pipe(gulp.dest("dist"));
-}
-
-// Development tasks
-// let isDev = process.env.NODE_ENV.trim() == "development";
-let isDev = false;
-gulp.task(
-  "dev",
-  gulp.series(
-    "clean",
-    "sass",
-    "compile-ts",
-    "babel",
-    "copy-ejs",
-    "copy-assets",
-
-    function nodemonTask(cb) {
-      let started = false;
-
-      nodemon({
-        script: "server.js",
-        ignore: ["node_modules/*"],
-        ext: "js html ejs scss",
-        env: { NODE_ENV: "development" },
-        watch: [
-          "server.js",
-          "routes/*",
-          "config/*",
-          "models/*",
-          "public/scss/*",
-          "public/js/*",
-          "public/views/*",
-        ], // add any additional folders or files to watch here
-      })
-        .on("start", () => {
-          if (!started) {
-            cb();
-            started = true;
-          }
-        })
-        .on("change", ["sass", "babel", "copy-ejs"]); // run the compileSass task when changes are detected in the watched folders
-
-      devServer();
-    }
-  )
-);
-
-gulp.task("build-project", buildProject);
-
-gulp.task(
-  "build",
-  gulp.series(
-    "clean",
-    "sass",
-    "compile-ts",
-    "babel-build",
-    "copy-ejs",
-    "copy-assets",
-    "build-project",
-    "minify-css",
-    "minify-js"
-  )
-);
-
-gulp.task("clean", function () {
-  return gulp.src("dist/*").pipe(clean());
 });
 
-gulp.task("default", gulpif(isDev, gulp.task("dev"), gulp.task("build")));
+// Task to minify CSS
+gulp.task("minify-css", function () {
+  return gulp
+    .src("dist/css/*.css")
+    .pipe(cleanCSS())
+    .pipe(gulp.dest("dist/css"));
+});
+
+// Task to minify JavaScript
+gulp.task("minify-js", function () {
+  return gulp.src("dist/js/**/*.js").pipe(uglify()).pipe(gulp.dest("dist/js"));
+});
+
+// Define the default task based on the environment
+gulp.task(
+  "default",
+  gulp.series("clean", function () {
+    if (isDev) {
+      // Development tasks
+      return gulp.series(
+        "compile-ts",
+        "compile-sass",
+        "transpile-js",
+        "copy-ejs",
+        "copy-assets",
+        "dev-server"
+      )();
+    } else {
+      // Production build tasks
+      return gulp.series(
+        "compile-ts",
+        "compile-sass",
+        "transpile-js",
+        "copy-ejs",
+        "copy-assets",
+        "build-project",
+        "minify-css",
+        "minify-js"
+      )();
+    }
+  })
+);
