@@ -12,10 +12,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+      - name: Build Docker Image with docker-compose
+        run: docker compose -f docker-compose.yml build
+        # Replace `/path/to/your/docker-compose.yml` with the actual path to your docker-compose.yml file.
 
-      - name: Build Docker Image
-        run: docker build -t markhaluser/mathgenius .
-        # Replace `your-docker-username` and `your-image-name` with your Docker Hub username and image name.
+      # - name: Build Docker Image
+      #   run: docker build -t ${{ secrets.DOCKER_USERNAME }}/mathgenius:1 .
+      # Replace `your-docker-username` and `your-image-name` with your Docker Hub username and image name.
 
       - name: Log into Docker Hub
         uses: docker/login-action@v2
@@ -23,15 +28,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Remove Old Images from Docker Hub
-        run: |
-          for tag in $(docker image ls -q ${{ secrets.DOCKER_USERNAME }}/mathgenius); do
-            docker image rm -f $tag
-          done
-        # Remove all versions of the image if they exist, ignore errors if none exist
-
       - name: Push Docker Image to Docker Hub
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/MathGenius
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/mathgenius:1
 
       - name: SSH into DigitalOcean Droplet
         uses: appleboy/ssh-action@master
@@ -40,10 +38,21 @@ jobs:
           username: ${{ secrets.DIGITALOCEAN_USER_ROOT }}
           password: ${{ secrets.DIGITALOCEAN_PASSWORD_ROOT }}
           script: |
+            echo "SSH connection established successfully."
             set -e  # Exit immediately if a command exits with a non-zero status
-            docker pull ${{ secrets.DOCKER_USERNAME }}/mathgenius
-            docker-compose -f docker-compose.yml up -d
-            sshpass -p ${{ secrets.DIGITALOCEAN_PASSWORD_ROOT }} ssh ${{ secrets.DIGITALOCEAN_USER_ROOT }}@${{ secrets.DIGITALOCEAN_IP }} 'pm2 restart MathGenius && pm2 save'
+            docker stop "$(docker ps -a -q)"
+            docker rm "$(docker ps -a -q)"
+            docker rmi -f "$(docker images -aq)"
+            docker rmi ${{ secrets.DOCKER_USERNAME }}/mathgenius
+            docker pull ${{ secrets.DOCKER_USERNAME }}/mathgenius:1
+
+            sudo su - ${{ secrets.DIGITALOCEAN_USER }}
+            pm2 stop MathGenius
+            exit
+            docker run -p ${{ secrets.PORT }}:${{ secrets.PORT }} ${{ secrets.DOCKER_USERNAME }}/mathgenius:1
+            sudo su - ${{ secrets.DIGITALOCEAN_USER }}
+            pm2 restart MathGenius 
+            pm2 save'
         # Replace `/path/to/your/docker-compose.yml` with the actual path to your docker-compose.yml file.
 
 #   # Add more jobs or steps as needed
