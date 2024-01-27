@@ -21,7 +21,7 @@ jobs:
           SENDINBLUEAPI: ${{ secrets.SENDINBLUEAPI }}
           RECAPTCHA_SITE: ${{ secrets.RECAPTCHA_PROD_SITE }}
           RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_PROD_SECRET }}
-          MONGOURI_PROD: ${{ secrets.MONGOURI_PROD }}
+          MONGOURI_DEV: ${{ secrets.MONGOURI_DEV }}
           PORT: ${{ secrets.PORT }}
           DOCKER_IMAGENAME: ${{ secrets.DOCKER_IMAGENAME }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
