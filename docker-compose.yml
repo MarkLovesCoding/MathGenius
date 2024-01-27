@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:4000"
+    environment:
+      - NODE_ENV=production
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - MY_SECRET=${MY_SECRET}
+      - SENDINBLUESMTP=${SENDINBLUESMTP}
+      - SENDINBLUEAPI=${SENDINBLUEAPI}
+      - MONGOURI=${MONGOURI_PROD}
+      - RECAPTCHA_SITE=${RECAPTCHA_PROD_SITE}
+      - RECAPTCHA_SECRET=${RECAPTCHA_PROD_SECRET}
