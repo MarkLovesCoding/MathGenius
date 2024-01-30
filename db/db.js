@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 require("dotenv").config({ path: "./.env" });
-console.log(process.env.MONGOURI_PROD);
+
 const mongoURI =
   process.env.NODE_ENV === "production"
     ? process.env.MONGOURI_PROD
