@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      # - name: Create .env file
-      #   run: |
-      #     echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
-      #     echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
+      - name: Create .env file
+        run: |
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
       #     echo "MY_SECRET=${{ secrets.MY_SECRET }}" >> .env
       #     echo "SENDINBLUESMTP=${{ secrets.SENDINBLUESMTP }}" >> .env
       #     echo "SENDINBLUEAPI=${{ secrets.SENDINBLUEAPI }}" >> .env
