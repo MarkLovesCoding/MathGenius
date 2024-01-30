@@ -11,24 +11,25 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      # - name: Create .env file
-      #   run: |
-      #     echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
-      #     echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
-      #     echo "MY_SECRET=${{ secrets.MY_SECRET }}" >> .env
-      #     echo "SENDINBLUESMTP=${{ secrets.SENDINBLUESMTP }}" >> .env
-      #     echo "SENDINBLUEAPI=${{ secrets.SENDINBLUEAPI }}" >> .env
-      #     echo "MONGOURI=${{ secrets.MONGOURI_PROD }}" >> .env
-      #     echo "RECAPTCHA_SITE=${{ secrets.RECAPTCHA_PROD_SITE }}" >> .env
-      #     echo "RECAPTCHA_SECRET=${{ secrets.RECAPTCHA_PROD_SECRET }}" >> .env
-      #     echo "MONGOURI_PROD=${{ secrets.MONGOURI_PROD }}" >> .env
-      #     echo "PORT=${{ secrets.PORT }}" >> .env
-      #     echo "DOCKER_IMAGENAME=${{ secrets.DOCKER_IMAGENAME }}" >> .env
-      #     echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> .env
-      #     echo "DOCKERHUB_TOKEN=${{ secrets.DOCKERHUB_TOKEN }}" >> .env
-      #     echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> .env
-      # - name: Print .env file contents
-      #   run: cat .env
+      - name: Create .env file
+        run: |
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
+          echo "MY_SECRET=${{ secrets.MY_SECRET }}" >> .env
+          echo "SENDINBLUESMTP=${{ secrets.SENDINBLUESMTP }}" >> .env
+          echo "SENDINBLUEAPI=${{ secrets.SENDINBLUEAPI }}" >> .env
+          echo "MONGOURI=${{ secrets.MONGOURI_PROD }}" >> .env
+          echo "RECAPTCHA_SITE=${{ secrets.RECAPTCHA_PROD_SITE }}" >> .env
+          echo "RECAPTCHA_SECRET=${{ secrets.RECAPTCHA_PROD_SECRET }}" >> .env
+          echo "MONGOURI_PROD=${{ secrets.MONGOURI_PROD }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "DOCKER_IMAGENAME=${{ secrets.DOCKER_IMAGENAME }}" >> .env
+          echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> .env
+          echo "DOCKERHUB_TOKEN=${{ secrets.DOCKERHUB_TOKEN }}" >> .env
+          echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> .env
+      - name: Print .env file contents
+        run: cat .env
+
       - name: Build Docker Image with docker-compose
 
         run: docker compose -f docker-compose.prod.yml build
