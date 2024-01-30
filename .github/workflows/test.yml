@@ -1,83 +1,20 @@
-name: Docker Build and Deploy
+name: Build Docker Image and Run Tests
 
 on:
   push:
     branches:
-      - main
+      - test
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: Install sshpass
-        run: sudo apt-get install -y sshpass
-      - name: Build Docker Image with docker-compose
-        env:
-          NODE_ENV: production
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          MY_SECRET: ${{ secrets.MY_SECRET }}
-          SENDINBLUESMTP: ${{ secrets.SENDINBLUESMTP }}
-          SENDINBLUEAPI: ${{ secrets.SENDINBLUEAPI }}
-          MONGOURI: ${{ secrets.MONGOURI_PROD }}
-          RECAPTCHA_SITE: ${{ secrets.RECAPTCHA_PROD_SITE }}
-          RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_PROD_SECRET }}
-          MONGOURI_PROD: ${{ secrets.MONGOURI_PROD }}
-          PORT: ${{ secrets.PORT }}
-          DOCKER_IMAGENAME: ${{ secrets.DOCKER_IMAGENAME }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: docker compose -f docker-compose.prod.yml build
-        # Replace `/path/to/your/docker-compose.yml` with the actual path to your docker-compose.yml file.
 
-      # - name: Build Docker Image
-      #   run: docker build -t ${{ secrets.DOCKER_USERNAME }}/mathgenius:1 .
-      # Replace `your-docker-username` and `your-image-name` with your Docker Hub username and image name.
+      - name: Build Docker Image
+        run: docker build -t markhaldev/mathgameimage:test .
 
-      - name: Log into Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Push Docker Image to Docker Hub
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/mathgenius:1
-
-      - name: SSH into DigitalOcean Droplet
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DIGITALOCEAN_IP }}
-          username: ${{ secrets.DIGITALOCEAN_USER_ROOT }}
-          password: ${{ secrets.DIGITALOCEAN_PASSWORD_ROOT }}
-          script: |
-            echo "SSH connection established successfully."
-            set -e  # Exit immediately if a command exits with a non-zero status
-
-            docker pull ${{ secrets.DOCKER_USERNAME }}/mathgenius:1
-
-            sudo su - ${{ secrets.DIGITALOCEAN_USER }}
-            whoami
-            pm2 stop MathGenius
-            exit
-            whoami
-            docker run -p ${{ secrets.PORT }}:${{ secrets.PORT }} ${{ secrets.DOCKER_USERNAME }}/mathgenius:1
-            sudo su - ${{ secrets.DIGITALOCEAN_USER }}
-            whoami
-            pm2 restart MathGenius 
-            pm2 save'
-        # Replace `/path/to/your/docker-compose.yml` with the actual path to your docker-compose.yml file.
-
-#   # Add more jobs or steps as needed
-#   GitHub Actions Workflow: The workflow builds your Docker image, pushes it to Docker Hub, and then deploys it to your DigitalOcean droplet using Docker Compose.
-
-#   DigitalOcean Droplet Setup: Once the Docker container is deployed on the DigitalOcean droplet, it should be running your application on port 4000 inside the container.
-
-#   Nginx Configuration: If your nginx server is configured to proxy requests from port 4000 to your application, it will forward incoming requests to your Docker container running on port 4000.
-
-#   Request Flow: When a user sends a request to your DigitalOcean droplet on port 4000, nginx will receive the request and proxy it to your application running inside the Docker container on the same port.
-# docker stop "$(docker ps -a -q)"
-# docker rm "$(docker ps -a -q)"
-# docker rmi -f "$(docker images -aq)"
+      - name: Run Tests in Docker Container
+        run: |
+          docker run markhaldev/mathgameimage:test npm test

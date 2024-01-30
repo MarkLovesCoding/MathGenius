@@ -3,7 +3,7 @@ name: Docker Build and Push to Hub - Development
 on:
   push:
     branches:
-      - DockerFile2
+      - development
 
 jobs:
   build:
