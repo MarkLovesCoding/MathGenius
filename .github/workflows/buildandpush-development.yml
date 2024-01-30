@@ -1,9 +1,9 @@
-name: Docker Build and Deploy
+name: Docker Build and Push to Hub - Development
 
 on:
   push:
     branches:
-      - master
+      - DockerFile2
 
 jobs:
   build:
@@ -23,23 +23,15 @@ jobs:
           echo "RECAPTCHA_PROD_SITE=${{ secrets.RECAPTCHA_PROD_SITE }}" >> .env
           echo "RECAPTCHA_PROD_SECRET=${{ secrets.RECAPTCHA_PROD_SECRET }}" >> .env
           echo "PORT=${{ secrets.PORT }}" >> .env
-          echo "DOCKER_IMAGENAME=markhaldev/mathgeniusimage:prod" >> .env
+          echo "DOCKER_IMAGENAME=markhaldev/mathgeniusimage:dev" >> .env
           echo "DOCKERHUB_TOKEN=${{ secrets.DOCKERHUB_TOKEN }}" >> .env
           echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> .env
           echo "DIGITALOCEAN_PA_TOKEN=${{ secrets.DIGITALOCEAN_PA_TOKEN }}" >> .env
           echo "DIGITALOCEAN_IP=${{ secrets.DIGITALOCEAN_IP }}" >> .env
           echo "DIGITALOCEAN_PASSWORD_ROOT=${{ secrets.DIGITALOCEAN_PASSWORD_ROOT }}" >> .env
           echo "DIGITALOCEAN_PASSWORD_USER=${{ secrets.DIGITALOCEAN_PASSWORD_USER }}" >> .env
-
       - name: Build Docker Image with docker-compose
-
-        run: docker compose -f docker-compose.prod.yml build
-
-        # Replace `/path/to/your/docker-compose.yml` with the actual path to your docker-compose.yml file.
-      - name: Print Secrets
-        run: |
-          echo "CLIENT_ID: ${{ secrets.CLIENT_ID }}"
-          echo "DOCKER IMAGE: ${{ secrets.DOCKER_IMAGENAME }}"
+        run: docker compose -f docker-compose.yml build
 
       - name: Log into Docker Hub
         uses: docker/login-action@v2
@@ -48,25 +40,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker Image to Docker Hub
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/mathgeniusimage:prod
-
-      - name: SSH into DigitalOcean Droplet
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DIGITALOCEAN_IP }}
-          username: ${{ secrets.DIGITALOCEAN_USER_ROOT }}
-          password: ${{ secrets.DIGITALOCEAN_PASSWORD_ROOT }}
-          script: |
-            echo "SSH connection established successfully."
-            set -e  # Exit immediately if a command exits with a non-zero status
-            if [ "$(docker ps -q)" ]; then
-                docker stop $(docker ps -a -q)
-                docker rm $(docker ps -a -q)
-            fi
-            if [ "$(docker images -q)" ]; then
-                docker rmi -f $(docker images -aq)
-            fi
-
-            docker pull ${{ secrets.DOCKER_USERNAME }}/mathgeniusimage:prod
-
-            docker run -d -p ${{ secrets.PORT }}:${{ secrets.PORT }} ${{ secrets.DOCKER_USERNAME }}/mathgeniusimage:prod
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/mathgeniusimage:dev
