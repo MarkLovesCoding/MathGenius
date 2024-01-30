@@ -19,7 +19,6 @@ jobs:
           MY_SECRET: ${{ secrets.MY_SECRET }}
           SENDINBLUESMTP: ${{ secrets.SENDINBLUESMTP }}
           SENDINBLUEAPI: ${{ secrets.SENDINBLUEAPI }}
-          MONGOURI: ${{ secrets.MONGOURI_PROD }}
           RECAPTCHA_SITE: ${{ secrets.RECAPTCHA_PROD_SITE }}
           RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_PROD_SECRET }}
           MONGOURI_PROD: ${{ secrets.MONGOURI_PROD }}

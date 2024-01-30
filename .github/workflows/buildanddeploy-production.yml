@@ -11,42 +11,30 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      # - name: Create .env file
-      #   run: |
-      #     echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
-      #     echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
-      #     echo "MY_SECRET=${{ secrets.MY_SECRET }}" >> .env
-      #     echo "SENDINBLUESMTP=${{ secrets.SENDINBLUESMTP }}" >> .env
-      #     echo "SENDINBLUEAPI=${{ secrets.SENDINBLUEAPI }}" >> .env
-      #     echo "MONGOURI=${{ secrets.MONGOURI_PROD }}" >> .env
-      #     echo "RECAPTCHA_SITE=${{ secrets.RECAPTCHA_PROD_SITE }}" >> .env
-      #     echo "RECAPTCHA_SECRET=${{ secrets.RECAPTCHA_PROD_SECRET }}" >> .env
-      #     echo "MONGOURI_PROD=${{ secrets.MONGOURI_PROD }}" >> .env
-      #     echo "PORT=${{ secrets.PORT }}" >> .env
-      #     echo "DOCKER_IMAGENAME=${{ secrets.DOCKER_IMAGENAME }}" >> .env
-      #     echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> .env
-      #     echo "DOCKERHUB_TOKEN=${{ secrets.DOCKERHUB_TOKEN }}" >> .env
-      #     echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> .env
-      # - name: Print .env file contents
-      #   run: cat .env
+      - name: Generate .env File
+        run: |
+          echo "NODE_ENV=production" > .env
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
+          echo "MY_SECRET=${{ secrets.MY_SECRET }}" >> .env
+          echo "SENDINBLUESMTP=${{ secrets.SENDINBLUESMTP }}" >> .env
+          echo "SENDINBLUEAPI=${{ secrets.SENDINBLUEAPI }}" >> .env
+          echo "MONGOURI_PROD=${{ secrets.MONGOURI_PROD }}" >> .env
+          echo "RECAPTCHA_PROD_SITE=${{ secrets.RECAPTCHA_PROD_SITE }}" >> .env
+          echo "RECAPTCHA_PROD_SECRET=${{ secrets.RECAPTCHA_PROD_SECRET }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "DOCKER_IMAGENAME=markhaldev/mathgeniusimage:prod" >> .env
+          echo "DOCKERHUB_TOKEN=${{ secrets.DOCKERHUB_TOKEN }}" >> .env
+          echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> .env
+          echo "DIGITALOCEAN_PA_TOKEN=${{ secrets.DIGITALOCEAN_PA_TOKEN }}" >> .env
+          echo "DIGITALOCEAN_IP=${{ secrets.DIGITALOCEAN_IP }}" >> .env
+          echo "DIGITALOCEAN_PASSWORD_ROOT=${{ secrets.DIGITALOCEAN_PASSWORD_ROOT }}" >> .env
+          echo "DIGITALOCEAN_PASSWORD_USER=${{ secrets.DIGITALOCEAN_PASSWORD_USER }}" >> .env
+
       - name: Build Docker Image with docker-compose
 
         run: docker compose -f docker-compose.prod.yml build
-        env:
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          MY_SECRET: ${{ secrets.MY_SECRET }}
-          SENDINBLUESMTP: ${{ secrets.SENDINBLUESMTP }}
-          SENDINBLUEAPI: ${{ secrets.SENDINBLUEAPI }}
-          MONGOURI: ${{ secrets.MONGOURI_PROD }}
-          RECAPTCHA_SITE: ${{ secrets.RECAPTCHA_PROD_SITE }}
-          RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_PROD_SECRET }}
-          MONGOURI_PROD: ${{ secrets.MONGOURI_PROD }}
-          PORT: ${{ secrets.PORT }}
-          DOCKER_IMAGENAME: ${{ secrets.DOCKER_IMAGENAME }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
         # Replace `/path/to/your/docker-compose.yml` with the actual path to your docker-compose.yml file.
       - name: Print Secrets
         run: |
@@ -81,18 +69,4 @@ jobs:
 
             docker pull ${{ secrets.DOCKER_USERNAME }}/mathgeniusimage:prod
 
-            docker run -p ${{ secrets.PORT }}:${{ secrets.PORT }} ${{ secrets.DOCKER_USERNAME }}/mathgeniusimage:prod
-
-        # Replace `/path/to/your/docker-compose.yml` with the actual path to your docker-compose.yml file.
-
-#   # Add more jobs or steps as needed
-#   GitHub Actions Workflow: The workflow builds your Docker image, pushes it to Docker Hub, and then deploys it to your DigitalOcean droplet using Docker Compose.
-
-#   DigitalOcean Droplet Setup: Once the Docker container is deployed on the DigitalOcean droplet, it should be running your application on port 4000 inside the container.
-
-#   Nginx Configuration: If your nginx server is configured to proxy requests from port 4000 to your application, it will forward incoming requests to your Docker container running on port 4000.
-
-#   Request Flow: When a user sends a request to your DigitalOcean droplet on port 4000, nginx will receive the request and proxy it to your application running inside the Docker container on the same port.
-# docker stop "$(docker ps -a -q)"
-# docker rm "$(docker ps -a -q)"
-# docker rmi -f "$(docker images -aq)"
+            docker run -d -p ${{ secrets.PORT }}:${{ secrets.PORT }} ${{ secrets.DOCKER_USERNAME }}/mathgeniusimage:prod
