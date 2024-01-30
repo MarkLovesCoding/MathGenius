@@ -4,10 +4,12 @@ const babel = require("gulp-babel");
 const gulpif = require("gulp-if");
 const browserSync = require("browser-sync").create();
 const clean = require("gulp-clean");
+const nodemon = require("gulp-nodemon");
 const uglify = require("gulp-uglify");
 const cleanCSS = require("gulp-clean-css");
 const ts = require("gulp-typescript");
 const tsProject = ts.createProject("tsconfig.json");
+require("dotenv").config({ path: "./.env" });
 
 // Define environment variable to differentiate between development and production
 const isDev = process.env.NODE_ENV === "development";
@@ -27,17 +29,14 @@ gulp.task("compile-sass", function () {
   return gulp
     .src("public/scss/styles.scss")
     .pipe(sass.sync().on("error", sass.logError))
-    .pipe(gulp.dest("dist/css"))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest("dist/css"));
+  // .pipe(browserSync.stream());
 });
 
 // Task to transpile JavaScript files with Babel
 gulp.task("transpile-js", function () {
-  return gulp
-    .src("public/js/**/*.js")
-    .pipe(babel())
-    .pipe(gulp.dest("dist/js"))
-    .pipe(browserSync.stream());
+  return gulp.src("public/js/**/*.js").pipe(babel()).pipe(gulp.dest("dist/js"));
+  // .pipe(browserSync.stream());
 });
 
 // Task to copy EJS files to dist folder
@@ -51,21 +50,31 @@ gulp.task("copy-assets", function () {
 });
 
 // Task to run development server
-gulp.task("dev-server", function () {
-  gulp.watch("public/scss/**/*.scss", gulp.series("compile-sass"));
-  gulp.watch("public/js/**/*.js", gulp.series("transpile-js"));
-  gulp.watch(
-    "public/views/**/*.ejs",
-    gulp.series("copy-ejs", browserSync.reload)
-  );
+// gulp.task("dev-server", function () {
+//   gulp.watch("public/scss/**/*.scss", gulp.series("compile-sass"));
+//   gulp.watch("public/js/**/*.js", gulp.series("transpile-js"));
+//   gulp.watch(
+//     "public/views/**/*.ejs",
+//     gulp.series("copy-ejs", browserSync.reload)
+//   );
 
-  browserSync.init({
-    server: {
-      baseDir: "./dist",
-    },
+//   browserSync.init({
+//     server: {
+//       baseDir: "./dist",
+//       index: "/views/login.ejs",
+//     },
+//     port: 4000,
+//   });
+// });
+gulp.task("dev", function (done) {
+  nodemon({
+    script: "server.js", // Specify the entry point of your server
+    ext: "js ejs scss", // Watch for changes in JS, EJS, and SCSS files
+    watch: ["server.js", "public/js", "public/views", "public/scss"], // Watch these files/folders for changes
+    env: { NODE_ENV: "development" }, // Set the NODE_ENV environment variable to "development"
+    done: done,
   });
 });
-
 // Task to build project
 gulp.task("build-project", function () {
   return gulp
@@ -95,22 +104,51 @@ gulp.task("minify-js", function () {
 });
 
 // Define the default task based on the environment
+// gulp.task(
+//   "default",
+//   gulp.series("clean", function () {
+//     if (isDev) {
+//       // Development tasks
+//       return gulp.series(
+//         "compile-ts",
+//         "compile-sass",
+//         "transpile-js",
+//         "copy-ejs",
+//         "copy-assets",
+//         "dev"
+//       )();
+//     } else {
+//       // Production build tasks
+//       return gulp.series(
+//         "compile-ts",
+//         "compile-sass",
+//         "transpile-js",
+//         "copy-ejs",
+//         "copy-assets",
+//         "build-project",
+//         "minify-css",
+//         "minify-js"
+//       )();
+//     }
+//   })
+// );
+// Define the default task based on the environment
 gulp.task(
   "default",
-  gulp.series("clean", function () {
+  gulp.series("clean", function (done) {
     if (isDev) {
       // Development tasks
-      return gulp.series(
+      gulp.series(
         "compile-ts",
         "compile-sass",
         "transpile-js",
         "copy-ejs",
         "copy-assets",
-        "dev-server"
-      )();
+        "dev"
+      )(done);
     } else {
       // Production build tasks
-      return gulp.series(
+      gulp.series(
         "compile-ts",
         "compile-sass",
         "transpile-js",
@@ -119,7 +157,7 @@ gulp.task(
         "build-project",
         "minify-css",
         "minify-js"
-      )();
+      )(done);
     }
   })
 );

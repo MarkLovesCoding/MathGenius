@@ -11,7 +11,7 @@ const mongoURI =
 
 mongoose
   .connect(mongoURI, { useNewUrlParser: true })
-  .then(() => console.log("MongoDB Connected"))
+  .then(() => console.log("MongoDB Connected: "))
   .catch((err) => console.log(`MongoDB Error: ${err}`));
 
 const store = new MongoStore({

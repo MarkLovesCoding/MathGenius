@@ -13,13 +13,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Generate .env File
         run: |
-          echo "NODE_ENV=production" > .env
+          echo "NODE_ENV=development" > .env
           echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
           echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
           echo "MY_SECRET=${{ secrets.MY_SECRET }}" >> .env
           echo "SENDINBLUESMTP=${{ secrets.SENDINBLUESMTP }}" >> .env
           echo "SENDINBLUEAPI=${{ secrets.SENDINBLUEAPI }}" >> .env
-          echo "MONGOURI_PROD=${{ secrets.MONGOURI_PROD }}" >> .env
+          echo "MONGOURI_DEV=${{ secrets.MONGOURI_DEV }}" >> .env
           echo "RECAPTCHA_PROD_SITE=${{ secrets.RECAPTCHA_PROD_SITE }}" >> .env
           echo "RECAPTCHA_PROD_SECRET=${{ secrets.RECAPTCHA_PROD_SECRET }}" >> .env
           echo "PORT=${{ secrets.PORT }}" >> .env

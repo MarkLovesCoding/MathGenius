@@ -1,1 +1,149 @@
-import*as utilMethods from"../utils.js";import{state}from"../state.js";import*as questionLogic from"../sharedQuestionLogic.js";import{updateBadgeStatus}from"../badges.js";import{animateBadge}from"../badgeEarned.js";const mcQuizOptions=document.getElementById("mc-quiz-options");function finishMCQuiz(){state.mcQuizActive.mcqNumAnswered=0,state.mcQuizActive.mcqNumCorrect=0,state.mcQuizActive.mcqFailedAttempts=0}const mcQuestionNumber=document.getElementById("mc-question-number"),mcQuestionsCorrect=document.getElementById("mc-questions-correct"),mcQuizModal=document.getElementById("mc-quiz-modal"),mcQuizAmountCorrect=document.getElementById("mc-quiz-amountCorrect"),mcQuizAmountCorrectPercentage=document.getElementById("mc-quiz-amountCorrectPercentage");async function mcQuizShowScore(){mcQuizAmountCorrect.textContent=state.mcQuizActive.mcqNumCorrect.toString(),mcQuizAmountCorrectPercentage.textContent=utilMethods.percentage(state.mcQuizActive.mcqNumCorrect,state.mcQuizActive.mcqNumAnswered).toString()+"%",mcQuizModal.style.visibility="visible",mcQuizModal.style.zIndex="101",utilMethods.emphasize(mcQuizModal),await utilMethods.delay(1600),mcQuizModal.style.visibility="hidden",mcQuizModal.style.zIndex="0"}function updateMCQuizPage(){var t=state.mcQuizActive.mcqNumCorrect,e=state.mcQuizActive.mcqNumAnswered;mcQuestionNumber.textContent=e.toString(),mcQuestionsCorrect.textContent=t.toString()}async function checkMCQAnswered(){if(state.mcQuizActive.mcqNumAnswered==state.mcQuizActive.mcqNumQuestion){if(10==state.mcQuizActive.mcqNumCorrect){var t=sessionStorage.getItem("activeDifficulty"),e=sessionStorage.getItem("activeOperators");if(await animateBadge(),!t||!e)throw new Error("Error retrieving diff and operator from session Storage");await updateBadgeStatus("mcquiz",t,e,!0)}else mcQuizShowScore();finishMCQuiz()}}async function mcQuizAnswerCheck(t,e,i=null){var c=sessionStorage.getItem("activeOperators");if(t){if(0===state.mcQuizActive.mcqFailedAttempts&&(state.mcQuizActive.mcqNumCorrect+=1,state.mcQuizActive.mcqNumAnswered+=1),0<state.mcQuizActive.mcqFailedAttempts&&(state.mcQuizActive.mcqNumAnswered+=1),state.mcQuizActive.mcqFailedAttempts=0,checkMCQAnswered(),utilMethods.animateCorrect(e),await utilMethods.delay(150),updateMCQuizPage(),!c)throw new Error("Error retrieving operator from session storage");questionLogic.newQuestion("multiple-choice-quiz",c,mcQuizCreateOptions)}else state.mcQuizActive.mcqFailedAttempts+=1,checkMCQAnswered(),i&&utilMethods.animateIncorrect(i),await utilMethods.delay(150),updateMCQuizPage()}function mcQuizCreateOptions(t,e,i){var c=utilMethods.createOptions(t,e,i);mcQuizOptions.innerHTML="";let o=utilMethods.calculation(t,e,i);c.forEach(t=>{var e=document.createElement("button");e.classList.add("option"),e.textContent=t.toString();let i;t==o&&(i=e),e.addEventListener("mousedown",function(t){t=t.target;t.textContent==o.toString()&&mcQuizAnswerCheck(!0,t),t.textContent!=o.toString()&&mcQuizAnswerCheck(!1,i,t)}),mcQuizOptions.appendChild(e)})}window.onload=function(){var t=sessionStorage.getItem("activeOperators"),e=sessionStorage.getItem("activeDifficulty");t&&e&&(utilMethods.updateGeneralSelected(t,e),questionLogic.newQuestion("multiple-choice-quiz",t,mcQuizCreateOptions))};export{mcQuizCreateOptions};
+import * as utilMethods from "../utils.js";
+import { state } from "../state.js";
+import * as questionLogic from "../sharedQuestionLogic.js";
+import { updateBadgeStatus } from "../badges.js";
+import { animateBadge } from "../badgeEarned.js";
+const mcQuizOptions = document.getElementById("mc-quiz-options");
+//////MCQUIZ
+/**
+ * resets the relevant state values.
+ */
+function finishMCQuiz() {
+    // add state db flow
+    // Reset state values
+    state.mcQuizActive.mcqNumAnswered = 0;
+    state.mcQuizActive.mcqNumCorrect = 0;
+    state.mcQuizActive.mcqFailedAttempts = 0;
+}
+const mcQuestionNumber = (document.getElementById("mc-question-number"));
+const mcQuestionsCorrect = (document.getElementById("mc-questions-correct"));
+const mcQuizModal = document.getElementById("mc-quiz-modal");
+const mcQuizAmountCorrect = (document.getElementById("mc-quiz-amountCorrect"));
+const mcQuizAmountCorrectPercentage = (document.getElementById("mc-quiz-amountCorrectPercentage"));
+async function mcQuizShowScore() {
+    // Update text content of elements with score information
+    mcQuizAmountCorrect.textContent = state.mcQuizActive.mcqNumCorrect.toString();
+    mcQuizAmountCorrectPercentage.textContent =
+        utilMethods
+            .percentage(state.mcQuizActive.mcqNumCorrect, state.mcQuizActive.mcqNumAnswered)
+            .toString() + "%";
+    // Show quiz modal and add emphasis effect
+    mcQuizModal.style.visibility = "visible";
+    mcQuizModal.style.zIndex = "101";
+    utilMethods.emphasize(mcQuizModal);
+    // Wait for a delay, then hide quiz modal and remove emphasis effect
+    await utilMethods.delay(1600);
+    mcQuizModal.style.visibility = "hidden";
+    mcQuizModal.style.zIndex = "0";
+}
+function updateMCQuizPage() {
+    // Update text content of elements with question and score information
+    const numCorrect = state.mcQuizActive.mcqNumCorrect;
+    // const numQuestion: number = state.mcQuizActive.mcqNumQuestion;
+    const numAnswered = state.mcQuizActive.mcqNumAnswered;
+    // if(mcQuestionNumber && mcQuestionsCorrect){
+    mcQuestionNumber.textContent = numAnswered.toString();
+    mcQuestionsCorrect.textContent = numCorrect.toString();
+    // } else throw new Error("Dom not loaded: Multiple Choice Question Numbers")
+}
+async function checkMCQAnswered() {
+    // If all questions have been answered, show score and finish quiz
+    if (state.mcQuizActive.mcqNumAnswered == state.mcQuizActive.mcqNumQuestion) {
+        if (state.mcQuizActive.mcqNumCorrect == 10) {
+            const activeDifficulty = sessionStorage.getItem("activeDifficulty");
+            const activeOperator = (sessionStorage.getItem("activeOperators"));
+            await animateBadge();
+            if (activeDifficulty && activeOperator) {
+                await updateBadgeStatus("mcquiz", activeDifficulty, activeOperator, true);
+            }
+            else
+                throw new Error("Error retrieving diff and operator from session Storage");
+        }
+        else {
+            mcQuizShowScore();
+        }
+        finishMCQuiz();
+    }
+}
+async function mcQuizAnswerCheck(bool, correctEl, falseEl = null) {
+    // Check if the answer is correct or not
+    const operator = sessionStorage.getItem("activeOperators");
+    if (bool) {
+        // If the answer is correct:
+        // Increment the number of correct answers and answered questions
+        if (state.mcQuizActive.mcqFailedAttempts === 0) {
+            state.mcQuizActive.mcqNumCorrect += 1;
+            state.mcQuizActive.mcqNumAnswered += 1;
+        }
+        // If there were failed attempts before, increment the number of answered questions only
+        if (state.mcQuizActive.mcqFailedAttempts > 0) {
+            state.mcQuizActive.mcqNumAnswered += 1;
+        }
+        state.mcQuizActive.mcqFailedAttempts = 0;
+        // Check if all questions are answered and show the score if true. Animate the correct element
+        checkMCQAnswered();
+        utilMethods.animateCorrect(correctEl);
+        // Wait for a short delay before updating the quiz page and generating a new question
+        await utilMethods.delay(150);
+        updateMCQuizPage();
+        if (operator)
+            questionLogic.newQuestion("multiple-choice-quiz", operator, mcQuizCreateOptions);
+        else
+            throw new Error("Error retrieving operator from session storage");
+    }
+    else {
+        // If the answer is incorrect:
+        // Increment the number of failed attempts
+        state.mcQuizActive.mcqFailedAttempts += 1;
+        // Check if all questions are answered and show the score if true. Animate elements based on correctness
+        checkMCQAnswered();
+        if (falseEl)
+            utilMethods.animateIncorrect(falseEl);
+        // Wait for a short delay before updating the quiz page and generating a new question
+        await utilMethods.delay(150);
+        updateMCQuizPage();
+        // questionLogic.newQuestion("multiple-choice-quiz",operator, mcQuizCreateOptions);
+    }
+}
+export function mcQuizCreateOptions(n1, n2, o1) {
+    // Create an array of options for the multiple choice question
+    let options = utilMethods.createOptions(n1, n2, o1);
+    // Clear the options element
+    mcQuizOptions.innerHTML = "";
+    // Calculate the answer to the question
+    let ans = utilMethods.calculation(n1, n2, o1);
+    // Create a button element for each option and append it to the options element
+    options.forEach((option) => {
+        const optionEl = document.createElement("button");
+        optionEl.classList.add("option");
+        optionEl.textContent = option.toString();
+        let correctOption;
+        // If the current option is the correct answer, set the correct option to the current button element
+        if (option == ans) {
+            correctOption = optionEl;
+        }
+        // Add an event listener to the button element to check if the answer is correct or incorrect
+        optionEl.addEventListener("mousedown", function (e) {
+            let targetEl = e.target;
+            if (targetEl.textContent == ans.toString()) {
+                // If the answer is correct, call mcQuizAnswerCheck with true as the first argument and the current button element as the second argument
+                mcQuizAnswerCheck(true, targetEl);
+            }
+            if (targetEl.textContent != ans.toString()) {
+                // If the answer is incorrect, call mcQuizAnswerCheck with false as the first argument, the button element with the correct answer as the second argument, and the current button element as the third argument
+                mcQuizAnswerCheck(false, correctOption, targetEl);
+            }
+        });
+        mcQuizOptions.appendChild(optionEl);
+    });
+}
+///
+///
+window.onload = function () {
+    let operator = sessionStorage.getItem("activeOperators");
+    let difficulty = sessionStorage.getItem("activeDifficulty");
+    if (operator && difficulty) {
+        utilMethods.updateGeneralSelected(operator, difficulty);
+        questionLogic.newQuestion("multiple-choice-quiz", operator, mcQuizCreateOptions);
+    }
+};

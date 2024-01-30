@@ -47,10 +47,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passportConfig(passport);
+app.use(express.static(path.join(__dirname, "dist")));
 app.use("/", routes);
 
 // serve static files from the public directory
-app.use(express.static(path.join(__dirname, "dist")));
 
 // start the servernpm run
 const port = 4000;
