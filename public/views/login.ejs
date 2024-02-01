@@ -17,8 +17,6 @@
     />
     <link rel="stylesheet" href="/css/styles.css" />
 
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-
     <link
       href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Monomaniac+One&family=Pangolin&family=roboto&display=swap"
       rel="stylesheet"
@@ -27,6 +25,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="../js/recaptcha/loginRecaptcha.js"></script>
   </head>
 
   <body>
@@ -84,12 +84,9 @@
               >
                 <div class="login-blocks">
                   <div class="login-form-group">
-                    <!-- <label class="input-label" for="username">Username or Email:</label> -->
-                    <!-- <input class="form-input" type="text" id="username" name="username" placeholder="Email or Username"
-            required> -->
                     <div class="input-shell">
                       <i class="input-icon fa-solid fa-user-large"></i>
-                      <div class="input-seperator"></div>
+                      <div class="input-separator"></div>
                       <input
                         class="form-input"
                         type="text"
@@ -97,6 +94,7 @@
                         name="username"
                         placeholder="Username"
                         required
+                        tabindex="1"
                       />
                     </div>
                     <a
@@ -108,7 +106,7 @@
                   <div class="login-form-group password-group">
                     <div class="input-shell">
                       <i class="input-icon fa-solid fa-key"></i>
-                      <div class="input-seperator"></div>
+                      <div class="input-separator"></div>
                       <input
                         class="form-input"
                         type="password"
@@ -116,6 +114,7 @@
                         name="password"
                         placeholder="Password"
                         required
+                        tabindex="2"
                       />
                     </div>
                     <a
@@ -125,11 +124,8 @@
                     >
                   </div>
                 </div>
-                <!-- <div class="forgot-text-container">
-  
-          </div> -->
 
-                <div class="signin-button-group">
+                <div class="signin-button-group" data-cy="login-div-button">
                   <button
                     title="login-button"
                     type="submit"
@@ -138,6 +134,7 @@
                     data-callback="onSubmit"
                     data-cy="login-button"
                     data-action="submit"
+                    tabindex="3"
                   >
                     Sign In
                   </button>
@@ -164,8 +161,10 @@
                     data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj"
                     data-callback="onSubmitGoogle"
                     data-action="submit"
+                    data-cy="login-google"
                     id="google"
                     type="submit"
+                    tabindex="4"
                   >
                     Sign in with Google
                   </button>
@@ -177,6 +176,7 @@
                 <a
                   class="login-create-account-link login-create-account"
                   href="/signup"
+                  data-cy="login-create-account"
                   >Create Account</a
                 >
               </div>
@@ -191,10 +191,12 @@
                 <button
                   class="login-form-button guest-button g-recaptcha"
                   data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj"
-                  data-callback="onSubmitGuest"
+                  data-callback="onSubmitGuestLogIn"
                   data-action="submit"
+                  data-cy="login-guest"
                   id="guest"
                   type="submit"
+                  tabindex="5"
                 >
                   Play as guest
                 </button>
@@ -206,6 +208,5 @@
       <%- include('partials/_privacy') %>
     </div>
     <script type="module" src="../js/loginAlert.js"></script>
-    <script type="module" src="../js/recaptcha/loginRecaptcha.js"></script>
   </body>
 </html>

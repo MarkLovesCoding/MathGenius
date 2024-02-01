@@ -1,103 +1,165 @@
 <!DOCTYPE html>
-<htm lang="en">
-
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="description"
-      content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge.">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="description"
+      content="Math Game for Grades 2-3. Helping kids with learning addition, subtraction, multiplication, and division. Fun games, quizes, and flash cards to test their knowledge."
+    />
 
     <title>Math Genius</title>
-    <link rel="shortcut icon" type="image/png" href="/assets/favicon2.png">
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon2.png" />
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css" />
     <script src="https://www.google.com/recaptcha/api.js"></script>
 
-
-    <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Monomaniac+One&family=Pangolin&family=roboto&display=swap"
-      rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Monomaniac+One&family=Pangolin&family=roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script src="https://www.google.com/recaptcha/api.js"></script>
-
+    <script src="../js/recaptcha/signupRecaptcha.js"></script>
   </head>
 
   <body>
     <%- include('partials/_brand') %>
-      <div class="main-container">
-        <div class="signup-menu-container display-container" id="signup-menu-container">
-          <div class="signup-container">
-            <h1 class="signup-header">Create Account</h1>
-            <% if(signupMessage) { %>
-              <div class="signup-flash-message <%= messageType %>" id="signup-flash-message">
-                <p>
-                  <%= signupMessage %>
-                </p>
-              </div>
-              <% } %>
-                <div class="signup-landscape-bottom">
-                  <div class="signup-top-left">
-
-                    <form class="signup-form" id="signup-form" action="/signup" method="post">
-                      <div class="signup-form-group">
-                        <div class="input-shell">
-                          <i class="input-icon fa-solid fa-user-large"></i>
-                          <div class="input-seperator"></div>
-                          <input class="form-input" type="text" id="username" name="username" placeholder="Username"
-                            required>
-                        </div>
-                      </div>
-                      <div class="signup-form-group">
-                        <div class="input-shell">
-                          <i class="input-icon fa-regular fa-envelope"></i>
-                          <div class="input-seperator"></div>
-                          <input class="form-input" type="email" id="email" name="email" placeholder="Email" required>
-                        </div>
-                      </div>
-                      <div class="signup-form-group">
-                        <div class="input-shell">
-                          <i class="input-icon fa-solid fa-key"></i>
-                          <div class="input-seperator"></div>
-                          <input class="form-input" type="password" id="password" name="password" placeholder="Password"
-                            required>
-                        </div>
-                      </div>
-                      <div class="create-account-form-group">
-                        <button class="create-account-form-button g-recaptcha"
-                          data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitSignup'
-                          data-action='submit' title="signup-button" type="submit">Create
-                          Account</button>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="divider">
-                    <div class="line"></div><span class="or">or</span>
-                    <div class="line"></div>
-                  </div>
-
-                  <div class="signup-bottom-right">
-                    <div class="signup-login-link-container">
-                      <p class="signup-login-link-text">Already have an account?</p><a
-                        class="signup-login-link signup-login" href="/login">Log in</a>
-                    </div>
-                    <form class="play-as-guest" id="guest-login-form" action="/guest" method="POST">
-                      <label for="guest"></label>
-                      <button class="signup-form-button guest-button g-recaptcha"
-                        data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj" data-callback='onSubmitGuestSignUp'
-                        data-action='submit' id="guest" type="submit">Play as guest</button>
-                    </form>
+    <div class="main-container">
+      <div
+        class="signup-menu-container display-container"
+        id="signup-menu-container"
+      >
+        <div class="signup-container">
+          <h1 class="signup-header">Create Account</h1>
+          <% if(signupMessage) { %>
+          <div
+            class="signup-flash-message <%= messageType %>"
+            id="signup-flash-message"
+          >
+            <p data-cy="signup-error"><%= signupMessage %></p>
+          </div>
+          <% } %>
+          <div class="signup-landscape-bottom">
+            <div class="signup-top-left">
+              <form
+                class="signup-form"
+                id="signup-form"
+                action="/signup"
+                method="post"
+              >
+                <div class="signup-form-group">
+                  <div class="input-shell">
+                    <i class="input-icon fa-solid fa-user-large"></i>
+                    <div class="input-seperator"></div>
+                    <input
+                      class="form-input"
+                      type="text"
+                      tabindex="1"
+                      id="username"
+                      name="username"
+                      placeholder="Username"
+                      data-cy="signin-username"
+                      tabindex="1"
+                      required
+                    />
                   </div>
                 </div>
+                <div class="signup-form-group">
+                  <div class="input-shell">
+                    <i class="input-icon fa-regular fa-envelope"></i>
+                    <div class="input-seperator"></div>
+                    <input
+                      class="form-input"
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="Email"
+                      data-cy="signin-email"
+                      tabindex="2"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="signup-form-group">
+                  <div class="input-shell">
+                    <i class="input-icon fa-solid fa-key"></i>
+                    <div class="input-seperator"></div>
+                    <input
+                      class="form-input"
+                      type="password"
+                      id="password"
+                      name="password"
+                      placeholder="Password"
+                      data-cy="signin-password"
+                      tabindex="3"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="create-account-form-group">
+                  <button
+                    class="create-account-form-button g-recaptcha"
+                    data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj"
+                    data-callback="onSubmitSignup"
+                    data-action="submit"
+                    data-cy="signup-button"
+                    tabindex="4"
+                    title="signup-button"
+                    type="submit"
+                  >
+                    Create Account
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="divider">
+              <div class="line"></div>
+              <span class="or">or</span>
+              <div class="line"></div>
+            </div>
+
+            <div class="signup-bottom-right">
+              <div class="signup-login-link-container">
+                <p class="signup-login-link-text">Already have an account?</p>
+                <a
+                  data-cy="signup-to-login"
+                  class="signup-login-link signup-login"
+                  href="/login"
+                  >Log in</a
+                >
+              </div>
+              <form
+                class="play-as-guest"
+                id="guest-login-form"
+                action="/guest"
+                method="POST"
+              >
+                <label for="guest"></label>
+                <button
+                  class="signup-form-button guest-button g-recaptcha"
+                  data-sitekey="6Ld1bOElAAAAAFQP-87plPiMToZYqojLl6P7NyGj"
+                  data-callback="onSubmitGuestSignUp"
+                  data-action="submit"
+                  data-cy="signup-guest"
+                  id="guest"
+                  type="submit"
+                  tabindex="5"
+                >
+                  Play as guest
+                </button>
+              </form>
+            </div>
           </div>
-
         </div>
-
       </div>
-      <%- include('partials/_privacy') %>
+    </div>
+    <%- include('partials/_privacy') %>
 
-        <script type="module" src="../js/signupAlert.js"></script>
-        <script type="module" src="../js/recaptcha/signupRecaptcha.js"></script>
-
+    <script type="module" src="../js/signupAlert.js"></script>
   </body>
-
-  </html>
+</html>

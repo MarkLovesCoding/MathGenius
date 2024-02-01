@@ -1,4 +1,1 @@
-"use strict";
-function onSubmitUsername() {
-    document.getElementById("forgot-username-form").submit();
-}
+"use strict";function onSubmitUsername(){document.getElementById("forgot-username-form").submit()}

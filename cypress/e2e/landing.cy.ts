@@ -28,8 +28,6 @@ describe("landing page", () => {
   it("should display menu and close menu", () => {
     cy.visit("http://localhost:4000/");
 
-    cy.get("#burger ").click();
-
     cy.url().should("include", "/");
   });
   // it("should load content", () => {

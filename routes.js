@@ -13,6 +13,7 @@ passportConfig(passport);
 
 const SibApiV3Sdk = require("sib-api-v3-sdk");
 const rateLimit = require("express-rate-limit");
+const { message } = require("gulp-typescript/release/utils");
 //
 // Rendering Routes
 //
@@ -853,4 +854,31 @@ router.patch("/update-badges", requireAuth, async (req, res) => {
     res.status(500).send("Error updating badges!");
   }
 });
+
+router.delete("/deleteUser", requireAuth, async (req, res) => {
+  const { username, userPassword } = req.body;
+  try {
+    // Find the user by username
+    const user = await User.findOne({ username });
+
+    // If user is not found, return error
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Compare the provided password with the hashed password stored in the database
+    const isPasswordValid = bcrypt.compareSync(userPassword, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    // Password is valid, return success response
+    res.status(200).json({ message: "Login successful" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 module.exports = router;

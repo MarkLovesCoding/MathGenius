@@ -125,7 +125,7 @@
   font-weight: 600;
   margin-top: 20px;
   cursor: pointer;
-  outline: none;
+  // outline: none;
   height: 45px;
   border-radius: 25px;
   border: none;
@@ -381,7 +381,7 @@
   &:active,
   :focus {
     border: none;
-    outline: 0;
+    // outline: 0;
   }
 }
 
@@ -419,7 +419,7 @@
 .go-to-login-button {
   background: none;
   border: none;
-  outline: none;
+  // outline: none;
   margin-left: 20px;
 }
 
