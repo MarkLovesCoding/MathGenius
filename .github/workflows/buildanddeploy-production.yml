@@ -1,4 +1,4 @@
-name: Docker Build and Deploy - Production
+name: Test, Build and Deploy - Production
 
 on:
   push:
@@ -6,6 +6,63 @@ on:
       - master
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Generate .env File
+        run: |
+          echo "NODE_ENV=production" > .env
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
+          echo "MY_SECRET=${{ secrets.MY_SECRET }}" >> .env
+          echo "SENDINBLUESMTP=${{ secrets.SENDINBLUESMTP }}" >> .env
+          echo "SENDINBLUEAPI=${{ secrets.SENDINBLUEAPI }}" >> .env
+          echo "MONGOURI_PROD=${{ secrets.MONGOURI_PROD }}" >> .env
+          echo "RECAPTCHA_PROD_SITE=${{ secrets.RECAPTCHA_PROD_SITE }}" >> .env
+          echo "RECAPTCHA_PROD_SECRET=${{ secrets.RECAPTCHA_PROD_SECRET }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "DOCKER_IMAGENAME=markhaldev/mathgeniusimage:test" >> .env
+          echo "DOCKERHUB_TOKEN=${{ secrets.DOCKERHUB_TOKEN }}" >> .env
+          echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> .env
+          echo "DIGITALOCEAN_PA_TOKEN=${{ secrets.DIGITALOCEAN_PA_TOKEN }}" >> .env
+          echo "DIGITALOCEAN_IP=${{ secrets.DIGITALOCEAN_IP }}" >> .env
+          echo "DIGITALOCEAN_PASSWORD_ROOT=${{ secrets.DIGITALOCEAN_PASSWORD_ROOT }}" >> .env
+          echo "DIGITALOCEAN_PASSWORD_USER=${{ secrets.DIGITALOCEAN_PASSWORD_USER }}" >> .env
+          echo "CYPRESS_FAKE_PASSWORD=${{ secrets.CYPRESS_FAKE_PASSWORD }}" >> .env
+          echo "CYPRESS_FAKE_USERNAME=${{ secrets.CYPRESS_FAKE_USERNAME }}" >> .env
+          echo "CYPRESS_INVALID_USERNAME_SHORT=${{ secrets.CYPRESS_INVALID_USERNAME_SHORT }}" >> .env
+          echo "CYPRESS_INVALID_USERNAME_LONG=${{ secrets.CYPRESS_INVALID_USERNAME_LONG }}" >> .env
+          echo "CYPRESS_INVALID_EMAIL=${{ secrets.CYPRESS_INVALID_EMAIL }}" >> .env
+          echo "CYPRESS_INVALID_PASSWORD=${{ secrets.CYPRESS_INVALID_PASSWORD }}" >> .env
+          echo "CYPRESS_VALID_USERNAME=${{ secrets.CYPRESS_VALID_USERNAME }}" >> .env
+          echo "CYPRESS_VALID_EMAIL=${{ secrets.CYPRESS_VALID_EMAIL }}" >> .env
+          echo "CYPRESS_VALID_PASSWORD=${{ secrets.CYPRESS_VALID_PASSWORD }}" >> .env
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: Install dependencies
+        run: npm install
+      - name: Build the application
+        run: npm run build
+
+      - name: Start the application
+        run: npm run start > /dev/null 2>&1 & # Run npm start in the background, redirecting output to /dev/null
+
+      - name: Wait for the application to start
+        run: sleep 10s
+      - name: Run Jest Unit Tests
+        run: npm run test:unit
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v5
+        with:
+          browser: chrome
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -30,6 +87,15 @@ jobs:
           echo "DIGITALOCEAN_IP=${{ secrets.DIGITALOCEAN_IP }}" >> .env
           echo "DIGITALOCEAN_PASSWORD_ROOT=${{ secrets.DIGITALOCEAN_PASSWORD_ROOT }}" >> .env
           echo "DIGITALOCEAN_PASSWORD_USER=${{ secrets.DIGITALOCEAN_PASSWORD_USER }}" >> .env
+          echo "CYPRESS_FAKE_PASSWORD=${{ secrets.CYPRESS_FAKE_PASSWORD }}" >> .env
+          echo "CYPRESS_FAKE_USERNAME=${{ secrets.CYPRESS_FAKE_USERNAME }}" >> .env
+          echo "CYPRESS_INVALID_USERNAME_SHORT=${{ secrets.CYPRESS_INVALID_USERNAME_SHORT }}" >> .env
+          echo "CYPRESS_INVALID_USERNAME_LONG=${{ secrets.CYPRESS_INVALID_USERNAME_LONG }}" >> .env
+          echo "CYPRESS_INVALID_EMAIL=${{ secrets.CYPRESS_INVALID_EMAIL }}" >> .env
+          echo "CYPRESS_INVALID_PASSWORD=${{ secrets.CYPRESS_INVALID_PASSWORD }}" >> .env
+          echo "CYPRESS_VALID_USERNAME=${{ secrets.CYPRESS_VALID_USERNAME }}" >> .env
+          echo "CYPRESS_VALID_EMAIL=${{ secrets.CYPRESS_VALID_EMAIL }}" >> .env
+          echo "CYPRESS_VALID_PASSWORD=${{ secrets.CYPRESS_VALID_PASSWORD }}" >> .env
 
       - name: Build Docker Image with docker-compose
 

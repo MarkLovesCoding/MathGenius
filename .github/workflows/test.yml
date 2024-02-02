@@ -3,10 +3,10 @@ name: Run Cypress Tests
 on:
   push:
     branches:
-      - Cypress
+      - master
 
 jobs:
-  build:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +24,7 @@ jobs:
           echo "RECAPTCHA_PROD_SITE=${{ secrets.RECAPTCHA_PROD_SITE }}" >> .env
           echo "RECAPTCHA_PROD_SECRET=${{ secrets.RECAPTCHA_PROD_SECRET }}" >> .env
           echo "PORT=${{ secrets.PORT }}" >> .env
-          echo "DOCKER_IMAGENAME=markhaldev/mathgeniusimage:dev" >> .env
+          echo "DOCKER_IMAGENAME=markhaldev/mathgeniusimage:test" >> .env
           echo "DOCKERHUB_TOKEN=${{ secrets.DOCKERHUB_TOKEN }}" >> .env
           echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> .env
           echo "DIGITALOCEAN_PA_TOKEN=${{ secrets.DIGITALOCEAN_PA_TOKEN }}" >> .env
@@ -55,6 +55,8 @@ jobs:
 
       - name: Wait for the application to start
         run: sleep 10s
+      - name: Run Unit Tests
+        run: npm run test:unit
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
