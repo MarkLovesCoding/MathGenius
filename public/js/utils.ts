@@ -563,7 +563,7 @@ function createActivityTextAndIcon(type: ActivityType): string[] {
  * @param op - The type of the operator.
  * @returns An array containing operator text and operator color.
  */
-function createOperatorTextAndIcon(op: Operator): string[] {
+export function createOperatorTextAndIcon(op: Operator): string[] {
   let operatorText: string, operatorColor: string;
   switch (op) {
     case "+":
