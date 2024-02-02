@@ -27,7 +27,6 @@ describe("challenges spec", () => {
     cy.get("div#mul").should("exist");
     cy.get("button#operator-test-menu-backward-lower").should("exist");
     cy.get("div#sub").should("exist").click();
-    // cy.wait(200);
 
     cy.wait(200);
     cy.get("div#game-container").should("exist");

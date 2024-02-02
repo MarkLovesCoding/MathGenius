@@ -66,6 +66,4 @@ describe("practice spec", () => {
     );
     cy.get("div#selected-difficulty-general").should("contain", "Intermediate");
   });
-
-  // cy.get('div[data-cy="fraction-lesson-2"]').should("have.class", "active");
 });
