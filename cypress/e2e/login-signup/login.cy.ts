@@ -7,8 +7,8 @@ describe("login spec", () => {
     cy.get('input[name="username"]').should("exist");
     cy.get('input[name="password"]').should("exist");
 
-    cy.get('input[name="username"]').type(Cypress.env("validUsername"));
-    cy.get('input[name="password"]').type(Cypress.env("invalidPassword"));
+    cy.get('input[name="username"]').type(Cypress.env("invalidUsernameShort"));
+    cy.get('input[name="password"]').type(Cypress.env("validPassword"));
     cy.get('button[data-cy="login-button"]').click();
     cy.url().should("eq", Cypress.config().baseUrl + "login");
     cy.get('p[data-cy="login-message"]').should(
@@ -22,8 +22,8 @@ describe("login spec", () => {
     cy.get('input[name="username"]').should("exist");
     cy.get('input[name="password"]').should("exist");
 
-    cy.get('input[name="username"]').type(Cypress.env("invalidUsernameShort"));
-    cy.get('input[name="password"]').type(Cypress.env("validPassword"));
+    cy.get('input[name="username"]').type(Cypress.env("validUsername"));
+    cy.get('input[name="password"]').type(Cypress.env("invalidPassword"));
     cy.get('button[data-cy="login-button"]').click();
     cy.url().should("eq", Cypress.config().baseUrl + "login");
     cy.get('p[data-cy="login-message"]').should(

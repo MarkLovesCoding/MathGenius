@@ -528,7 +528,7 @@ function createActivityTextAndIcon(type: ActivityType): string[] {
   let activityText: string, activityIconClass: string;
   switch (type) {
     case "multiple-choice-quiz":
-      activityText = "Mulitple Choice Quiz";
+      activityText = "Multiple Choice Quiz";
       activityIconClass = "mc-quiz-icon icon fas fa-list-ol fa-large";
       break;
     case "quiz":
@@ -544,7 +544,7 @@ function createActivityTextAndIcon(type: ActivityType): string[] {
       activityIconClass = "flash-icon icon fas fa-bolt fa-large";
       break;
     case "multiple-choice":
-      activityText = "Mulitple Choice Practice";
+      activityText = "Multiple Choice Practice";
       activityIconClass = "mc-icon icon fas fa-table-cells-large fa-large";
       break;
     default:

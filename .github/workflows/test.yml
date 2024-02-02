@@ -33,7 +33,7 @@ jobs:
           echo "DIGITALOCEAN_PASSWORD_USER=${{ secrets.DIGITALOCEAN_PASSWORD_USER }}" >> .env
           echo "CYPRESS_FAKE_PASSWORD=${{ secrets.CYPRESS_FAKE_PASSWORD }}" >> .env
           echo "CYPRESS_FAKE_USERNAME=${{ secrets.CYPRESS_FAKE_USERNAME }}" >> .env
-          echo "CYPRESS_INVALID_USERNAME_LONG=${{ secrets.CYPRESS_INVALID_USERNAME_LONG }}" >> .env
+          echo "CYPRESS_INVALID_USERNAME_SHORT=${{ secrets.CYPRESS_INVALID_USERNAME_SHORT }}" >> .env
           echo "CYPRESS_INVALID_USERNAME_LONG=${{ secrets.CYPRESS_INVALID_USERNAME_LONG }}" >> .env
           echo "CYPRESS_INVALID_EMAIL=${{ secrets.CYPRESS_INVALID_EMAIL }}" >> .env
           echo "CYPRESS_INVALID_PASSWORD=${{ secrets.CYPRESS_INVALID_PASSWORD }}" >> .env

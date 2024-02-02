@@ -1,17 +1,42 @@
-<div id="burger-container" class="burger-container box-container">
-  <div class="burger" id="burger">
+<div
+  data-cy="burger-container"
+  id="burger-container"
+  class="burger-container box-container"
+  data-cy="burger-container"
+>
+  <div data-cy="burger-lines-box" class="burger" id="burger">
     <span></span>
     <span></span>
     <span></span>
   </div>
-  <div id="expanded-menu" class="expanded-menu">
+  <div data-cy="burger-menu" id="expanded-menu" class="expanded-menu">
     <ul>
-      <li><a id="home-nav" href="/">Home</a></li>
-      <li><a id="profile-nav" href="/profile">Profile</a></li>
-      <li><a id="test-nav" href="/challenges">Challenges</a></li>
-      <li><a id="practice-nav" href="/practice">Practice</a></li>
-      <li><a id="learning-nav" href="/learning">Resources</a></li>
-      <li><a id="logout-nav" href="/logout">Logout</a></li>
+      <li><a data-cy="burger-home-link" id="home-nav" href="/">Home</a></li>
+      <li>
+        <a data-cy="burger-profile-link" id="profile-nav" href="/profile"
+          >Profile</a
+        >
+      </li>
+      <li>
+        <a data-cy="burger-test-link" id="test-nav" href="/challenges"
+          >Challenges</a
+        >
+      </li>
+      <li>
+        <a data-cy="burger-practice-link" id="practice-nav" href="/practice"
+          >Practice</a
+        >
+      </li>
+      <li>
+        <a data-cy="burger-learning-link" id="learning-nav" href="/learning"
+          >Resources</a
+        >
+      </li>
+      <li>
+        <a data-cy="burger-logout-link" id="logout-nav" href="/logout"
+          >Logout</a
+        >
+      </li>
     </ul>
   </div>
 </div>
