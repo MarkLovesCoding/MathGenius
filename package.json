@@ -7,6 +7,7 @@
     "start": "node server.js",
     "dev": "cross-env NODE_ENV=development gulp",
     "cypress:run": "npx cypress run",
+    "test:unit": "jest",
     "build": "cross-env NODE_ENV=production gulp",
     "tsc": "tsc --watch"
   },
