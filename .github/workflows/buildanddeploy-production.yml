@@ -101,7 +101,6 @@ jobs:
 
         run: docker compose -f docker-compose.prod.yml build
 
-        # Replace `/path/to/your/docker-compose.yml` with the actual path to your docker-compose.yml file.
       - name: Print Secrets
         run: |
           echo "CLIENT_ID: ${{ secrets.CLIENT_ID }}"
