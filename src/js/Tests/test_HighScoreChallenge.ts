@@ -243,7 +243,7 @@ async function updateLevel(): Promise<void> {
  * Updates the width of the progress bar by adding a fraction of the full width to it.
  * If the progress bar is filled to its full width, it resets after a delay of 1 second.
  */
-async function updateProgress(questionNumber: number): Promise<void> {
+function updateProgress(questionNumber: number) {
   // Get the full width of the progress bar container and subtract the border width to get the actual width
   // console.log(questionNumber)
   // console.log(questionNumber%10)
@@ -269,7 +269,7 @@ async function updateProgress(questionNumber: number): Promise<void> {
 
   // If the progress bar is filled to its full width, reset it after a delay of 1 second
   if (progressWidth >= fullWidth) {
-    await utilMethods.delay(1000);
+    utilMethods.delay(1000);
     utilMethods.resetWidth([gameTracker]);
   }
 }
@@ -302,21 +302,27 @@ function gameOverWin() {
   );
 }
 
-async function resetGameSettings() {
+function resetGameSettings() {
   // utilMethods.correctnessView(false, gameCorrectness);
   // utilMethods.incorrectMotion(gameCorrectness);
   const operator = <Operator>sessionStorage.getItem("activeOperators");
+  console.log("operator reset", operator);
   // const difficulty = sessionStorage.getItem("activeDifficulty")
   utilMethods.disableInput(gameAnswerInput);
   // utilMethods.visibilityTimedToggle(true, gameActualContainer, 1000);
-  await utilMethods.delay(250);
+
   utilMethods.resetAnswerInput([gameAnswerInput]);
   utilMethods.resetNumber(gameCurrScore, 1);
   utilMethods.resetLevelNumber(gameLevelNumber);
   utilMethods.resetWidth([gameTracker]);
   sessionStorage.setItem("activeDifficulty", "1");
-  await utilMethods.updateLevelVisuals("1");
-  if (operator) {
+  console.log("difficulty reset", sessionStorage.getItem("activeDifficulty"));
+
+  utilMethods.updateLevelVisuals("1");
+  console.log("is operator", operator);
+  if (operator.length > 0) {
+    console.log("is operator", operator);
+
     utilMethods.updateGeneralSelected(operator, "1");
 
     utilMethods.updateDifficultyRange();
@@ -324,7 +330,7 @@ async function resetGameSettings() {
     questionLogic.newQuestion("game", operator);
   } else throw new Error("Error: Session Storage couldn't be retrieved");
 
-  await utilMethods.delay(250);
+  utilMethods.delay(250);
   utilMethods.enableInput(gameAnswerInput);
 }
 
@@ -344,22 +350,7 @@ function updateChallengeBadgeAppearance(
   const reformattedOperator: OperatorVerbose =
     utilMethods.reformatOperator(operator);
   const bestBadges: [string, string, string][] = getHighestBadge(badges);
-  console.log("bestBadges", bestBadges);
-  // for (let element of elements) {
-  //   // TO DO
-  //   //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
-  //   // use profile objest to find highest accomplished badge?
-  //   element.classList.add("active");
 
-  //   // let operator = element.getAttribute("data-badge-operator")
-  //   let type = element.getAttribute("data-badge-type");
-  //   let operator = element.getAttribute("data-badge-operator");
-
-  //   if (profile[operator][type][diff]) {
-  //   } else {
-  //     element.classList.remove("active");
-  //   }
-  // }
   for (let best of bestBadges) {
     if (
       best[2] !== "0" &&
@@ -368,48 +359,44 @@ function updateChallengeBadgeAppearance(
     ) {
       const highestLevel = best[2];
       for (let element of elements) {
-        // TO DO
-        //  search through profile.  check if true. if so. designate truthiness (class active) to corresponding type
-        // use profile objest to find highest accomplished badge?
-
-        // let operator = element.getAttribute("data-badge-operator")
-        // let type = element.getAttribute("data-badge-type");
         let difficulty = element.getAttribute("data-badge-number");
         if (difficulty && difficulty <= highestLevel) {
           element.classList.add("active");
         }
-        // console.log("badgeop",operator)
       }
     }
   }
 }
 
-window.onload = async function () {
-  let operator = <Operator>sessionStorage.getItem("activeOperators");
-  // state.activeOperators = sessionStorage.getItem("activeOperators")
+window.onload = function () {
+  let operator = sessionStorage.getItem("activeOperators");
+  console.log("operator", operator);
+  let difficulty = sessionStorage.getItem("activeDifficulty");
+  console.log("difficulty", difficulty);
+  let difficultyNumber = 1;
+  const nums = ["1", "2", "3", "4", "5"];
 
-  let difficulty: string | null = sessionStorage.getItem("activeDifficulty");
-  let difficultyNumber: number = 1;
-  const nums: string[] = ["1", "2", "3", "4", "5"];
   if (difficulty && nums.includes(difficulty)) {
     difficultyNumber = Number(difficulty);
   }
-  // console.log(difficulty)
-  // utilMethods.updateDifficultyRange(operator)
-  // console.log(operator)
+
   const badgeImgs = document.getElementsByClassName("badge-img");
-  const badgesFromDb = await retrieveBadges();
 
-  if (operator)
-    updateChallengeBadgeAppearance(badgeImgs, badgesFromDb, operator);
-  else throw new Error("ChallengeBadges not Update. SessionStorage Data error");
-  // sessionStorage.setItem("activeOperators",operators)
-  // sessionStorage.setItem("",operators)
-  utilMethods.resetNumber(gameCurrScore, difficultyNumber);
+  // Use then to handle the promise returned by retrieveBadges
+  retrieveBadges().then((badgesFromDb) => {
+    if (operator) {
+      updateChallengeBadgeAppearance(
+        badgeImgs,
+        badgesFromDb,
+        operator as Operator
+      );
+    } else {
+      throw new Error("ChallengeBadges not Update. SessionStorage Data error");
+    }
 
-  // sessionStorage.setItem("badges",badgesFromDb)
+    utilMethods.resetNumber(gameCurrScore, difficultyNumber);
 
-  resetGameSettings();
-
-  // questionLogic.newQuestion('game', operator);
+    questionLogic.newQuestion("game", operator as Operator);
+  });
 };
+resetGameSettings();

@@ -753,31 +753,46 @@ export function updateGeneralSelected(op: Operator, diff: Difficulty) {
   const operatorContainer: HTMLElement | null = document.getElementById(
     "selected-operator-container-general"
   );
+  console.log("difficulty:", difficulty);
+  console.log("operator:", operator);
+  console.log("difficultyContainer:", difficultyContainer);
+  console.log("operatorContainer:", operatorContainer);
   const [operatorText, operatorColor] = createOperatorTextAndIcon(op);
   const [diffText, diffColor] = createDifficultyText(diff);
-
+  console.log("operatorText:", operatorText);
+  console.log("operatorColor:", operatorColor);
+  console.log("diffText:", diffText);
   if (operatorContainer) {
+    console.log("operatorContainer:", operatorContainer);
+
     operatorContainer.style.border = "3px solid " + operatorColor;
   }
 
   if (difficultyContainer) {
+    console.log("difficultyContainer:", difficultyContainer);
+
     difficultyContainer.style.border = "3px solid " + diffColor;
   }
 
   if (difficulty) {
+    console.log("difficulty:", difficulty);
+
     difficulty.textContent = diffText;
   }
 
   if (operator) {
+    console.log("operator:", operator);
+
     operator.textContent = operatorText;
   }
+  console.log("loaded");
 }
 
 /**
  * Asynchronously updates the visual representation of the selected level in the general settings.
  * @param level - The selected level.
  */
-export async function updateLevelVisuals(level: Difficulty): Promise<void> {
+export function updateLevelVisuals(level: Difficulty) {
   const [difficultyText, difficultyColor] = createDifficultyText(level);
   const difficulty: HTMLElement | null = document.getElementById(
     "selected-difficulty-general"
@@ -787,10 +802,15 @@ export async function updateLevelVisuals(level: Difficulty): Promise<void> {
   );
 
   if (difficultyContainer) {
+    console.log(
+      "difficultyContainer in updateLevelVisuals:",
+      difficultyContainer
+    );
     difficultyContainer.style.border = "3px solid " + difficultyColor;
   }
 
   if (difficulty) {
+    console.log("difficulty in updateLevelVisuals:", difficulty);
     difficulty.textContent = difficultyText;
   }
 }
