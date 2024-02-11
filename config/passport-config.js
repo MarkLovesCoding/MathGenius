@@ -3,7 +3,7 @@ require("dotenv").config({ path: "./.env" });
 
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const User = require("../models/User"); // assuming you have a user model defined in a separate file
+const User = require("../db/models/User"); // assuming you have a user model defined in a separate file
 
 function passportConfig(passport) {
   // Configure serialization and deserialization of users

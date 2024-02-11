@@ -27,7 +27,7 @@ gulp.task("clean", function () {
 // Task to compile SASS
 gulp.task("compile-sass", function () {
   return gulp
-    .src("public/scss/styles.scss")
+    .src("src/scss/styles.scss")
     .pipe(sass.sync().on("error", sass.logError))
     .pipe(gulp.dest("dist/css"));
   // .pipe(browserSync.stream());
@@ -35,13 +35,13 @@ gulp.task("compile-sass", function () {
 
 // Task to transpile JavaScript files with Babel
 gulp.task("transpile-js", function () {
-  return gulp.src("public/js/**/*.js").pipe(babel()).pipe(gulp.dest("dist/js"));
+  return gulp.src("src/js/**/*.js").pipe(babel()).pipe(gulp.dest("dist/js"));
   // .pipe(browserSync.stream());
 });
 
 // Task to copy EJS files to dist folder
 gulp.task("copy-ejs", function () {
-  return gulp.src("public/views/**/*.ejs").pipe(gulp.dest("dist/views"));
+  return gulp.src("src/views/**/*.ejs").pipe(gulp.dest("dist/views"));
 });
 
 // Task to copy assets to dist folder
@@ -70,7 +70,7 @@ gulp.task("dev", function (done) {
   nodemon({
     script: "server.js", // Specify the entry point of your server
     ext: "js ejs scss", // Watch for changes in JS, EJS, and SCSS files
-    watch: ["server.js", "public/js", "public/views", "public/scss"], // Watch these files/folders for changes
+    watch: ["server.js", "src/js", "src/views", "src/scss"], // Watch these files/folders for changes
     env: { NODE_ENV: "development" }, // Set the NODE_ENV environment variable to "development"
     done: done,
   });
@@ -79,13 +79,13 @@ gulp.task("dev", function (done) {
 gulp.task("build-project", function () {
   return gulp
     .src([
-      "public/**/*",
-      "!public/scss",
-      "!public/scss/**/*",
-      "!public/js",
-      "!public/js/**/*",
-      "!public/views",
-      "!public/views/**/*",
+      "src/**/*",
+      "!src/scss",
+      "!src/scss/**/*",
+      "!src/js",
+      "!src/js/**/*",
+      "!src/views",
+      "!src/views/**/*",
     ])
     .pipe(gulp.dest("dist"));
 });
