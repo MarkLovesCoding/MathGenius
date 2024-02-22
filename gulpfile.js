@@ -9,6 +9,7 @@ const uglify = require("gulp-uglify");
 const cleanCSS = require("gulp-clean-css");
 const ts = require("gulp-typescript");
 const tsProject = ts.createProject("tsconfig.json");
+const javascriptObfuscator = require("gulp-javascript-obfuscator");
 require("dotenv").config({ path: "./.env" });
 
 // Define environment variable to differentiate between development and production
@@ -100,7 +101,12 @@ gulp.task("minify-css", function () {
 
 // Task to minify JavaScript
 gulp.task("minify-js", function () {
-  return gulp.src("dist/js/**/*.js").pipe(uglify()).pipe(gulp.dest("dist/js"));
+  return gulp
+    .src("dist/js/**/*.js")
+    .pipe(javascriptObfuscator())
+    .pipe(gulp.dest("dist/js"));
+
+  // return gulp.src("dist/js/**/*.js").pipe(uglify()).pipe(gulp.dest("dist/js"));
 });
 
 // Define the default task based on the environment
