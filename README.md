@@ -3,7 +3,7 @@
 An application for Grades 1-4 students to learn and practice Math.
 
 <a name="readme-top"></a>
-[![MIT License][license-shield]][license-url]
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -92,9 +92,7 @@ You'll need to have npm and node installed locally, globally.
 
 ## License
 
-Copyright MarkHalstead.Dev 2023.
-
-For Non-commercial and personal use only.
+Task Compass is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](LICENSE.txt). You are free to use and modify the project for non-commercial purposes, as long as you provide proper attribution and distribute your contributions under the same license.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

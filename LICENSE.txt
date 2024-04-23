@@ -1,3 +1,1 @@
-Copyright MarkHalstead.dev 2023
-
-For Non-commercial or Personal Use only
+Task Compass is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](LICENSE.txt). You are free to use and modify the project for non-commercial purposes, as long as you provide proper attribution and distribute your contributions under the same license.
